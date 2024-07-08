@@ -1,0 +1,67 @@
+{
+  "name": "aeco-app",
+  "version": "1.0.0",
+  "author": {
+    "name": "Franko Campos",
+    "email": "camposfranciscoing@gmail.com"
+  },
+  "description": "AECO APP",
+  "homepage": "https://github.com/franciscocamposchimal",
+  "main": "main.js",
+  "scripts": {
+    "start": "concurrently \"npm run dev\" \"npm run electron\"",
+    "dev": "webpack serve",
+    "electron": "wait-on http://localhost:3000 && electron .",
+    "dist": "electron-builder --armv7l"
+  },
+  "build": {
+    "productName": "aeco-app",
+    "appId": "com.example.aeco-app",
+    "artifactName": "${productName}-${version}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "dist",
+      "node_modules",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "public/",
+        "to": "public",
+        "filter": "**/*"
+      }
+    ],
+    "linux": {
+      "target": {
+        "target": "AppImage",
+        "arch": ["armv7l"]
+      },
+      "category": "Utility"
+    }
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "8.2.2",
+    "electron-is-dev": "^3.0.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "wait-on": "^7.2.0"
+  },
+  "devDependencies": {
+    "electron": "31.0.2",
+    "@babel/core": "7.24.7",
+    "@babel/preset-env": "7.24.7",
+    "@babel/preset-react": "7.24.7",
+    "babel-loader": "9.1.3",
+    "css-loader": "7.1.2",
+    "electron-builder": "^24.13.3",
+    "style-loader": "4.0.0",
+    "webpack": "5.92.1",
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
