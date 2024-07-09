@@ -39,6 +39,9 @@ Icon
 
 # Electron specific
 electron-builder.yml
+build/
+dist/
+release/
 out/
 *.snap
 *.rpm
