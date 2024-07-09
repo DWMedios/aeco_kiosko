@@ -51,3 +51,6 @@ out/
 *.dmg
 *.exe
 *.asar
+
+# package-lock.json
+package-lock.json
