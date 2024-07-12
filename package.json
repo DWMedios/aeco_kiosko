@@ -1,67 +1,104 @@
 {
-  "name": "aeco-app",
+  "name": "aeco",
+  "description": "AECO APP",
   "version": "1.0.0",
+  "private": true,
   "author": {
     "name": "Franko Campos",
     "email": "camposfranciscoing@gmail.com"
   },
-  "description": "AECO APP",
-  "homepage": "https://github.com/franciscocamposchimal",
-  "main": "main.js",
+  "keywords": [],
+  "license": "ISC",
+  "main": "./public/electron.js",
+  "homepage": "./",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
-    "start": "concurrently \"npm run dev\" \"npm run electron\"",
+    "start": "react-scripts start",
     "dev": "webpack serve",
     "electron": "wait-on http://localhost:3000 && electron .",
-    "dist": "electron-builder --armv7l"
+    "start:dev": "concurrently -k \"cross-env BROWSER=none npm run dev\" \"npm run electron\"",
+    "dist": "electron-builder",
+    "build:react": "react-scripts build",
+    "eject:react": "react-scripts eject",
+    "build:raspi": "npm run build:react && electron-builder --armv7l -c.extraMetadata.main=build/electron.js",
+    "build:linux": "npm run build:react && electron-builder -l -c.extraMetadata.main=build/electron.js",
+    "build:macos": "npm run build:react && electron-builder -m -c.extraMetadata.main=build/electron.js",
+    "build:win": "npm run build:react && electron-builder -w -c.extraMetadata.main=build/electron.js"
   },
   "build": {
     "productName": "aeco-app",
     "appId": "com.example.aeco-app",
+    "buildVersion": "1.0.1",
     "artifactName": "${productName}-${version}.${ext}",
-    "directories": {
-      "output": "dist"
-    },
     "files": [
-      "main.js",
-      "dist",
-      "node_modules",
-      "package.json"
+      "build/**/*",
+      "node_modules/**/*"
     ],
-    "extraResources": [
-      {
-        "from": "public/",
-        "to": "public",
-        "filter": "**/*"
-      }
-    ],
+    "directories": {
+      "output": "release",
+      "buildResources": "assets"
+    },
     "linux": {
-      "target": {
-        "target": "AppImage",
-        "arch": ["armv7l"]
-      },
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "armv7l"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "armv7l"
+          ]
+        }
+      ],
       "category": "Utility"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
     }
   },
-  "keywords": [],
-  "license": "ISC",
   "dependencies": {
-    "concurrently": "8.2.2",
-    "electron-is-dev": "^3.0.1",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "wait-on": "^7.2.0"
+    "cross-env": "^7.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
+    "wait-on": "^7.2.0",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "electron": "31.0.2",
-    "@babel/core": "7.24.7",
-    "@babel/preset-env": "7.24.7",
-    "@babel/preset-react": "7.24.7",
-    "babel-loader": "9.1.3",
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "babel-loader": "^9.1.3",
+    "concurrently": "^8.2.2",
     "css-loader": "7.1.2",
+    "electron": "^31.1.0",
     "electron-builder": "^24.13.3",
+    "electron-is-dev": "^3.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.1",
     "style-loader": "4.0.0",
     "webpack": "5.92.1",
     "webpack-cli": "5.1.4",
     "webpack-dev-server": "^5.0.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "last 1 electron version"
+    ],
+    "development": [
+      "last 1 chrome version"
+    ]
   }
 }
