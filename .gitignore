@@ -39,15 +39,17 @@ Icon
 
 # Electron specific
 electron-builder.yml
+build/
 dist/
 release/
 out/
 *.snap
-*.deb
 *.rpm
 *.tar.gz
 *.tar.xz
-*.AppImage
 *.dmg
 *.exe
 *.asar
+
+# package-lock.json
+package-lock.json
