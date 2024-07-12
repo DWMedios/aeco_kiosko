@@ -56,6 +56,11 @@
         }
       ],
       "category": "Utility"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
     }
   },
   "dependencies": {
