@@ -1,8 +1,14 @@
 {
-  "name": "ayunta-eco",
+  "name": "aeco",
+  "description": "AECO APP",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
+  "keywords": [],
+  "license": "ISC",
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -7,10 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
 dist
 dist-ssr
 *.local
+
+node_modules/
+npm-debug.log*
+.pnpm-debug.log*
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +25,34 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env
+
+# Windows specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.metadata_never_index
+.fseventsd/
+
+# Linux specific files
+*~
+.nfs*
+
+# package-lock.json
+package-lock.json
