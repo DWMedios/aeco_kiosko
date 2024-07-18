@@ -1,19 +1,36 @@
-# Node.js
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+dist
+dist-ssr
+*.local
+
 node_modules/
 npm-debug.log*
 .pnpm-debug.log*
 
-# Logs
-logs/
-*.log
-logs/*.log
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # Optional npm cache directory
 .npm
 
 # dotenv environment variables file
 .env
-.env.test
 
 # Windows specific files
 Thumbs.db
@@ -36,20 +53,6 @@ Icon
 # Linux specific files
 *~
 .nfs*
-
-# Electron specific
-electron-builder.yml
-build/
-dist/
-release/
-out/
-*.snap
-*.rpm
-*.tar.gz
-*.tar.xz
-*.dmg
-*.exe
-*.asar
 
 # package-lock.json
 package-lock.json
