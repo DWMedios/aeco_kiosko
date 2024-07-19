@@ -10,12 +10,12 @@ const app = express();
 const server = http.createServer(app);
 
 // Conectar a la base de datos
-connectDB();
+// connectDB();
 // Configura Express para recibir JSON en las peticiones
 app.use(express.json());
 
 // Configura las rutas de la API
-app.use('/api', apiRoutes);
+// app.use('/api', apiRoutes);
 
 // Configurar WebSocket
 (async () => {
