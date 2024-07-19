@@ -18,10 +18,17 @@ app.use(express.json());
 app.use('/api', apiRoutes);
 
 // Configurar WebSocket
-setupWebSocket(server);
+(async () => {
+  try {
+    await setupWebSocket(server);
+    console.log('WebSocket configurado correctamente.');
+  } catch (err) {
+    console.error('Error al configurar WebSocket:', err.message);
+  }
 
-// Inicia el servidor
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
-});
+  // Inicia el servidor
+  const PORT = process.env.PORT || 3000;
+  server.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+  });
+})();
