@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "db:migrate": "sequelize-cli db:migrate --config .sequelizerc",
+    "db:migrate": "sequelize-cli db:migrate --url postgres://postgres:root@localhost:5434/aeco --config .sequelizerc",
     "db:seed": "sequelize-cli db:seed:all --config .sequelizerc",
     "db:create": "sequelize-cli db:create --config .sequelizerc",
     "db:drop": "sequelize-cli db:drop --config .sequelizerc"

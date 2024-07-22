@@ -8,17 +8,6 @@ const process = require("process");
 const basename = path.basename(__filename);
 // const env = process.env.NODE_ENV || "development";
 // const config = require(__dirname + "/../config/config.json")[env];
-console.log(
-  "🚀 ~ Config:",
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: "postgres",
-  }
-);
 
 // let sequelize;
 // if (config.use_env_variable) {
