@@ -2,14 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Movement extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+    static associate(models) {}
   }
   Movement.init(
     {
@@ -18,33 +11,23 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
-        field: "id",
       },
-      machineId: {
+      machine_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        field: "machineId",
       },
-      canNumber: {
+      can_number: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        field: "canNumber",
       },
-      bottleNumber: {
+      bottle_number: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        field: "bottleNumber",
-      },
-      date: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        field: "date",
       },
       folio: {
         type: DataTypes.STRING(15),
         allowNull: false,
         defaultValue: "0",
-        field: "folio",
       },
     },
     {
