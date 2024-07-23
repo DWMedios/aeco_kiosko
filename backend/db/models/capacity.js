@@ -2,12 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Capacity extends Model {
-    static associate(models) {
-      Capacity.belongsTo(models.Packaging, {
-        foreignKey: "packaging_id",
-        as: "packaging",
-      });
-    }
+    static associate(models) {}
   }
 
   Capacity.init(
@@ -17,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
-      packaging_id: {
+      packaging: {
         type: DataTypes.BIGINT,
         allowNull: true,
       },
@@ -37,6 +32,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Capacity",
+      tableName: "capacities",
+      timestamps: true,
+      underscored: true,
     }
   );
   return Capacity;

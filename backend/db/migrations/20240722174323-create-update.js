@@ -12,13 +12,15 @@ module.exports = {
       status: {
         type: Sequelize.BIGINT,
         allowNull: false,
+        defaultValue: 0,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
-      updatedAt: {
-        allowNull: false,
+      updated_at: {
+        allowNull: true,
         type: Sequelize.DATE,
       },
     });

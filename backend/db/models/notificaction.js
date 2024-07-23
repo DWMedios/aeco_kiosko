@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   Notificaction.init(
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
         primaryKey: true,
       },
@@ -15,10 +15,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(30),
         allowNull: true,
       },
+      metadata: {
+        type: DataTypes.JSONB,
+        allowNull: true,
+      },
     },
     {
       sequelize,
       modelName: "Notificaction",
+      tableName: "notificactions",
+      timestamps: true,
+      underscored: true,
     }
   );
   return Notificaction;

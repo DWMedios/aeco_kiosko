@@ -13,12 +13,17 @@ module.exports = {
         type: Sequelize.STRING(30),
         allowNull: true,
       },
-      createdAt: {
+      metadata: {
+        type: Sequelize.JSONB,
+        allowNull: true,
+      },
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
-      updatedAt: {
-        allowNull: false,
+      updated_at: {
+        allowNull: true,
         type: Sequelize.DATE,
       },
     });

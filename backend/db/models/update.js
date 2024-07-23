@@ -7,19 +7,22 @@ module.exports = (sequelize, DataTypes) => {
   Update.init(
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
         defaultValue: 0,
         primaryKey: true,
       },
       status: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
       },
     },
     {
       sequelize,
       modelName: "Update",
+      tableName: "updates",
+      timestamps: true,
+      underscored: true,
     }
   );
   return Update;

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   Ticket.init(
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
         primaryKey: true,
       },
@@ -20,14 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       quantity: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
       },
-      icon_path: {
-        type: DataTypes.STRING(180),
-        allowNull: true,
-      },
-      local_icon_path: {
+      icon: {
         type: DataTypes.STRING(180),
         allowNull: true,
       },
@@ -35,6 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Ticket",
+      tableName: "tickets",
+      timestamps: true,
+      underscored: true,
     }
   );
   return Ticket;

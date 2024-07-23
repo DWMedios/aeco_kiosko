@@ -10,13 +10,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.BIGINT,
       },
-      packaging_id: {
-        type: Sequelize.BIGINT,
+      packaging: {
+        type: Sequelize.STRING(50),
         allowNull: true,
-        references: {
-          model: "packagings",
-          key: "id",
-        },
       },
       weight: {
         type: Sequelize.FLOAT,
@@ -30,12 +26,13 @@ module.exports = {
         type: Sequelize.STRING(50),
         allowNull: false,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
-      updatedAt: {
-        allowNull: false,
+      updated_at: {
+        allowNull: true,
         type: Sequelize.DATE,
       },
     });

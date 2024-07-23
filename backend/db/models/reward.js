@@ -1,43 +1,44 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Movement extends Model {
+  class Reward extends Model {
     static associate(models) {}
   }
-  Movement.init(
+  Reward.init(
     {
       id: {
         type: DataTypes.BIGINT,
-        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
-      can_number: {
+      name: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+      },
+      status: {
         type: DataTypes.BIGINT,
         allowNull: false,
       },
-      bottle_number: {
+      order: {
         type: DataTypes.BIGINT,
         allowNull: false,
       },
-      folio: {
-        type: DataTypes.STRING(15),
-        allowNull: false,
-        defaultValue: "0",
+      enabled_icon: {
+        type: DataTypes.STRING(180),
+        allowNull: true,
       },
-      synchronized: {
-        type: DataTypes.BIGINT,
-        allowNull: false,
-        defaultValue: 1,
+      disabled_icon: {
+        type: DataTypes.STRING(180),
+        allowNull: true,
       },
     },
     {
       sequelize,
-      modelName: "Movement",
-      tableName: "movements",
+      modelName: "Reward",
+      tableName: "rewards",
       timestamps: true,
       underscored: true,
     }
   );
-  return Movement;
+  return Reward;
 };

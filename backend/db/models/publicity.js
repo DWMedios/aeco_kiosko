@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   Publicity.init(
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
         primaryKey: true,
       },
@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Publicity",
+      tableName: "publicities",
+      timestamps: true,
+      underscored: true,
     }
   );
   return Publicity;
