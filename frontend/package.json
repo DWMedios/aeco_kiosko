@@ -1,7 +1,7 @@
 {
-  "name": "aeco",
-  "description": "AECO APP",
+  "name": "frontend-aeco",
   "version": "1.0.0",
+  "description": "Frontend AECO APP",
   "private": true,
   "keywords": [],
   "license": "ISC",
