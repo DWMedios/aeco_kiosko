@@ -1,13 +1,15 @@
-const express = require('express');
-const http = require('http');
-const setupWebSocket = require('./ws');
-const apiRoutes = require('./routes/api');
-const { connectDB } = require('./db/index');
-require('dotenv').config();
+const http = require('http')
+
+const express = require('express')
+
+const setupWebSocket = require('./ws')
+// const apiRoutes = require('./routes/api')
+// const { connectDB } = require('./db/index')
+require('dotenv').config()
 
 // Inicializa la aplicación Express
-const app = express();
-const server = http.createServer(app);
+const app = express()
+const server = http.createServer(app)
 
 // Conectar a la base de datos
 // connectDB();
@@ -20,15 +22,15 @@ app.use(express.json());
 // Configurar WebSocket
 (async () => {
   try {
-    await setupWebSocket(server);
-    console.log('WebSocket configurado correctamente.');
+    await setupWebSocket(server)
+    console.log('WebSocket configurado correctamente.')
   } catch (err) {
-    console.error('Error al configurar WebSocket:', err.message);
+    console.error('Error al configurar WebSocket:', err.message)
   }
 
   // Inicia el servidor
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3000
   server.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
-  });
-})();
+    console.log(`Servidor escuchando en el puerto ${PORT}`)
+  })
+})()

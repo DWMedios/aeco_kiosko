@@ -1,9 +1,7 @@
-"use strict";
-const { Model } = require("sequelize");
+
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Movement extends Model {
-    static associate(models) {}
-  }
+  class Movement extends Model {}
   Movement.init(
     {
       id: {
@@ -23,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       folio: {
         type: DataTypes.STRING(15),
         allowNull: false,
-        defaultValue: "0",
+        defaultValue: '0',
       },
       synchronized: {
         type: DataTypes.BIGINT,
@@ -33,11 +31,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Movement",
-      tableName: "movements",
+      modelName: 'Movement',
+      tableName: 'movements',
       timestamps: true,
       underscored: true,
     }
-  );
-  return Movement;
-};
+  )
+  return Movement
+}
