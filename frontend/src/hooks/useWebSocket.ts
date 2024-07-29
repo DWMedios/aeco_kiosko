@@ -1,10 +1,6 @@
 // src/hooks/useWebSocket.ts
 import { useCallback, useEffect, useState } from "react";
-
-type WebSocketHook = {
-  message: string;
-  sendMessage: (message: string) => void;
-};
+import { WebSocketHook } from "../interfaces";
 
 const useWebSocket = (url: string): WebSocketHook => {
   const [socket, setSocket] = useState<WebSocket | null>(null);

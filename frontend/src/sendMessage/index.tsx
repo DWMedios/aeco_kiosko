@@ -2,7 +2,9 @@ import { useState } from "react";
 import useWebSocket from "../hooks/useWebSocket";
 
 const SendMessage = () => {
-  const { message, sendMessage } = useWebSocket("http://localhost:3333"); // Cambia la URL según tu configuración
+  const api_ws = import.meta.env.VITE_API_BASE_URL;
+
+  const { message, sendMessage } = useWebSocket(api_ws); // Cambia la URL según tu configuración
   const [input, setInput] = useState<string>("");
 
   const handleSendMessage = () => {
