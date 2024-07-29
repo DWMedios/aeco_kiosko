@@ -1,9 +1,9 @@
-import SerialPort from "./serialPort/serialPort";
+import SendMessage from "./sendMessage";
 
 function App() {
   return (
     <>
-      <SerialPort />
+      <SendMessage />
     </>
   );
 }
