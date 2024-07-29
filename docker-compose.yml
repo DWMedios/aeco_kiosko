@@ -1,15 +1,13 @@
-version: '3.8'
-
 services:
-  frontend:
-    container_name: aeco-frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+  db:
+    container_name: aeco-db
+    image: postgres:12.19
     ports:
-      - "5173:5173"
-    depends_on:
-      - backend
+      - "5434:5432"
+    env_file:
+      - .env
+    volumes:
+      - aeco-db-data:/var/lib/postgresql/data
     networks:
       - net-aeco
 
@@ -27,16 +25,16 @@ services:
       - db
     networks:
       - net-aeco
-    
-  db:
-    container_name: aeco-db
-    image: postgres:12.19
+
+  frontend:
+    container_name: aeco-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - "5434:5432"
-    env_file:
-      - .env
-    volumes:
-      - aeco-db-data:/var/lib/postgresql/data
+      - "5173:5173"
+    depends_on:
+      - backend
     networks:
       - net-aeco
 
