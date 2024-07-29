@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "db:migrate": "sequelize-cli db:migrate --url postgres://postgres:root@localhost:5434/aeco --config .sequelizerc",
+    "db:migrate": "dotenv sequelize-cli db:migrate --config .sequelizerc",
     "db:seed": "sequelize-cli db:seed:all --config .sequelizerc",
     "db:create": "sequelize-cli db:create --config .sequelizerc",
     "db:drop": "sequelize-cli db:drop --config .sequelizerc",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^9.8.0",
     "eslint-plugin-import": "^2.29.1",
     "globals": "^15.8.0",
