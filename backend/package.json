@@ -12,7 +12,7 @@
   "scripts": {
     "start": "node server.js",
     "db:migrate": "dotenv sequelize-cli db:migrate --config .sequelizerc",
-    "db:seed": "sequelize-cli db:seed:all --config .sequelizerc",
+    "db:seed": "dotenv sequelize-cli db:seed:all --config .sequelizerc",
     "db:create": "sequelize-cli db:create --config .sequelizerc",
     "db:drop": "sequelize-cli db:drop --config .sequelizerc",
     "lint": "eslint .",
