@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 
 module.exports = {
   development: {
@@ -8,9 +8,9 @@ module.exports = {
     host: process.env.DB_HOST || '127.0.0.1',
     port: process.env.DB_PORT,
     dialect: 'postgres',
-	seederStorage: 'sequelize',
+    seederStorage: 'sequelize',
     seederStorageTableName: 'seeders',
     migrationStorage: 'sequelize',
     migrationStorageTableName: 'migrations',
-  }
-};
+  },
+}
