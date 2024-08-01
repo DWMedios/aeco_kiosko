@@ -3,13 +3,12 @@ const WebSocket = require('ws')
 const { setupSerialPort } = require('./serial')
 const { sendCommandLetters, receivedCommandArduino } = require('./serial/arduinoCommands')
 
-
 const setupWebSocket = async (server) => {
   const wss = new WebSocket.Server({ server })
+  let { port: portSerial, parser: serialParser } = await setupSerialPort()
 
-  wss.on('connection', async (ws) => {
+  wss.on('connection', (ws) => {
     console.log('Nuevo cliente conectado')
-    const { parser: serialParser } = await setupSerialPort()
 
     if (serialParser) {
       serialParser.on('data', (data) => {
@@ -26,9 +25,18 @@ const setupWebSocket = async (server) => {
 
     ws.on('message', async (message) => {
 
-      let { port: portSerial } = await setupSerialPort()
+      if(!portSerial || !portSerial?.isOpen) {
+        console.error('Puerto serial no encontrado o cerrado, intentando reconectar...')
+        const serialReconnected = await setupSerialPort()
 
-      if(!portSerial) ws.send(JSON.stringify({ success: false, message: 'No se encontró un puerto serial, intenta de nuevo' }))
+        if (!serialReconnected?.port){
+          ws.send(JSON.stringify({ success: false, message: 'No se encontró un puerto serial, intenta de nuevo' }))
+          return
+        } else {
+          portSerial = serialReconnected.port
+          serialParser = serialReconnected.parser
+        }
+      }
 
       console.log('Mensaje recibido:', JSON.parse(message.toString('utf8')).command)
 
