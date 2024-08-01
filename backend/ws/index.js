@@ -5,15 +5,14 @@ const { sendCommandLetters, receivedCommandArduino } = require('./serial/arduino
 
 
 const setupWebSocket = async (server) => {
-  const { port, parser } = await setupSerialPort()
   const wss = new WebSocket.Server({ server })
 
-  wss.on('connection', (ws) => {
+  wss.on('connection', async (ws) => {
     console.log('Nuevo cliente conectado')
+    const { parser: serialParser } = await setupSerialPort()
 
-    if (parser) {
-      // Enviar datos recibidos del puerto serial al cliente WebSocket
-      parser.on('data', (data) => {
+    if (serialParser) {
+      serialParser.on('data', (data) => {
         console.log('Datos recibidos del puerto serial:', data)
         const receivedCommand = receivedCommandArduino[data]
         if (!receivedCommand) {
@@ -27,7 +26,9 @@ const setupWebSocket = async (server) => {
 
     ws.on('message', async (message) => {
 
-      if(!port) ws.send(JSON.stringify({ success: false, message: 'No se encontró un puerto Arduino' }))
+      let { port: portSerial } = await setupSerialPort()
+
+      if(!portSerial) ws.send(JSON.stringify({ success: false, message: 'No se encontró un puerto serial, intenta de nuevo' }))
 
       console.log('Mensaje recibido:', JSON.parse(message.toString('utf8')).command)
 
@@ -35,9 +36,9 @@ const setupWebSocket = async (server) => {
 
       if(!sendArduinoCommand) ws.send(JSON.stringify({ success: false, message: 'Comando no encontrado' }))
 
-      if (port) {
+      if (portSerial) {
         // Enviar mensaje recibido al puerto serial
-        port.write(sendArduinoCommand, (err) => {
+        portSerial.write(sendArduinoCommand, (err) => {
           if (err) {
             console.error('Error al escribir en el puerto serial:', err?.message)
             ws.send(JSON.stringify({ success: false, message: 'Error al enviar mensaje al puerto serial' }))
