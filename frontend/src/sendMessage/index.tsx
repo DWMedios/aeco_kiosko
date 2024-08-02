@@ -3,13 +3,14 @@ import useWebSocket from "../hooks/useWebSocket";
 
 const SendMessage = () => {
   const api_ws = import.meta.env.VITE_API_BASE_URL;
+  const protocol_ws = import.meta.env.VITE_USE_PROTOCOL;
 
-  const { message, sendMessage } = useWebSocket(api_ws); // Cambia la URL según tu configuración
-  const [input, setInput] = useState<string>("");
+  const { message, sendMessage } = useWebSocket(`${protocol_ws}://${api_ws}`);
+  const [input, setInput] = useState<string>("OPEN_CLOSE_COVER_S");
 
   const handleSendMessage = () => {
-    sendMessage(input);
-    setInput("");
+    sendMessage(JSON.stringify({command: input}));
+    setInput("OPEN_CLOSE_COVER_S");
   };
 
   return (
