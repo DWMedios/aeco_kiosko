@@ -25,6 +25,8 @@ services:
       - db
     networks:
       - net-aeco
+    volumes:
+      - /dev:/dev 
 
   frontend:
     container_name: aeco-frontend
