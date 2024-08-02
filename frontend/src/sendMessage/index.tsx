@@ -9,7 +9,6 @@ const SendMessage = () => {
   const [input, setInput] = useState<string>("OPEN_CLOSE_COVER_S");
 
   const handleSendMessage = () => {
-    console.log("🚀 ~ handleSendMessage ~ input:", input)
     sendMessage(JSON.stringify({command: input}));
     setInput("OPEN_CLOSE_COVER_S");
   };

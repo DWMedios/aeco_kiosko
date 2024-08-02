@@ -14,7 +14,6 @@ const useWebSocket = (url: string): WebSocketHook => {
     };
 
     ws.onmessage = (event) => {
-      console.log("🚀 ~ useEffect ~ event.data:", event.data)
       setMessage(JSON.parse(event.data).message);
       console.log("Mensaje recibido del servidor:", JSON.parse(event.data).message);
     };
