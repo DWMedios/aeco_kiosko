@@ -1,10 +1,10 @@
-import Home from './views/pages/home/Home';
 
+import AppRouter from "./router/appRouter";
 
 function App() {
   return (
     <>
-      <Home />
+      <AppRouter />
     </>
   );
 }
