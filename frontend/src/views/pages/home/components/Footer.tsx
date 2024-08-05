@@ -1,9 +1,7 @@
-// Footer.tsx
-import React from 'react';
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
-    <footer className="flex mb-7 justify-between items-center px-4 py-2 bg-green-100 bg-opacity-70 text-black text-2xl shadow-md w-11/12 rounded-3xl">
+    <footer className="flex mb-7 justify-between items-center px-4 py-1 bg-green-100 bg-opacity-70 text-black text-2xl shadow-md w-11/12 rounded-3xl">
       <a href="https://enlace-izquierda.com" className="hover:underline">
         ayuntaeco.com
       </a>

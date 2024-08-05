@@ -1,6 +1,5 @@
-import React from 'react';
 
-const CurrentDate: React.FC = () => {
+const CurrentDate = () => {
   const getCurrentDate = (): string => {
     const date = new Date();
     const day = date.getDate();

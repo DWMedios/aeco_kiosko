@@ -1,7 +1,7 @@
 // src/components/CurrentTime.tsx
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 
-const CurrentTime: React.FC = () => {
+const CurrentTime = () => {
   const [currentTime, setCurrentTime] = useState<string>('');
 
   useEffect(() => {

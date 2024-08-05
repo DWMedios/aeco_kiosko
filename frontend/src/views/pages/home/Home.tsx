@@ -13,8 +13,8 @@ function Home() {
   <div className="relative w-full h-screen font-sans" style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="relative z-10 flex flex-auto items-center flex-col w-full h-full pt-8 justify-between">
       <Navbar />
-      <img className='w-80 mt-5' src={AecoLogo} alt='AECO Logo'/>
-      <img className='w-11/12 mt-5' src={ReciclaYGana} alt='AECO Logo'/>
+      <img className='w-80' src={AecoLogo} alt='AECO Logo'/>
+      <img className='w-11/12' src={ReciclaYGana} alt='AECO Logo'/>
       <LangHelp />
       <ButtonStart />
       <SocialMediaList />
