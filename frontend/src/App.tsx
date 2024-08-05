@@ -1,9 +1,10 @@
-import SendMessage from "./sendMessage";
+import Home from './views/pages/home/Home';
+
 
 function App() {
   return (
     <>
-      <SendMessage />
+      <Home />
     </>
   );
 }

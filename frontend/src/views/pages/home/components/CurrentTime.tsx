@@ -1,0 +1,28 @@
+// src/components/CurrentTime.tsx
+import React, { useEffect, useState } from 'react';
+
+const CurrentTime: React.FC = () => {
+  const [currentTime, setCurrentTime] = useState<string>('');
+
+  useEffect(() => {
+    const updateCurrentTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      setCurrentTime(`${hours}:${minutes} hrs`);
+    };
+
+    updateCurrentTime();
+    const intervalId = setInterval(updateCurrentTime, 60000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <div className="text-2xl font-bold text-gray-800">
+      {currentTime}
+    </div>
+  );
+};
+
+export default CurrentTime;
