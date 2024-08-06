@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 
 
-import Home from '../views/pages/home/Home';
+
 import SplashScreen from '../views/pages/splashScreen';
 import Loading from '../views/pages/loading';
 import Language from '../views/pages/language/Language';
 import Help from '../views/pages/help/Help';
+import Home from '../views/pages/home/index';
+
 
 // import Users from "../Pages/users";
 
