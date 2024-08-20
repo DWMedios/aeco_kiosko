@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ChooseLanguage = () => {
     // Inicializamos el estado con 'es' para que el idioma español esté seleccionado por defecto

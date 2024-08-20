@@ -1,4 +1,3 @@
-
 import BackgroundImage from '../../../assets/img/home_Background.svg'
 import Navbar from './components/Navbar'
 import AecoLogo from '../../../assets/img/aeco.svg'
