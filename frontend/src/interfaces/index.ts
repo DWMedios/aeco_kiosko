@@ -11,3 +11,16 @@ export interface ApiParams {
   headers?: Record<string, string>;
   body?: object;
 }
+
+export type Icon = {
+  icon?: "offline" | "loading";
+};
+
+export interface Url {
+  url: string;
+}
+
+export interface Layout {
+  children: React.ReactNode;
+  image: string;
+}
