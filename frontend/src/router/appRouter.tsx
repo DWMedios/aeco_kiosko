@@ -12,6 +12,7 @@ import Donatives from '../views/pages/donative';
 import Points from '../views/pages/cardPoints';
 import RecyclePoints from '../views/pages/recyclePoints';
 import PredialPoints from '../views/pages/predial';
+import Discounts from '../views/pages/discounts';
 
 
 // import Users from "../Pages/users";
@@ -25,6 +26,7 @@ const AppRouter = () => {
       <Route path="/language" element={<Language />} />
       <Route path="/help" element={<Help />} />
       <Route path="/rewards" element={<Rewards />} />
+      <Route path="/discounts" element={<Discounts />} />
       <Route path="/donative" element={<Donatives />} />
       <Route path="/card_points" element={<Points />} />
       <Route path="/recycle_points" element={<RecyclePoints />} />
