@@ -1,16 +1,15 @@
 import { Route, Routes } from "react-router-dom";
-import Points from "../views/pages/cardPoints";
-import Conditions from "../views/pages/conditions";
-import Donatives from "../views/pages/donative";
-import Help from "../views/pages/help/Help";
-import Home from "../views/pages/home/index";
-import Language from "../views/pages/language/Language";
-import Loading from "../views/pages/loading";
-import LoadingOffline from "../views/pages/LoadingOffline";
-import PredialPoints from "../views/pages/predial";
-import RecyclePoints from "../views/pages/recyclePoints";
-import Rewards from "../views/pages/rewards";
-import SplashScreen from "../views/pages/splashScreen";
+import Points from "../views/cardPoints";
+import Conditions from "../views/conditions";
+import Donatives from "../views/donative";
+import Help from "../views/help/Help";
+import Home from "../views/home/index";
+import Language from "../views/language/Language";
+import LoadingOffline from "../views/loadingOffline";
+import PredialPoints from "../views/predial";
+import RecyclePoints from "../views/recyclePoints";
+import Rewards from "../views/rewards";
+import SplashScreen from "../views/splashScreen";
 
 // import Users from "../Pages/users";
 
@@ -20,7 +19,7 @@ const AppRouter = () => {
       <Route path="/" element={<SplashScreen />} />
       <Route path="/LoadingOffline" element={<LoadingOffline />} />
       <Route path="/conditions" element={<Conditions />} />
-      <Route path="/loading" element={<Loading />} />
+      <Route path="/loadingOfline" element={<LoadingOffline />} />
       <Route path="/home" element={<Home />} />
       <Route path="/language" element={<Language />} />
       <Route path="/help" element={<Help />} />
