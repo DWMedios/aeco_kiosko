@@ -11,3 +11,7 @@ export interface ApiParams {
   headers?: Record<string, string>;
   body?: object;
 }
+
+export type Icon = {
+  icon?: "offline" | "loading";
+};
