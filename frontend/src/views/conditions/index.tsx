@@ -4,7 +4,7 @@ import RewardsConditions from "./components/rewards";
 
 const Conditions = () => {
   return (
-    <ScreenLayout image="/images/shrubbery.png">
+    <ScreenLayout image="shrubbery.png">
       <BackButton url="/home" />
       <div className="relative flex flex-col justify-center items-center min-h-screen">
         <div className="flex flex-col justify-center items-center">

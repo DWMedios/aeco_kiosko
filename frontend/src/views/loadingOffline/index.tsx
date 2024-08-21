@@ -11,11 +11,11 @@ const LoadingOffline = ({ icon = "loading" }: Icon) => {
       console.log("Termino el timepo");
       navigation("/home");
     }, 3000);
-  }, []);
+  });
 
   return (
-    <ScreenLayout image="/images/bg-loading-offline.png">
-      <div className="relative flex flex-col min-h-screen bg-custom-green">
+    <ScreenLayout image="bg-offline-loading.png">
+      <div className="relative flex flex-col min-h-screen">
         <div className="relative flex-grow flex justify-center items-center">
           <img src={`/images/${icon}.png`} alt="Logo" />
         </div>

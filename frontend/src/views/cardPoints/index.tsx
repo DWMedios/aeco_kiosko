@@ -4,7 +4,7 @@ import ListPoints from "./components/listPoints";
 
 const Points = () => {
   return (
-    <ScreenLayout image="/images/RewardsBackground.svg">
+    <ScreenLayout image="RewardsBackground.svg">
       <BackButton url="/home" />
       <div className="flex flex-col justify-center items-center gap-11">
         <h1 className="text-7xl text-center max-w-[600px] font-bold tracking-wide">

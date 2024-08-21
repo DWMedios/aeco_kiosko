@@ -1,13 +1,15 @@
 import { Layout } from "../../interfaces";
+import ImageBackground from "./components/imageBackground";
 
 const ScreenLayout = ({ children, image }: Layout) => {
   return (
-    <div className="relative flex flex-col min-h-screen">
+    <>
       <div
-        className={`absolute inset-0 bg-[url('${image}')] bg-cover bg-center`}
+        className={`absolute inset-0 bg-[url('/images/${image}')] bg-cover bg-center`}
       />
-      {children}
-    </div>
+      <ImageBackground url={image} />
+      <div className="min-h-screen ">{children}</div>;
+    </>
   );
 };
 
