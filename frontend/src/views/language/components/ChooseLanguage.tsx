@@ -13,7 +13,7 @@ const ChooseLanguage = () => {
       <h1 className='text-center text-5xl mt-20 mb-5'>
         Seleccione un idioma
       </h1>
-      <form className="flex flex-col justify-center items-center space-y-4">
+      <form className="flex flex-col justify-center items-center space-y-4 z-10">
       <label className="flex items-center text-4xl  text-center p-6">
         <input
           type="radio"
@@ -53,7 +53,7 @@ const ChooseLanguage = () => {
       </label>
     </form>
       <div className="flex justify-center mt-8">
-        <button className="border-[#00804f] border-4 text-black text-4xl font-bold p-2 rounded-xl w-80 h-16">
+        <button className="border-[#00804f] border-4 text-black text-4xl font-bold p-2 rounded-xl w-80 h-16 z-10">
           Aceptar
         </button>
       </div>

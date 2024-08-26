@@ -13,6 +13,11 @@ import PredialPoints from "../views/predial";
 import RecyclePoints from "../views/recyclePoints";
 import Rewards from "../views/rewards";
 import SplashScreen from "../views/splashScreen";
+import OutOfService from '../views/outOfService';
+import TicketView from '../views/ticketView';
+import VoucherView from '../views/voucher';
+import FinalView from '../views/finalView';
+
 
 
 // import Users from "../Pages/users";
@@ -33,6 +38,10 @@ const AppRouter = () => {
       <Route path="/card_points" element={<Points />} />
       <Route path="/recycle_points" element={<RecyclePoints />} />
       <Route path="/predial_points" element={<PredialPoints />} />
+      <Route path="/out_of_service" element={<OutOfService />} />
+      <Route path="/ticket" element={<TicketView />} />
+      <Route path="/voucher" element={<VoucherView />} />
+      <Route path="final_view" element={<FinalView />} />
     </Routes>
   );
 };

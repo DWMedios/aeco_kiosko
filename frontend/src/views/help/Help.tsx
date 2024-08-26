@@ -11,10 +11,10 @@ function Help() {
           Cualquier duda o aclaración estamos para escucharte. <br />
           <br /> Envianos un WhatsApp{" "}
         </p>
-        <img className="w-[450px]" src="/images/QrCode.svg" alt="QR Code" />
+        <img className="w-[450px] z-10" src="../../../../public/images/QRcode.png" alt="QR Code" />
         <img
           className="w-20 mt-4"
-          src="/images/WhatsappLogo.svg"
+          src="/images/WhatsappLogo.png"
           alt="QR Code"
         />
         <p className="text-4xl font-bold max-w-[350px] mb-5 mt-5">

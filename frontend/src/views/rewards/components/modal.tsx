@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CurrentDateModal from './currentDateModal';
+import ProductListModal from './ProductListModal';
 
 const Modal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +17,7 @@ const Modal = () => {
       {showModal ? (
         <>
           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative my-6 mx-auto w-[500px] min-h-[500px] rounded-lg bg-[#FE5A8F] bg-opacity-90 text-white">
+            <div className="relative my-6 mx-auto w-[500px] min-h-[600px] rounded-lg bg-[#FE5A8F] bg-opacity-90 text-white">
               <div className="border-0 relative flex flex-col w-full outline-none focus:outline-none">
                 <div className="flex justify-between">
                   <button
@@ -32,6 +33,7 @@ const Modal = () => {
                 <div className="relative p-6 flex-auto">
                     <h1 className='text-3xl text-center'>ENVASES INSERTADOS</h1>
                 </div>
+                <ProductListModal />
               </div>
             </div>
           </div>
