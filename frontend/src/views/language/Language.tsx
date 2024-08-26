@@ -5,7 +5,7 @@ import ChooseLanguage from "./components/ChooseLanguage";
 function Language() {
   return (
     <>
-      <ScreenLayout image="/images/language_background.svg">
+      <ScreenLayout image="language_background.svg">
         <BackButton url="/home" />
         <ChooseLanguage />
       </ScreenLayout>

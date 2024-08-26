@@ -3,7 +3,7 @@ import ScreenLayout from "../../components/layout/screenLayout";
 
 function Help() {
   return (
-    <ScreenLayout image="/images/help_background.svg">
+    <ScreenLayout image="help_background.svg">
       <BackButton url="/home" />
       <div className="text-center min-h-[1000px] flex flex-col justify-center items-center">
         <h1 className="text-5xl mt-24  mb-10 max-w-[300px]">Soporte</h1>
