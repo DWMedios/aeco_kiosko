@@ -1,24 +1,22 @@
 import { Route, Routes } from "react-router-dom";
 
-
 import Points from "../views/cardPoints";
 import Conditions from "../views/conditions";
 import Donatives from "../views/donative";
 import Example from "../views/example";
+import FinalView from "../views/finalView";
 import Help from "../views/help/Help";
 import Home from "../views/home/index";
+import Insert from "../views/insert";
 import Language from "../views/language/Language";
 import LoadingOffline from "../views/loadingOffline";
+import OutOfService from "../views/outOfService";
 import PredialPoints from "../views/predial";
 import RecyclePoints from "../views/recyclePoints";
 import Rewards from "../views/rewards";
 import SplashScreen from "../views/splashScreen";
-import OutOfService from '../views/outOfService';
-import TicketView from '../views/ticketView';
-import VoucherView from '../views/voucher';
-import FinalView from '../views/finalView';
-
-
+import TicketView from "../views/ticketView";
+import VoucherView from "../views/voucher";
 
 // import Users from "../Pages/users";
 
@@ -42,6 +40,7 @@ const AppRouter = () => {
       <Route path="/ticket" element={<TicketView />} />
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
+      <Route path="/insert" element={<Insert />} />
     </Routes>
   );
 };

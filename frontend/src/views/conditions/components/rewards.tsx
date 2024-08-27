@@ -8,10 +8,7 @@ const RewardsConditions = () => {
   ];
   return (
     <div className="w-full px-2">
-      <div
-        className="flex flex-wrap justify-center gap-2 "
-        style={{ border: "1px red solid" }}
-      >
+      <div className="flex flex-wrap justify-center gap-2 ">
         {rewards.map((reward, index) => (
           <div
             key={index}

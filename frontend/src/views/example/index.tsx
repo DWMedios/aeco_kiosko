@@ -11,7 +11,8 @@ const Example = () => {
           </span>
         </div>
         <img src="/images/example.png" alt="" className="m-10 w-60 h-96" />
-        <Button />
+
+        <Button label="¡estoy listo!" url="/insert" />
       </div>
     </ScreenLayout>
   );

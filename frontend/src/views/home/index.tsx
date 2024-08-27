@@ -1,5 +1,5 @@
+import Button from "../../components/button";
 import ScreenLayout from "../../components/layout/screenLayout";
-import ButtonStart from "./components/ButtonStart";
 import Footer from "./components/Footer";
 import LangHelp from "./components/LangHelp";
 import Navbar from "./components/Navbar";
@@ -17,7 +17,13 @@ function Home() {
           alt="AECO Logo"
         />
         <LangHelp />
-        <ButtonStart />
+        <Button
+          label="iniciar"
+          bgColor="bg-pink-500"
+          borderColor={null}
+          textColor={"white"}
+          url="/conditions"
+        />
         <SocialMediaList />
         <Footer />
       </div>
