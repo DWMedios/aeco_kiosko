@@ -1,9 +1,9 @@
 type method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
-export type WebSocketHook = {
+export interface WebSocketHook {
   message: string;
   sendMessage: (message: string) => void;
-};
+}
 
 export interface ApiParams {
   url: string;
@@ -12,9 +12,9 @@ export interface ApiParams {
   body?: object;
 }
 
-export type Icon = {
+export interface Icon {
   icon?: "offline" | "loading";
-};
+}
 
 export interface Url {
   url: string;
@@ -32,4 +32,40 @@ export interface Buttoninterface {
   borderColor?: string | null;
   textColor?: string | null;
   url: string;
+}
+
+export interface BackButtoninterface {
+  bgColor?: string | null;
+  url: string;
+  imageSrc?: string;
+}
+
+export interface CardRewardinterface {
+  bgColor?: string | null;
+  url: string;
+  imageSrc?: string;
+  label: string;
+}
+
+export interface SocialMedia {
+  name: string;
+  icon: JSX.Element;
+}
+
+export interface MediasProps {
+  socialMedias: SocialMedia[];
+}
+
+export interface Container {
+  name: string;
+  icon: string;
+}
+
+export interface ContainersConditions {
+  container: Container;
+  conditions: string[];
+}
+
+export interface ArrayContainersConditions {
+  containers: ContainersConditions[];
 }

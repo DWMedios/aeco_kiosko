@@ -1,16 +1,26 @@
-import { Link } from "react-router-dom";
-import ButtonBack from "../../assets/img/button_back.svg";
-import { Url } from "../../interfaces";
+import { useNavigate } from "react-router-dom";
+import { BackButtoninterface } from "../../interfaces";
 
-function BackButton({ url }: Url) {
+const BackButton = ({
+  bgColor = "bg-[#0a8748]",
+  url,
+  imageSrc
+}: BackButtoninterface) => {
+  const navigation = useNavigate();
+
   return (
-    <Link to={url}>
-      <div className="flex flex-col py-6 text-black rounded-lg w-36 items-center">
-        <img src={ButtonBack} alt="Regresar" className="w-16 h-16" />
-        <span className="font-bold text-lg">Regresar</span>
+    <>
+      <div className="flex flex-col justify-center items-center w-40 pt-7">
+        <button
+          onClick={() => navigation(url)}
+          className={`${bgColor} p-5 rounded-3xl w-[80px] h-[80px] z-10`}
+        >
+          {imageSrc && <img src={imageSrc} alt="back-button" className="w-full h-full object-contain" />}
+        </button>
+        <span className='tracking-wider font-medium z-10'>Regresar</span>
       </div>
-    </Link>
+    </>
   );
-}
+};
 
 export default BackButton;

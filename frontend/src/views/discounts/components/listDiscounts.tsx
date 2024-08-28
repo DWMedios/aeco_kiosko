@@ -1,12 +1,12 @@
 import CardReward from '../../../components/cardReward';
 
-const ListDonatives = () => {
+const ListDiscounts = () => {
     const donatives = [
-        { imageSrc: '../../../../public/images/QRcode.png', label: 'Teletón', url: '/home' },
-        { imageSrc: '../../../../public/images/QRcode.png', label: 'Cruz Roja', url: '/home' },
-        { imageSrc: '../../../../public/images/QRcode.png', label: 'Orfanato', url: '/home' },
-        { imageSrc: '../../../../public/images/QRcode.png', label: 'Asilo', url: '/home' },
-        { imageSrc: '../../../../public/images/QRcode.png', label: 'Albergue', url: '/home' },
+        { imageSrc: '../../../../public/images/QRcode.png', label: 'Super Aki', url: '/home' },
+        { imageSrc: '../../../../public/images/QRcode.png', label: 'Dunosusa', url: '/home' },
+        { imageSrc: '../../../../public/images/QRcode.png', label: 'La Isla', url: '/home' },
+        { imageSrc: '../../../../public/images/QRcode.png', label: 'Cinemex', url: '/home' },
+        { imageSrc: '../../../../public/images/QRcode.png', label: 'Mariscos de Chichí', url: '/home' },
     ];
 
     return (
@@ -23,4 +23,4 @@ const ListDonatives = () => {
     );
 };
 
-export default ListDonatives;
+export default ListDiscounts;
