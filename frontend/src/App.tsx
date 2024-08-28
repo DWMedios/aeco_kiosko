@@ -1,10 +1,9 @@
-
-import AppRouter from "./router/appRouter";
+import SendMessage from "./sendMessage";
 
 function App() {
   return (
     <>
-      <AppRouter />
+      <SendMessage />
     </>
   );
 }
