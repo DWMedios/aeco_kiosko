@@ -33,3 +33,16 @@ export interface Buttoninterface {
   textColor?: string | null;
   url: string;
 }
+
+export interface BackButtoninterface {
+  bgColor?: string | null;
+  url: string;
+  imageSrc?: string;
+}
+
+export interface CardRewardinterface {
+  bgColor?: string | null;
+  url: string;
+  imageSrc?: string;
+  label: string;
+}

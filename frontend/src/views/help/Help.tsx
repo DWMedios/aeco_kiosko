@@ -4,7 +4,7 @@ import ScreenLayout from "../../components/layout/screenLayout";
 function Help() {
   return (
     <ScreenLayout image="help_background.svg">
-      <BackButton url="/home" />
+      <BackButton url="/home" imageSrc='/public/images/backbutton.png'/>
       <div className="text-center min-h-[1000px] flex flex-col justify-center items-center">
         <h1 className="text-5xl mt-24  mb-10 max-w-[300px]">Soporte</h1>
         <p className="text-2xl max-w-[300px] mb-5">

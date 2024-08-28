@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import Points from "../views/cardPoints";
+import CardPoints from "../views/cardPoints";
 import Conditions from "../views/conditions";
 import Donatives from "../views/donative";
 import Example from "../views/example";
@@ -17,6 +17,12 @@ import Rewards from "../views/rewards";
 import SplashScreen from "../views/splashScreen";
 import TicketView from "../views/ticketView";
 import VoucherView from "../views/voucher";
+import Scanning from '../views/scanning';
+import Accepted from '../views/accepted';
+import Rejected from '../views/rejected';
+import Unidentified from '../views/unidentified';
+import AddBarcode from '../views/addBarcode';
+import Discounts from '../views/discounts';
 
 // import Users from "../Pages/users";
 
@@ -32,8 +38,9 @@ const AppRouter = () => {
       <Route path="/language" element={<Language />} />
       <Route path="/help" element={<Help />} />
       <Route path="/rewards" element={<Rewards />} />
+      <Route path="/discounts" element={<Discounts />} />
       <Route path="/donative" element={<Donatives />} />
-      <Route path="/card_points" element={<Points />} />
+      <Route path="/card_points" element={<CardPoints />} />
       <Route path="/recycle_points" element={<RecyclePoints />} />
       <Route path="/predial_points" element={<PredialPoints />} />
       <Route path="/out_of_service" element={<OutOfService />} />
@@ -41,6 +48,11 @@ const AppRouter = () => {
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
       <Route path="/insert" element={<Insert />} />
+      <Route path="/scanning" element={<Scanning/>} />
+      <Route path="/accepted" element={<Accepted/>} />
+      <Route path="/rejected" element={<Rejected/>} />
+      <Route path="/unidentified" element={<Unidentified/>} />
+      <Route path="/add_barcode" element={<AddBarcode/>} />
     </Routes>
   );
 };
