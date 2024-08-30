@@ -1,11 +1,25 @@
-import Button from "../../components/button";
-import ScreenLayout from "../../components/layout/screenLayout";
-import Footer from "./components/Footer";
-import LangHelp from "./components/LangHelp";
-import Navbar from "./components/Navbar";
-import SocialMediaList from "./components/SocialMediaList";
+import { useEffect } from 'react'
+import WebApiAeco from '../../api/webApiAeco'
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
+import Footer from './components/Footer'
+import LangHelp from './components/LangHelp'
+import Navbar from './components/Navbar'
+import SocialMediaList from './components/SocialMediaList'
 
 function Home() {
+  useEffect(() => {
+    getCompany()
+  })
+
+  const getCompany = async () => {
+    try {
+      const response = await WebApiAeco.getCompany()
+      console.log(response)
+    } catch (error) {
+      console.error('Error fetching users:', error)
+    }
+  }
   return (
     <ScreenLayout image="home_background.png">
       <div className="relative z-10 flex flex-auto items-center flex-col w-full h-[1280px] pt-8 justify-between bg-transparent">
@@ -21,14 +35,14 @@ function Home() {
           label="iniciar"
           bgColor="bg-pink-500"
           borderColor={null}
-          textColor={"white"}
+          textColor={'white'}
           url="/conditions"
         />
         <SocialMediaList />
         <Footer />
       </div>
     </ScreenLayout>
-  );
+  )
 }
 
-export default Home;
+export default Home

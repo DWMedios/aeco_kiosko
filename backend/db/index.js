@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize')
 require('dotenv').config()
 
 const sequelize = new Sequelize(
@@ -14,6 +14,9 @@ const sequelize = new Sequelize(
   }
 )
 
+const Company = require('../db/models/Company')(sequelize, DataTypes)
+// const Reward = require('./Reward')(sequelize, DataTypes)
+
 const connectDB = async () => {
   try {
     await sequelize.authenticate()
@@ -23,4 +26,4 @@ const connectDB = async () => {
   }
 }
 
-module.exports = { sequelize, connectDB }
+module.exports = { sequelize, connectDB, Company }
