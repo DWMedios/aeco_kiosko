@@ -1,14 +1,7 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class RewardCategory extends Model {
-    static associate(models) {
-      RewardCategory.belongsTo(models.Reward, {
-        foreignKey: 'reward_id',
-        as: 'reward',
-      })
-    }
-  }
+  class RewardCategory extends Model {}
   RewardCategory.init(
     {
       id: {

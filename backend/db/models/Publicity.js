@@ -1,5 +1,6 @@
 
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Publicity extends Model {}
   Publicity.init(

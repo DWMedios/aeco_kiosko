@@ -5,15 +5,11 @@ const cors = require('cors')
 
 const setupWebSocket = require('./ws')
 const apiRoutes = require('./routes/api')
-const { connectDB } = require('./db/index')
 require('dotenv').config()
 
 // Inicializa la aplicación Express
 const app = express()
 const server = http.createServer(app)
-
-// Conectar a la base de datos
-connectDB()
 // Configura Express para recibir JSON en las peticiones
 app.use(express.json())
 

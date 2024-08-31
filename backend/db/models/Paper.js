@@ -1,5 +1,6 @@
 
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Paper extends Model {}
   Paper.init(

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../db/models')
+const connectToDatabase = require('../db/index')
 // {
 //   "logo": "images/company.png",
 //   "phone": 999999999,
@@ -21,7 +21,8 @@ const db = require('../db/models')
 // Ruta para obtener la empresa
 router.get('/company', async (req, res) => {
   try {
-    const company = await db.Company.findAll()
+    const { Company } = await connectToDatabase()
+    const company = await Company.findAll()
     if (!company) {
       res.status(404).send('No se encontraron empresas')
     }
@@ -35,7 +36,8 @@ router.get('/company', async (req, res) => {
 // Ruta para obtener todas las recomepensas
 router.get('/rewards', async (req, res) => {
   try {
-    const rewards = await db.Reward.findAll()
+    const { Reward } = await connectToDatabase()
+    const rewards = await Reward.findAll()
     res.json(rewards)
   } catch (err) {
     console.error(err)
