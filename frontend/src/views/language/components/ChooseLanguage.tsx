@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Button from '../../../components/button';
+import { BorderRadiusEnum } from '../../../interfaces';
 
 const ChooseLanguage = () => {
     // Inicializamos el estado con 'es' para que el idioma español esté seleccionado por defecto
@@ -9,8 +11,8 @@ const ChooseLanguage = () => {
     };
   
   return (
-    <div className="p-4 min-h-[800px] flex flex-col items-center justify-center">
-      <h1 className='text-center text-5xl mt-20 mb-5'>
+    <div className="p-4 min-h-[1000px] flex flex-col items-center justify-center ">
+      <h1 className='text-center text-5xl mt-20 mb-5 z-10'>
         Seleccione un idioma
       </h1>
       <form className="flex flex-col justify-center items-center space-y-4 z-10">
@@ -52,10 +54,12 @@ const ChooseLanguage = () => {
         </span>
       </label>
     </form>
-      <div className="flex justify-center mt-8">
-        <button className="border-[#00804f] border-4 text-black text-4xl font-bold p-2 rounded-xl w-80 h-16 z-10">
-          Aceptar
-        </button>
+      <div className="flex justify-center mt-8 w-full">
+      <Button 
+      label='Aceptar' 
+      url="/home" 
+      borderRadius={BorderRadiusEnum.xl3}
+      />
       </div>
     </div>
   );

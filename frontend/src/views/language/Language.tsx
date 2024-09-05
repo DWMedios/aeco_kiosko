@@ -6,7 +6,9 @@ function Language() {
   return (
     <>
       <ScreenLayout image="language_background.svg">
-        <BackButton url="/home" imageSrc='/public/images/backbutton.png'/>
+        <BackButton 
+        url="/home" 
+        imageSrc='images/backbutton.png'/>
         <ChooseLanguage />
       </ScreenLayout>
     </>

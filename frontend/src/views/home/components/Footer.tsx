@@ -1,13 +1,13 @@
 
 const Footer = () => {
   return (
-    <footer className="flex mb-7 justify-between items-center px-4 py-1 bg-green-100 bg-opacity-70 text-black text-2xl shadow-md w-11/12 rounded-3xl">
-      <a href="https://enlace-izquierda.com" className="hover:underline">
+    <footer className="flex justify-between items-center px-4 py-1 bg-green-100 bg-opacity-70 text-black text-2xl shadow-md w-11/12 rounded-3xl">
+      <span className="hover:underline">
         ayuntaeco.com
-      </a>
-      <a href="https://enlace-derecha.com" className="hover:underline">
+      </span>
+      <span className="hover:underline">
         dwmedios.com
-      </a>
+      </span>
     </footer>
   );
 };

@@ -5,7 +5,7 @@ import ListDiscounts from './components/listDiscounts';
 const Discounts = () => {
   return (
     <ScreenLayout image="shrubbery.png">
-      <BackButton url="/rewards" />
+      <BackButton imageSrc='/images/backbutton.png' url="/rewards" />
       <div className="flex flex-col justify-center items-center gap-11">
         <h1 className="text-7xl text-center max-w-[600px] font-bold tracking-wide">
           ELIGE TU DESCUENTO

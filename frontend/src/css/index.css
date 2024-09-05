@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Personalizar el scroll  del modal*/
+.custom-scrollbar::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #6FAF46;
+    border-radius: 5px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  

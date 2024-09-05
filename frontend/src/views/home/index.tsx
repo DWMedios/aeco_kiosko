@@ -1,5 +1,6 @@
 import Button from "../../components/button";
 import ScreenLayout from "../../components/layout/screenLayout";
+import { BackgroundButtonEnum, BorderRadiusEnum, FontSizeEnum, TextColorEnum } from '../../interfaces';
 import Footer from "./components/Footer";
 import LangHelp from "./components/LangHelp";
 import Navbar from "./components/Navbar";
@@ -8,9 +9,9 @@ import SocialMediaList from "./components/SocialMediaList";
 function Home() {
   return (
     <ScreenLayout image="home_background.png">
-      <div className="relative z-10 flex flex-auto items-center flex-col w-full h-[1280px] pt-8 justify-between bg-transparent">
+      <div className="relative z-10 flex flex-auto items-center flex-col w-full h-[1850px] pt-8 justify-between bg-transparent">
         <Navbar />
-        <img className="w-80" src="/images/aeco.svg" alt="AECO Logo" />
+        <img className="w-[500px]" src="/images/aeco.svg" alt="AECO Logo" />
         <img
           className="w-11/12"
           src="/images/reciclaygana.svg"
@@ -19,11 +20,12 @@ function Home() {
         <LangHelp />
         <Button
           label="iniciar"
-          bgColor="bg-pink-500"
+          bgColor={BackgroundButtonEnum.pink}
           borderColor={null}
-          textColor={"white"}
+          textColor={TextColorEnum.white}
           url="/conditions"
-        />
+          borderRadius= {BorderRadiusEnum.full}
+          fontSize={FontSizeEnum.xl7}        />
         <SocialMediaList />
         <Footer />
       </div>

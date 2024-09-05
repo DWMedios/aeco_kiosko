@@ -1,22 +1,24 @@
 import { useNavigate } from "react-router-dom";
-import { Buttoninterface } from "../../interfaces";
+import { ButtonInterface, BorderRadiusEnum, FontSizeEnum, TextColorEnum, BackgroundButtonEnum } from "../../interfaces";
 
 const Button = ({
   label = "iniciar",
-  bgColor = null,
-  borderRadius = "full",
-  textColor = "green-500",
-  borderColor = "border-4 border-green-500",
+  bgColor = BackgroundButtonEnum.white,
+  borderRadius = BorderRadiusEnum.xl3,
+  textColor = TextColorEnum.black,
+  borderColor = "border-4 border-[#00804F]",
   url,
-}: Buttoninterface) => {
+  fontSize = FontSizeEnum.xl3,
+}: ButtonInterface) => {
+
   const navigation = useNavigate();
 
   return (
     <>
-      <div className="w-full flex justify-center mb-40">
+      <div className="w-full flex justify-center mb-10 z-10">
         <button
           onClick={() => navigation(url)}
-          className={`${bgColor} w-3/4 py-5 rounded-${borderRadius} ${borderColor} text-${textColor} font-extrabold text-6xl uppercase `}
+          className={`${bgColor} w-[450px] p-2 h-[110px] rounded-${borderRadius} ${borderColor} ${textColor} font-extrabold text-${fontSize} uppercase `}
         >
           {label}
         </button>

@@ -1,7 +1,7 @@
 import BackButton from "../../components/backButton/BackButton";
 import Button from "../../components/button";
 import ScreenLayout from "../../components/layout/screenLayout";
-import { ArrayContainersConditions } from "../../interfaces";
+import { ArrayContainersConditions} from "../../interfaces";
 import ContainerConditions from "./components/conditionsContainers";
 import RewardsConditions from "./components/rewards";
 
@@ -27,8 +27,8 @@ const Conditions = () => {
 
   return (
     <ScreenLayout image="shrubbery.png">
-      <BackButton url="/home" />
-      <div className="relative flex flex-col justify-center items-center min-h-screen">
+      <BackButton imageSrc='/images/backbutton.png' url="/home" />
+      <div className="relative flex flex-col justify-center items-center">
         <div className="flex flex-col justify-center items-center">
           <span className="text-6xl">Recompensas</span>
           <span className="text-6xl">Disponibles</span>
@@ -44,7 +44,9 @@ const Conditions = () => {
         <div className="flex flex-row gap-4  w-full text-2xl mb-20">
           <ContainerConditions containers={exampleData.containers} />
         </div>
-        <Button label="¡entendido!" borderRadius="3xl" url="/example" />
+        <Button 
+        label="¡entendido!" 
+        url="/example" />
       </div>
     </ScreenLayout>
   );

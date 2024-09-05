@@ -41,7 +41,7 @@ const ProductListModal = () => {
 
   return (
     <div>
-      <div className="max-h-48 overflow-y-scroll">
+      <div className="h-48 overflow-y-scroll custom-scrollbar">
         <ul className="space-y-2 text-center">
           {products.map(product => (
             <li key={product.id} className="p-1 text-xl">
