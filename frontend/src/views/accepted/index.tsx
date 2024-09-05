@@ -7,7 +7,7 @@ const Accepted = () => {
     <ScreenLayout image="backgroundAccepted.png">
       <div className="relative flex flex-col justify-center items-center h-[1255px]">
         <div className="flex flex-col justify-center items-center">
-          <span className="font-extrabold text-8xl text-center">
+          <span className="font-extrabold text-7xl text-center w-[500px]">
             ENVASE ACEPTADO
           </span>
         </div>

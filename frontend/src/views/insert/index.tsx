@@ -5,7 +5,7 @@ const Insert = () => {
     <ScreenLayout image="leafBackground.png">
       <div className="relative flex flex-col justify-center items-center h-[1255px]">
         <div className="flex flex-col text-center h-60">
-          <span className="font-extrabold text-8xl text-center tracking-wide	">
+          <span className="font-extrabold text-7xl text-center tracking-wide	w-[500px]">
             INSERTAR ENVASE
           </span>
         </div>

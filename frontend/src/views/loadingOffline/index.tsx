@@ -15,7 +15,7 @@ const LoadingOffline = ({ icon = "loading" }: Icon) => {
 
   return (
     <ScreenLayout image="bg-offline-loading.png">
-      <div className="relative flex flex-col h-[1850px]">
+      <div className="relative flex flex-col h-[1255px]">
         <div className="relative flex-grow flex justify-center items-center">
           <img src={`/images/${icon}.png`} alt="Logo" />
         </div>

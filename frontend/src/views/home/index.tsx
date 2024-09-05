@@ -9,9 +9,9 @@ import SocialMediaList from "./components/SocialMediaList";
 function Home() {
   return (
     <ScreenLayout image="home_background.png">
-      <div className="relative z-10 flex flex-auto items-center flex-col w-full h-[1850px] pt-8 justify-between bg-transparent">
+      <div className="relative z-10 flex flex-auto items-center flex-col w-full h-[1255px] pt-8 justify-between bg-transparent">
         <Navbar />
-        <img className="w-[500px]" src="/images/aeco.svg" alt="AECO Logo" />
+        <img className="w-80" src="/images/aeco.svg" alt="AECO Logo" />
         <img
           className="w-11/12"
           src="/images/reciclaygana.svg"
