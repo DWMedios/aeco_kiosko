@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
       },
       name: {
         type: Sequelize.STRING(50),
@@ -17,7 +17,7 @@ module.exports = {
         allowNull: false,
       },
       quantity: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       icon_path: {

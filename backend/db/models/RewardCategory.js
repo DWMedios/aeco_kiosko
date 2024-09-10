@@ -1,11 +1,18 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class RewardCategory extends Model {}
+  class RewardCategory extends Model {
+    static associate(models) {
+      RewardCategory.hasMany(models.Reward, {
+        foreignKey: 'reward_category_id',
+        as: 'rewards',
+      })
+    }
+  }
   RewardCategory.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
@@ -13,8 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(120),
         allowNull: false,
       },
-      reward_id: {
-        type: DataTypes.BIGINT,
+      status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      order: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },

@@ -12,13 +12,13 @@ module.exports = {
         type: Sequelize.STRING(120),
         allowNull: false,
       },
-      reward_id: {
-        type: Sequelize.BIGINT,
+      status: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-        references: {
-          model: 'rewards',
-          key: 'id',
-        },
+      },
+      order: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       created_at: {
         allowNull: false,

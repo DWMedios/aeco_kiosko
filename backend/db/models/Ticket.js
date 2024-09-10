@@ -1,4 +1,3 @@
-
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
@@ -6,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   Ticket.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
@@ -19,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       quantity: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       icon: {

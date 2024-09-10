@@ -1,4 +1,3 @@
-
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
@@ -6,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   Paper.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
       },

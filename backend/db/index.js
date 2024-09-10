@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize')
 require('dotenv').config()
 
-
 const capacityModel = require('./models/Capacity')
 const companyModel = require('./models/Company')
 const movementModel = require('./models/Movement')
@@ -39,7 +38,6 @@ const RewardCategory = rewardCategoryModel(sequelize, Sequelize)
 const Ticket = ticketModel(sequelize, Sequelize)
 const Update = updateModel(sequelize, Sequelize)
 
-
 const Models = {
   Capacity,
   Company,
@@ -59,8 +57,14 @@ const connection = {}
 Capacity.hasMany(Product, { as: 'products', foreignKey: 'capacity_id' })
 Product.belongsTo(Capacity, { as: 'capacity', foreignKey: 'capacity_id' })
 
-Reward.hasOne(RewardCategory, { as: 'category', foreignKey: 'reward_id' })
-RewardCategory.belongsTo(Reward, { as: 'reward', foreignKey: 'reward_id' })
+Reward.belongsTo(RewardCategory, {
+  as: 'category',
+  foreignKey: 'reward_category_id',
+})
+RewardCategory.hasMany(Reward, {
+  as: 'reward',
+  foreignKey: 'reward_category_id',
+})
 
 const connectDB = async () => {
   try {

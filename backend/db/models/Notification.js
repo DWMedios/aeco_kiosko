@@ -1,4 +1,3 @@
-
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
@@ -6,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   Notification.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
@@ -22,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Notification',
-      tableName: 'notification',
+      tableName: 'notifications',
       timestamps: true,
       underscored: true,
     }
