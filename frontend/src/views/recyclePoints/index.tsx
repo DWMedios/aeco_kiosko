@@ -5,9 +5,9 @@ import RecyclePointsList from "./components/recyclePointsList";
 const RecyclePoints = () => {
   return (
     <ScreenLayout image="RewardsBackground.svg">
-      <BackButton url="/home" />
-      <div className="flex flex-col justify-center items-center gap-11">
-        <h1 className="text-7xl text-center max-w-[500px] font-bold tracking-wide z-10">
+      <div className="flex flex-col justify-center items-center gap-11 h-screen z-10">
+      <BackButton imageSrc='/images/backbutton.png' url="/rewards" />
+        <h1 className="text-8xl text-center max-w-[800px] font-bold tracking-wider z-10">
           INTRODUCE TU NÚMERO
         </h1>
         <RecyclePointsList />

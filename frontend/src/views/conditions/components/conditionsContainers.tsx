@@ -11,7 +11,7 @@ const ContainerConditions = ({
     return (
       <ul className="list-disc list-inside pl-4 space-y-2">
         {conditions.conditions.map((condition: string) => (
-          <li key={condition} className="">
+          <li key={condition} className="tracking-wider">
             {condition}
           </li>
         ))}
@@ -25,7 +25,7 @@ const ContainerConditions = ({
       {containers.map((containerObj: ContainersConditions) => (
         <div
           key={containerObj.container.name}
-          className="w-1/2 flex flex-row justify-center "
+          className="w-1/2 flex flex-row justify-center text-3xl"
         >
           <ListConditions conditions={containerObj.conditions} />
           <img src={containerObj.container.icon} alt="" className="w-20 mx-2" />

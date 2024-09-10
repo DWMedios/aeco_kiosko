@@ -2,7 +2,7 @@ import { getCurrentDate } from "../../../utils/dates";
 
 const CurrentDate = () => {
   return (
-    <div className="text-2xl font-bold text-gray-800">{getCurrentDate()}</div>
+    <div className="text-4xl font-extrabold text-gray-800 tracking-wider">{getCurrentDate()}</div>
   );
 };
 

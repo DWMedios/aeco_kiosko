@@ -1,15 +1,34 @@
 
+import { useNavigate } from 'react-router-dom';
 import ScreenLayout from "../../components/layout/screenLayout";
+import { useEffect } from 'react';
+import QRCodeComponent from '../../components/qrCode';
 
 
 const FinalView = () => {
+  const QrCodeUrl = ' https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Estoy%20interesado%20en%20el%20proyecto!';
+
+ 
+  
+  const navigation = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("Termino el tiempo");
+      navigation("/home");
+    }, 15000);
+  });
+
+
   return (
     <ScreenLayout image="lastView.png">
-      <div className="flex flex-col justify-center items-center text-center gap-11 h-[1280px]">
-        <h1 className='text-5xl font-normal z-10 mb-12 w-[400px]'>¿TE INTERESA EL PROYECTO?</h1>
-        <img src="/public/images/QRcode.png" alt="QR Code" className='h-[420px] z-10' />
-        <button className='border-[#027333] border-solid border-4 p-4 rounded-lg text-[#027333] text-3xl font-bold w-[350px] z-10 cursor-pointer'>ayuntaeco.com</button>
-        <p className='text-2xl font-normal z-10 tracking-wider w-[200px]'>¡Gracias por tu colaboración!</p>
+      <div className="flex flex-col justify-center items-center text-center gap-16 h-screen select-none z-10">
+        <h1 className='text-7xl font-normal z-10 mb-12 w-[600px]'>¿TE INTERESA EL PROYECTO?</h1>
+        <div className='w-full z-10 flex justify-center'>
+          <QRCodeComponent value={QrCodeUrl}/>
+        </div>
+        <span className='border-8 border-[#00804F] w-[600px] h-[150px] rounded-xl flex justify-center items-center font-bold text-6xl text-[#027333] z-10 bg-white'>ayuntaeco.com </span>
+        <p className='text-6xl font-normal z-10 tracking-wider w-[500px]'>¡Gracias por tu colaboración!</p>
       </div>
     </ScreenLayout>
   );
