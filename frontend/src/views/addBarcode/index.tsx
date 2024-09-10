@@ -3,19 +3,19 @@ import ScreenLayout from "../../components/layout/screenLayout";
 import QRCodeComponent from '../../components/qrCode';
 
 const AddBarcode = () => {
-  const QrCodeUrl = 'https://api.whatsapp.com/send?phone=+52 986 119 0181&text=Hola, Ayuntaeco | ¡Quiero registrar un Codigo de Barras!';
+  const QrCodeUrl = 'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Quiero%20registrar%20un%20Código%20de%20Barras!';
+
   
   return (
     <ScreenLayout image="leafBackground.png">
-            <BackButton imageSrc='/images/backbutton.png' url="/example" />
-      <div className="relative flex flex-col justify-center items-center h-[1000px]">
-
+      <div className="relative flex flex-col justify-center items-center h-screen select-none gap-12">
+        <BackButton imageSrc='/images/backbutton.png' url="/example" />
         <div className="flex flex-col justify-center items-center">
-          <span className="text-4xl text-center w-80">
+          <span className="text-8xl text-center w-[800px] tracking-wider font-bold">
             AÑADIR CÓDIGO DE BARRAS
           </span>
         </div>
-        <span className="text-2xl text-center w-96 mt-14 mb-10">
+        <span className="text-4xl text-center w-[600px]">
         Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE
         </span>
         <div className='w-full z-10 flex justify-center'>
@@ -24,12 +24,12 @@ const AddBarcode = () => {
         <img
           src="/images/WhatsappLogo.png"
           alt=""
-          className="w-20 h-auto mt-10"
+          className="w-20 h-auto"
         />
-        <span className="text-4xl font-bold text-center w-96 mt-8">
+        <span className="text-6xl font-bold text-center">
         +52 999 888 7777
         </span>
-        <span className="text-2xl text-center w-96 mt-7">
+        <span className="text-4xl text-center w-96">
         ¡Gracias por tu colaboración!
         </span>
 

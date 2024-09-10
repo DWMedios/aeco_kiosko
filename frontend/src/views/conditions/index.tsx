@@ -1,7 +1,7 @@
 import BackButton from "../../components/backButton/BackButton";
 import Button from "../../components/button";
 import ScreenLayout from "../../components/layout/screenLayout";
-import { ArrayContainersConditions} from "../../interfaces";
+import { ArrayContainersConditions, FontSizeEnum} from "../../interfaces";
 import ContainerConditions from "./components/conditionsContainers";
 import RewardsConditions from "./components/rewards";
 
@@ -27,11 +27,11 @@ const Conditions = () => {
 
   return (
     <ScreenLayout image="shrubbery.png">
+      <div className="relative flex flex-col justify-center items-center h-screen select-none">
       <BackButton imageSrc='/images/backbutton.png' url="/home" />
-      <div className="relative flex flex-col justify-center items-center">
         <div className="flex flex-col justify-center items-center">
-          <span className="text-6xl">Recompensas</span>
-          <span className="text-6xl">Disponibles</span>
+          <span className="text-8xl">Recompensas</span>
+          <span className="text-8xl">Disponibles</span>
         </div>
         <div className="w-full mt-20 mb-20">
           <RewardsConditions />
@@ -46,7 +46,8 @@ const Conditions = () => {
         </div>
         <Button 
         label="¡entendido!" 
-        url="/example" />
+        url="/example" 
+        fontSize={FontSizeEnum.xl6}/>
       </div>
     </ScreenLayout>
   );

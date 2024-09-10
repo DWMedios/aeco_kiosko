@@ -19,7 +19,7 @@ const CurrentTime = () => {
   }, []);
 
   return (
-    <div className="text-2xl font-bold text-gray-800">
+    <div className="text-4xl font-extrabold text-gray-800 tracking-wider">
       {currentTime}
     </div>
   );

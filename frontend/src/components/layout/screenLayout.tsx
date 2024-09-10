@@ -8,7 +8,7 @@ const ScreenLayout = ({ children, image }: Layout) => {
         className={`absolute inset-0 bg-[url('/images/${image}')] bg-cover bg-center`}
       />
       <ImageBackground url={image} />
-      <div className="h-full">{children}</div>;
+      <div className="h-screen">{children}</div>;
     </>
   );
 };

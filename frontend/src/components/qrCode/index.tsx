@@ -4,9 +4,12 @@ import { QRCodeInterface } from '../../interfaces';
 const QRCodeComponent = ({ 
     value, 
     size = 425, 
-    level = 'L', 
+    level = 'M', 
     includeMargin = true, 
-    marginSize = 1 
+    marginSize = 1,
+    fgColor = '#000000',
+    title = 'QR Code Ayuntaeco',
+    bgColor = '#FFF'
   }: QRCodeInterface) => {
     return (
       <QRCodeCanvas 
@@ -15,6 +18,9 @@ const QRCodeComponent = ({
         level={level} 
         includeMargin={includeMargin} 
         marginSize={marginSize} 
+        fgColor = {fgColor}
+        title={title}
+        bgColor={bgColor}
       />
     );
   }

@@ -66,6 +66,14 @@ export enum BackgroundButtonEnum{
   green = "bg-[#6FAF46]"
 }
 
+export enum PositionButtonEnum{
+  static = "static",
+  fixed = "fixed",
+  absolute = "absolute",
+  relative = "relative",
+  sticky = "sticky",
+}
+
 export interface ButtonInterface {
   bgColor?: BackgroundButtonEnum | null;
   borderRadius?: BorderRadiusEnum;
@@ -74,6 +82,7 @@ export interface ButtonInterface {
   textColor?: TextColorEnum | null;
   url: string;
   fontSize?: FontSizeEnum;
+  positionButton? : PositionButtonEnum | null;
 }
 
 export interface BackButtoninterface {
@@ -137,4 +146,7 @@ export interface QRCodeInterface {
   level?: 'L' | 'M' | 'Q' | 'H';
   includeMargin?: boolean;
   marginSize?: number;
+  fgColor?: string;
+  title?: string;
+  bgColor?: string;
 }

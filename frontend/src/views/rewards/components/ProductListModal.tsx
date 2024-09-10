@@ -23,6 +23,10 @@ const ProductListModal = () => {
       { id: 7, name: 'Coca Cola', size: '450 ml.', container: 'Botella' },
       { id: 8, name: 'Coca Cola', size: '450 ml.', container: 'Botella' },
       { id: 9, name: 'Pepsi Cola', size: '450 ml.', container: 'Botella' },
+      { id: 10, name: 'Coca Cola', size: '355 ml.', container: 'Lata' },
+      { id: 11, name: 'Coca Cola', size: '355 ml.', container: 'Lata' },
+      { id: 12, name: 'Coca Cola', size: '355 ml.', container: 'Lata' },
+      { id: 13, name: 'Coca Cola', size: '355 ml.', container: 'Lata' },
     ];
     setProducts(fetchedProducts);
 
@@ -40,17 +44,17 @@ const ProductListModal = () => {
   }, []);
 
   return (
-    <div>
-      <div className="h-48 overflow-y-scroll custom-scrollbar">
+    <div className='flex flex-col justify-center items-center'>
+      <div className="h-[250px] w-[500px] overflow-y-scroll custom-scrollbar">
         <ul className="space-y-2 text-center">
           {products.map(product => (
-            <li key={product.id} className="p-1 text-xl">
+            <li key={product.id} className="p-1 text-3xl tracking-wider leading-10">
               <span className="font-semibold">{product.name}</span> - {product.size} - {product.container}
             </li>
           ))}
         </ul>
       </div>
-      <div className="flex flex-row flex-wrap justify-between px-20 items-center  mt-14 text-center">
+      <div className="flex flex-row flex-wrap justify-between px-20 w-full items-center  mt-10 text-center">
         <div className="font-bold">
           <h1 className='text-8xl'>{bottleCount}</h1>
           <p className='text-4xl'>Botellas</p>

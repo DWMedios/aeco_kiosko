@@ -31,8 +31,8 @@ const ListDonatives = () => {
     };
 
     return (
-        <div className="flex flex-col items-center bg-[#D9D9D9] bg-opacity-50 text-black shadow-md rounded-3xl w-[600px] h-[850px] z-10 p-5">
-            <div className="flex flex-row flex-wrap justify-center">
+        <div className="flex flex-col items-center bg-[#D9D9D9] bg-opacity-50 text-black shadow-md rounded-3xl w-[600px] h-[950px] z-10 p-5">
+            <div className="flex flex-row flex-wrap justify-center gap-10">
                 {currentDonatives.map((donative, index) => (
                     <CardReward 
                         key={index}

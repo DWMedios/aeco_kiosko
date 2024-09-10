@@ -1,13 +1,13 @@
 import ScreenLayout from "../../components/layout/screenLayout";
 import Button from "../../components/button";
-import { BackgroundButtonEnum, TextColorEnum } from '../../interfaces';
+import { BackgroundButtonEnum, FontSizeEnum, TextColorEnum } from '../../interfaces';
 
 const Rejected = () => {
   return (
     <ScreenLayout image="leafBackground.png">
-      <div className="relative flex flex-col justify-center items-center h-[1255px]">
-        <div className="flex flex-col justify-center items-center">
-          <span className="font-extrabold text-7xl text-center">
+      <div className="relative flex flex-col justify-center items-center h-screen select-none gap-12">
+        <div className="flex flex-col justify-center items-center w-[500px]">
+          <span className="font-extrabold text-8xl text-center tracking-wider">
             ENVASE RECHAZADO
           </span>
         </div>
@@ -22,17 +22,20 @@ const Rejected = () => {
         url="/insert" 
         bgColor={BackgroundButtonEnum.green}
         borderColor={null}
-        textColor={TextColorEnum.white}/>
+        textColor={TextColorEnum.white}
+        fontSize={FontSizeEnum.xl6}/>
         
         <Button 
         label='FINALIZAR' 
         url="/rewards" 
         borderColor="border-4 border-[#FE5A8F]"
-        textColor={TextColorEnum.pink}/>
+        textColor={TextColorEnum.pink}
+        fontSize={FontSizeEnum.xl6}/>
         
         <Button 
         label='AÑADIR CODIGO DE BARRAS' 
-        url="/add_barcode" />
+        url="/add_barcode" 
+        fontSize={FontSizeEnum.xl6}/>
       </div>
     </ScreenLayout>
   );

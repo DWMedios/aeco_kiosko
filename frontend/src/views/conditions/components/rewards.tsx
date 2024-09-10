@@ -12,7 +12,7 @@ const RewardsConditions = () => {
         {rewards.map((reward, index) => (
           <div
             key={index}
-            className="flex flex-col items-center mx-8 bg-custom-green rounded-full w-1/3 text-3xl min-w-1/3"
+            className="flex flex-col justify-center items-center mx-8 bg-custom-green rounded-full w-1/3 h-16 text-4xl min-w-1/3 tracking-wider"
           >
             <span className="text-white font-bold">{reward}</span>
           </div>

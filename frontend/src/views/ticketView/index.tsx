@@ -13,12 +13,12 @@ const TicketView = () => {
     setTimeout(() => {
       console.log("Termino el timepo");
       navigation("/final_view");
-    }, 6000);
+    }, 10000);
   });
 
   return (
     <ScreenLayout image="TicketBackgound.png">
-      <div className="flex flex-col justify-center items-center gap-11 z-10 h-[1255px]">
+      <div className="flex flex-col justify-center items-center gap-11 z-10 h-screen select-none">
             <Ticket />
       </div>
     </ScreenLayout>

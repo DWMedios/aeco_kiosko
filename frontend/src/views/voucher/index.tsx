@@ -7,8 +7,8 @@ const VoucherView = () => {
 
   return (
     <ScreenLayout image="leafBackground.png">
-      <div className="flex flex-col justify-center items-center text-center gap-11 z-10 h-[1255px]">
-        <h1 className='text-7xl font-bold'>ELIGE TU COMPROBANTE</h1>
+      <div className="flex flex-col justify-center items-center text-center gap-11 z-10 h-screen select-none gap-20">
+        <h1 className='text-8xl font-bold z-10 w-[700px]'>ELIGE TU COMPROBANTE</h1>
         <div className="flex gap-8 mt-10 z-10 h-[350px]">
           <TicketButton
             url="/ticket"
@@ -23,7 +23,7 @@ const VoucherView = () => {
             buttonText="Impreso"
           />
         </div>
-        <p className='text-4xl font-normal w-96'>POR UN MAÑANA MÁS SUSTENTABLE</p>
+        <p className='text-6xl font-normal w-[600px]'>POR UN MAÑANA MÁS SUSTENTABLE</p>
       </div>
     </ScreenLayout>
   );

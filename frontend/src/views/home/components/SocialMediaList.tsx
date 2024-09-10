@@ -11,8 +11,8 @@ const Medias = ({ socialMedias }: MediasProps) => {
     <>
       {socialMedias.map((social, index) => (
         <div key={index} className="flex items-center space-x-2">
-          <span className="text-2xl">{social.icon}</span>
-          <span className="text-lg font-semibold">{social.name}</span>
+          <span className="text-4xl">{social.icon}</span>
+          <span className="text-4xl font-semibold tracking-widest">{social.name}</span>
         </div>
       ))}
     </>
@@ -21,7 +21,7 @@ const Medias = ({ socialMedias }: MediasProps) => {
 
 const SocialList: React.FC = () => {
   return (
-    <div className="flex -mb-16 justify-between items-center px-4 py-3 bg-green-100 bg-opacity-70 text-black shadow-md w-11/12 rounded-3xl">
+    <div className="flex fixed bottom-24 justify-between items-center px-4 py-3 bg-green-100 bg-opacity-70 text-black shadow-md w-11/12 h-16 rounded-3xl">
       <Medias socialMedias={socialMediaList} />
     </div>
   );

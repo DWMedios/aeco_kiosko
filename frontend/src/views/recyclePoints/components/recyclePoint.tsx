@@ -7,7 +7,7 @@ const RecyclePoint = () => {
             id="phone"
             name="phone"
             placeholder="Número de Teléfono con WhatsApp"
-            className="px-4 py-2 border-b-4 border-gray-400 bg-transparent w-[400px] text-center font-semibold focus:outline-none text-xl"
+            className="px-4 py-2 border-b-4 border-gray-400 bg-transparent w-[600px] text-center font-semibold focus:outline-none text-2xl"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             required
         />
