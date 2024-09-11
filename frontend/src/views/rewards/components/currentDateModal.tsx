@@ -10,7 +10,7 @@ const CurrentDateModal = () => {
     };
   
     return (
-      <div className="text-xl">
+      <div className="text-3xl">
         {getCurrentDate()}
       </div>
     );

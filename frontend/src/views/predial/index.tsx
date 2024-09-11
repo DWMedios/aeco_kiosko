@@ -5,9 +5,9 @@ import PredialList from "./components/predialList";
 const PredialPoints = () => {
   return (
     <ScreenLayout image="shrubbery.png">
-      <BackButton url="/home" />
-      <div className="flex flex-col justify-center items-center gap-11">
-        <h1 className="text-7xl text-center max-w-[500px] font-bold tracking-wide">
+      <div className="flex flex-col justify-center items-center h-screen gap-11">
+      <BackButton imageSrc='/images/backbutton.png' url="/rewards" />
+        <h1 className="text-8xl text-center max-w-[800px] font-bold tracking-wider">
           BUSCA TU PREDIO
         </h1>
         <PredialList />
