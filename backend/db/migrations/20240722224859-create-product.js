@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
       },
       code: {
         type: Sequelize.TEXT,
@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
       },
       capacity_id: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'capacities',

@@ -1,17 +1,17 @@
-
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Update extends Model {}
   Update.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0,
         primaryKey: true,
       },
       status: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
     },

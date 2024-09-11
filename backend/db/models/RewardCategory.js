@@ -1,15 +1,15 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class Reward extends Model {
+  class RewardCategory extends Model {
     static associate(models) {
-      Reward.belongsTo(models.RewardCategory, {
+      RewardCategory.hasMany(models.Reward, {
         foreignKey: 'reward_category_id',
-        as: 'category',
+        as: 'rewards',
       })
     }
   }
-  Reward.init(
+  RewardCategory.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       name: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(120),
         allowNull: false,
       },
       status: {
@@ -28,18 +28,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      reward_category_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
     },
     {
       sequelize,
-      modelName: 'Reward',
-      tableName: 'rewards',
+      modelName: 'RewardCategory',
+      tableName: 'reward_categories',
       timestamps: true,
       underscored: true,
     }
   )
-  return Reward
+  return RewardCategory
 }

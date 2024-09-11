@@ -6,12 +6,11 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
       },
       status: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: 0,
       },
       created_at: {
         allowNull: false,

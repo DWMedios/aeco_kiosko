@@ -1,11 +1,11 @@
-
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
-  class Notificaction extends Model {}
-  Notificaction.init(
+  class Notification extends Model {}
+  Notification.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Notificaction',
-      tableName: 'notificactions',
+      modelName: 'Notification',
+      tableName: 'notifications',
       timestamps: true,
       underscored: true,
     }
   )
-  return Notificaction
+  return Notification
 }

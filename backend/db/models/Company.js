@@ -1,8 +1,8 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class Publicity extends Model {}
-  Publicity.init(
+  class Company extends Model {}
+  Company.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -10,25 +10,21 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       name: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(150),
         allowNull: false,
       },
-      path: {
-        type: DataTypes.STRING(250),
-        allowNull: false,
-      },
-      local_path: {
-        type: DataTypes.STRING(250),
+      metadata: {
+        type: DataTypes.JSONB,
         allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: 'Publicity',
-      tableName: 'publicities',
+      modelName: 'Company',
+      tableName: 'companies',
       timestamps: true,
       underscored: true,
     }
   )
-  return Publicity
+  return Company
 }

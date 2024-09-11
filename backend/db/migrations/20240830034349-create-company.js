@@ -1,7 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('tickets', {
+    await queryInterface.createTable('companies', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,24 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING(50),
-        allowNull: true,
-      },
-      value: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      quantity: {
-        type: Sequelize.INTEGER,
+      metadata: {
+        type: Sequelize.JSONB,
         allowNull: false,
-      },
-      icon_path: {
-        type: Sequelize.STRING(180),
-        allowNull: true,
-      },
-      local_icon_path: {
-        type: Sequelize.STRING(180),
-        allowNull: true,
       },
       created_at: {
         allowNull: false,
@@ -40,6 +28,6 @@ module.exports = {
     })
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('tickets')
+    await queryInterface.dropTable('companies')
   },
 }
