@@ -15,6 +15,8 @@
     "db:seed": "dotenv sequelize-cli db:seed:all --config .sequelizerc",
     "db:create": "sequelize-cli db:create --config .sequelizerc",
     "db:drop": "sequelize-cli db:drop --config .sequelizerc",
+    "db:migration:create": "sequelize-cli migration:generate --name",
+    "db:seeder:create": "sequelize-cli seed:generate --name",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

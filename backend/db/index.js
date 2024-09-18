@@ -12,6 +12,7 @@ const rewardModel = require('./models/Reward')
 const rewardCategoryModel = require('./models/RewardCategory')
 const ticketModel = require('./models/Ticket')
 const updateModel = require('./models/Update')
+const pageModel = require('./models/Page')
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -37,6 +38,7 @@ const Reward = rewardModel(sequelize, Sequelize)
 const RewardCategory = rewardCategoryModel(sequelize, Sequelize)
 const Ticket = ticketModel(sequelize, Sequelize)
 const Update = updateModel(sequelize, Sequelize)
+const Page = pageModel(sequelize, Sequelize)
 
 const Models = {
   Capacity,
@@ -50,6 +52,7 @@ const Models = {
   RewardCategory,
   Ticket,
   Update,
+  Page,
 }
 
 const connection = {}
