@@ -1,26 +1,29 @@
 const http = require('http')
 
 const express = require('express')
+const cors = require('cors')
 
 const setupWebSocket = require('./ws')
-// const apiRoutes = require('./routes/api')
-// const { connectDB } = require('./db/index')
+const apiRoutes = require('./routes/api')
 require('dotenv').config()
 
 // Inicializa la aplicación Express
 const app = express()
 const server = http.createServer(app)
-
-// Conectar a la base de datos
-// connectDB();
 // Configura Express para recibir JSON en las peticiones
-app.use(express.json());
+app.use(express.json())
 
 // Configura las rutas de la API
-// app.use('/api', apiRoutes);
-
+app.use(
+  cors({
+    origin: '*', // Permite solo este origen, ajusta según sea necesario
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite estos métodos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Permite estos encabezados
+  })
+)
+app.use('/api', apiRoutes)
 // Configurar WebSocket
-(async () => {
+;(async () => {
   try {
     await setupWebSocket(server)
     console.log('WebSocket configurado correctamente.')

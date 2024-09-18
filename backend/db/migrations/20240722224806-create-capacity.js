@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
       },
       packaging: {
         type: Sequelize.STRING(50),
@@ -17,7 +17,7 @@ module.exports = {
         allowNull: false,
       },
       factor: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       description: {

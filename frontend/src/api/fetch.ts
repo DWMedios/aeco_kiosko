@@ -1,6 +1,6 @@
-import { ApiParams } from "../interfaces";
+import { ApiParams } from '../interfaces'
 
-const api = import.meta.env.VITE_API_BASE_URL;
+const api = import.meta.env.VITE_API_BASE_URL
 
 export const fetchRequest = async <T>({
   url,
@@ -12,21 +12,21 @@ export const fetchRequest = async <T>({
     const options: RequestInit = {
       method,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         ...headers,
       },
       body: body ? JSON.stringify(body) : null,
-    };
-
-    const response = await fetch(`${api}${url}`, options);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return await response.json();
+    const response = await fetch(`${api}${url}`, options)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    return await response.json()
   } catch (error) {
-    console.error("Error en la solicitud:", error);
-    throw error;
+    console.error('Error en la solicitud:', error)
+    throw error
   }
-};
+}

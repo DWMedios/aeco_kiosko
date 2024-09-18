@@ -1,21 +1,21 @@
-
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Movement extends Model {}
   Movement.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
       can_number: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       bottle_number: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       folio: {
@@ -24,9 +24,8 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: '0',
       },
       synchronized: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: 1,
       },
     },
     {
