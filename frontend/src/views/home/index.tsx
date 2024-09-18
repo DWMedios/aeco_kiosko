@@ -11,10 +11,10 @@ function Home() {
     <ScreenLayout image="home_background.png">
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
-        <img className="w-[500px] fixed top-44" src="/images/aeco.svg" alt="AECO Logo" />
+        <img className="w-[500px] fixed top-44" src="/images/aeco.png" alt="AECO Logo" />
         <img
           className="w-11/12 fixed top-1/4"
-          src="/images/reciclaygana.svg"
+          src="/images/reciclaygana.png"
           alt="AECO Logo"
         />
         <LangHelp />

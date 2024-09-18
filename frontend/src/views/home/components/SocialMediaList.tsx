@@ -1,9 +1,10 @@
 import { MediasProps, SocialMedia } from "../../../interfaces";
+import {FaSquareFacebook, FaInstagram, FaXTwitter  } from "react-icons/fa6"
 
 const socialMediaList: SocialMedia[] = [
-  { name: "Facebook", icon: <i className="fab fa-facebook"></i> },
-  { name: "Twitter", icon: <i className="fab fa-twitter"></i> },
-  { name: "Instagram", icon: <i className="fab fa-instagram"></i> },
+  { name: "Facebook", icon: <FaSquareFacebook /> },
+  { name: "Twitter", icon: <FaXTwitter /> },
+  { name: "Instagram", icon: <FaInstagram /> },
 ];
 
 const Medias = ({ socialMedias }: MediasProps) => {
@@ -19,9 +20,9 @@ const Medias = ({ socialMedias }: MediasProps) => {
   );
 };
 
-const SocialList: React.FC = () => {
+const SocialList = () => {
   return (
-    <div className="flex fixed bottom-24 justify-between items-center px-4 py-3 bg-green-100 bg-opacity-70 text-black shadow-md w-11/12 h-16 rounded-3xl">
+    <div className="flex fixed bottom-24 justify-between items-center px-5 py-4 bg-green-100 bg-opacity-70 text-black shadow-md w-11/12 h-18 rounded-3xl">
       <Medias socialMedias={socialMediaList} />
     </div>
   );

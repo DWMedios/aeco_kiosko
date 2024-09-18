@@ -6,9 +6,9 @@ function Help() {
   const QrCodeUrl = 'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!';
 
   return (
-    <ScreenLayout image="help_background.svg">
+    <ScreenLayout image="leafBackground.png">
       <div className="text-center h-screen flex flex-col justify-center items-center select-none gap-11">
-      <BackButton url="/home" imageSrc='images/backbutton.png'/>
+      <BackButton url="/home"/>
         <h1 className="text-8xl mt-24  mb-10 max-w-[300px]">Soporte</h1>
         <p className="text-4xl max-w-[500px] mb-5">
           Cualquier duda o aclaración estamos para escucharte. <br />

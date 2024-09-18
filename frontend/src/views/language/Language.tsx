@@ -15,9 +15,9 @@ function Language() {
 
   return (
     <>
-      <ScreenLayout image="language_background.svg">
+      <ScreenLayout image="leafBackground.png">
       <div className="p-4 h-screen flex flex-col items-center justify-center gap-11 select-none">
-      <BackButton url="/home" imageSrc='images/backbutton.png'/>
+      <BackButton url="/home"/>
       <h1 className='text-center text-7xl mt-20 mb-5 z-10'>
         Seleccione un idioma
       </h1>

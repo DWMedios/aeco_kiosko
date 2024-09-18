@@ -126,8 +126,8 @@ export interface PaginationButtonsInterface {
   onNext: () => void;
   isPreviousDisabled: boolean;
   isNextDisabled: boolean;
-  previousImageSrc: string;
-  nextImageSrc: string; 
+  previousImageSrc?: string;
+  nextImageSrc?: string; 
 }
 
 export interface TicketButtonInterface {

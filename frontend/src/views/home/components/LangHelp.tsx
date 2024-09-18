@@ -7,14 +7,14 @@ const LangHelp = () => {
         <Link to="/language">
           <img
             className="w-20"
-            src="/images/language_icon.svg"
+            src="/images/language_icon.png"
             alt="Language Icon"
           />
         </Link>
         <Link to="/help">
           <img
             className="w-20"
-            src="/images/Help_icon.svg"
+            src="/images/Help_icon.png"
             alt="Help Icon"
           />
         </Link>
