@@ -150,3 +150,56 @@ export interface QRCodeInterface {
   title?: string;
   bgColor?: string;
 }
+
+
+export interface MetaDataLanguage {
+  button: {
+      url: string,
+      bgColor: string,
+      labelEn: string,
+      labelEs: string,
+      fontSize: string,
+      borderRadious: string
+      },
+  background : string,
+  }
+
+  export interface MetaDataHome {
+    button: {
+      url: string;
+      label: string;
+      bgColor: string;
+      fontSize: string;
+      borderRadious: string;
+    };
+    logoUp: {
+      alt: string;
+      path: string;
+    };
+    logoDown: {
+      alt: string;
+      path: string;
+    };
+    background: string;
+    logoHelp: {
+      alt: string;
+      path: string;
+      };
+    logoLang: {
+        alt: string;
+        path: string;
+        },
+  }
+
+  export interface MetaDataHelp{
+    textDown: {
+            phone: string,
+            description:string
+        },
+        background: string,
+        textCenter: {
+            title: string,
+            phoneText: string,
+            description: string
+        }
+  }

@@ -26,12 +26,12 @@ router.get('/company', async (req, res) => {
       attributes: { exclude: ['createdAt', 'updatedAt'] },
     })
     if (!company) {
-      res.status(404).send('No se encontraron empresas')
+      return res.status(404).send({ message: 'No se encontraron empresas' })
     }
-    res.json(company)
+    return res.json(company)
   } catch (err) {
     console.error(err)
-    res.status(500).send(err.message)
+    return res.status(500).send({ message: 'Error al obtener la empresa' })
   }
 })
 // Ruta para obtener todas las categorias de recomepensas
@@ -42,12 +42,12 @@ router.get('/reward-categories', async (req, res) => {
       attributes: { exclude: ['createdAt', 'updatedAt'] },
     })
     if (!rewards) {
-      res.status(404).send('No se encontraron empresas')
+      return res.status(404).send({ message: 'No se encontraron categorías de recompensas' })
     }
-    res.json(rewards)
+    return res.json(rewards)
   } catch (err) {
     console.error(err)
-    res.status(500).send('Error al obtener las recompensas')
+    return res.status(500).send({ message: 'Error al obtener las categorías de recompensas' })
   }
 })
 
@@ -61,12 +61,12 @@ router.get('/rewards', async (req, res) => {
       attributes: { exclude: ['createdAt', 'updatedAt'] },
     })
     if (!rewards) {
-      res.status(404).send('No se encontraron empresas')
+      return res.status(404).send({ message: 'No se encontraron recompensas' })
     }
-    res.json(rewards)
+    return res.json(rewards)
   } catch (err) {
     console.error(err)
-    res.status(500).send('Error al obtener las recompensas')
+    return res.status(500).send({ message: 'Error al obtener las recompensas' })
   }
 })
 
@@ -86,27 +86,50 @@ router.get('/products', async (req, res) => {
       attributes: { exclude: ['createdAt', 'updatedAt'] },
     })
     if (!product) {
-      res.status(404).send('No se encontraron empresas')
+      return res.status(404).send({ message: 'No se encontraron productos' })
     }
-    res.json(product)
+    return res.json(product)
   } catch (err) {
     console.error(err)
-    res.status(500).send('Error al obtener las recompensas')
+    return res.status(500).send({ message: 'Error al obtener el producto' })
   }
 })
 
 // Ruta alamcenar un movimiento
-router.get('/movements', async (req, res) => {
+// router.get('/movements', async (req, res) => {
+//   try {
+//     const { Movement } = await connectToDatabase()
+//     if (!req.body) {
+//       return res.status(400).send({ message: 'El cuerpo de la petición es requerido' })
+//     }
+//     const newMovement = await Movement.create(req.body)
+//     return res.status(201).json(newMovement)
+//   } catch (err) {
+//     console.error(err)
+//     return res.status(500).send('Error al obtener las recompensas')
+//   }
+// })
+
+
+// Get pages
+router.get('/pages', async (req, res) => {
   try {
-    const { Movement } = await connectToDatabase()
-    if (!req.body) {
-      return res.status(400).send('Datos del movimiento son requeridos')
+    const { name } = req.query
+    if (!name) {
+      return res.status(400).send({ message: 'El parámetro "name" es requerido' })
     }
-    const newMovement = await Movement.create(req.body)
-    res.status(201).json(newMovement)
+    const { Page } = await connectToDatabase()
+    const page = await Page.findOne({
+      where: { name },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    })
+    if (!page) {
+      return res.status(404).send({ message: 'No se encontraron páginas' })
+    }
+    return res.json(page)
   } catch (err) {
     console.error(err)
-    res.status(500).send('Error al obtener las recompensas')
+    return res.status(500).send({ message: 'Error al obtener la página' })
   }
 })
 

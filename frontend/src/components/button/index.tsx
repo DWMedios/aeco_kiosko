@@ -19,7 +19,7 @@ const Button = ({
       <div className="w-full flex justify-center mb-10 z-10">
         <button
           onClick={() => navigation(url)}
-          className={`${bgColor} w-[550px] p-2 h-[150px] rounded-${borderRadius} ${borderColor} ${textColor} font-extrabold text-${fontSize} uppercase ${positionButton} bottom-1/4`}
+          className={`${bgColor} w-[550px] p-2 h-[150px] rounded-${borderRadius} ${borderColor} ${textColor} font-extrabold text-${fontSize} ${positionButton} bottom-1/4`}
         >
           {label}
         </button>
