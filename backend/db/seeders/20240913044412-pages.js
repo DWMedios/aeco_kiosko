@@ -8,25 +8,26 @@ module.exports = {
         metadata: {
           background:'home_background.png',
           logoLang:{
-            path:'/images/language_icon.svg',
+            path:'/images/language_icon.png',
             alt:'Language icon'
           },
           logoHelp:{
-            path:'/images/Help_icon.svg',
+            path:'/images/Help_icon.png',
             alt:'Help icon'
           },
           logoUp:{
-            path:'/images/aeco.svg',
+            path:'/images/aeco.png',
             alt:'AECO Logo up'
           },
           logoDown:{
-            path:'/images/reciclaygana.svg',
+            path:'/images/reciclaygana.png',
             alt:'Recicla y Gana Logo down'
           },
           button:{
             label:'INICIAR',
             bgColor:'pink',
             url:'/conditions',
+            textColor:'white',
             borderRadious:'full',
             fontSize:'xl8'
           }
@@ -36,14 +37,15 @@ module.exports = {
         id: 2,
         name: 'Language',
         metadata: {
-          background: 'language_background.svg',
+          background: 'language_background.png',
           button: {
-            background:'language_background.svg',
+            background:'language_background.png',
             button:{
               labelEs:'ACEPTAR',
               labelEn:'AGREE',
               bgColor:'white',
               url:'/home',
+              textColor:'black',
               borderRadious:'xl3',
               fontSize:'xl6'
             }
@@ -54,7 +56,7 @@ module.exports = {
         id: 3,
         name: 'Help',
         metadata: {
-          background: 'help_background.svg',
+          background: 'help_background.png',
           textCenter: {
             title: 'Soporte',
             description: 'Cualquier duda o aclaración estamos para escucharte.',
@@ -77,6 +79,7 @@ module.exports = {
             label: '¡Entendido!',
             bgColor: 'white',
             url: '/example',
+            textColor: 'black',
             borderRadious: 'xl3',
             fontSize: 'xl6',
           },
@@ -113,10 +116,125 @@ module.exports = {
             label: '¡Estoy listo!',
             bgColor: 'white',
             url: '/insert',
+            textColor: 'black',
             borderRadious: 'xl3',
             fontSize: 'xl6',
           },
         },
+      },
+      {
+        id: 6,
+        name: 'Insert',
+        metadata: {
+          background: 'leafBackground.png',
+          title: 'INSERTAR ENVASE',
+          description: 'EL RECICLAJE COMIENZA AQUÍ',
+          centerImage: '/images/containers.png',
+        },
+      },
+      {
+        id: 7,
+        name: 'Scanning',
+        metadata: {
+          background: 'leafBackground.png',
+          title: 'LEYENDO',
+          description: 'ESTAMOS TRABAJANDO PARA TI',
+          centerImage: '/images/containers.png',
+        },
+      },
+      {
+        id: 8,
+        name: 'Accepted',
+        metadata: {
+          background: 'backgroundAccepted.png',
+          title: 'ENVASE ACEPTADO',
+          centerImage: '/images/bottleAccepted.png',
+          buttonUp: {
+            label: 'INGRESAR OTRO ENVASE',
+            bgColor: 'green',
+            url: '/insert',
+            textColor: 'white',
+            borderRadious: 'xl3',
+            fontSize: 'xl6',
+          },
+          buttonDown: {
+            label: 'FINALIZAR',
+            bgColor: 'pink',
+            url: '/rewards',
+            textColor: 'pink',
+            borderRadious: 'xl3',
+            fontSize: 'xl6',
+          }
+        },
+      },
+      {
+        id: 9,
+        name: 'Rejected',
+        metadata: {
+          background: 'leafBackground.png',
+          title: 'ENVASE RECHAZADO',
+          centerImage: '/images/rejected.png',
+          buttonUp: {
+            label: 'INTENTAR CON OTRO ENVASE',
+            bgColor: 'green',
+            url: '/insert',
+            textColor: 'white',
+            borderRadious: 'xl3',
+            fontSize: 'xl6',
+          },
+          buttonDown: {
+            label: 'FINALIZAR',
+            bgColor: 'pink',
+            url: '/rewards',
+            textColor: 'pink',
+            borderRadious: 'xl3',
+            fontSize: 'xl6',
+          },
+          modalRight: {
+            title: 'AÑADIR CODIGO DE BARRAS',
+            url: '/add_barcode',
+            fintSize: 'xl6',
+          },
+        }
+      },
+      {
+        id: 10,
+        name: 'Unidentified',
+        metadata: {
+          background: 'leafBackground.png',
+          title: 'ENVASE NO IDENTIFICADO',
+          buttonUp: {
+            label: '¡INTENTAR DE NUEVO!',
+            bgColor: 'green',
+            url: '/insert',
+            textColor: 'white',
+            borderRadious: 'xl3',
+            fontSize: 'xl6',
+          },
+          buttonDown: {
+            label: 'FINALIZAR',
+            bgColor: 'pink',
+            url: '/rewards',
+            textColor: 'pink',
+            borderRadious: 'xl3',
+            fontSize: 'xl6',
+          }
+        },
+      },
+      {
+        id: 11,
+        name: 'AddBarcode',
+        metadata: {
+          background: 'leafBackground.png',
+          textCenter: {
+            title: 'AÑADIR CÓDIGO DE BARRAS',
+            description: 'Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE',
+          },
+          textDown: {
+            phone: '+52 999 888 7777',
+            description: '¡Gracias por tu colaboración!',
+          },
+        }
       }
     ]
     const query = `INSERT INTO "pages" (id, name, metadata) VALUES 
