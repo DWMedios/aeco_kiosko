@@ -6,9 +6,9 @@ module.exports = {
     const query = `INSERT INTO "reward_categories" (id, name, status, "order") VALUES 
                       (1,'Predial', true, 1),
                       (2,'Descuentos', true, 2),
-                      (3,'Tarjeta', true, 2),
-                      (4,'Donativo', true, 2),
-                      (5,'aecopuntos', true, 3);`
+                      (3,'Tarjeta', true, 3),
+                      (4,'Donativo', true, 4),
+                      (5,'aecopuntos', true, 5);`
 
     await queryInterface.sequelize.query(query, {
       type: Sequelize.QueryTypes.INSERT,
