@@ -2,20 +2,24 @@ import BackButton from "../../components/backButton/BackButton";
 import ScreenLayout from "../../components/layout/screenLayout";
 import { useState } from 'react';
 import Button from '../../components/button';
-import { BorderRadiusEnum, FontSizeEnum } from '../../interfaces';
+import { BorderRadiusEnum, FontSizeEnum, MetaDataLanguage } from '../../interfaces';
+import { usePageData } from '../../hooks/usePageData';
 
 function Language() {
 
-      // Inicializamos el estado con 'es' para que el idioma español esté seleccionado por defecto
+  const { data: metas} = usePageData<MetaDataLanguage>('Language');
+
       const [selectedLanguage, setSelectedLanguage] = useState<string>('es');
 
       const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedLanguage(event.target.value);
       };
 
+      if (!metas) return <div>No metadata available</div>;
+
   return (
     <>
-      <ScreenLayout image="language_background.svg">
+      <ScreenLayout image={metas.background}>
       <div className="p-4 h-screen flex flex-col items-center justify-center gap-11 select-none">
       <BackButton url="/home" imageSrc='images/backbutton.png'/>
       <h1 className='text-center text-7xl mt-20 mb-5 z-10'>
@@ -62,10 +66,10 @@ function Language() {
     </form>
       <div className="flex justify-center mt-8 w-full">
       <Button 
-      label='Aceptar' 
-      url="/home" 
-      borderRadius={BorderRadiusEnum.xl3}
-      fontSize={FontSizeEnum.xl6}
+      label={metas.button.labelEs}
+      url={metas.button.url}
+      borderRadius={BorderRadiusEnum[metas.button.borderRadious as keyof typeof BorderRadiusEnum]} 
+      fontSize={FontSizeEnum[metas.button.fontSize as keyof typeof FontSizeEnum]} 
       />
       </div>
     </div>
