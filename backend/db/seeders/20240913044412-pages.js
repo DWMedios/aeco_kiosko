@@ -8,19 +8,19 @@ module.exports = {
         metadata: {
           background:'home_background.png',
           logoLang:{
-            path:'/images/language_icon.svg',
+            path:'/images/language_icon.png',
             alt:'Language icon'
           },
           logoHelp:{
-            path:'/images/Help_icon.svg',
+            path:'/images/Help_icon.png',
             alt:'Help icon'
           },
           logoUp:{
-            path:'/images/aeco.svg',
+            path:'/images/aeco.png',
             alt:'AECO Logo up'
           },
           logoDown:{
-            path:'/images/reciclaygana.svg',
+            path:'/images/reciclaygana.png',
             alt:'Recicla y Gana Logo down'
           },
           button:{
@@ -37,9 +37,9 @@ module.exports = {
         id: 2,
         name: 'Language',
         metadata: {
-          background: 'language_background.svg',
+          background: 'language_background.png',
           button: {
-            background:'language_background.svg',
+            background:'language_background.png',
             button:{
               labelEs:'ACEPTAR',
               labelEn:'AGREE',
@@ -56,7 +56,7 @@ module.exports = {
         id: 3,
         name: 'Help',
         metadata: {
-          background: 'help_background.svg',
+          background: 'help_background.png',
           textCenter: {
             title: 'Soporte',
             description: 'Cualquier duda o aclaración estamos para escucharte.',
