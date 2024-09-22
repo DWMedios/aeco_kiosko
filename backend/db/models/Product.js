@@ -1,12 +1,9 @@
-
 const { Model } = require('sequelize')
-
-const Capacity = require('./Capacity')
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
-      Capacity.belongsTo(models.Capacity, {
+      Product.belongsTo(models.Capacity, {
         foreignKey: 'capacity_id',
         as: 'capacity',
       })
@@ -15,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
   Product.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
@@ -32,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       capacity_id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },

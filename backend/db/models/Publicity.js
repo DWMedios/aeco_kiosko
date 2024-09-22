@@ -1,11 +1,12 @@
-
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Publicity extends Model {}
   Publicity.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },

@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Disable Pinch Zoom*/
+html, body {
+  touch-action: none;
+  overflow: hidden;
+}
+
+/* Personalizar el scroll  del modal*/
+.custom-scrollbar::-webkit-scrollbar {
+    width: 15px;
+    overflow-y: auto;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #6FAF46;
+    border-radius: 5px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  

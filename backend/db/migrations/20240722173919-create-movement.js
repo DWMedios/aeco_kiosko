@@ -6,14 +6,14 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
       },
       can_number: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       bottle_number: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       folio: {
@@ -22,9 +22,8 @@ module.exports = {
         defaultValue: '0',
       },
       synchronized: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: 1,
       },
       created_at: {
         allowNull: false,

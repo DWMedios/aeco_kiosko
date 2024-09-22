@@ -1,27 +1,30 @@
 const http = require('http')
 
 const express = require('express')
+const cors = require('cors')
 
 const setupWebSocket = require('./ws')
-// const apiRoutes = require('./routes/api')
-// const { connectDB } = require('./db/index')
+const apiRoutes = require('./routes/api')
+const companyController = require('./controllers/companyController')
 require('dotenv').config()
 
-// Inicializa la aplicación Express
 const app = express()
 const server = http.createServer(app)
 
-// Conectar a la base de datos
-// connectDB();
-// Configura Express para recibir JSON en las peticiones
-app.use(express.json());
+app.use(express.json())
 
-// Configura las rutas de la API
-// app.use('/api', apiRoutes);
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+)
+app.use('/api', apiRoutes)
 
-// Configurar WebSocket
-(async () => {
+;(async () => {
   try {
+    companyController.updateCompanyByMacAddress()
     await setupWebSocket(server)
     console.log('WebSocket configurado correctamente.')
   } catch (err) {

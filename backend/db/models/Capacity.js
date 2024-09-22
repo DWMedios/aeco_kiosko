@@ -1,17 +1,25 @@
-
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
-  class Capacity extends Model {}
+  class Capacity extends Model {
+    static associate(models) {
+      Capacity.hasMany(models.Product, {
+        foreignKey: 'capacity_id',
+        as: 'products',
+      })
+    }
+  }
 
   Capacity.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
       packaging: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: true,
       },
       weight: {
@@ -19,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       factor: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       description: {
