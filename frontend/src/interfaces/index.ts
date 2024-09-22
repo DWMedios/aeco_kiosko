@@ -1,9 +1,9 @@
 type method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
-export interface WebSocketHook {
+export type WebSocketHook = {
   message: string;
   sendMessage: (message: string) => void;
-}
+};
 
 export interface ApiParams {
   url: string;

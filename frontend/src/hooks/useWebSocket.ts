@@ -14,8 +14,8 @@ const useWebSocket = (url: string): WebSocketHook => {
     };
 
     ws.onmessage = (event) => {
-      setMessage(JSON.parse(event.data).message);
-      console.log("Mensaje recibido del servidor:", JSON.parse(event.data).message);
+      setMessage(event.data);
+      console.log("Mensaje recibido del servidor:", event.data);
     };
 
     ws.onclose = () => {
