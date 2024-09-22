@@ -6,16 +6,22 @@ module.exports = (sequelize, DataTypes) => {
     {
       id: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
       name: {
         type: DataTypes.STRING(150),
+        allowNull: true,
+      },
+      macAddress: {
+        type: DataTypes.STRING(17),
         allowNull: false,
+        unique: true,
       },
       metadata: {
         type: DataTypes.JSONB,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {
