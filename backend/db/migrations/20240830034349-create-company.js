@@ -10,11 +10,16 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+      mac_address: {
+        type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       metadata: {
         type: Sequelize.JSONB,
-        allowNull: false,
+        allowNull: true,
       },
       created_at: {
         allowNull: false,
