@@ -12,7 +12,8 @@ const ListCardPoints = () => {
         { imageSrc: 'images/QRcode.png', label: 'Z Gas', url: '/voucher' },
     ];
 
-    const [currentPage, setCurrentPage] = useState(0);
+
+        const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 5;
 
     const startIndex = currentPage * itemsPerPage;
@@ -48,6 +49,8 @@ const ListCardPoints = () => {
                 onNext={handleNextPage} 
                 isPreviousDisabled={currentPage === 0} 
                 isNextDisabled={endIndex >= cardPoints.length} 
+                previousImageSrc="images/previous.png" 
+                nextImageSrc="images/next.png" 
             />
         </div>
     );
