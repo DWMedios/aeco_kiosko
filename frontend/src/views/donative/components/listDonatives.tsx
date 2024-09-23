@@ -9,8 +9,6 @@ const ListDonatives = () => {
         { imageSrc: 'images/QRcode.png', label: 'Orfanato', url: '/voucher' },
         { imageSrc: 'images/QRcode.png', label: 'Asilo', url: '/voucher' },
         { imageSrc: 'images/QRcode.png', label: 'Albergue', url: '/voucher' },
-        { imageSrc: 'images/QRcode.png', label: 'Albergue', url: '/voucher' },
-        { imageSrc: 'images/QRcode.png', label: 'Albergue', url: '/voucher' },
     ];
 
     const [currentPage, setCurrentPage] = useState(0);
@@ -48,7 +46,9 @@ const ListDonatives = () => {
                 onPrevious={handlePreviousPage} 
                 onNext={handleNextPage} 
                 isPreviousDisabled={currentPage === 0} 
-                isNextDisabled={endIndex >= donatives.length}  
+                isNextDisabled={endIndex >= donatives.length} 
+                previousImageSrc="images/previous.png" 
+                nextImageSrc="images/next.png" 
             />
         </div>
     );

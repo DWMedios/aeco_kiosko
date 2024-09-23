@@ -126,8 +126,8 @@ export interface PaginationButtonsInterface {
   onNext: () => void;
   isPreviousDisabled: boolean;
   isNextDisabled: boolean;
-  previousImageSrc?: string;
-  nextImageSrc?: string; 
+  previousImageSrc: string;
+  nextImageSrc: string; 
 }
 
 export interface TicketButtonInterface {
@@ -203,70 +203,3 @@ export interface MetaDataLanguage {
             description: string
         }
   }
-
-  export interface MetaDataExample{
-    button: {
-            url: string,
-            label: string,
-            bgColor: string,
-            fontSize: string,
-            borderRadious: string
-        },
-        background: string,
-        centerImage: string,
-        description: string
-    }
-
-    export interface MetaDataConditions{
-      lists: [
-            {
-                icon: string,
-                items: [
-                    string,
-                    string,
-                    string
-                ],
-                title: string
-            },
-            {
-                icon: string,
-                items: [
-                    string,
-                    string,
-                    string
-                ],
-                title: string
-            }
-        ],
-        title: string,
-        button: {
-            url: string,
-            label: string,
-            bgColor: string,
-            fontSize: string,
-            borderRadious: string
-            textColor : string
-        },
-        background: string,
-        description: string
-    }
-
-    export interface MetaDatRewardCategories{
-      name : string,
-      order : string 
-    }
-    
-    export interface MetaDataInsert{
-      title: string,
-      background: string,
-      centerImage: string,
-      description: string
-    }
-
-    export interface MetaDataScanning{
-      title: string,
-      background: string,
-      centerImage: string,
-      description: string
-    }
-  
