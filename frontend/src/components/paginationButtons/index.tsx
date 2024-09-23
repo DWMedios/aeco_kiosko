@@ -1,14 +1,14 @@
 import { PaginationButtonsInterface } from '../../interfaces';
 
-
 const PaginationButtons = ({ 
     onPrevious, 
     onNext, 
     isPreviousDisabled, 
     isNextDisabled,     
-    previousImageSrc, 
-    nextImageSrc 
+    previousImageSrc = 'images/previous.png',
+    nextImageSrc = 'images/next.png'
 }: PaginationButtonsInterface) => {
+
     return (
         <div className="flex justify-between w-full mt-5 absolute px-24 bottom-52">
             <button 
@@ -16,14 +16,22 @@ const PaginationButtons = ({
                 disabled={isPreviousDisabled}
                 className="p-4 disabled:opacity-0"
             >
-                {previousImageSrc && <img src={previousImageSrc} alt="previous" className="w-[100px] h-[95px] object-contain z-10" />}
+                <img 
+                    src={previousImageSrc} 
+                    alt="previous" 
+                    className="w-[100px] h-[95px] object-contain z-10" 
+                />
             </button>
             <button 
                 onClick={onNext} 
                 disabled={isNextDisabled}
                 className="p-4 disabled:opacity-0"
             >
-                {nextImageSrc && <img src={nextImageSrc} alt="next" className="w-[100px] h-[95px] object-contain z-10" />}
+                <img 
+                    src={nextImageSrc} 
+                    alt="next" 
+                    className="w-[100px] h-[95px] object-contain z-10" 
+                />
             </button>
         </div>
     );

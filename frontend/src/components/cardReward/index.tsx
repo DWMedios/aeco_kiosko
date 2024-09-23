@@ -14,9 +14,9 @@ const CardReward = ({
       <div className="flex flex-col justify-center items-center text-black w-[250px] h-[250px] cursor-pointer text-2xl">
         <button
           onClick={() => navigation(url)}
-          className={`w-[180px] h-[180px] z-10`}
+          className={`w-[180px] h-[180px] z-10 bg-white rounded-3xl p-2`}
         >
-            {imageSrc && <img src={imageSrc} alt="back-button" className="w-full h-full object-contain" />}
+            {imageSrc && <img src={imageSrc} alt="back-button" className="w-full h-full object-contain mb-4" />}
             {label}
         </button>
       </div>

@@ -1,53 +1,51 @@
 import BackButton from "../../components/backButton/BackButton";
 import Button from "../../components/button";
+import ConditionsCard from './components/conditionCard';
 import ScreenLayout from "../../components/layout/screenLayout";
-import { ArrayContainersConditions, FontSizeEnum} from "../../interfaces";
-import ContainerConditions from "./components/conditionsContainers";
+import { BackgroundButtonEnum, BorderRadiusEnum, FontSizeEnum, MetaDataConditions, TextColorEnum} from "../../interfaces";
 import RewardsConditions from "./components/rewards";
+import { usePageData } from '../../hooks/usePageData';
 
 const Conditions = () => {
-  const exampleData: ArrayContainersConditions = {
-    containers: [
-      {
-        container: {
-          name: "Bottle",
-          icon: "/images/bottle.png",
-        },
-        conditions: ["Condition 1", "Condition 2", "Condition 3"],
-      },
-      {
-        container: {
-          name: "Box",
-          icon: "/images/can.png",
-        },
-        conditions: ["Condition A", "Condition B", "Condition C"],
-      },
-    ],
-  };
+  const { data: metas, loading, error } = usePageData<MetaDataConditions>('Conditions');
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!metas) return <div>No metadata available</div>;
 
   return (
-    <ScreenLayout image="shrubbery.png">
+    <ScreenLayout image={metas.background}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none">
-      <BackButton imageSrc='/images/backbutton.png' url="/home" />
-        <div className="flex flex-col justify-center items-center">
-          <span className="text-8xl">Recompensas</span>
-          <span className="text-8xl">Disponibles</span>
+        <BackButton url="/home" />
+        <div className="flex flex-col justify-center items-center text-center">
+          <span className="text-8xl">{metas.title}</span>
         </div>
         <div className="w-full mt-20 mb-20">
           <RewardsConditions />
         </div>
         <div className="my-10 text-center mb-20">
           <span className="text-5xl ">
-            Tus envases deben estar en las siguientes condiciones:
+            {metas.description}
           </span>
         </div>
-        <div className="flex flex-row gap-4  w-full text-2xl mb-20">
-          <ContainerConditions containers={exampleData.containers} />
+        <div className="flex flex-row gap-5 mb-20">
+          {metas.lists.map((list, index) => (
+            <ConditionsCard
+              key={index}
+              icon={list.icon}
+              items={list.items}
+              title={list.title}
+            />
+          ))}
         </div>
         <Button 
-        label="¡entendido!" 
-        url="/example" 
-        fontSize={FontSizeEnum.xl6}/>
+          label={metas.button.label}
+          url={metas.button.url}
+          fontSize={FontSizeEnum[metas.button.fontSize as keyof typeof FontSizeEnum]} 
+          bgColor={BackgroundButtonEnum[metas.button.bgColor as keyof typeof BackgroundButtonEnum]} 
+          borderRadius={BorderRadiusEnum[metas.button.borderRadious as keyof typeof BorderRadiusEnum]} 
+          textColor={TextColorEnum[metas.button.textColor as keyof typeof TextColorEnum]}
+        />
       </div>
     </ScreenLayout>
   );

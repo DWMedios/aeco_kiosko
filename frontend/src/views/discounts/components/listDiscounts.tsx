@@ -54,8 +54,6 @@ const ListDiscounts = () => {
                 onNext={handleNextPage} 
                 isPreviousDisabled={currentPage === 0} 
                 isNextDisabled={endIndex >= discounts.length} 
-                previousImageSrc="images/previous.png" 
-                nextImageSrc="images/next.png" 
             />
         </div>
     );

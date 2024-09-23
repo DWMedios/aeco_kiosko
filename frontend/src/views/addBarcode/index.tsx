@@ -9,7 +9,7 @@ const AddBarcode = () => {
   return (
     <ScreenLayout image="leafBackground.png">
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-12">
-        <BackButton imageSrc='/images/backbutton.png' url="/example" />
+        <BackButton url="/example" />
         <div className="flex flex-col justify-center items-center">
           <span className="text-8xl text-center w-[800px] tracking-wider font-bold">
             AÑADIR CÓDIGO DE BARRAS
@@ -32,7 +32,6 @@ const AddBarcode = () => {
         <span className="text-4xl text-center w-96">
         ¡Gracias por tu colaboración!
         </span>
-
       </div>
     </ScreenLayout>
   );
