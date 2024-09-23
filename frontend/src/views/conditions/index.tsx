@@ -28,7 +28,7 @@ const Conditions = () => {
   return (
     <ScreenLayout image="shrubbery.png">
       <div className="relative flex flex-col justify-center items-center h-screen select-none">
-      <BackButton imageSrc='/images/backbutton.png' url="/home" />
+      <BackButton url="/home" />
         <div className="flex flex-col justify-center items-center">
           <span className="text-8xl">Recompensas</span>
           <span className="text-8xl">Disponibles</span>
