@@ -24,13 +24,13 @@ exports.updateCompanyByMacAddress = async () => {
       		console.log('Creando empresa...')
       		const newCompany = await companyRepository.create({ macAddress, metadata: { createdBy: 'system' } })
       		console.log('Empresa creada:', newCompany)
-			return
+      return
     	}
     	const updatedCompany = await companyRepository.update(company.id, { macAddress })
     	console.log('Empresa actualizada:', updatedCompany)
-		return
+    return
   } catch (err) {
     console.error(err)
-	return
+    return
   }
 }
