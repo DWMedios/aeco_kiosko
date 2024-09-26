@@ -18,7 +18,7 @@ exports.getCompany = async (req, res) => {
 exports.updateCompanyBySerialNumber = async () => {
   try {
     const serialNumber = await getSerialNumber()
-    	const company = await companyRepository.getByMacAddress(serialNumber)
+    	const company = await companyRepository.getBySerialNumber(serialNumber)
     	if (!company) {
       		console.log('No se encontró la empresa con el número de serie:', serialNumber)
       		console.log('Creando empresa...')
