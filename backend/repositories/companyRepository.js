@@ -15,10 +15,10 @@ exports.getAll = async () => {
   })
 }
 
-exports.getByMacAddress = async macAddress => {
+exports.getBySerialNumber = async serialNumber => {
   const { Company } = await initializeDatabase()
   return await Company.findOne({
-    where: { macAddress },
+    where: { serialNumber },
     attributes: { exclude: ['createdAt', 'updatedAt'] },
   })
 }
