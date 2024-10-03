@@ -28,7 +28,6 @@ services:
     volumes:
       - ./backend:/app
       - /dev:/dev
-      - /proc/cpuinfo:/host_proc/cpuinfo:ro
 
   frontend:
     container_name: aeco-frontend

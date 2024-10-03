@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      serial_number: {
+      mac_address: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,

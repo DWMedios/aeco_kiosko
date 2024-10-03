@@ -3,7 +3,7 @@ import { BackButtoninterface } from "../../interfaces";
 
 const BackButton = ({
   url,
-  imageSrc  = "/images/backbutton.png"
+  imageSrc
 }: BackButtoninterface) => {
   const navigation = useNavigate();
 
@@ -14,13 +14,7 @@ const BackButton = ({
           onClick={() => navigation(url)}
           className={`rounded-3xl w-[90px] h-[90px] z-10`}
         >
-          {imageSrc && (
-            <img
-              src={imageSrc}
-              alt="back-button"
-              className="w-full h-full object-contain z-10"
-            />
-          )}
+          {imageSrc && <img src={imageSrc} alt="back-button" className="w-full h-full object-contain z-10" />}
         </button>
         <span className='tracking-wider font-medium z-10 text-4xl mt-2'>Regresar</span>
       </div>

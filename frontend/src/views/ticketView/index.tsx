@@ -19,7 +19,6 @@ const TicketView = () => {
   return (
     <ScreenLayout image="TicketBackgound.png">
       <div className="flex flex-col justify-center items-center gap-11 z-10 h-screen select-none">
-      <span className="text-3xl z-10 text-center max-w-[500px] font-bold tracking-wider">Escanea el Codigo QR para descargar tu ticket digital</span>
             <Ticket />
       </div>
     </ScreenLayout>

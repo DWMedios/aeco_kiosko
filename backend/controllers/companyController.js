@@ -1,6 +1,6 @@
 const companyRepository = require('../repositories/companyRepository')
 const HTTP_CODES = require('../utils/http-status-codes')
-const { getSerialNumber } = require('../utils/raspiInfo')
+const { getMacAddress } = require('../utils/macAddress')
 
 exports.getCompany = async (req, res) => {
   try {
@@ -15,24 +15,22 @@ exports.getCompany = async (req, res) => {
   }
 }
 
-exports.updateCompanyBySerialNumber = async () => {
+exports.updateCompanyByMacAddress = async () => {
   try {
-    const serialNumber = await getSerialNumber()
-    	const company = await companyRepository.getBySerialNumber(serialNumber)
+    const macAddress = await getMacAddress()
+    	const company = await companyRepository.getByMacAddress(macAddress)
     	if (!company) {
-      		console.log('No se encontró la empresa con el número de serie:', serialNumber)
+      		console.log('No se encontró la empresa con la dirección MAC:', macAddress)
       		console.log('Creando empresa...')
-      		const newCompany = await companyRepository.create({ serialNumber, metadata: { createdBy: 'system' } })
-      		const dataValues = newCompany?.dataValues
-			console.log('Empresa creada:', dataValues)
-      return
+      		const newCompany = await companyRepository.create({ macAddress, metadata: { createdBy: 'system' } })
+      		console.log('Empresa creada:', newCompany)
+			return
     	}
-    	const updatedCompany = await companyRepository.update(company.id, { serialNumber })
-		const dataValues = updatedCompany?.dataValues
-    	console.log('Empresa actualizada:', dataValues)
-    return
+    	const updatedCompany = await companyRepository.update(company.id, { macAddress })
+    	console.log('Empresa actualizada:', updatedCompany)
+		return
   } catch (err) {
     console.error(err)
-    return
+	return
   }
 }
