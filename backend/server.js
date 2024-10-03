@@ -24,7 +24,7 @@ app.use('/api', apiRoutes)
 
 ;(async () => {
   try {
-    companyController.updateCompanyByMacAddress()
+    companyController.updateCompanyBySerialNumber()
     await setupWebSocket(server)
     console.log('WebSocket configurado correctamente.')
   } catch (err) {
