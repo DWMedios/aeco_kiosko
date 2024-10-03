@@ -10,12 +10,12 @@ const mockDatabase = {
   "123456789": {
     name: "Coca Cola",
     volume: "350ml",
-    type: "can", // Añadir tipo: lata
+    type: "can",
   },
   "987654321": {
     name: "Pepsi",
     volume: "500ml",
-    type: "bottle", // Añadir tipo: botella
+    type: "bottle",
   },
 };
 
@@ -23,7 +23,7 @@ const Accepted = () => {
   const [product, setProduct] = useState({ name: "", volume: "", image: "" });
 
   useEffect(() => {
-    const barcode = "987654321"; // Cambia este valor para probar diferentes productos
+    const barcode = "987654321";
     const productData = mockDatabase[barcode];
 
     if (productData) {

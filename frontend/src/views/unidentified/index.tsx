@@ -20,7 +20,7 @@ const Unidentified = () => {
         </div>
         <img
           src="/images/unidentified.png"
-          alt=""
+          alt="Unidentified image"
           className="m-10 mb-20 w-auto h-96"
         />
 

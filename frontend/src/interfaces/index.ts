@@ -1,3 +1,5 @@
+export * from "./Pages"
+
 type method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 export interface WebSocketHook {
@@ -37,6 +39,10 @@ export enum BorderRadiusEnum {
   xl3 = "3xl"
 }
 
+export enum BorderColorEnum {
+  green ="border-solid border-4 border-[#00804F]",
+}
+
 export enum FontSizeEnum {
 xs = "xs",
 sm = "sm",
@@ -54,7 +60,7 @@ xl9 = "9xl",
 }
 
 export enum TextColorEnum {
-  black = "black",
+  black = "text-black",
   white = "text-white",
   pink = "text-[#FE5A8F]",
   green = "text-[#6FAF46]"
@@ -78,7 +84,7 @@ export interface ButtonInterface {
   bgColor?: BackgroundButtonEnum | null;
   borderRadius?: BorderRadiusEnum;
   label: string;
-  borderColor?: string | null;
+  borderColor?: BorderColorEnum | null;
   textColor?: TextColorEnum | null;
   url: string;
   fontSize?: FontSizeEnum;
@@ -149,212 +155,4 @@ export interface QRCodeInterface {
   fgColor?: string;
   title?: string;
   bgColor?: string;
-}
-
-
-export interface MetaDataLanguage {
-  button: {
-      url: string,
-      bgColor: string,
-      labelEn: string,
-      labelEs: string,
-      fontSize: string,
-      borderRadious: string
-      },
-  background : string,
-  }
-
-  export interface MetaDataHome {
-    button: {
-      url: string;
-      label: string;
-      bgColor: string;
-      fontSize: string;
-      borderRadious: string;
-    };
-    logoUp: {
-      alt: string;
-      path: string;
-    };
-    logoDown: {
-      alt: string;
-      path: string;
-    };
-    background: string;
-    logoHelp: {
-      alt: string;
-      path: string;
-      };
-    logoLang: {
-        alt: string;
-        path: string;
-        },
-  }
-
-  export interface MetaDataHelp{
-    textDown: {
-            phone: string,
-            description:string
-        },
-        background: string,
-        textCenter: {
-            title: string,
-            phoneText: string,
-            description: string
-        }
-  }
-
-  export interface MetaDataExample{
-    button: {
-            url: string,
-            label: string,
-            bgColor: string,
-            fontSize: string,
-            borderRadious: string
-        },
-        background: string,
-        centerImage: string,
-        description: string
-    }
-
-    export interface MetaDataConditions{
-      lists: [
-            {
-                icon: string,
-                items: [
-                    string,
-                    string,
-                    string
-                ],
-                title: string
-            },
-            {
-                icon: string,
-                items: [
-                    string,
-                    string,
-                    string
-                ],
-                title: string
-            }
-        ],
-        title: string,
-        button: {
-            url: string,
-            label: string,
-            bgColor: string,
-            fontSize: string,
-            borderRadious: string
-            textColor : string
-        },
-        background: string,
-        description: string
-    }
-
-    export interface MetaDatRewardCategories{
-      name : string,
-      order : string 
-    }
-    
-    export interface MetaDataInsert{
-      title: string,
-      background: string,
-      centerImage: string,
-      description: string
-    }
-
-    export interface MetaDataScanning{
-      title: string,
-      background: string,
-      centerImage: string,
-      description: string
-    }
-
-    export interface RewardCategory{
-        id: number;
-        name: string;
-        order: number;
-      }
-
-      export interface MetaDataAccepted{
-        title: string,
-        buttonUp: {
-            url: string,
-            label: string,
-            bgColor: string,
-            fontSize: string,
-            textColor: string,
-            borderRadious: string
-        },
-        background: string,
-        buttonDown: {
-            url: string,
-            label: string,
-            bgColor: string,
-            fontSize: string,
-            textColor: string,
-            borderRadious: string
-        },
-        centerImage: string
-    }
-    
-
-    export interface MetaDataRejected{
-      title: string,
-      buttonUp: {
-        url: string,
-        label: string,
-        bgColor: string,
-        fontSize: string,
-        textColor: string,
-        borderRadious: string
-    },
-    background: string,
-    buttonDown: {
-        url: string,
-        label: string,
-        bgColor: string,
-        fontSize: string,
-        textColor: string,
-        borderRadious: string
-    },
-    modalRight: {
-        url: string,
-        title: string,
-        fintSize: string
-    },
-    centerImage: string
-    }
-    
-    export interface MetaDataUnidentified{
-      title: string,
-      buttonUp: {
-          url: string,
-          label: string,
-          bgColor: string,
-          fontSize: string,
-          textColor: string,
-          borderRadious: string
-      },
-      background: string,
-      buttonDown: {
-          url: string,
-          label: string,
-          bgColor: string,
-          fontSize: string,
-          textColor: string,
-          borderRadious: string
-      }
-  }
-
-  export interface MetaDataAddBarcode{
-    textDown: {
-      phone: string,
-      description: string
-  },
-  background: string,
-  textCenter: {
-      title: string,
-      description: string
-  }
 }

@@ -1,6 +1,6 @@
 import ScreenLayout from "../../components/layout/screenLayout";
 import Button from "../../components/button";
-import { BackgroundButtonEnum, BorderRadiusEnum, FontSizeEnum, MetaDataRejected, TextColorEnum } from '../../interfaces';
+import { BackgroundButtonEnum, BorderColorEnum, BorderRadiusEnum, FontSizeEnum, MetaDataRejected, TextColorEnum } from '../../interfaces';
 import { usePageData } from '../../hooks/usePageData';
 
 const Rejected = () => {
@@ -34,20 +34,26 @@ const Rejected = () => {
         />
         
         <Button 
-          label={metas.buttonDown.label}
-          url={metas.buttonDown.url}
-          bgColor={BackgroundButtonEnum[metas.buttonDown.bgColor as keyof typeof BackgroundButtonEnum]} 
+          label={metas.buttonCenter.label}
+          url={metas.buttonCenter.url}
+          bgColor={BackgroundButtonEnum[metas.buttonCenter.bgColor as keyof typeof BackgroundButtonEnum]} 
           textColor={TextColorEnum.white}
-          borderRadius={BorderRadiusEnum[metas.buttonDown.borderRadious as keyof typeof BorderRadiusEnum]} 
-          fontSize={FontSizeEnum[metas.buttonDown.fontSize as keyof typeof FontSizeEnum]} 
+          borderRadius={BorderRadiusEnum[metas.buttonCenter.borderRadious as keyof typeof BorderRadiusEnum]} 
+          fontSize={FontSizeEnum[metas.buttonCenter.fontSize as keyof typeof FontSizeEnum]} 
         />
-        
-        <Button 
-        label={metas.modalRight.title}
-        url={metas.modalRight.url}
-        fontSize={FontSizeEnum[metas.modalRight.fintSize as keyof typeof FontSizeEnum]} 
+
+        <Button
+        label={metas.buttonDown.title}
+        url={metas.buttonDown.url}
+        textColor={TextColorEnum.black}
+        borderRadius={BorderRadiusEnum[metas.buttonDown.borderRadious as keyof typeof BorderRadiusEnum]}
+        fontSize={FontSizeEnum[metas.buttonDown.fontSize as keyof typeof FontSizeEnum]}
+        borderColor={BorderColorEnum[metas.buttonDown.borderColor as keyof typeof BorderColorEnum]}
         />
-      </div>
+
+
+        </div>
+
     </ScreenLayout>
   );
 };

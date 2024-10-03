@@ -2,8 +2,7 @@ import BackButton from "../../components/backButton/BackButton";
 import Button from "../../components/button";
 import ScreenLayout from "../../components/layout/screenLayout";
 import { usePageData } from '../../hooks/usePageData';
-
-import {  BackgroundButtonEnum, BorderRadiusEnum, FontSizeEnum, MetaDataConditions, TextColorEnum} from "../../interfaces";
+import {  BackgroundButtonEnum, BorderColorEnum, BorderRadiusEnum, FontSizeEnum, MetaDataConditions, TextColorEnum} from "../../interfaces";
 import ConditionsCard from './components/ConditionsCard';
 import RewardsConditions from "./components/rewards";
 
@@ -46,7 +45,7 @@ const Conditions = () => {
           bgColor={BackgroundButtonEnum[metas.button.bgColor as keyof typeof BackgroundButtonEnum]} 
           borderRadius={BorderRadiusEnum[metas.button.borderRadious as keyof typeof BorderRadiusEnum]} 
           textColor={TextColorEnum[metas.button.textColor as keyof typeof TextColorEnum]}
-          borderColor={"border-solid border-4 border-[#00804F]"}
+          borderColor={BorderColorEnum[metas.button.borderColor as keyof typeof BorderColorEnum]}
         />
       </div>
     </ScreenLayout>

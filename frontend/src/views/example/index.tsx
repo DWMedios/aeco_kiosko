@@ -1,7 +1,7 @@
 import Button from "../../components/button";
 import ScreenLayout from "../../components/layout/screenLayout";
 import { usePageData } from '../../hooks/usePageData';
-import { BackgroundButtonEnum, BorderRadiusEnum, FontSizeEnum, MetaDataExample } from '../../interfaces';
+import { BackgroundButtonEnum, BorderColorEnum, BorderRadiusEnum, FontSizeEnum, MetaDataExample } from '../../interfaces';
 
 const Example = () => {
 
@@ -26,7 +26,8 @@ const Example = () => {
         fontSize={FontSizeEnum[metas.button.fontSize as keyof typeof FontSizeEnum]}
         bgColor={BackgroundButtonEnum[metas.button.bgColor as keyof typeof BackgroundButtonEnum]}
         borderRadius={BorderRadiusEnum[metas.button.borderRadious as keyof typeof BorderRadiusEnum]}
-        borderColor={"border-solid border-4 border-[#00804F]"}/>
+        borderColor={BorderColorEnum [metas.button.borderColor as keyof typeof BorderColorEnum]}
+        />
         
       </div>
     </ScreenLayout>
