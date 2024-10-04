@@ -1,16 +1,16 @@
-import { useState } from "react";
-import useWebSocket from "../hooks/useWebSocket";
+import { useState } from 'react'
+import useWebSocket from '../hooks/useWebSocket'
 
 const SendMessage = () => {
-  const api_ws = import.meta.env.VITE_API_BASE_URL;
+  const api_ws = import.meta.env.VITE_API_BASE_URL
 
-  const { message, sendMessage } = useWebSocket(api_ws); // Cambia la URL según tu configuración
-  const [input, setInput] = useState<string>("");
+  const { message, sendMessage } = useWebSocket(api_ws) // Cambia la URL según tu configuración
+  const [input, setInput] = useState<string>('')
 
   const handleSendMessage = () => {
-    sendMessage(input);
-    setInput("");
-  };
+    sendMessage(input)
+    setInput('')
+  }
 
   return (
     <div>
@@ -27,7 +27,7 @@ const SendMessage = () => {
         <pre>{message}</pre>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SendMessage;
+export default SendMessage
