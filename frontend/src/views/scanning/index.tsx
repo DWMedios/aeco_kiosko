@@ -1,4 +1,4 @@
-import ScreenLayout from "../../components/layout/screenLayout";
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const Scanning = () => {
   return (
@@ -19,7 +19,7 @@ const Scanning = () => {
         </span>
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Scanning;
+export default Scanning

@@ -1,11 +1,5 @@
 const RewardsConditions = () => {
-  const rewards = [
-    "Predial",
-    "Descuentos",
-    "Tarjeta",
-    "Donativo",
-    "Aecopuntos",
-  ];
+  const rewards = ['Predial', 'Descuentos', 'Tarjeta', 'Donativo', 'Aecopuntos']
   return (
     <div className="w-full px-2">
       <div className="flex flex-wrap justify-center gap-2 ">
@@ -19,7 +13,7 @@ const RewardsConditions = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RewardsConditions;
+export default RewardsConditions

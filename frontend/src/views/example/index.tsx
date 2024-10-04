@@ -1,6 +1,6 @@
-import Button from "../../components/button";
-import ScreenLayout from "../../components/layout/screenLayout";
-import { FontSizeEnum } from '../../interfaces';
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
+import { FontSizeEnum } from '../../interfaces'
 
 const Example = () => {
   return (
@@ -13,13 +13,14 @@ const Example = () => {
         </div>
         <img src="/images/example.png" alt="" className="m-20 w-80 h-[600px]" />
 
-        <Button 
-        label="¡estoy listo!" 
-        url="/insert" 
-        fontSize={FontSizeEnum.xl6}/>
+        <Button
+          label="¡estoy listo!"
+          url="/insert"
+          fontSize={FontSizeEnum.xl6}
+        />
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Example;
+export default Example

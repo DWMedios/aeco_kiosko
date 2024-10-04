@@ -1,5 +1,5 @@
-import { Layout } from "../../interfaces";
-import ImageBackground from "./components/imageBackground";
+import { Layout } from '../../interfaces'
+import ImageBackground from './components/imageBackground'
 
 const ScreenLayout = ({ children, image }: Layout) => {
   return (
@@ -10,7 +10,7 @@ const ScreenLayout = ({ children, image }: Layout) => {
       <ImageBackground url={image} />
       <div className="h-screen">{children}</div>;
     </>
-  );
-};
+  )
+}
 
-export default ScreenLayout;
+export default ScreenLayout

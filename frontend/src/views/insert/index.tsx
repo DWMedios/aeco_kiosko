@@ -1,4 +1,4 @@
-import ScreenLayout from "../../components/layout/screenLayout";
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const Insert = () => {
   return (
@@ -20,7 +20,7 @@ const Insert = () => {
         </span>
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Insert;
+export default Insert

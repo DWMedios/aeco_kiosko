@@ -2,7 +2,7 @@ import WebApi from './webApi'
 
 class WebApiAeco {
   static getCompany() {
-    return WebApi.ApisType({ url: `/company`, method: 'GET' })
+    return WebApi.ApisType({ url: '/company', method: 'GET' })
   }
 }
 
