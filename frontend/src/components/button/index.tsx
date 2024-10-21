@@ -1,18 +1,23 @@
-import { useNavigate } from "react-router-dom";
-import { ButtonInterface, BorderRadiusEnum, FontSizeEnum, TextColorEnum, BackgroundButtonEnum} from "../../interfaces";
+import { useNavigate } from 'react-router-dom'
+import {
+  ButtonInterface,
+  BorderRadiusEnum,
+  FontSizeEnum,
+  TextColorEnum,
+  BackgroundButtonEnum,
+} from '../../interfaces'
 
 const Button = ({
-  label = "iniciar",
+  label = 'iniciar',
   bgColor = BackgroundButtonEnum.white,
   borderRadius = BorderRadiusEnum.xl3,
   textColor = TextColorEnum.black,
-  borderColor = null,
+  borderColor = 'border-4 border-[#00804F]',
   url,
   fontSize = FontSizeEnum.xl3,
   positionButton = null,
 }: ButtonInterface) => {
-
-  const navigation = useNavigate();
+  const navigation = useNavigate()
 
   return (
     <>
@@ -25,7 +30,7 @@ const Button = ({
         </button>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

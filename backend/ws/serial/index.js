@@ -5,6 +5,7 @@ const { findArduinoPort } = require('./utils')
 
 const setupSerialPort = async () => {
   const serialPortPath = await findArduinoPort()
+
   let port
   let parser
 

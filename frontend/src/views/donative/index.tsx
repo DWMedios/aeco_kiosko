@@ -1,6 +1,6 @@
-import BackButton from "../../components/backButton/BackButton";
-import ScreenLayout from "../../components/layout/screenLayout";
-import ListDonatives from "./components/listDonatives";
+import BackButton from '../../components/backButton/BackButton'
+import ScreenLayout from '../../components/layout/screenLayout'
+import ListDonatives from './components/listDonatives'
 
 const Donatives = () => {
   return (
@@ -13,7 +13,7 @@ const Donatives = () => {
         <ListDonatives />
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Donatives;
+export default Donatives

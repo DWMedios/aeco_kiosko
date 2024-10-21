@@ -4,21 +4,15 @@ import { usePageData } from '../../hooks/usePageData';
 import { BackgroundButtonEnum, BorderColorEnum, BorderRadiusEnum, FontSizeEnum, MetaDataExample } from '../../interfaces';
 
 const Example = () => {
-
-  const { data: metas, loading, error } = usePageData<MetaDataExample>('Example');
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!metas) return <div>No metadata available</div>;
-
   return (
-    <ScreenLayout image={metas.background}>
+    <ScreenLayout image="leafBackground.png">
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center w-[550px]">
           <span className="text-6xl text-center">
-            {metas.description}
+            Inserta tu envase con el código de barras hacia arriba
           </span>
         </div>
-        <img src={metas.centerImage} alt="Example image" className="m-20 w-80 h-[600px]" />
+        <img src="/images/example.png" alt="" className="m-20 w-80 h-[600px]" />
 
         <Button 
         label={metas.button.label}
@@ -31,7 +25,7 @@ const Example = () => {
         
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Example;
+export default Example

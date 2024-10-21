@@ -1,17 +1,17 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import ScreenLayout from "../../components/layout/screenLayout";
-import { Icon } from "../../interfaces";
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import ScreenLayout from '../../components/layout/screenLayout'
+import { Icon } from '../../interfaces'
 
-const LoadingOffline = ({ icon = "loading" }: Icon) => {
-  const navigation = useNavigate();
+const LoadingOffline = ({ icon = 'loading' }: Icon) => {
+  const navigation = useNavigate()
 
   useEffect(() => {
     setTimeout(() => {
-      console.log("Termino el timepo");
-      navigation("/home");
-    }, 3000);
-  });
+      console.log('Termino el timepo')
+      navigation('/home')
+    }, 3000)
+  })
 
   return (
     <ScreenLayout image="bg-offline-loading.png">
@@ -21,7 +21,7 @@ const LoadingOffline = ({ icon = "loading" }: Icon) => {
         </div>
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default LoadingOffline;
+export default LoadingOffline

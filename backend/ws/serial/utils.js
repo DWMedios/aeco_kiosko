@@ -6,13 +6,12 @@ const findArduinoPort = async () => {
 	  for (const port of ports) {
       console.log('Puerto encontrado:', port)
       if (port.manufacturer && port.manufacturer.includes('Arduino')) {
-        return port.path
-      	}
+		  return port.path
+      }
 	  }
-	  return null
+	  throw new Error('No se encontró un puerto Arduino')
   } catch (error) {
 	  console.error('Error al listar los puertos seriales:', error?.message)
-	  return null
   }
 }
 

@@ -6,14 +6,15 @@ import { BackgroundButtonEnum, BorderColorEnum, BorderRadiusEnum, FontSizeEnum, 
 import { usePageData } from '../../hooks/usePageData';
 
 function Language() {
+  const { data: metas } = usePageData<MetaDataLanguage>('Language')
 
   
 
       const [selectedLanguage, setSelectedLanguage] = useState<string>('es');
 
-      const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedLanguage(event.target.value);
-      };
+  const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedLanguage(event.target.value)
+  }
 
       const {  data: metas, loading, error } = usePageData<MetaDataLanguage>('Language');
       if (loading) return <div>Loading...</div>;
@@ -81,7 +82,7 @@ function Language() {
     </div>
       </ScreenLayout>
     </>
-  );
+  )
 }
 
-export default Language;
+export default Language

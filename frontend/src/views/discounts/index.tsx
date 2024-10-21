@@ -1,6 +1,6 @@
-import BackButton from "../../components/backButton/BackButton";
-import ScreenLayout from "../../components/layout/screenLayout";
-import ListDiscounts from './components/listDiscounts';
+import BackButton from '../../components/backButton/BackButton'
+import ScreenLayout from '../../components/layout/screenLayout'
+import ListDiscounts from './components/listDiscounts'
 
 const Discounts = () => {
   return (
@@ -13,7 +13,7 @@ const Discounts = () => {
         <ListDiscounts />
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Discounts;
+export default Discounts

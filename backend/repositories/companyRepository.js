@@ -25,6 +25,7 @@ exports.getByMacAddress = async macAddress => {
 
 exports.create = async data => {
   const { Company } = await initializeDatabase()
+  console.log('Creating company with data:', data)
   return await Company.create(data)
 }
 

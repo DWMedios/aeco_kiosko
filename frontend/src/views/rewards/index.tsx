@@ -1,7 +1,7 @@
-import BackButton from "../../components/backButton/BackButton";
-import ScreenLayout from "../../components/layout/screenLayout";
-import ListRewards from "./components/listRewards";
-import Modal from './components/modal';
+import BackButton from '../../components/backButton/BackButton'
+import ScreenLayout from '../../components/layout/screenLayout'
+import ListRewards from './components/listRewards'
+import Modal from './components/modal'
 
 const Rewards = () => {
   return (
@@ -13,7 +13,7 @@ const Rewards = () => {
       </div>
       <Modal />
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Rewards;
+export default Rewards

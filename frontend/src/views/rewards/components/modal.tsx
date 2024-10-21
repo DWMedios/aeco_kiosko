@@ -1,9 +1,9 @@
-import { useState } from "react";
-import CurrentDateModal from './currentDateModal';
-import ProductListModal from './ProductListModal';
+import { useState } from 'react'
+import CurrentDateModal from './currentDateModal'
+import ProductListModal from './ProductListModal'
 
 const Modal = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
   return (
     <>
       <button
@@ -24,14 +24,16 @@ const Modal = () => {
                     className="bg-transparent border-0 pl-5 z-10"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="text-6xl font-medium">
-                      x
-                    </span>
+                    <span className="text-6xl font-medium">x</span>
                   </button>
-                  <h3 className="text-3xl font-medium pt-6 pr-5 text-white"><CurrentDateModal /></h3>
+                  <h3 className="text-3xl font-medium pt-6 pr-5 text-white">
+                    <CurrentDateModal />
+                  </h3>
                 </div>
                 <div className="relative p-6 flex-auto mt-16">
-                    <h1 className='text-4xl text-center mb-4 tracking-wider'>ENVASES INSERTADOS</h1>
+                  <h1 className="text-4xl text-center mb-4 tracking-wider">
+                    ENVASES INSERTADOS
+                  </h1>
                 </div>
                 <ProductListModal />
               </div>
@@ -40,7 +42,7 @@ const Modal = () => {
         </>
       ) : null}
     </>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal
