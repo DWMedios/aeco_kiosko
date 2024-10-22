@@ -15,8 +15,10 @@ function Help() {
   return (
     <ScreenLayout image={metas.background}>
       <div className="text-center h-screen flex flex-col justify-center items-center select-none gap-11">
-      <BackButton url="/home"/>
-        <h1 className="text-8xl mt-24  mb-10 max-w-[300px]">{metas.textCenter.title}</h1>
+        <BackButton url="/home" />
+        <h1 className="text-8xl mt-24  mb-10 max-w-[300px]">
+          {metas.textCenter.title}
+        </h1>
         <p className="text-4xl max-w-[500px] mb-5">
           {metas.textCenter.description} <br />
           <br /> {metas.textCenter.phoneText}

@@ -8,7 +8,7 @@ const PredialPoint = () => {
       />
       <p className="text-2xl font-extralight tracking-wider mt-2">Título</p>
     </div>
-  );
-};
+  )
+}
 
-export default PredialPoint;
+export default PredialPoint

@@ -12,7 +12,7 @@ const Button = ({
   bgColor = BackgroundButtonEnum.white,
   borderRadius = BorderRadiusEnum.xl3,
   textColor = TextColorEnum.black,
-  borderColor = 'border-4 border-[#00804F]',
+  borderColor = null,
   url,
   fontSize = FontSizeEnum.xl3,
   positionButton = null,

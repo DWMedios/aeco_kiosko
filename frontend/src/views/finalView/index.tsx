@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import ScreenLayout from '../../components/layout/screenLayout'
 import { useEffect } from 'react'
 import QRCodeComponent from '../../components/qrCode'
+import Button from '../../components/button'
+import { TextColorEnum } from '../../interfaces'
 
 const FinalView = () => {
   const QrCodeUrl =
@@ -25,9 +27,15 @@ const FinalView = () => {
         <div className="w-full z-10 flex justify-center">
           <QRCodeComponent value={QrCodeUrl} />
         </div>
-        <span className="border-8 border-[#00804F] w-[600px] h-[150px] rounded-xl flex justify-center items-center font-bold text-6xl text-[#027333] z-10 bg-white">
+        <span className="w-[600px] h-[150px] rounded-xl flex justify-center items-center font-bold text-6xl text-[#027333] z-10">
           ayuntaeco.com{' '}
         </span>
+        <Button
+          label="Descargar Ticket Digital"
+          url="/ticket"
+          bgColor={null}
+          textColor={TextColorEnum.pink}
+        />
         <p className="text-6xl font-normal z-10 tracking-wider w-[500px]">
           ¡Gracias por tu colaboración!
         </p>

@@ -1,4 +1,4 @@
-export * from "./Pages"
+export * from './Pages'
 
 type method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
@@ -37,13 +37,17 @@ export type BorderRadiusType =
   | '3xl'
 
 export enum BorderRadiusEnum {
-  full = "full",
-  sm="sm",
-  md= "md",
-  lg= "lg",
-  xl= "xl",
-  xl2= "2xl",
-  xl3 = "3xl"
+  full = 'full',
+  sm = 'sm',
+  md = 'md',
+  lg = 'lg',
+  xl = 'xl',
+  xl2 = '2xl',
+  xl3 = '3xl',
+}
+
+export enum BorderColorEnum {
+  green = 'border-solid border-4 border-[#00804F]',
 }
 
 export enum FontSizeEnum {
@@ -63,7 +67,7 @@ export enum FontSizeEnum {
 }
 
 export enum TextColorEnum {
-  black = 'black',
+  black = 'text-black',
   white = 'text-white',
   pink = 'text-[#FE5A8F]',
   green = 'text-[#6FAF46]',
@@ -158,56 +162,4 @@ export interface QRCodeInterface {
   fgColor?: string
   title?: string
   bgColor?: string
-}
-
-export interface MetaDataLanguage {
-  button: {
-    url: string
-    bgColor: string
-    labelEn: string
-    labelEs: string
-    fontSize: string
-    borderRadious: string
-  }
-  background: string
-}
-
-export interface MetaDataHome {
-  button: {
-    url: string
-    label: string
-    bgColor: string
-    fontSize: string
-    borderRadious: string
-  }
-  logoUp: {
-    alt: string
-    path: string
-  }
-  logoDown: {
-    alt: string
-    path: string
-  }
-  background: string
-  logoHelp: {
-    alt: string
-    path: string
-  }
-  logoLang: {
-    alt: string
-    path: string
-  }
-}
-
-export interface MetaDataHelp {
-  textDown: {
-    phone: string
-    description: string
-  }
-  background: string
-  textCenter: {
-    title: string
-    phoneText: string
-    description: string
-  }
 }
