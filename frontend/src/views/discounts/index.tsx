@@ -1,6 +1,6 @@
-import BackButton from '../../components/backButton/BackButton'
-import ScreenLayout from '../../components/layout/screenLayout'
+import BackButton from '../../components/backButton'
 import ListDiscounts from './components/listDiscounts'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const Discounts = () => {
   return (

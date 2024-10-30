@@ -1,8 +1,9 @@
-import BackButton from '../../components/backButton/BackButton'
-import ScreenLayout from '../../components/layout/screenLayout'
-import QRCodeComponent from '../../components/qrCode'
-import { usePageData } from '../../hooks/usePageData'
 import { MetaDataAddBarcode } from '../../interfaces'
+import { usePageData } from '../../hooks/usePageData'
+
+import BackButton from '../../components/backButton'
+import QRCodeComponent from '../../components/qrCode'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const AddBarcode = () => {
   const {
@@ -11,9 +12,17 @@ const AddBarcode = () => {
     error,
   } = usePageData<MetaDataAddBarcode>('AddBarcode')
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
-  if (!metas) return <div>No metadata available</div>
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
 
   const QrCodeUrl =
     'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Quiero%20registrar%20un%20Código%20de%20Barras!'
@@ -24,11 +33,12 @@ const AddBarcode = () => {
         <BackButton url="/example" />
         <div className="flex flex-col justify-center items-center">
           <span className="text-8xl text-center w-[800px] tracking-wider font-bold">
-            {metas.textCenter.title}
+            {metas?.textCenter?.title || 'AÑADIR CÓDIGO DE BARRAS'}
           </span>
         </div>
         <span className="text-4xl text-center w-[600px]">
-          {metas.textCenter.description}
+          {metas?.textCenter?.description ||
+            'Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE'}
         </span>
         <div className="w-full z-10 flex justify-center">
           <QRCodeComponent value={QrCodeUrl} />
@@ -39,10 +49,10 @@ const AddBarcode = () => {
           className="w-20 h-auto"
         />
         <span className="text-6xl font-bold text-center">
-          {metas.textDown.phone}
+          {metas?.textDown?.phone || '+52 999 888 7777'}
         </span>
         <span className="text-4xl text-center w-96">
-          {metas.textDown.description}
+          {metas?.textDown?.description || 'Gracias por tu colaboración'}
         </span>
       </div>
     </ScreenLayout>

@@ -1,6 +1,7 @@
+import { FontSizeEnum, TextColorEnum } from '../../../interfaces'
+
 import Button from '../../../components/button'
 import QRCodeComponent from '../../../components/qrCode'
-import { FontSizeEnum, TextColorEnum } from '../../../interfaces'
 
 const Ticket = () => {
   const QrCodeUrl =

@@ -1,7 +1,7 @@
-import BackButton from '../../components/backButton/BackButton'
-import ScreenLayout from '../../components/layout/screenLayout'
 import { useState } from 'react'
-import Button from '../../components/button'
+
+import { usePageData } from '../../hooks/usePageData'
+
 import {
   BackgroundButtonEnum,
   BorderColorEnum,
@@ -10,7 +10,10 @@ import {
   MetaDataLanguage,
   TextColorEnum,
 } from '../../interfaces'
-import { usePageData } from '../../hooks/usePageData'
+
+import BackButton from '../../components/backButton'
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 function Language() {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('es')
@@ -24,9 +27,18 @@ function Language() {
     loading,
     error,
   } = usePageData<MetaDataLanguage>('Language')
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
-  if (!metas) return <div>No metadata available</div>
+
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
 
   return (
     <>

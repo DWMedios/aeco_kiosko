@@ -24,8 +24,6 @@ import Unidentified from '../views/unidentified'
 import AddBarcode from '../views/addBarcode'
 import Discounts from '../views/discounts'
 
-// import Users from "../Pages/users";
-
 const AppRouter = () => {
   return (
     <Routes>

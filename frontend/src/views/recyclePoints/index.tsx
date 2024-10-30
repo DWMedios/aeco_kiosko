@@ -1,6 +1,6 @@
-import BackButton from '../../components/backButton/BackButton'
-import ScreenLayout from '../../components/layout/screenLayout'
+import BackButton from '../../components/backButton'
 import RecyclePointsList from './components/recyclePointsList'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const RecyclePoints = () => {
   return (

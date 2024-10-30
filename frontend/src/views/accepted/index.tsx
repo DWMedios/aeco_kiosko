@@ -1,6 +1,5 @@
-import ScreenLayout from '../../components/layout/screenLayout'
-import Button from '../../components/button'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import {
   BackgroundButtonEnum,
   BorderRadiusEnum,
@@ -8,7 +7,11 @@ import {
   MetaDataAccepted,
   TextColorEnum,
 } from '../../interfaces'
+
 import { usePageData } from '../../hooks/usePageData'
+
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const mockDatabase = {
   '123456789': {
@@ -46,16 +49,24 @@ const Accepted = () => {
     error,
   } = usePageData<MetaDataAccepted>('Accepted')
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
-  if (!metas) return <div>No metadata available</div>
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
 
   return (
     <ScreenLayout image={metas.background}>
       <div className="flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center">
           <span className="font-extrabold text-8xl text-center w-[800px] z-10 tracking-wider">
-            {metas.title}
+            {metas?.title || 'ENVASE ACEPTADO'}
           </span>
         </div>
         <div className="flex flex-col justify-center items-center h-[600px]">

@@ -1,9 +1,11 @@
-import { useNavigate } from 'react-router-dom'
-import ScreenLayout from '../../components/layout/screenLayout'
 import { useEffect } from 'react'
-import QRCodeComponent from '../../components/qrCode'
-import Button from '../../components/button'
+import { useNavigate } from 'react-router-dom'
+
 import { TextColorEnum } from '../../interfaces'
+
+import Button from '../../components/button'
+import QRCodeComponent from '../../components/qrCode'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const FinalView = () => {
   const QrCodeUrl =

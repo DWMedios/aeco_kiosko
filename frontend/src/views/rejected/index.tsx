@@ -1,5 +1,5 @@
-import ScreenLayout from '../../components/layout/screenLayout'
-import Button from '../../components/button'
+import { usePageData } from '../../hooks/usePageData'
+
 import {
   BackgroundButtonEnum,
   BorderColorEnum,
@@ -8,7 +8,9 @@ import {
   MetaDataRejected,
   TextColorEnum,
 } from '../../interfaces'
-import { usePageData } from '../../hooks/usePageData'
+
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const Rejected = () => {
   const {
@@ -17,16 +19,24 @@ const Rejected = () => {
     error,
   } = usePageData<MetaDataRejected>('Rejected')
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
-  if (!metas) return <div>No metadata available</div>
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
 
   return (
     <ScreenLayout image={metas.background}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-12">
         <div className="flex flex-col justify-center items-center w-[500px]">
           <span className="font-extrabold text-8xl text-center tracking-wider">
-            {metas.title}
+            {metas?.title || 'ENVASE RECHAZADO'}
           </span>
         </div>
         <img

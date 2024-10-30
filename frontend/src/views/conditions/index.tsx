@@ -1,7 +1,5 @@
-import BackButton from '../../components/backButton/BackButton'
-import Button from '../../components/button'
-import ScreenLayout from '../../components/layout/screenLayout'
 import { usePageData } from '../../hooks/usePageData'
+
 import {
   BackgroundButtonEnum,
   BorderColorEnum,
@@ -10,7 +8,11 @@ import {
   MetaDataConditions,
   TextColorEnum,
 } from '../../interfaces'
+
+import BackButton from '../../components/backButton'
+import Button from '../../components/button'
 import ConditionsCard from './components/ConditionsCard'
+import ScreenLayout from '../../components/layout/screenLayout'
 import RewardsConditions from './components/rewards'
 
 const Conditions = () => {
@@ -20,22 +22,35 @@ const Conditions = () => {
     error,
   } = usePageData<MetaDataConditions>('Conditions')
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
-  if (!metas) return <div>No metadata available</div>
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
 
   return (
     <ScreenLayout image={metas.background}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none">
         <BackButton url="/home" />
         <div className="flex flex-col justify-center items-center text-center">
-          <span className="text-8xl">{metas.title}</span>
+          <span className="text-8xl">
+            {metas?.title ?? 'Recomponsas Disponibles'}
+          </span>
         </div>
         <div className="w-full mt-20 mb-20">
           <RewardsConditions />
         </div>
         <div className="my-10 text-center mb-20">
-          <span className="text-5xl ">{metas.description}</span>
+          <span className="text-5xl ">
+            {metas?.description ||
+              'Tus envases deben estar en las siguientes condiciones:'}
+          </span>
         </div>
         <div className="flex flex-row gap-4 justify-center w-full text-2xl mb-20">
           {metas.lists.map((list, index) => (

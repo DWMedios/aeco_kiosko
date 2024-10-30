@@ -1,5 +1,5 @@
-import ScreenLayout from '../../components/layout/screenLayout'
-import Button from '../../components/button'
+import { usePageData } from '../../hooks/usePageData'
+
 import {
   BackgroundButtonEnum,
   BorderRadiusEnum,
@@ -7,7 +7,9 @@ import {
   MetaDataUnidentified,
   TextColorEnum,
 } from '../../interfaces'
-import { usePageData } from '../../hooks/usePageData'
+
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const Unidentified = () => {
   const {
@@ -16,16 +18,24 @@ const Unidentified = () => {
     error,
   } = usePageData<MetaDataUnidentified>('Unidentified')
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
-  if (!metas) return <div>No metadata available</div>
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
 
   return (
     <ScreenLayout image={metas.background}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center">
           <span className="font-extrabold text-8xl text-center tracking-wider">
-            {metas.title}
+            {metas?.title || 'ENVASE NO IDENTIFICADO'}
           </span>
         </div>
         <img

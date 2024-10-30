@@ -1,9 +1,4 @@
-interface ConditionsCardProps {
-  icon: string
-  items: string[]
-  title: string
-}
-
+import { ConditionsCardProps } from '../../../interfaces'
 function ConditionsCard({ icon, items, title }: ConditionsCardProps) {
   return (
     <div className="flex flex-col justify-center items-center select-none w-full">

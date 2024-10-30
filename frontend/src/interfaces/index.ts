@@ -163,3 +163,9 @@ export interface QRCodeInterface {
   title?: string
   bgColor?: string
 }
+
+export interface ConditionsCardProps {
+  icon: string
+  items: string[]
+  title: string
+}

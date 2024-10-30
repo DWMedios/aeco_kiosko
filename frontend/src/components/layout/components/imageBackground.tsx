@@ -1,4 +1,4 @@
-import { Url } from '../../../interfaces'
+import type { Url } from '../../../interfaces'
 
 const ImageBackground = ({ url }: Url) => {
   if (!url) return null

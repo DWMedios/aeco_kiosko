@@ -1,7 +1,6 @@
 import { usePageData } from '../../hooks/usePageData'
+
 import { MetaDataHome } from '../../interfaces'
-import Button from '../../components/button'
-import ScreenLayout from '../../components/layout/screenLayout'
 import {
   BackgroundButtonEnum,
   BorderRadiusEnum,
@@ -9,17 +8,28 @@ import {
   PositionButtonEnum,
   TextColorEnum,
 } from '../../interfaces'
+
+import Button from '../../components/button'
 import Footer from './components/Footer'
 import LangHelp from './components/LangHelp'
 import Navbar from './components/Navbar'
+import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
-  if (!metas) return <div>No metadata available</div>
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
 
   return (
     <ScreenLayout image={metas.background}>

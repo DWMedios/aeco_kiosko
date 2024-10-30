@@ -1,4 +1,4 @@
-import BackButton from '../../components/backButton/BackButton'
+import BackButton from '../../components/backButton'
 import ScreenLayout from '../../components/layout/screenLayout'
 import ListDonatives from './components/listDonatives'
 
