@@ -6,7 +6,7 @@ const useWebSocket = (url: string): WebSocketHook => {
   const [socket, setSocket] = useState<WebSocket | null>(null)
   const [message, setMessage] = useState<string>('')
   const [count, setCount] = useState<number>(0)
-  
+
   useEffect(() => {
     const ws = new WebSocket(url)
 
@@ -31,9 +31,9 @@ const useWebSocket = (url: string): WebSocketHook => {
 
   const sendMessage = useCallback(
     (message: string) => {
-      setCount(count+1)
+      setCount(count + 1)
       if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(JSON.stringify({command: message}))
+        socket.send(JSON.stringify({ command: message }))
       }
     },
     [socket],

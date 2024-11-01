@@ -15,9 +15,16 @@ import LangHelp from './components/LangHelp'
 import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
+import { useLayoutEffect } from 'react'
+import SendMessage from '../../hooks/sendMessage'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
+  const { sendMessageHandler } = SendMessage()
+
+  useLayoutEffect(() => {
+    sendMessageHandler('YLWDY')
+  })
 
   if (loading || error || !metas) {
     return (

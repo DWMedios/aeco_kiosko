@@ -10,6 +10,7 @@ import {
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
+import SendMessage from '../../hooks/sendMessage'
 
 const Example = () => {
   const {
@@ -17,6 +18,7 @@ const Example = () => {
     loading,
     error,
   } = usePageData<MetaDataExample>('Example')
+  const { sendMessageHandler } = SendMessage()
 
   if (loading || error || !metas) {
     return (
@@ -46,6 +48,7 @@ const Example = () => {
         />
 
         <Button
+          action={() => sendMessageHandler('BEBJ')}
           label={metas.button.label}
           url={metas.button.url}
           fontSize={

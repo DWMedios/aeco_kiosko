@@ -23,13 +23,11 @@ import Rejected from '../views/rejected'
 import Unidentified from '../views/unidentified'
 import AddBarcode from '../views/addBarcode'
 import Discounts from '../views/discounts'
-import SendMessage from '../sendMessage'
 
 const AppRouter = () => {
   return (
     <Routes>
-      {/* <Route path="/" element={<SplashScreen />} /> */}
-      <Route path="/" element={<SendMessage />} />
+      <Route path="/" element={<SplashScreen />} />
       <Route path="/LoadingOffline" element={<LoadingOffline />} />
       <Route path="/conditions" element={<Conditions />} />
       <Route path="/example" element={<Example />} />

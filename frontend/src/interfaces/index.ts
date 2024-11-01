@@ -88,6 +88,7 @@ export enum PositionButtonEnum {
 }
 
 export interface ButtonInterface {
+  action?: () => void
   bgColor?: BackgroundButtonEnum | null
   borderRadius?: BorderRadiusEnum
   label: string
