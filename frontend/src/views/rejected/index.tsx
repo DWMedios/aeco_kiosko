@@ -1,47 +1,107 @@
-import ScreenLayout from '../../components/layout/screenLayout'
-import Button from '../../components/button'
+import { usePageData } from '../../hooks/usePageData'
+
 import {
   BackgroundButtonEnum,
+  BorderColorEnum,
+  BorderRadiusEnum,
   FontSizeEnum,
+  MetaDataRejected,
   TextColorEnum,
 } from '../../interfaces'
 
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
+
 const Rejected = () => {
+  const {
+    data: metas,
+    loading,
+    error,
+  } = usePageData<MetaDataRejected>('Rejected')
+
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
+
   return (
-    <ScreenLayout image="leafBackground.png">
+    <ScreenLayout image={metas.background}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-12">
         <div className="flex flex-col justify-center items-center w-[500px]">
           <span className="font-extrabold text-8xl text-center tracking-wider">
-            ENVASE RECHAZADO
+            {metas?.title || 'ENVASE RECHAZADO'}
           </span>
         </div>
         <img
-          src="/images/rejected.png"
-          alt=""
+          src={metas.centerImage}
+          alt="Rejected image"
           className="m-10 mb-20 w-auto h-96"
         />
 
         <Button
-          label="INTENTAR CON OTRO ENVASE"
-          url="/insert"
-          bgColor={BackgroundButtonEnum.green}
-          borderColor={null}
+          label={metas.buttonUp.label}
+          url={metas.buttonUp.url}
+          bgColor={
+            BackgroundButtonEnum[
+              metas.buttonUp.bgColor as keyof typeof BackgroundButtonEnum
+            ]
+          }
           textColor={TextColorEnum.white}
-          fontSize={FontSizeEnum.xl6}
+          borderRadius={
+            BorderRadiusEnum[
+              metas.buttonUp.borderRadious as keyof typeof BorderRadiusEnum
+            ]
+          }
+          fontSize={
+            FontSizeEnum[metas.buttonUp.fontSize as keyof typeof FontSizeEnum]
+          }
         />
 
         <Button
-          label="FINALIZAR"
-          url="/rewards"
-          borderColor="border-4 border-[#FE5A8F]"
-          textColor={TextColorEnum.pink}
-          fontSize={FontSizeEnum.xl6}
+          label={metas.buttonCenter.label}
+          url={metas.buttonCenter.url}
+          bgColor={
+            BackgroundButtonEnum[
+              metas.buttonCenter.bgColor as keyof typeof BackgroundButtonEnum
+            ]
+          }
+          textColor={TextColorEnum.white}
+          borderRadius={
+            BorderRadiusEnum[
+              metas.buttonCenter.borderRadious as keyof typeof BorderRadiusEnum
+            ]
+          }
+          fontSize={
+            FontSizeEnum[
+              metas.buttonCenter.fontSize as keyof typeof FontSizeEnum
+            ]
+          }
         />
 
         <Button
-          label="AÑADIR CODIGO DE BARRAS"
-          url="/add_barcode"
-          fontSize={FontSizeEnum.xl6}
+          label={metas.buttonDown.title}
+          url={metas.buttonDown.url}
+          textColor={TextColorEnum.black}
+          borderRadius={
+            BorderRadiusEnum[
+              metas.buttonDown.borderRadious as keyof typeof BorderRadiusEnum
+            ]
+          }
+          fontSize={
+            FontSizeEnum[metas.buttonDown.fontSize as keyof typeof FontSizeEnum]
+          }
+          borderColor={
+            BorderColorEnum[
+              metas.buttonDown.borderColor as keyof typeof BorderColorEnum
+            ]
+          }
         />
       </div>
     </ScreenLayout>

@@ -1,7 +1,8 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import ScreenLayout from '../../components/layout/screenLayout'
 import Ticket from './components/ticket'
-import { useEffect } from 'react'
 
 const TicketView = () => {
   const navigation = useNavigate()

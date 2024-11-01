@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ScreenLayout from '../../components/layout/screenLayout'
+
 import { Icon } from '../../interfaces'
+
+import ScreenLayout from '../../components/layout/screenLayout'
 
 const LoadingOffline = ({ icon = 'loading' }: Icon) => {
   const navigation = useNavigate()

@@ -1,30 +1,50 @@
-import BackButton from '../../components/backButton/BackButton'
-import ScreenLayout from '../../components/layout/screenLayout'
 import { useState } from 'react'
-import Button from '../../components/button'
+
+import { usePageData } from '../../hooks/usePageData'
+
 import {
+  BackgroundButtonEnum,
+  BorderColorEnum,
   BorderRadiusEnum,
   FontSizeEnum,
   MetaDataLanguage,
+  TextColorEnum,
 } from '../../interfaces'
-import { usePageData } from '../../hooks/usePageData'
+
+import BackButton from '../../components/backButton'
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
 
 function Language() {
-  const { data: metas } = usePageData<MetaDataLanguage>('Language')
-
   const [selectedLanguage, setSelectedLanguage] = useState<string>('es')
 
   const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedLanguage(event.target.value)
   }
 
-  if (!metas) return <div>No metadata available</div>
+  const {
+    data: metas,
+    loading,
+    error,
+  } = usePageData<MetaDataLanguage>('Language')
+
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
 
   return (
     <>
       <ScreenLayout image={metas.background}>
         <div className="p-4 h-screen flex flex-col items-center justify-center gap-11 select-none">
-          <BackButton url="/home" imageSrc="images/backbutton.png" />
+          <BackButton url="/home" />
           <h1 className="text-center text-7xl mt-20 mb-5 z-10">
             Seleccione un idioma
           </h1>
@@ -82,6 +102,21 @@ function Language() {
               }
               fontSize={
                 FontSizeEnum[metas.button.fontSize as keyof typeof FontSizeEnum]
+              }
+              textColor={
+                TextColorEnum[
+                  metas.button.textColor as keyof typeof TextColorEnum
+                ]
+              }
+              bgColor={
+                BackgroundButtonEnum[
+                  metas.button.bgColor as keyof typeof BackgroundButtonEnum
+                ]
+              }
+              borderColor={
+                BorderColorEnum[
+                  metas.button.borderColor as keyof typeof BorderColorEnum
+                ]
               }
             />
           </div>

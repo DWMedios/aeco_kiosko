@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import CardReward from '../../../components/cardReward'
 import PaginationButtons from '../../../components/paginationButtons'
 
