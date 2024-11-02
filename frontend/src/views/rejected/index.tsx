@@ -11,6 +11,7 @@ import {
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
+import useWebSocket from '../../hooks/useWebSocket'
 
 const Rejected = () => {
   const {
@@ -18,6 +19,8 @@ const Rejected = () => {
     loading,
     error,
   } = usePageData<MetaDataRejected>('Rejected')
+
+  const { sendMessage } = useWebSocket()
 
   if (loading || error || !metas) {
     return (
@@ -46,6 +49,7 @@ const Rejected = () => {
         />
 
         <Button
+          action={() => sendMessage('BEBJ')}
           label={metas.buttonUp.label}
           url={metas.buttonUp.url}
           bgColor={
