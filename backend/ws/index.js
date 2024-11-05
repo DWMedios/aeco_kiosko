@@ -31,7 +31,7 @@ const setupWebSocket = async (server) => {
 
       console.log('Mensaje recibido:', message)
 
-      const sendArduinoCommand = sendCommandLetters[message?.command]
+      const sendArduinoCommand = message?.command//sendCommandLetters[message?.command]
 
       if(!sendArduinoCommand) ws.send({ success: false, message: 'Comando no encontrado' })
 
