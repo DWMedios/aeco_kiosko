@@ -18,7 +18,9 @@ const sendCommandLetters = {
   ADJUST_COVER_90_BUZZER: 'C',
   ADJUST_COVER_0_GREEN_INIT: 'K',
   ENABLE_PAYMENT_MODE: 'X',
-  DISABLE_PAYMENT_MODE: 'I'
+  DISABLE_PAYMENT_MODE: 'I',
+  SET_UP_PROGRAM: 'YWDY',
+  INIT_PROGRAM: 'BEBJ'
 }
 
 const receivedCommandArduino = {
