@@ -4,7 +4,7 @@ require('dotenv').config()
 const getDataFromApi = async () => {
   try {
     const response = await fetch(
-      `${process.env.API_URL}/aecos/needs-update/serial/AECO123456`,
+      `${process.env.API_URL}/aecos/needs-update/AECO123456`,
       {
         method: 'GET',
         headers: {
