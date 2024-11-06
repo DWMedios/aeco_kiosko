@@ -39,16 +39,14 @@ module.exports = {
         metadata: {
           background: 'language_background.png',
           button: {
-            background:'language_background.png',
-            button:{
-              labelEs:'ACEPTAR',
-              labelEn:'AGREE',
-              bgColor:'white',
-              url:'/home',
-              textColor:'black',
-              borderRadious:'xl3',
-              fontSize:'xl6'
-            }
+            labelEs:'ACEPTAR',
+            labelEn:'AGREE',
+            bgColor:'white',
+            url:'/home',
+            textColor:'black',
+            borderRadious:'xl3',
+            borderColor:'green',
+            fontSize:'xl6'
           }
         },
       },
@@ -82,6 +80,7 @@ module.exports = {
             textColor: 'black',
             borderRadious: 'xl3',
             fontSize: 'xl6',
+            borderColor: 'green',
           },
           lists: [
             {
@@ -119,6 +118,7 @@ module.exports = {
             textColor: 'black',
             borderRadious: 'xl3',
             fontSize: 'xl6',
+            borderColor: 'green',
           },
         },
       },
@@ -182,7 +182,7 @@ module.exports = {
             borderRadious: 'xl3',
             fontSize: 'xl6',
           },
-          buttonDown: {
+          buttonCenter: {
             label: 'FINALIZAR',
             bgColor: 'pink',
             url: '/rewards',
@@ -190,10 +190,14 @@ module.exports = {
             borderRadious: 'xl3',
             fontSize: 'xl6',
           },
-          modalRight: {
+          buttonDown: {
             title: 'AÑADIR CODIGO DE BARRAS',
             url: '/add_barcode',
-            fintSize: 'xl6',
+            bgColor: 'pink',
+            textColor: 'black',
+            borderRadious: 'xl3',
+            borderColor: 'green',
+            fontSize: 'xl6',
           },
         }
       },
