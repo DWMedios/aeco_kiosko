@@ -30,9 +30,11 @@ const SendMessage = () => {
       <button onClick={handleSendMessage}>Enviar</button>
       <div>
         <h2>Mensaje del servidor:</h2>
-        {mesages.map((m) => {
+        <pre style={{ color: 'red'}}>{message}</pre>
+        ============================================
+        {mesages.map((m, i) => {
           return (
-            <pre
+            <pre key={i}
               style={{ color: `${m.includes('recibido') ? 'red' : 'black'}` }}
             >
               {m}
