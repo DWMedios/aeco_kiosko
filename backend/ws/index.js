@@ -19,9 +19,10 @@ const setupWebSocket = async (server) => {
         const receivedCommand = receivedCommandArduino[data]
         if (!receivedCommand) {
           console.log('Comando del arduino no encontrado:', data)
+          ws.send(JSON.stringify({ success: false, message: 'Comando no encontrado en el catalogo del BACKEND' }))
         }
         if (receivedCommand) {
-          ws.send(JSON.stringify({ success: true, message: receivedCommand }))
+          ws.send(JSON.stringify({ success: true, message: receivedCommand, command: data }))
         }
       })
     }

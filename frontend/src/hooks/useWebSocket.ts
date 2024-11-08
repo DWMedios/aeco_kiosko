@@ -5,7 +5,8 @@ import { WebSocketHook } from '../interfaces'
 const useWebSocket = (url: string): WebSocketHook => {
   const [socket, setSocket] = useState<WebSocket | null>(null)
   const [message, setMessage] = useState<string>('')
-
+  const [count, setCount] = useState<number>(0)
+  
   useEffect(() => {
     const ws = new WebSocket(url)
 
@@ -15,7 +16,6 @@ const useWebSocket = (url: string): WebSocketHook => {
 
     ws.onmessage = (event) => {
       setMessage(event.data)
-      console.log('Mensaje recibido del servidor:', event.data)
     }
 
     ws.onclose = () => {
@@ -27,12 +27,13 @@ const useWebSocket = (url: string): WebSocketHook => {
     return () => {
       ws.close()
     }
-  }, [url])
+  }, [url, message])
 
   const sendMessage = useCallback(
     (message: string) => {
+      setCount(count+1)
       if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(message)
+        socket.send(JSON.stringify({command: message}))
       }
     },
     [socket],

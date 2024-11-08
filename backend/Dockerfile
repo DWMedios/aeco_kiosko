@@ -3,6 +3,7 @@ FROM node:20.15-alpine
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+RUN apk update && apk add udev
 RUN npm install --legacy-peer-deps
 RUN apk add --no-cache curl && \
     curl -sSL https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz | tar xz -C /usr/local/bin

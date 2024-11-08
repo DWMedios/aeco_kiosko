@@ -1,0 +1,45 @@
+ERROR [backend  4/11] RUN apk update && apk install -y udev            1.5s
+------
+ > [backend  4/11] RUN apk update && apk install -y udev:
+0.235 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+0.701 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+1.332 v3.20.3-268-g9d0bdcad275 [https://dl-cdn.alpinelinux.org/alpine/v3.20/main]
+1.332 v3.20.3-267-g491e9630a39 [https://dl-cdn.alpinelinux.org/alpine/v3.20/community]
+1.332 OK: 24046 distinct packages available
+1.394 apk: unrecognized option: y
+1.394 apk-tools 2.14.4, compiled for aarch64.
+1.394 
+1.394 usage: apk [<OPTIONS>...] COMMAND [<ARGUMENTS>...]
+1.394 
+1.394 Package installation and removal:
+1.394   add        Add packages to WORLD and commit changes
+1.394   del        Remove packages from WORLD and commit changes
+1.394 
+1.394 System maintenance:
+1.394   fix        Fix, reinstall or upgrade packages without modifying WORLD
+1.394   update     Update repository indexes
+1.394   upgrade    Install upgrades available from repositories
+1.394   cache      Manage the local package cache
+1.394 
+1.394 Querying package information:
+1.394   info       Give detailed information about packages or repositories
+1.394   list       List packages matching a pattern or other criteria
+1.394   dot        Render dependencies as graphviz graphs
+1.394   policy     Show repository policy for packages
+1.394   search     Search for packages by name or description
+1.394 
+1.394 Repository maintenance:
+1.394   index      Create repository index file from packages
+1.394   fetch      Download packages from repositories to a local directory
+1.394   manifest   Show checksums of package contents
+1.394   verify     Verify package integrity and signature
+1.394 
+1.394 Miscellaneous:
+1.394   audit      Audit system for changes
+1.394   stats      Show statistics about repositories and installations
+1.394   version    Compare package versions or perform tests on version strings
+1.394 
+1.394 This apk has coffee making abilities.
+1.394 For more information: man 8 apk
+------
+failed to solve: process "/bin/sh -c apk update && apk install -y udev" did not complete successfully: exit code: 1

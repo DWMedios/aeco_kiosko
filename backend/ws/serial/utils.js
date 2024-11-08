@@ -2,14 +2,16 @@ const { SerialPort } = require('serialport')
 
 const findArduinoPort = async () => {
   try {
+	  console.log('🚀 ~INIT findArduinoPort ~ports: ')
 	  const ports = await SerialPort.list()
+	  console.log('Puertos encontrados:', ports)
 	  for (const port of ports) {
-      console.log('Puerto encontrado:', port)
-      if (port.manufacturer && port.manufacturer.includes('Arduino')) {
-        return port.path
+		  if (port.manufacturer && port.manufacturer.includes('Arduino')) {
+		  console.log('🚀 ~ findArduinoPort ~ ports:', port)
+        return '/dev/ttyACM0'
       	}
 	  }
-	  return null
+	  return '/dev/ttyACM0'
   } catch (error) {
 	  console.error('Error al listar los puertos seriales:', error?.message)
 	  return null
