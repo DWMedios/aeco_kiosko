@@ -16,14 +16,20 @@ const setupWebSocket = async (server) => {
     if (serialParser) {
       serialParser.on('data', (data) => {
         console.log('Datos recibidos del puerto serial:', data)
-        const receivedCommand = receivedCommandArduino[data]
-        if (!receivedCommand) {
-          console.log('Comando del arduino no encontrado:', data)
-          ws.send(JSON.stringify({ success: false, message: 'Comando no encontrado en el catalogo del BACKEND' }))
-        }
-        if (receivedCommand) {
-          ws.send(JSON.stringify({ success: true, message: receivedCommand, command: data }))
-        }
+        ws.send(
+          JSON.stringify({
+            success: true,
+            message: data,
+          })
+        )
+        // const receivedCommand = receivedCommandArduino[data]
+        // if (!receivedCommand) {
+        //   console.log('Comando del arduino no encontrado:', data)
+        //   ws.send(JSON.stringify({ success: false, message: 'Comando no encontrado en el catalogo del BACKEND' }))
+        // }
+        // if (receivedCommand) {
+        //   ws.send(JSON.stringify({ success: true, message: receivedCommand, command: data }))
+        // }
       })
     }
 
