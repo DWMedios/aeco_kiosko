@@ -6,6 +6,7 @@ const cors = require('cors')
 const setupWebSocket = require('./ws')
 const apiRoutes = require('./routes/api')
 const companyController = require('./controllers/companyController')
+const { getDataFromApi } = require('./schedules/updateSchedule')
 require('dotenv').config()
 
 const app = express()
@@ -21,12 +22,16 @@ app.use(
   })
 )
 app.use('/api', apiRoutes)
-
 ;(async () => {
   try {
     companyController.updateCompanyByMacAddress()
+    console.log('Company controller.')
+
     await setupWebSocket(server)
     console.log('WebSocket configurado correctamente.')
+
+    getDataFromApi()
+    console.log('Schedule configurado correctamente.')
   } catch (err) {
     console.error('Error al configurar WebSocket:', err.message)
   }
