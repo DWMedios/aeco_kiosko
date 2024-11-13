@@ -7,6 +7,8 @@ const SendMessage = () => {
   const { message, sendMessage } = useWebSocket(api_ws) // Cambia la URL según tu configuración
   const [input, setInput] = useState<string>('')
 
+  const commands = ['YLWDY', 'BEBJ', 'CYLILEYLD', 'XYYLIYLEYLDVBEB', 'YLIYLEYL']
+
   const handleSendMessage = () => {
     SetMesages([...mesages, `Mensaje enviado: ${input}`])
     sendMessage(input)
@@ -28,16 +30,25 @@ const SendMessage = () => {
         placeholder="Escribe un mensaje"
       />
       <button onClick={handleSendMessage}>Enviar</button>
+      <hr />
+      {commands.map((command) => {
+        return (
+          <button style={{ margin: 4 }} onClick={() => sendMessage(command)}>
+            {command}
+          </button>
+        )
+      })}
       <div>
         <h2>Mensaje del servidor:</h2>
-        <pre style={{ color: 'red'}}>{message}</pre>
+        <pre style={{ color: 'red' }}>{message}</pre>
         ============================================
         {mesages.map((m, i) => {
           return (
-            <pre key={i}
+            <pre
+              key={i}
               style={{ color: `${m.includes('recibido') ? 'red' : 'black'}` }}
             >
-              {i+1}.- {m}
+              {i + 1}.- {m}
             </pre>
           )
         })}
