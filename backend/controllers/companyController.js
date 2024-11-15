@@ -6,7 +6,7 @@ exports.getCompany = async (req, res) => {
   try {
 	  const company = await companyRepository.getAll()
 	  if (!company) {
-      return res.status(HTTP_CODES.NOT_FOUND).send({ message: 'No se encontraron empresas' })
+      	return res.status(HTTP_CODES.NOT_FOUND).send({ message: 'No se encontraron empresas' })
 	  }
 	  return res.json(company)
   } catch (err) {
@@ -20,17 +20,17 @@ exports.updateCompanyByMacAddress = async () => {
     const macAddress = await getMacAddress()
     	const company = await companyRepository.getByMacAddress(macAddress)
     	if (!company) {
-      		console.log('No se encontró la empresa con la dirección MAC:', macAddress)
-      		console.log('Creando empresa...')
-      		const newCompany = await companyRepository.create({ macAddress, metadata: { createdBy: 'system' } })
-      		console.log('Empresa creada:', newCompany)
-			return
-    	}
+		  console.log('No se encontró la empresa con la dirección MAC:', macAddress)
+		  console.log('Creando empresa...')
+		  const newCompany = await companyRepository.create({ macAddress, metadata: { createdBy: 'system' } })
+		  console.log('Empresa creada:', newCompany)
+		  return
+    	} 
     	const updatedCompany = await companyRepository.update(company.id, { macAddress })
     	console.log('Empresa actualizada:', updatedCompany)
-		return
-  } catch (err) {
-    console.error(err)
-	return
-  }
+		 return
+  	} catch (err) {
+  	  console.error(err)
+		 return
+  	}
 }
