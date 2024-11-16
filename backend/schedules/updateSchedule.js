@@ -1,20 +1,16 @@
 const cron = require('node-cron')
+
+const { savePages } = require('../repositories/pageRepository')
+
+const { finishSetup } = require('./initialSetup')
+const { fetchFromApi } = require('./fetchHelper')
 require('dotenv').config()
 
 const getUpdates = async () => {
   try {
-    const fetch = (await import('node-fetch')).default
-    const response = await fetch(
-      `${process.env.API_URL}/aecos/needs-update/AECO123456`,
-      {
-        method: 'GET',
-        headers: {
-          'x-api-key': 'API-KEY-DEMO',
-        },
-      }
-    )
-    const data = await response.json()
-    console.log('---------- RESPONSE SCHEDULE ----------:', data)
+    const data = await fetchFromApi('/aecos/needs-update/AECO123456')
+    await savePages(data.pages)
+    await finishSetup('updated', 'AECO123456')
   } catch (error) {
     console.error('Error fetching data:', error)
   }

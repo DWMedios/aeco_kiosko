@@ -1,26 +1,23 @@
 const { savePages } = require('../repositories/pageRepository')
 
-require('dotenv').config()
+const { fetchFromApi } = require('./fetchHelper')
 
 const getInitialSetup = async () => {
   try {
-    const fetch = (await import('node-fetch')).default
-    const response = await fetch(
-      `${process.env.API_URL}/aecos/initial-setup/AECO123456`,
-      {
-        method: 'GET',
-        headers: {
-          'x-api-key': 'API-KEY-DEMO',
-        },
-      }
-    )
-    const data = await response.json()
+    const data = await fetchFromApi('/aecos/initial-setup/AECO123456')
     await savePages(data.pages)
-    console.log('---------- RESPONSE INITIAL SETUP ----------:', data.pages)
+    await finishSetup('init', 'AECO123456')
   } catch (error) {
-    console.log('---------- ERROR INITIAL SETUP ----------:', error)
-    console.error('Error fetching data:', error)
+    console.error('Error initial setup:', error)
   }
 }
 
-module.exports = { getInitialSetup }
+const finishSetup = async (type, serialNumber) => {
+  try {
+    await fetchFromApi(`/aecos/finish-setup/${type}/${serialNumber}`, 'PATCH')
+  } catch (error) {
+    console.error('Error finish setup:', error)
+  }
+}
+
+module.exports = { getInitialSetup, finishSetup }

@@ -25,7 +25,7 @@ app.use(
 app.use('/api', apiRoutes)
 ;(async () => {
   try {
-    companyController.updateCompanyByMacAddress()
+    companyController.updateCompanyBySerialNumber()
     console.log('Company controller.')
     
     getInitialSetup()
