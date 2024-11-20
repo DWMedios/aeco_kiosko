@@ -10,7 +10,7 @@ const LoadingOffline = ({ icon = 'loading' }: Icon) => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('Termino el timepo')
+      console.log('Termino el tiempo')
       navigation('/home')
     }, 3000)
   })

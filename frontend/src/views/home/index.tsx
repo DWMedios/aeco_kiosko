@@ -24,7 +24,7 @@ function Home() {
 
   useLayoutEffect(() => {
     sendMessageHandler('YLWDY')
-  })
+  },[])
 
   if (loading || error || !metas) {
     return (
