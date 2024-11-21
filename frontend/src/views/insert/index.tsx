@@ -3,9 +3,28 @@ import { usePageData } from '../../hooks/usePageData'
 import { MetaDataInsert } from '../../interfaces'
 
 import ScreenLayout from '../../components/layout/screenLayout'
+import { useEffect, useState } from 'react'
+import useWebSocket from '../../hooks/useWebSocket'
 
 const Insert = () => {
   const { data: metas, loading, error } = usePageData<MetaDataInsert>('Insert')
+    const { message, sendMessage } = useWebSocket()
+    const [count, setCount]=useState<boolean>(true)
+
+    useEffect(()=>{
+      console.log("🚀 ~ Insert ~ messages:", message)
+    }, [message])
+
+    setInterval(() => {
+      validateMessage()
+    }, 3000);
+
+    const validateMessage=()=>{
+      if (count){
+          sendMessage('J')
+          setCount(false)
+        }
+    }
 
   if (loading || error || !metas) {
     return (

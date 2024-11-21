@@ -20,10 +20,10 @@ const useWebSocket = (): WebSocketHook => {
       setMessage(event.data)
     }
     
-    ws.onclose = () => {
-      console.log('WebSocket desconectado')
-      setSocketOn(false)
-    }
+    // ws.onclose = () => {
+    //   console.log('WebSocket desconectado')
+    //   setSocketOn(false)
+    // }
 
     setSocket(ws)
 
@@ -34,6 +34,7 @@ const useWebSocket = (): WebSocketHook => {
 
   const sendMessage = useCallback(
     (message: string) => {
+      console.log("🚀 ~ MENSAJE ENVIADO:", message)
       if (socket && socket.readyState === WebSocket.OPEN) {
         socket.send(JSON.stringify({ command: message }))
       }

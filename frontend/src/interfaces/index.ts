@@ -95,7 +95,7 @@ export interface ButtonInterface {
   label: string
   borderColor?: BorderColorEnum | null
   textColor?: TextColorEnum | null
-  url: string
+  url?: string
   fontSize?: FontSizeEnum
   positionButton?: PositionButtonEnum | null
 }

@@ -10,7 +10,8 @@ import {
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
-import SendMessage from '../../hooks/sendMessage'
+import { useEffect } from 'react'
+import useWebSocket from '../../hooks/useWebSocket'
 
 const Example = () => {
   const {
@@ -18,7 +19,7 @@ const Example = () => {
     loading,
     error,
   } = usePageData<MetaDataExample>('Example')
-  const { sendMessageHandler } = SendMessage()
+  const { sendMessage } = useWebSocket()
 
   if (loading || error || !metas) {
     return (
@@ -48,7 +49,7 @@ const Example = () => {
         />
 
         <Button
-          action={() => sendMessageHandler('BEBJ')}
+          action={() => sendMessage('BEB')}
           label={metas.button.label}
           url={metas.button.url}
           fontSize={
