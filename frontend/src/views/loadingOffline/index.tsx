@@ -4,9 +4,18 @@ import { useNavigate } from 'react-router-dom'
 import { Icon } from '../../interfaces'
 
 import ScreenLayout from '../../components/layout/screenLayout'
+import useWebSocket from '../../hooks/useWebSocket'
 
 const LoadingOffline = ({ icon = 'loading' }: Icon) => {
   const navigation = useNavigate()
+    const {sendMessage, socketOn } = useWebSocket()
+
+  useEffect(()=>{
+    if (socketOn) {
+      sendMessage('YLWDY')
+    }
+      
+  },[socketOn])
 
   useEffect(() => {
     setTimeout(() => {

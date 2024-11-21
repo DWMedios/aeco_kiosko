@@ -2,24 +2,27 @@
 import { useCallback, useEffect, useState } from 'react'
 import { WebSocketHook } from '../interfaces'
 
-const useWebSocket = (url: string): WebSocketHook => {
+const useWebSocket = (): WebSocketHook => {
+  const wsUrl = import.meta.env.VITE_WS_URL
   const [socket, setSocket] = useState<WebSocket | null>(null)
   const [message, setMessage] = useState<string>('')
-  const [count, setCount] = useState<number>(0)
+  const [socketOn, setSocketOn] =useState<boolean>(false)
 
   useEffect(() => {
-    const ws = new WebSocket(url)
+    const ws = new WebSocket(wsUrl)
 
     ws.onopen = () => {
       console.log('WebSocket conectado')
+      setSocketOn(true)
     }
-
+    
     ws.onmessage = (event) => {
       setMessage(event.data)
     }
-
+    
     ws.onclose = () => {
       console.log('WebSocket desconectado')
+      setSocketOn(false)
     }
 
     setSocket(ws)
@@ -27,11 +30,10 @@ const useWebSocket = (url: string): WebSocketHook => {
     return () => {
       ws.close()
     }
-  }, [url, message])
+  }, [message])
 
   const sendMessage = useCallback(
     (message: string) => {
-      setCount(count + 1)
       if (socket && socket.readyState === WebSocket.OPEN) {
         socket.send(JSON.stringify({ command: message }))
       }
@@ -39,7 +41,7 @@ const useWebSocket = (url: string): WebSocketHook => {
     [socket],
   )
 
-  return { message, sendMessage }
+  return { message, sendMessage, socketOn}
 }
 
 export default useWebSocket

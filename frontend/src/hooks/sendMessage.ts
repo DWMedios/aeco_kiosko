@@ -7,8 +7,7 @@ interface UseWebSocketHookReturn {
 }
 
 const SendMessage = (): UseWebSocketHookReturn => {
-  const wsUrl = import.meta.env.VITE_WS_URL
-  const { message, sendMessage } = useWebSocket(wsUrl)
+  const { message, sendMessage } = useWebSocket()
   const [messages, setMessages] = useState<string[]>([])
   
   // Función para enviar mensajes

@@ -5,6 +5,7 @@ type method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 export type WebSocketHook = {
   message: string
   sendMessage: (message: string) => void
+  socketOn: boolean
 }
 
 export interface ApiParams {
