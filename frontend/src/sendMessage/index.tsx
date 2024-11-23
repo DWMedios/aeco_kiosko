@@ -5,8 +5,7 @@ const SendMessage = () => {
   const [mesages, SetMesages] = useState<Array<string>>([])
   const [input, setInput] = useState<string>('')
 
-  const api_ws = import.meta.env.VITE_WS_URL
-  const { message, sendMessage } = useWebSocket() // Cambia la URL según tu configuración
+  const { message, sendMessage } = useWebSocket()
   
   const handleSendMessage = () => {
     SetMesages([...mesages, `Mensaje enviado: ${input}`])

@@ -1,36 +1,43 @@
-// src/hooks/useWebSocket.ts
 import { useCallback, useEffect, useState } from 'react'
-import { WebSocketHook } from '../interfaces'
+import { MessageWebSocket, WebSocketHook } from '../interfaces'
+
+let socket: WebSocket | null = null;
 
 const useWebSocket = (): WebSocketHook => {
-  const wsUrl = import.meta.env.VITE_WS_URL
-  const [socket, setSocket] = useState<WebSocket | null>(null)
-  const [message, setMessage] = useState<string>('')
+  const wsUrl = import.meta.env.VITE_API_WS
+  // const [socket, setSocket] = useState<WebSocket | null>(null)
+  const [command, setCommand] = useState<MessageWebSocket>({})
   const [socketOn, setSocketOn] =useState<boolean>(false)
-
+  
   useEffect(() => {
-    const ws = new WebSocket(wsUrl)
+    if (!socket && !socketOn) {
+      socket = new WebSocket(wsUrl);
+    }
 
-    ws.onopen = () => {
-      console.log('WebSocket conectado')
-      setSocketOn(true)
-    }
+    const ws = socket;
+
+    if(ws && !socketOn)
+      ws.onopen = () => {
+        console.log('WebSocket conectado');
+        setSocketOn(true);
+      };
     
-    ws.onmessage = (event) => {
-      setMessage(event.data)
-    }
+    if(ws)
+      ws.onmessage = (event) => {
+        setCommand(event.data)
+      }
     
     // ws.onclose = () => {
     //   console.log('WebSocket desconectado')
     //   setSocketOn(false)
     // }
 
-    setSocket(ws)
+    // setSocket(ws)
 
-    return () => {
-      ws.close()
-    }
-  }, [message])
+    // return () => {
+    //   ws.close()
+    // }
+  }, [command])
 
   const sendMessage = useCallback(
     (message: string) => {
@@ -39,10 +46,10 @@ const useWebSocket = (): WebSocketHook => {
         socket.send(JSON.stringify({ command: message }))
       }
     },
-    [socket],
+    [],
   )
 
-  return { message, sendMessage, socketOn}
+  return { command, sendMessage, socketOn}
 }
 
 export default useWebSocket

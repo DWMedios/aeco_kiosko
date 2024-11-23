@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import WebApiAeco from '../api/webApiAeco'
 
 export function usePageData<T>(pageName: string) {
   const [data, setData] = useState<T | null>(null)
@@ -8,14 +9,11 @@ export function usePageData<T>(pageName: string) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `http://192.168.100.58:3333/api/pages?name=${pageName}`,
-        )
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+        const response = await WebApiAeco.getPage(pageName)
+        if (!response) {
+          throw new Error(`Page not found`)
         }
-        const result = await response.json()
-        setData(result.metadata || null)
+        setData(response?.metadata || null)
       } catch (err) {
         setError((err as Error).message)
       } finally {

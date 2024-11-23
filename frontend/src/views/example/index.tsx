@@ -10,7 +10,6 @@ import {
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
-import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
 
 const Example = () => {

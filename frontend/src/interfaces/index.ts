@@ -3,9 +3,14 @@ export * from './Pages'
 type method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export type WebSocketHook = {
-  message: string
+  command: MessageWebSocket | null
   sendMessage: (message: string) => void
   socketOn: boolean
+}
+
+export type MessageWebSocket = {
+  success?: boolean
+  message?: string
 }
 
 export interface ApiParams {

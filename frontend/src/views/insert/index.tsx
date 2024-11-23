@@ -1,6 +1,6 @@
 import { usePageData } from '../../hooks/usePageData'
 
-import { MetaDataInsert } from '../../interfaces'
+import { MessageWebSocket, MetaDataInsert } from '../../interfaces'
 
 import ScreenLayout from '../../components/layout/screenLayout'
 import { useEffect, useState } from 'react'
@@ -8,23 +8,27 @@ import useWebSocket from '../../hooks/useWebSocket'
 
 const Insert = () => {
   const { data: metas, loading, error } = usePageData<MetaDataInsert>('Insert')
-    const { message, sendMessage } = useWebSocket()
-    const [count, setCount]=useState<boolean>(true)
+  const { command, sendMessage } = useWebSocket()
+  const [combinedMessage, setCombinedMessage] = useState<string>('')
+    
+  useEffect(()=>{
+    sendMessage('J')
+  },[])
 
-    useEffect(()=>{
-      console.log("🚀 ~ Insert ~ messages:", message)
-    }, [message])
+  useEffect(()=>{
+    const { success, message } = command
+    console.log("🚀 ~ useEffect ~ message", message)
+    console.log("🚀 ~ useEffect ~ success:", success)
+    // console.log("🚀 ~ useEffect ~ combinedMessage:", combinedMessage)
+    // console.log("🚀 ~ useEffect ~ message.message.trim().length:", message?.message?.trim().length)
+    // if (message?.success && message?.message?.trim().length === 1) {
+    //   setCombinedMessage((prev) => prev + message.message)
+    //   if (combinedMessage === 'ECU') {
+    //     console.log('¡Combinación ECU detectada!')
+    //   }
+    // }
+  }, [command])
 
-    setInterval(() => {
-      validateMessage()
-    }, 3000);
-
-    const validateMessage=()=>{
-      if (count){
-          sendMessage('J')
-          setCount(false)
-        }
-    }
 
   if (loading || error || !metas) {
     return (
