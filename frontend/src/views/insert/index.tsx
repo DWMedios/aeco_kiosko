@@ -18,15 +18,12 @@ const Insert = () => {
   useEffect(()=>{
     const { success, message } = command
     console.log("🚀 ~ useEffect ~ message", message)
-    console.log("🚀 ~ useEffect ~ success:", success)
-    // console.log("🚀 ~ useEffect ~ combinedMessage:", combinedMessage)
-    // console.log("🚀 ~ useEffect ~ message.message.trim().length:", message?.message?.trim().length)
-    // if (message?.success && message?.message?.trim().length === 1) {
-    //   setCombinedMessage((prev) => prev + message.message)
-    //   if (combinedMessage === 'ECU') {
-    //     console.log('¡Combinación ECU detectada!')
-    //   }
-    // }
+    if (success && message?.trim().length === 1) {
+      setCombinedMessage((prev) => prev + message)
+      if (combinedMessage + message === 'ECU') {
+        console.log('¡Combinación ECU detectada!')
+      }
+    }
   }, [command])
 
 

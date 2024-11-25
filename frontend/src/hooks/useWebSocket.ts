@@ -24,7 +24,8 @@ const useWebSocket = (): WebSocketHook => {
     
     if(ws)
       ws.onmessage = (event) => {
-        setCommand(event.data)
+        const data: MessageWebSocket = JSON.parse(event.data);
+        setCommand(data);
       }
     
     // ws.onclose = () => {

@@ -3,7 +3,7 @@ export * from './Pages'
 type method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export type WebSocketHook = {
-  command: MessageWebSocket | null
+  command: MessageWebSocket
   sendMessage: (message: string) => void
   socketOn: boolean
 }
