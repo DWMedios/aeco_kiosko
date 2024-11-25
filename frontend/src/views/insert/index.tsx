@@ -1,6 +1,6 @@
 import { usePageData } from '../../hooks/usePageData'
 
-import { MessageWebSocket, MetaDataInsert } from '../../interfaces'
+import { MetaDataInsert } from '../../interfaces'
 
 import ScreenLayout from '../../components/layout/screenLayout'
 import { useEffect, useState } from 'react'
