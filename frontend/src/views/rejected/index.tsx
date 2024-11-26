@@ -12,6 +12,7 @@ import {
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
+import { useEffect } from 'react'
 
 const Rejected = () => {
   const {
@@ -21,6 +22,11 @@ const Rejected = () => {
   } = usePageData<MetaDataRejected>('Rejected')
 
   const { sendCommand } = useWebSocket()
+
+    useEffect(() => {
+      sendCommand('YLWDY')
+    }, [])
+
 
   if (loading || error || !metas) {
     return (
@@ -49,7 +55,7 @@ const Rejected = () => {
         />
 
         <Button
-          action={() => sendCommand('BEBJ')}
+          action={() => sendCommand('BEB')}
           label={metas.buttonUp.label}
           url={metas.buttonUp.url}
           bgColor={

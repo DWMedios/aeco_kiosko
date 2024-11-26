@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import WebApiAeco from '../../api/webApiAeco';
+import { useNavigate } from 'react-router-dom';
+import useWebSocket from '../../hooks/useWebSocket';
 
 const BarcodeScanner = () => {
+  const navigation = useNavigate()
   const [barcode, setBarcode] = useState('')
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const inputRef = useRef<HTMLInputElement>(null)
+  const { sendCommand } = useWebSocket()
 
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -25,11 +29,13 @@ const BarcodeScanner = () => {
   const findProduct =async ()=>{
     try {
       const response = await WebApiAeco.findProduct(barcode)
-      console.log("Se encontro-->> ", response.code)
-      
+      console.log("🚀 ~ findProduct ~ response:", response)
+      sendCommand('BUS')
+      navigation('/accepted')
     } catch (error) {
       console.log("🚀 ~ findProduct ~ error:", error)
-      
+      sendCommand('J')
+      navigation('/rejected')
     }finally{
       setBarcode('')
       if (inputRef.current)

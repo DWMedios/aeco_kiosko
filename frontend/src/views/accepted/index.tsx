@@ -12,6 +12,7 @@ import { usePageData } from '../../hooks/usePageData'
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
+import useWebSocket from '../../hooks/useWebSocket'
 
 const mockDatabase = {
   '123456789': {
@@ -28,6 +29,11 @@ const mockDatabase = {
 
 const Accepted = () => {
   const [product, setProduct] = useState({ name: '', volume: '', image: '' })
+  const { sendCommand } = useWebSocket()
+
+  useEffect(() => {
+    sendCommand('YLWDY')
+  }, [])
 
   useEffect(() => {
     const barcode = '987654321'
@@ -85,6 +91,7 @@ const Accepted = () => {
           </div>
         </div>
         <Button
+          action={()=> sendCommand('BEB')}
           label={metas.buttonUp.label}
           url={metas.buttonUp.url}
           bgColor={
