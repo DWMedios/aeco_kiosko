@@ -5,23 +5,23 @@ const SendMessage = () => {
   const [mesages, SetMesages] = useState<Array<string>>([])
   const [input, setInput] = useState<string>('')
 
-  const { message, sendMessage } = useWebSocket()
+  const { command, sendCommand } = useWebSocket()
   
   const handleSendMessage = () => {
     SetMesages([...mesages, `Mensaje enviado: ${input}`])
-    sendMessage(input)
+    sendCommand(input)
     setInput('')
   }
   
   useEffect(() => {
-    if (message) SetMesages([...mesages, `Mensaje recibido: ${message}`])
-  }, [message])
+    if (command) SetMesages([...mesages, `Mensaje recibido: ${command}`])
+  }, [command])
 
   const commands = [
     'YLWDY',
     'BEBJ',
     'CYLILEYLD',
-    'XYYLIYLEYLDVBEB',
+    'XYYLIYLEYLDV',
     'YLIYLEYL',
     'BUS',
     'US',
@@ -46,7 +46,7 @@ const SendMessage = () => {
         return (
           <button
             style={{ margin: 4, border: '1px blue solid', padding: 4 }}
-            onClick={() => sendMessage(command)}
+            onClick={() => sendCommand(command)}
           >
             {command}
           </button>
@@ -54,7 +54,7 @@ const SendMessage = () => {
       })}
       <div>
         <h2>Mensaje del servidor:</h2>
-        <pre style={{ color: 'red' }}>{message}</pre>
+        <pre style={{ color: 'red' }}>{ JSON.stringify(command) }</pre>
         ============================================
         {mesages.map((m, i) => {
           return (

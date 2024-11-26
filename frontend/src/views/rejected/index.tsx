@@ -20,7 +20,7 @@ const Rejected = () => {
     error,
   } = usePageData<MetaDataRejected>('Rejected')
 
-  const { sendMessage } = useWebSocket()
+  const { sendCommand } = useWebSocket()
 
   if (loading || error || !metas) {
     return (
@@ -49,7 +49,7 @@ const Rejected = () => {
         />
 
         <Button
-          action={() => sendMessage('BEBJ')}
+          action={() => sendCommand('BEBJ')}
           label={metas.buttonUp.label}
           url={metas.buttonUp.url}
           bgColor={

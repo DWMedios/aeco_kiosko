@@ -40,7 +40,7 @@ const useWebSocket = (): WebSocketHook => {
     // }
   }, [command])
 
-  const sendMessage = useCallback(
+  const sendCommand = useCallback(
     (message: string) => {
       console.log("🚀 ~ MENSAJE ENVIADO:", message)
       if (socket && socket.readyState === WebSocket.OPEN) {
@@ -50,7 +50,7 @@ const useWebSocket = (): WebSocketHook => {
     [],
   )
 
-  return { command, sendMessage, socketOn}
+  return { command, sendCommand, socketOn}
 }
 
 export default useWebSocket

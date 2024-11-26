@@ -10,6 +10,8 @@ import {
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
+import { useEffect } from 'react'
+import useWebSocket from '../../hooks/useWebSocket'
 
 const Unidentified = () => {
   const {
@@ -17,6 +19,11 @@ const Unidentified = () => {
     loading,
     error,
   } = usePageData<MetaDataUnidentified>('Unidentified')
+  const { command, sendCommand } = useWebSocket()
+
+  useEffect(() => {
+    sendCommand('YLWDY')
+  }, [])
 
   if (loading || error || !metas) {
     return (
@@ -45,6 +52,7 @@ const Unidentified = () => {
         />
 
         <Button
+          action={() => sendCommand('BEB')}
           label={metas.buttonUp.label}
           url={metas.buttonUp.url}
           bgColor={
@@ -64,6 +72,7 @@ const Unidentified = () => {
         />
 
         <Button
+          action={() => sendCommand('XYDB')}
           label={metas.buttonDown.label}
           url={metas.buttonDown.url}
           bgColor={

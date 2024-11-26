@@ -4,7 +4,7 @@ type method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export type WebSocketHook = {
   command: MessageWebSocket
-  sendMessage: (message: string) => void
+  sendCommand: (message: string) => void
   socketOn: boolean
 }
 

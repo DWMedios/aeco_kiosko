@@ -3,26 +3,27 @@ import { usePageData } from '../../hooks/usePageData'
 import { MetaDataInsert } from '../../interfaces'
 
 import ScreenLayout from '../../components/layout/screenLayout'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
+import { useNavigate } from 'react-router-dom'
 
 const Insert = () => {
+  const navigation = useNavigate()
   const { data: metas, loading, error } = usePageData<MetaDataInsert>('Insert')
-  const { command, sendMessage } = useWebSocket()
-  const [combinedMessage, setCombinedMessage] = useState<string>('')
-    
-  useEffect(()=>{
-    sendMessage('J')
-  },[])
+  const { command } = useWebSocket()
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      navigation('/unidentified')
+    }, 10000)
+
+    return () => clearTimeout(timeout)
+  }, [])
 
   useEffect(()=>{
     const { success, message } = command
-    console.log("🚀 ~ useEffect ~ message", message)
-    if (success && message?.trim().length === 1) {
-      setCombinedMessage((prev) => prev + message)
-      if (combinedMessage + message === 'ECU') {
-        console.log('¡Combinación ECU detectada!')
-      }
+    if (success && message === 'I') {
+       navigation('/scanning')
     }
   }, [command])
 

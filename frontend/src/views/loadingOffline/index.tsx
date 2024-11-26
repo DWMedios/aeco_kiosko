@@ -6,15 +6,14 @@ import useWebSocket from '../../hooks/useWebSocket'
 
 const LoadingOffline = ({ icon = 'loading' }: Icon) => {
   const navigation = useNavigate()
-  const { sendMessage, socketOn } = useWebSocket()
+  const { sendCommand, socketOn } = useWebSocket()
 
   useEffect(() => {
-    if (socketOn) sendMessage('YLWDY')
+    if (socketOn) sendCommand('YLWDY')
   }, [socketOn])
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('Termino el tiempo')
       navigation('/home')
     }, 3000)
   })

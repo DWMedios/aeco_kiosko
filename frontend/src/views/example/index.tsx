@@ -18,7 +18,7 @@ const Example = () => {
     loading,
     error,
   } = usePageData<MetaDataExample>('Example')
-  const { sendMessage } = useWebSocket()
+  const { sendCommand } = useWebSocket()
 
   if (loading || error || !metas) {
     return (
@@ -48,7 +48,7 @@ const Example = () => {
         />
 
         <Button
-          action={() => sendMessage('BEB')}
+          action={() => sendCommand('BEB')}
           label={metas.button.label}
           url={metas.button.url}
           fontSize={
