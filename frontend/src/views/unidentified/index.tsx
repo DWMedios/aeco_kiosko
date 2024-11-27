@@ -72,7 +72,7 @@ const Unidentified = () => {
         />
 
         <Button
-          action={() => sendCommand('XYDB')}
+          // action={() => sendCommand('XYDB')}
           label={metas.buttonDown.label}
           url={metas.buttonDown.url}
           bgColor={

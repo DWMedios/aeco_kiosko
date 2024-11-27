@@ -176,3 +176,16 @@ export interface ConditionsCardProps {
   items: string[]
   title: string
 }
+
+
+export interface CountProduct{
+  name: string
+  packaging: string
+}
+
+
+export interface Products{
+  can:number
+  bottle: number
+  products: CountProduct[]
+}

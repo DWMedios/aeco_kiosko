@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import WebApiAeco from '../../api/webApiAeco';
 import { useNavigate } from 'react-router-dom';
 import useWebSocket from '../../hooks/useWebSocket';
+import { SavePackaging } from '../../utils/savePackaging';
 
 const BarcodeScanner = () => {
   const navigation = useNavigate()
@@ -29,11 +30,10 @@ const BarcodeScanner = () => {
   const findProduct =async ()=>{
     try {
       const response = await WebApiAeco.findProduct(barcode)
-      console.log("🚀 ~ findProduct ~ response:", response)
+      SavePackaging({ name: response.name, packaging: response.capacity.packaging })
       sendCommand('BUS')
       navigation('/accepted')
     } catch (error) {
-      console.log("🚀 ~ findProduct ~ error:", error)
       sendCommand('J')
       navigation('/rejected')
     }finally{
