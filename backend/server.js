@@ -6,6 +6,8 @@ const cors = require('cors')
 const setupWebSocket = require('./ws')
 const apiRoutes = require('./routes/api')
 const companyController = require('./controllers/companyController')
+const { getUpdates } = require('./schedules/updateSchedule')
+const { getInitialSetup } = require('./schedules/initialSetup')
 require('dotenv').config()
 
 const app = express()
@@ -21,12 +23,19 @@ app.use(
   })
 )
 app.use('/api', apiRoutes)
-
 ;(async () => {
   try {
     companyController.updateCompanyBySerialNumber()
+    console.log('Company controller.')
+
+    getInitialSetup()
+    console.log('Obtener configuracion inicial.')
+
     await setupWebSocket(server)
     console.log('WebSocket configurado correctamente.')
+
+    getUpdates()
+    console.log('Schedule configurado correctamente.')
   } catch (err) {
     console.error('Error al configurar WebSocket:', err.message)
   }
