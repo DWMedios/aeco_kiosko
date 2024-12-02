@@ -31,7 +31,6 @@ const Unidentified = () => {
   const NextSteep = () => {
     const packings = GetPackagings()
     if (packings) {
-      sendCommand('J')
       navigation(metas!.buttonDown.url)
     } else {
       sendCommand('XYYLIYLEYLDV')
