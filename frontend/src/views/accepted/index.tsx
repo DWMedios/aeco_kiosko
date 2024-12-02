@@ -17,6 +17,11 @@ import useWebSocket from '../../hooks/useWebSocket'
 import { LastPackings } from '../../utils/savePackaging'
 
 const Accepted = () => {
+  const {
+    data: metas,
+    loading,
+    error,
+  } = usePageData<MetaDataAccepted>('Accepted')
   const [product, setProduct] = useState<Packaging>()
   const { sendCommand } = useWebSocket()
 
@@ -27,12 +32,6 @@ const Accepted = () => {
   useEffect(() => {
     setProduct(LastPackings())
   }, [])
-
-  const {
-    data: metas,
-    loading,
-    error,
-  } = usePageData<MetaDataAccepted>('Accepted')
 
   if (loading || error || !metas) {
     return (
@@ -71,7 +70,7 @@ const Accepted = () => {
           </div>
         </div>
         <Button
-          action={() => sendCommand('BEB')}
+          action={() => sendCommand('IBMUB')} //Antes teniamos el BEB lo cambie para probar
           label={metas.buttonUp.label}
           url={metas.buttonUp.url}
           bgColor={
@@ -90,6 +89,7 @@ const Accepted = () => {
           }
         />
         <Button
+          action={() => sendCommand('XYDB')}
           label={metas.buttonDown.label}
           url={metas.buttonDown.url}
           bgColor={
