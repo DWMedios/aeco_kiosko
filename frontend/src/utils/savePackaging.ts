@@ -1,4 +1,5 @@
-import { Packaging } from '../interfaces'
+import WebApiAeco from '../api/webApiAeco'
+import { Movement, Packaging } from '../interfaces'
 
 export const SavePackaging = (packaging: Packaging) => {
   const packagings = GetPackagings() || { packagings: [], can: 0, bottle: 0 }
@@ -29,4 +30,14 @@ export const ClearCount = (): void => {
 export const LastPackings = (): Packaging => {
   const packagings = GetPackagings() || { packagings: [], can: 0, bottle: 0 }
   return packagings.packagings.at(-1) || { name: '', packaging: '' }
+}
+
+export const SavePreoccess = async (movement: Movement) => {
+  try {
+    await WebApiAeco.saveMovement(movement)
+    return true
+  } catch (error) {
+    console.log('🚀 ~ SavePreoccess ~ error:', error)
+    return false
+  }
 }

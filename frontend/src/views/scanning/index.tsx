@@ -14,18 +14,17 @@ const Scanning = () => {
     loading,
     error,
   } = usePageData<MetaDataScanning>('Scanning')
-    const navigation = useNavigate()
-    const { sendCommand } = useWebSocket()
+  const navigation = useNavigate()
+  const { sendCommand } = useWebSocket()
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      sendCommand('J')
+      navigation('/unidentified')
+    }, 10000)
 
-    useEffect(() => {
-      const timeout = setTimeout(() => {
-        sendCommand('J')
-        navigation('/unidentified')
-      }, 10000)
-
-      return () => clearTimeout(timeout)
-    }, [])
+    return () => clearTimeout(timeout)
+  }, [])
 
   if (loading || error || !metas) {
     return (
@@ -41,7 +40,7 @@ const Scanning = () => {
 
   return (
     <ScreenLayout image={metas?.background || '/leafBackground.png'}>
-      <BarcodeScanner/>
+      <BarcodeScanner />
       <div className="relative flex flex-col justify-center items-center h-screen gap-20">
         <div className="flex flex-col text-center h-60">
           <span className="font-extrabold text-8xl text-center tracking-wider	w-[500px]">

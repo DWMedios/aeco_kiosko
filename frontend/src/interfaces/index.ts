@@ -94,7 +94,7 @@ export enum PositionButtonEnum {
 }
 
 export interface ButtonInterface {
-  action?: () => void | null
+  action?: () => void | Promise<void> | null
   bgColor?: BackgroundButtonEnum | null
   borderRadius?: BorderRadiusEnum
   label: string
@@ -184,4 +184,11 @@ export interface Packagings {
   can: number
   bottle: number
   packagings: Packaging[]
+}
+
+export interface Movement {
+  can_number: number
+  bottle_number: number
+  folio: string
+  synchronized: boolean
 }

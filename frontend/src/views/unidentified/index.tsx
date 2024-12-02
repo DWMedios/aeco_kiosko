@@ -12,7 +12,7 @@ import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
-import { GetPackagings } from '../../utils/savePackaging'
+import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
 import { useNavigate } from 'react-router-dom'
 
 const Unidentified = () => {
@@ -28,11 +28,19 @@ const Unidentified = () => {
     sendCommand('YLWDY')
   }, [])
 
-  const NextSteep = () => {
+  const NextSteep = async () => {
     const packings = GetPackagings()
     if (packings) {
-      sendCommand('XYDB')
-      navigation(metas!.buttonDown.url)
+      const saveMovement = await SavePreoccess({
+        can_number: packings.can,
+        bottle_number: packings.bottle,
+        folio: '1',
+        synchronized: false,
+      })
+      if (saveMovement) {
+        sendCommand('XYDB')
+        navigation(metas!.buttonDown.url)
+      }
     } else {
       sendCommand('XYYLIYLEYLDV')
       navigation('/home')
@@ -86,7 +94,7 @@ const Unidentified = () => {
         />
 
         <Button
-          action={NextSteep}
+          action={() => NextSteep()}
           label={metas.buttonDown.label}
           // url={metas.buttonDown.url}
           bgColor={

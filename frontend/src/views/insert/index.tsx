@@ -20,14 +20,13 @@ const Insert = () => {
     return () => clearTimeout(timeout)
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     const { success, message } = command
-    console.log("🚀 ~ useEffect ~ message:", message)
+    console.log('🚀 ~ useEffect ~ message:', message)
     if (success && message === 'I') {
-       navigation('/scanning')
+      navigation('/scanning')
     }
   }, [command])
-
 
   if (loading || error || !metas) {
     return (
