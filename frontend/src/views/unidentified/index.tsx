@@ -12,6 +12,8 @@ import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
+import { GetPackagings } from '../../utils/savePackaging'
+import { useNavigate } from 'react-router-dom'
 
 const Unidentified = () => {
   const {
@@ -19,11 +21,23 @@ const Unidentified = () => {
     loading,
     error,
   } = usePageData<MetaDataUnidentified>('Unidentified')
-  const { command, sendCommand } = useWebSocket()
+  const navigation = useNavigate()
+  const { sendCommand } = useWebSocket()
 
   useEffect(() => {
     sendCommand('YLWDY')
   }, [])
+
+  const NextSteep = () => {
+    const packings = GetPackagings()
+    if (packings) {
+      sendCommand('J')
+      navigation(metas!.buttonDown.url)
+    } else {
+      sendCommand('XYYLIYLEYLDV')
+      navigation('/home')
+    }
+  }
 
   if (loading || error || !metas) {
     return (
@@ -72,9 +86,9 @@ const Unidentified = () => {
         />
 
         <Button
-          // action={() => sendCommand('XYDB')}
+          action={NextSteep}
           label={metas.buttonDown.label}
-          url={metas.buttonDown.url}
+          // url={metas.buttonDown.url}
           bgColor={
             BackgroundButtonEnum[
               metas.buttonDown.bgColor as keyof typeof BackgroundButtonEnum

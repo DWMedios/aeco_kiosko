@@ -23,10 +23,9 @@ const Rejected = () => {
 
   const { sendCommand } = useWebSocket()
 
-    useEffect(() => {
-      sendCommand('YLWDY')
-    }, [])
-
+  useEffect(() => {
+    sendCommand('YLWDY')
+  }, [])
 
   if (loading || error || !metas) {
     return (
