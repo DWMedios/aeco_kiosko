@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { TimerProps } from '../../interfaces'
 
-interface CountdownTimerProps {
-  initialTime: number
-  className?: string
-  onEnd?: () => void
-}
-
-const CountdownTimer = ({
+const Timer = ({
   initialTime,
   className,
   onEnd,
-}: CountdownTimerProps) => {
+}: TimerProps) => {
   const [timeLeft, setTimeLeft] = useState(initialTime)
   const navigate = useNavigate()
 
@@ -44,4 +39,4 @@ const CountdownTimer = ({
   )
 }
 
-export default CountdownTimer
+export default Timer

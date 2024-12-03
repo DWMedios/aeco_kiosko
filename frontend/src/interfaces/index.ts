@@ -192,3 +192,10 @@ export interface Movement {
   folio: string
   synchronized: boolean
 }
+
+
+export interface TimerProps {
+  initialTime: number
+  className?: string
+  onEnd?: () => void
+}
