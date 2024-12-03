@@ -17,7 +17,7 @@ const FinalView = () => {
     setTimeout(() => {
       console.log('Termino el tiempo')
       navigation('/home')
-    }, 15000)
+    }, 20000)
   })
 
   return (
