@@ -9,6 +9,6 @@ const initializeDatabase = async () => {
 }
 
 exports.create = async (data) => {
-  const { Movements } = await initializeDatabase()
-  return await Movements.create(data)
+  const { Movement } = await initializeDatabase()
+  return await Movement.create(data)
 }

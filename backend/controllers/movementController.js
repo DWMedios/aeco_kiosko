@@ -2,7 +2,6 @@ const movementRepository = require('../repositories/movementRepository')
 const HTTP_CODES = require('../utils/http-status-codes')
 
 exports.create = async (req, res) => {
-  console.log('🚀 ~ exports.create= ~ req:', req)
   try {
     const data = req.body
     if (!data) {

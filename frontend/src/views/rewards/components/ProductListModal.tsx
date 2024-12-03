@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { GetPackagings } from '../../../utils/savePackaging'
-import { Products } from '../../../interfaces'
+import { Packagings } from '../../../interfaces'
 
 const ProductListModal = () => {
-  const [products, setProducts] = useState<Products | null>( null )
+  const [products, setProducts] = useState<Packagings | null>( null )
 
   useEffect(() => {
     setProducts( GetPackagings() )
@@ -13,7 +13,7 @@ const ProductListModal = () => {
     <div className="flex flex-col justify-center items-center">
       <div className="h-[250px] w-[500px] overflow-y-scroll custom-scrollbar">
         <ul className="space-y-2 text-center">
-          {products?.products.map((p, i) => (
+          {products?.packagings.map((p, i) => (
             <li
               key={i}
               className="p-1 text-3xl tracking-wider leading-10"

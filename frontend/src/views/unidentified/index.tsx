@@ -43,6 +43,7 @@ const Unidentified = () => {
       }
     } else {
       sendCommand('XYYLIYLEYLDV')
+      sendCommand('YLWDY')
       navigation('/home')
     }
   }

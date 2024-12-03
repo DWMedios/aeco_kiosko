@@ -16,13 +16,13 @@ import LangHelp from './components/LangHelp'
 import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
-import { ClearCount } from '../../utils/savePackaging'
+import { ClearCountPackings } from '../../utils/savePackaging'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
 
   useEffect(() => {
-    ClearCount()
+    ClearCountPackings()
   }, [])
 
   if (loading || error || !metas) {

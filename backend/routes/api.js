@@ -23,6 +23,6 @@ router.get('/pages', pageController.getPageByName)
 
 router.get('/aeco', aecoController.getAecoUpdate)
 
-router.get('/movements', movementController.create)
+router.post('/movements', movementController.create)
 
 module.exports = router

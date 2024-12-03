@@ -28,14 +28,14 @@ app.use('/api', apiRoutes)
     companyController.updateCompanyBySerialNumber()
     console.log('Company controller.')
 
-    getInitialSetup()
-    console.log('Obtener configuracion inicial.')
+    // getInitialSetup()
+    // console.log('Obtener configuracion inicial.')
 
     await setupWebSocket(server)
     console.log('WebSocket configurado correctamente.')
 
-    getUpdates()
-    console.log('Schedule configurado correctamente.')
+    // getUpdates()
+    // console.log('Schedule configurado correctamente.')
   } catch (err) {
     console.error('Error al configurar WebSocket:', err.message)
   }

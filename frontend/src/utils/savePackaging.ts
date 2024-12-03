@@ -23,7 +23,7 @@ export const GetPackagings = (): {
   return data ? JSON.parse(data) : null
 }
 
-export const ClearCount = (): void => {
+export const ClearCountPackings = (): void => {
   sessionStorage.clear()
 }
 
