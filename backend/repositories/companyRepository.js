@@ -28,7 +28,8 @@ exports.create = async data => {
   return await Company.create(data)
 }
 
-exports.update = async (id, data) => {
+exports.update = async (id, data, transaction) => {
+  console.log('🚀 ~ exports.update= ~ data:', data)
   const { Company } = await initializeDatabase()
-  return await Company.update(data, { where: { id } })
+  return await Company.update(data, { where: { id }, transaction})
 }

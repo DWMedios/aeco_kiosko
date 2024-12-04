@@ -37,7 +37,6 @@ export const SavePreoccess = async (movement: Movement) => {
     await WebApiAeco.saveMovement(movement)
     return true
   } catch (error) {
-    console.log('🚀 ~ SavePreoccess ~ error:', error)
     return false
   }
 }

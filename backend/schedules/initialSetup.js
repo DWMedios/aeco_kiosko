@@ -1,13 +1,19 @@
-const { savePages } = require('../repositories/pageRepository')
+const connectToDatabase = require('../db/index')
+const { update } = require('../repositories/companyRepository')
 
 const { fetchFromApi } = require('./fetchHelper')
 
 const getInitialSetup = async () => {
+  const { sequelize } = await connectToDatabase()
+  const transaction = await sequelize.transaction()
   try {
+
     const data = await fetchFromApi('/aecos/initial-setup/AECO123456')
-    await savePages(data.pages)
-    await finishSetup('init', 'AECO123456')
+    await update(1, {name: data.company.name}, transaction)
+    // await finishSetup('init', 'AECO123456')
+    transaction.commit()
   } catch (error) {
+    transaction.rollback()
     console.error('Error initial setup:', error)
   }
 }

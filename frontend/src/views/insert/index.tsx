@@ -22,7 +22,6 @@ const Insert = () => {
 
   useEffect(() => {
     const { success, message } = command
-    console.log('🚀 ~ useEffect ~ message:', message)
     if (success && message === 'I') {
       navigation('/scanning')
     }

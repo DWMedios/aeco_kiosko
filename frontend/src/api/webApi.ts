@@ -14,7 +14,6 @@ class WebApi {
       body: method !== 'GET' ? body : undefined,
       headers: headers ? headers : {},
     }
-    console.log("🚀 ~ WebApi ~ body:", body)
 
     return fetchRequest<T>(options)
   }

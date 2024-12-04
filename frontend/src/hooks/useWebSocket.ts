@@ -42,7 +42,6 @@ const useWebSocket = (): WebSocketHook => {
 
   const sendCommand = useCallback(
     (message: string) => {
-      console.log("🚀 ~ MENSAJE ENVIADO:", message)
       if (socket && socket.readyState === WebSocket.OPEN) {
         socket.send(JSON.stringify({ command: message }))
       }
