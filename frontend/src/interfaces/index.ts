@@ -193,9 +193,13 @@ export interface Movement {
   synchronized: boolean
 }
 
-
 export interface TimerProps {
   initialTime: number
   className?: string
   onEnd?: () => void
+}
+
+export interface ScreenLayoutProps extends Layout {
+  showTimer?: boolean
+  timerInitialTime?: number
 }

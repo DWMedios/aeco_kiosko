@@ -15,7 +15,7 @@ exports.getAll = async () => {
   })
 }
 
-exports.getBySerialNumber = async serialNumber => {
+exports.getBySerialNumber = async (serialNumber) => {
   const { Company } = await initializeDatabase()
   return await Company.findOne({
     where: { serialNumber },
@@ -23,13 +23,12 @@ exports.getBySerialNumber = async serialNumber => {
   })
 }
 
-exports.create = async data => {
+exports.create = async (data) => {
   const { Company } = await initializeDatabase()
   return await Company.create(data)
 }
 
-exports.update = async (id, data, transaction) => {
-  console.log('🚀 ~ exports.update= ~ data:', data)
+exports.updateCompany = async (id, data, transaction) => {
   const { Company } = await initializeDatabase()
-  return await Company.update(data, { where: { id }, transaction})
+  return await Company.update(data, { where: { id }, transaction })
 }

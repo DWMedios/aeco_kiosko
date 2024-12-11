@@ -38,7 +38,7 @@ function Home() {
   }
 
   return (
-    <ScreenLayout image={metas.background}>
+    <ScreenLayout image={metas.background} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
         <img

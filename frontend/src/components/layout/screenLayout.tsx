@@ -1,11 +1,6 @@
-import { Layout } from '../../interfaces'
+import { ScreenLayoutProps } from '../../interfaces'
 import CountdownTimer from '../timer'
 import ImageBackground from './components/imageBackground'
-
-interface ScreenLayoutProps extends Layout {
-  showTimer?: boolean // Nueva propiedad para mostrar u ocultar el temporizador
-  timerInitialTime?: number // Tiempo inicial para el temporizador (si lo necesitas)
-}
 
 const ScreenLayout = ({
   children,

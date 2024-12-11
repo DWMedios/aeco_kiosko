@@ -1,18 +1,21 @@
 const connectToDatabase = require('../db/index')
-const { update } = require('../repositories/companyRepository')
+const { updateCompany } = require('../repositories/companyRepository')
+const { createLog } = require('../repositories/userRepository')
 
 const { fetchFromApi } = require('./fetchHelper')
 
 const getInitialSetup = async () => {
   const { sequelize } = await connectToDatabase()
   const transaction = await sequelize.transaction()
+  const newLog = { type: 'inital' }
   try {
-
     const data = await fetchFromApi('/aecos/initial-setup/AECO123456')
-    await update(1, {name: data.company.name}, transaction)
-    // await finishSetup('init', 'AECO123456')
+    await updateCompany(1, { name: data.company.name }, transaction)
     transaction.commit()
+    await createLog(newLog)
+    await finishSetup('init', 'AECO123456')
   } catch (error) {
+    await createLog({ ...newLog, status: false, message: error.message })
     transaction.rollback()
     console.error('Error initial setup:', error)
   }

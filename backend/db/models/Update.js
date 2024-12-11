@@ -10,9 +10,18 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
+      type: {
+        type: DataTypes.ENUM('initial', 'update'),
+        allowNull: false,
+      },
       status: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: true,
+      },
+      message: {
+        type: DataTypes.STRING(550),
+        allowNull: true,
       },
     },
     {
