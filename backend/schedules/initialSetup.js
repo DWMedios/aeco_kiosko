@@ -1,6 +1,6 @@
 const connectToDatabase = require('../db/index')
 const { updateCompany } = require('../repositories/companyRepository')
-const { createLog } = require('../repositories/userRepository')
+const { createLog } = require('../repositories/updateRepository')
 
 const { fetchFromApi } = require('./fetchHelper')
 
