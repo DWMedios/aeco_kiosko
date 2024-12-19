@@ -3,9 +3,9 @@ const cron = require('node-cron')
 const connectToDatabase = require('../db/index')
 const { createLog } = require('../repositories/aecoRepository')
 const { savePages } = require('../repositories/pageRepository')
+const { fetchFromApi } = require('../utils/fetchHelper')
 
 const { finishSetup } = require('./initialSetup')
-const { fetchFromApi } = require('./fetchHelper')
 require('dotenv').config()
 
 const getUpdates = async () => {

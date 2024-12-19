@@ -2,7 +2,7 @@ const connectToDatabase = require('../db/index')
 const { updateCompany } = require('../repositories/companyRepository')
 const { createLog } = require('../repositories/updateRepository')
 
-const { fetchFromApi } = require('./fetchHelper')
+const { fetchFromApi } = require('../fetchHelper')
 
 const getInitialSetup = async () => {
   const { sequelize } = await connectToDatabase()
