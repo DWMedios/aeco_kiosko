@@ -11,13 +11,13 @@ require('dotenv').config()
 const getUpdates = async () => {
   const { sequelize } = await connectToDatabase()
   const transaction = await sequelize.transaction()
-  const newLog = { type: 'inital' }
+  const newLog = { type: 'Initial' }
   try {
-    const data = await fetchFromApi('/aecos/needs-update/AECO123456')
+    const data = await fetchFromApi('/aecos/needs-update/476e046a591f9c8a')
     transaction.commit()
     await savePages(data.pages)
     await createLog(newLog)
-    await finishSetup('updated', 'AECO123456')
+    await finishSetup('updated', '476e046a591f9c8a')
   } catch (error) {
     await createLog({ ...newLog, status: false, message: error.message })
     transaction.rollback()

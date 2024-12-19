@@ -5,7 +5,7 @@ import ImageBackground from './components/imageBackground'
 const ScreenLayout = ({
   children,
   image,
-  showTimer = false,
+  showTimer = true,
   timerInitialTime = 60,
 }: ScreenLayoutProps) => {
   return (

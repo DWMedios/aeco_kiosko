@@ -6,7 +6,7 @@ const cors = require('cors')
 const setupWebSocket = require('./ws')
 const apiRoutes = require('./routes/api')
 const companyController = require('./controllers/companyController')
-const { getUpdates } = require('./schedules/updateSchedule')
+// const { getUpdates } = require('./schedules/updateSchedule')
 const { getInitialSetup } = require('./schedules/initialSetup')
 require('dotenv').config()
 

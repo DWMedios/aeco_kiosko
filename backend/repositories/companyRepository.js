@@ -15,6 +15,14 @@ exports.getAll = async () => {
   })
 }
 
+exports.getById = async () => {
+  const { Company } = await initializeDatabase()
+  return await Company.findOne({
+    where: { id: 1 },
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
+  })
+}
+
 exports.getBySerialNumber = async (serialNumber) => {
   const { Company } = await initializeDatabase()
   return await Company.findOne({
