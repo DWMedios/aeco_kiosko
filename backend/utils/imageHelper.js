@@ -1,11 +1,11 @@
-import fs from 'fs'
-import path from 'path'
+const fs = require('fs')
+const path = require('path')
 
-const { fetchFromApi } = require('../fetchHelper')
+const { fetchFromApi } = require('../utils/fetchHelper')
 
 const directory = '/app/public/images'
 
-export const downloadImage = async (imageUrl, fileName) => {
+exports.downloadImage = async (imageUrl, fileName) => {
   try {
     const response = await fetchFromApi(imageUrl)
 

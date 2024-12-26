@@ -3,6 +3,7 @@ const { updateCompany, getById } = require('../repositories/companyRepository')
 const { createLog } = require('../repositories/updateRepository')
 
 const { fetchFromApi } = require('../utils/fetchHelper')
+const { downloadImage } = require('../utils/imageHelper')
 
 const getInitialSetup = async () => {
   const { sequelize } = await connectToDatabase()
@@ -33,4 +34,16 @@ const finishSetup = async (type, serialNumber) => {
   }
 }
 
-module.exports = { getInitialSetup, finishSetup }
+const downLoadImage = async () => {
+  console.log('Init download proccess')
+  
+  const path = 'https://s3-bucket-dev-acea.s3.us-east-1.amazonaws.com/dw/demo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA4T4OCMARJGAXWMH3%2F20241226%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241226T202357Z&X-Amz-Expires=3600&X-Amz-Signature=d82ebc8164f7a75bf6026af4a99ab2b43109a89bdebdc97908ea3c1c74677325&X-Amz-SignedHeaders=host&x-id=GetObject'
+  try {
+    await downloadImage(path)
+  } catch (error) {
+    console.log('🚀 ~ downloadImage ~ error:', error)
+    
+  }
+}
+
+module.exports = { getInitialSetup, finishSetup, downLoadImage }

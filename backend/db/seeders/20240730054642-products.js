@@ -698,8 +698,8 @@ module.exports = {
                       (694,'7501055355471','Coca Cola','Cristal agua Quinada',7),
                       (695,'75065201','Nestle','Levité Fresa 300ml.',20),
                       (696,'7501073800113','Pepsico','Agua Natural Peñafiel 1.5L.',3),
-                      (697,'7501055313532','Coca Cola','Coca Cola 1.75l.',14)
-                      (698,'7501055366347','Coca Cola','Sprite 355ml.',8)
+                      (697,'7501055313532','Coca Cola','Coca Cola 1.75l.',14),
+                      (698,'7501055366347','Coca Cola','Sprite 355ml.',8),
                       (699,'7501055349401','Coca Cola','Coca Cola 255ml.',13)
                       ;`
 
