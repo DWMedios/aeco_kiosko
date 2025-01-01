@@ -48,7 +48,7 @@ const ListDiscounts = () => {
         {currentDiscounts.map((discount, index) => (
           <CardReward
             key={index}
-            imageSrc={discount.imageSrc}
+            imageSrc={discount.imgSrc}
             label={discount.label}
             url={discount.url}
           />

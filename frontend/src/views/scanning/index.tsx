@@ -39,7 +39,7 @@ const Scanning = () => {
   }
 
   return (
-    <ScreenLayout image={metas?.background || '/leafBackground.png'}>
+    <ScreenLayout image={metas.imgBg || '/leafBackground.png'}>
       <BarcodeScanner />
       <div className="relative flex flex-col justify-center items-center h-screen gap-20">
         <div className="flex flex-col text-center h-60">

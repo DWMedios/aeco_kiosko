@@ -28,7 +28,7 @@ const AddBarcode = () => {
     'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Quiero%20registrar%20un%20Código%20de%20Barras!'
 
   return (
-    <ScreenLayout image={metas.background}>
+    <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-12">
         <BackButton url="/example" />
         <div className="flex flex-col justify-center items-center">

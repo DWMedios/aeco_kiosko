@@ -42,7 +42,7 @@ const ListCardPoints = () => {
         {currentCardPoints.map((cardPoint, index) => (
           <CardReward
             key={index}
-            imageSrc={cardPoint.imageSrc}
+            imageSrc={cardPoint.imgSrc}
             label={cardPoint.label}
             url={cardPoint.url}
           />

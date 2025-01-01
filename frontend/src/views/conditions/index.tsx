@@ -35,7 +35,7 @@ const Conditions = () => {
   }
 
   return (
-    <ScreenLayout image={metas.background}>
+    <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none">
         <BackButton url="/home" />
         <div className="flex flex-col justify-center items-center text-center">

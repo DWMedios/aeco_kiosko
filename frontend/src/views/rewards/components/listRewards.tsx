@@ -13,7 +13,7 @@ const ListRewards = () => {
         {RewardsList.map((Reward, index) => (
           <CardReward
             key={index}
-            imageSrc={Reward.imageSrc}
+            imageSrc={Reward.imgSrc}
             label={Reward.label}
             url={Reward.url}
           />

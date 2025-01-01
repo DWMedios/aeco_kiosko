@@ -38,17 +38,17 @@ function Home() {
   }
 
   return (
-    <ScreenLayout image={metas.background} showTimer={false}>
+    <ScreenLayout image={metas.imgBg} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
         <img
           className="w-[500px] fixed top-44"
-          src={metas.logoUp.path}
+          src={metas.logoUp.imgUp}
           alt={metas.logoUp.alt}
         />
         <img
           className="w-11/12 fixed top-1/4"
-          src={metas.logoDown.path}
+          src={metas.logoDown.imgDown}
           alt={metas.logoDown.alt}
         />
         <LangHelp />
