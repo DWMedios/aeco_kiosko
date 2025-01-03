@@ -15,14 +15,14 @@ const LangHelp = () => {
         <Link to="/language">
           <img
             className="w-20"
-            src={metas.logoLang.path}
+            src={metas.logoLang.imgLang}
             alt={metas.logoLang.alt}
           />
         </Link>
         <Link to="/help">
           <img
             className="w-20"
-            src={metas.logoHelp.path}
+            src={metas.logoHelp.imgHelp}
             alt={metas.logoHelp.alt}
           />
         </Link>

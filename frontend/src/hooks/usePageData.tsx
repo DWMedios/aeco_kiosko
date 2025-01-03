@@ -10,6 +10,7 @@ export function usePageData<T>(pageName: string) {
     const fetchData = async () => {
       try {
         const response = await WebApiAeco.getPage(pageName)
+        console.log("🚀 ~ fetchData ~ response:", response)
         if (!response) {
           throw new Error('Page not found')
         }
