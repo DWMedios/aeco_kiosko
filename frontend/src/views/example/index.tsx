@@ -33,7 +33,7 @@ const Example = () => {
   }
 
   return (
-    <ScreenLayout image={metas.background}>
+    <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center w-[550px]">
           <span className="text-6xl text-center">
@@ -42,7 +42,7 @@ const Example = () => {
           </span>
         </div>
         <img
-          src={metas.centerImage}
+          src={metas.imgCenter}
           alt="Example image"
           className="m-20 w-80 h-[600px]"
         />

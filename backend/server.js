@@ -7,7 +7,7 @@ const setupWebSocket = require('./ws')
 const apiRoutes = require('./routes/api')
 const companyController = require('./controllers/companyController')
 // const { getUpdates } = require('./schedules/updateSchedule')
-const { getInitialSetup } = require('./schedules/initialSetup')
+// const { getInitialSetup } = require('./schedules/initialSetup')
 require('dotenv').config()
 
 const app = express()
@@ -28,8 +28,8 @@ app.use('/api', apiRoutes)
     companyController.updateCompanyBySerialNumber()
     console.log('Company controller.')
 
-    getInitialSetup()
-    console.log('Obtener configuracion inicial.')
+    // getInitialSetup()
+    // console.log('Obtener configuracion inicial.')
 
     await setupWebSocket(server)
     console.log('WebSocket configurado correctamente.')
@@ -38,7 +38,11 @@ app.use('/api', apiRoutes)
     // console.log('Schedule configurado correctamente.')
 
     // downLoadImage()
+<<<<<<< HEAD
     console.log('Init download Image')
+=======
+    // console.log('Init download Image')
+>>>>>>> 428dd7d9b6e28dc2abf286467171bda18509a5b9
   } catch (err) {
     console.error('Error al configurar WebSocket:', err.message)
   }

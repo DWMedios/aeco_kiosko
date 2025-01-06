@@ -37,7 +37,7 @@ const ListDonatives = () => {
         {currentDonatives.map((donative, index) => (
           <CardReward
             key={index}
-            imageSrc={donative.imageSrc}
+            imageSrc={donative.imgSrc}
             label={donative.label}
             url={donative.url}
           />
