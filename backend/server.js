@@ -38,11 +38,7 @@ app.use('/api', apiRoutes)
     // console.log('Schedule configurado correctamente.')
 
     // downLoadImage()
-<<<<<<< HEAD
-    console.log('Init download Image')
-=======
     // console.log('Init download Image')
->>>>>>> 428dd7d9b6e28dc2abf286467171bda18509a5b9
   } catch (err) {
     console.error('Error al configurar WebSocket:', err.message)
   }

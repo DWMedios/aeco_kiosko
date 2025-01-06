@@ -26,6 +26,7 @@ function Home() {
   }, [])
 
   if (loading || error || !metas) {
+    console.log("🚀 ~ Home ~ metas:", metas?.imgBg)
     return (
       <div>
         {loading
