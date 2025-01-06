@@ -7,7 +7,7 @@ const setupWebSocket = require('./ws')
 const apiRoutes = require('./routes/api')
 const companyController = require('./controllers/companyController')
 // const { getUpdates } = require('./schedules/updateSchedule')
-const { getInitialSetup, downLoadImage } = require('./schedules/initialSetup')
+const { getInitialSetup } = require('./schedules/initialSetup')
 require('dotenv').config()
 
 const app = express()
@@ -37,7 +37,7 @@ app.use('/api', apiRoutes)
     // getUpdates()
     // console.log('Schedule configurado correctamente.')
 
-    downLoadImage()
+    // downLoadImage()
     console.log('Init download Image')
   } catch (err) {
     console.error('Error al configurar WebSocket:', err.message)
