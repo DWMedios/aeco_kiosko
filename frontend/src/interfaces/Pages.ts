@@ -3,18 +3,13 @@ export interface MetaDataLanguage {
   imgBg: string
 }
 
-export interface LogoPage {
-  alt: string
-  path: string
-}
-
 export interface MetaDataHome {
   button: PageButton
-  imgUp: LogoPage
-  imgDown: LogoPage
+  imgUp: string
+  imgDown: string
   imgBg: string
-  imgHelp: LogoPage
-  imgLang: LogoPage
+  imgHelp: string
+  imgLang: string
 }
 
 export interface TextPage {

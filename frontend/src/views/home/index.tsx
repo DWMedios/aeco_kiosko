@@ -44,13 +44,11 @@ function Home() {
         <Navbar />
         <img
           className="w-[500px] fixed top-44"
-          src={metas.logoUp.imgUp}
-          alt={metas.logoUp.alt}
+          src={metas.imgUp}
         />
         <img
           className="w-11/12 fixed top-1/4"
-          src={metas.logoDown.imgDown}
-          alt={metas.logoDown.alt}
+          src={metas.imgDown}
         />
         <LangHelp />
         <Button
