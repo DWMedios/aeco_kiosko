@@ -83,6 +83,7 @@ module.exports = {
             textColor: 'black',
             borderRadious: 'xl3',
             fontSize: 'xl6',
+            borderColor: 'green'
           },
           lists: [
             {
