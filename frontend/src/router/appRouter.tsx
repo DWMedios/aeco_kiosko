@@ -29,12 +29,11 @@ const AppRouter = () => {
     <Routes>
       <Route path="/" element={<SplashScreen />} />
       <Route path="/LoadingOffline" element={<LoadingOffline />} />
-      <Route path="/conditions" element={<Conditions />} />
-      <Route path="/example" element={<Example />} />
-      <Route path="/loadingOfline" element={<LoadingOffline />} />
       <Route path="/home" element={<Home />} />
       <Route path="/language" element={<Language />} />
       <Route path="/help" element={<Help />} />
+      <Route path="/conditions" element={<Conditions />} />
+      <Route path="/example" element={<Example />} />
       <Route path="/rewards" element={<Rewards />} />
       <Route path="/discounts" element={<Discounts />} />
       <Route path="/donative" element={<Donatives />} />

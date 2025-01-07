@@ -2,9 +2,9 @@ import CardReward from '../../../components/cardReward'
 
 const ListRewards = () => {
   const RewardsList = [
-    { imageSrc: '/images/QRcode.png', label: 'Descuentos', url: '/discounts' },
-    { imageSrc: '/images/QRcode.png', label: 'Tarjeta', url: '/card_points' },
-    { imageSrc: '/images/QRcode.png', label: 'Donativo', url: '/donative' },
+    { imgSrc: '/images/QRcode.png', label: 'Descuentos', url: '/discounts' },
+    { imgSrc: '/images/QRcode.png', label: 'Tarjeta', url: '/card_points' },
+    { imgSrc: '/images/QRcode.png', label: 'Donativo', url: '/donative' },
   ]
 
   return (

@@ -168,6 +168,14 @@ module.exports = {
             borderRadious: 'xl3',
             fontSize: 'xl6',
           },
+          buttonCenter: {
+            label: 'AÑADIR CÓDIGO',
+            bgColor: 'pink',
+            url: '/addBarcode',
+            textColor: 'pink',
+            borderRadious: 'xl3',
+            fontSize: 'xl6',
+          },
           buttonDown: {
             label: 'FINALIZAR',
             bgColor: 'pink',

@@ -5,16 +5,16 @@ import PaginationButtons from '../../../components/paginationButtons'
 
 const ListCardPoints = () => {
   const cardPoints = [
-    { imageSrc: 'images/QRcode.png', label: 'Va y Ven', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'IE-Tram', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'OXXO Spin', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Va y Ven', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'IE-Tram', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'OXXO Spin', url: '/voucher' },
     {
-      imageSrc: 'images/QRcode.png',
+      imgSrc: 'images/QRcode.png',
       label: 'Farmacias del Ahorro',
       url: '/voucher',
     },
-    { imageSrc: 'images/QRcode.png', label: 'La Gas', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Z Gas', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'La Gas', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Z Gas', url: '/voucher' },
   ]
 
   const [currentPage, setCurrentPage] = useState(0)

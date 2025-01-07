@@ -27,7 +27,7 @@ export interface MetaDataHelp {
 export interface MetaDataExample {
   button: PageButton
   imgBg: string
-  centerImage: string
+  imgCenter: string
   description: string
 }
 
