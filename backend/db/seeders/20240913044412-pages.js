@@ -171,7 +171,7 @@ module.exports = {
           buttonCenter: {
             label: 'AÑADIR CÓDIGO',
             bgColor: 'pink',
-            url: '/addBarcode',
+            url: '/add_barcode',
             textColor: 'pink',
             borderRadious: 'xl3',
             fontSize: 'xl6',
