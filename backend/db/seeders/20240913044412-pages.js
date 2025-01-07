@@ -6,7 +6,7 @@ module.exports = {
         id: 1,
         name: 'Home',
         metadata: {
-          imgBg: 'home_imageBg.png',
+          imgBg: 'home_background.png',
           imgLang:  '/images/language_icon.png',
           imgHelp: '/images/Help_icon.png',
           imgUp: '/images/aeco.png',
@@ -95,7 +95,7 @@ module.exports = {
         id: 5,
         name: 'Example',
         metadata: {
-          imgBg: 'leafimageBg.png',
+          imgBg: 'leafBackground.png',
           description: 'Inserta tu envase con el código de barras hacia arriba',
           imgCenter: '/images/example.png',
           button: {
@@ -112,7 +112,7 @@ module.exports = {
         id: 6,
         name: 'Insert',
         metadata: {
-          imgBg: 'leafimageBg.png',
+          imgBg: 'leafBackground.png',
           title: 'INSERTAR ENVASE',
           description: 'EL RECICLAJE COMIENZA AQUÍ',
           imgCenter: '/images/containers.png',
@@ -122,7 +122,7 @@ module.exports = {
         id: 7,
         name: 'Scanning',
         metadata: {
-          imgBg: 'leafimageBg.png',
+          imgBg: 'leafBackground.png',
           title: 'LEYENDO',
           description: 'ESTAMOS TRABAJANDO PARA TI',
           imgCenter: '/images/containers.png',
@@ -157,7 +157,7 @@ module.exports = {
         id: 9,
         name: 'Rejected',
         metadata: {
-          imgBg: 'leafimageBg.png',
+          imgBg: 'leafBackground.png',
           title: 'ENVASE RECHAZADO',
           imgCenter: '/images/rejected.png',
           buttonUp: {
@@ -187,7 +187,7 @@ module.exports = {
         id: 10,
         name: 'Unidentified',
         metadata: {
-          imgBg: 'leafimageBg.png',
+          imgBg: 'leafBackground.png',
           title: 'ENVASE NO IDENTIFICADO',
           buttonUp: {
             label: '¡INTENTAR DE NUEVO!',
@@ -211,7 +211,7 @@ module.exports = {
         id: 11,
         name: 'AddBarcode',
         metadata: {
-          imgBg: 'leafimageBg.png',
+          imgBg: 'leafBackground.png',
           textCenter: {
             title: 'AÑADIR CÓDIGO DE BARRAS',
             description:
