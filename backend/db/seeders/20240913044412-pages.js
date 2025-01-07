@@ -25,7 +25,7 @@ module.exports = {
         id: 2,
         name: 'Language',
         metadata: {
-          imgBg: 'language_imageBg.png',
+          imgBg: 'leafBackground.png',
           button: {
             imgBg: 'language_imageBg.png',
             button: {
@@ -44,7 +44,7 @@ module.exports = {
         id: 3,
         name: 'Help',
         metadata: {
-          imgBg: 'help_imageBg.png',
+          imgBg: 'leafBackground.png',
           textCenter: {
             title: 'Soporte',
             description: 'Cualquier duda o aclaración estamos para escucharte.',
@@ -132,7 +132,7 @@ module.exports = {
         id: 8,
         name: 'Accepted',
         metadata: {
-          imgBg: 'imageBgAccepted.png',
+          imgBg: 'leafBackground.png',
           title: 'ENVASE ACEPTADO',
           imgCenter: '/images/bottleAccepted.png',
           buttonUp: {
