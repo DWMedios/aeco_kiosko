@@ -12,7 +12,7 @@ const FinalView = () => {
     ' https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Estoy%20interesado%20en%20el%20proyecto!'
 
   return (
-    <ScreenLayout image="lastView.png" showTimer={true} timerInitialTime={20}>
+    <ScreenLayout image="lastView.png" timerInitialTime={20}>
       <div className="flex flex-col justify-center items-center text-center gap-16 h-screen select-none z-10">
         <h1 className="text-7xl font-normal z-10 mb-12 w-[600px]">
           ¿TE INTERESA EL PROYECTO?
