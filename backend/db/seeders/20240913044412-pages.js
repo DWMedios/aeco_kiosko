@@ -11,18 +11,9 @@ module.exports = {
             imgLang: '/images/language_icon.png',
             alt: 'Language icon',
           },
-          logoHelp: {
-            imgHelp: '/images/Help_icon.png',
-            alt: 'Help icon',
-          },
-          logoUp: {
-            imgUp: '/images/aeco.png',
-            alt: 'AECO Logo up',
-          },
-          logoDown: {
-            imgDown: '/images/reciclaygana.png',
-            alt: 'Recicla y Gana Logo down',
-          },
+          imgHelp: '/images/Help_icon.png',
+          imgUp: '/images/aeco.png',
+          imgDown: '/images/reciclaygana.png',
           button: {
             label: 'INICIAR',
             bgColor: 'pink',
@@ -83,7 +74,7 @@ module.exports = {
             textColor: 'black',
             borderRadious: 'xl3',
             fontSize: 'xl6',
-            borderColor: 'green'
+            borderColor: 'green',
           },
           lists: [
             {

@@ -1,11 +1,18 @@
-import { FontSizeEnum, TextColorEnum } from '../../../interfaces'
-
+import { useState, useEffect } from 'react'
+import { FontSizeEnum, Packagings, TextColorEnum } from '../../../interfaces'
 import Button from '../../../components/button'
 import QRCodeComponent from '../../../components/qrCode'
+import { GetPackagings } from '../../../utils/savePackaging'
 
 const Ticket = () => {
+  const [products, setProducts] = useState<Packagings | null>( null )
   const QrCodeUrl =
     'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
+
+    
+  useEffect(() => {
+    setProducts( GetPackagings() )
+  }, [])
 
   return (
     <div className="border-t-[10px]  border-dashed border-black w-[800px] h-[1450px] z-10">
@@ -19,6 +26,13 @@ const Ticket = () => {
           <li>Coca Cola 600 ml ---- 1</li>
           <li>Coca Cola 355 ml ---- 1</li>
           <li>Coca Cola 3l ---- 1</li>
+          {products?.packagings.map((p, i) => (
+            <li
+              key={i}
+            >
+              <span>{`${p.name} - ${p.packaging}`}</span>
+            </li>
+          ))}
         </ul>
         <ul className="text-2xl">
           <li>Donativo ---- 1</li>
