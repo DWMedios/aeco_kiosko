@@ -93,7 +93,7 @@ export interface MetaDataRejected {
   buttonUp: PageButton
   buttonCenter: PageButton
   buttonDown: PageButton & { title: string }
-  centerImage: string
+  imgCenter: string
 }
 
 export interface MetaDataUnidentified {

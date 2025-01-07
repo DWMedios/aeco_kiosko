@@ -7,22 +7,10 @@ module.exports = {
         name: 'Home',
         metadata: {
           imgBg: 'home_imageBg.png',
-          logoLang: {
-            imgLang: '/images/language_icon.png',
-            alt: 'Language icon',
-          },
-          logoHelp: {
-            imgHelp: '/images/Help_icon.png',
-            alt: 'Help icon',
-          },
-          logoUp: {
-            imgUp: '/images/aeco.png',
-            alt: 'AECO Logo up',
-          },
-          logoDown: {
-            imgDown: '/images/reciclaygana.png',
-            alt: 'Recicla y Gana Logo down',
-          },
+          imgLang:  '/images/language_icon.png',
+          imgHelp: '/images/Help_icon.png',
+          imgUp: '/images/aeco.png',
+          imgDown: '/images/reciclaygana.png',
           button: {
             label: 'INICIAR',
             bgColor: 'pink',
