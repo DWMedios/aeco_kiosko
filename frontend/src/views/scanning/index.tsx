@@ -48,7 +48,7 @@ const Scanning = () => {
           </span>
         </div>
         <img
-          src={metas?.centerImage || '/images/containers.png'}
+          src={metas?.imgCenter || '/images/containers.png'}
           alt="Scanning image"
           className="m-5 mb-20 w-auto h-[500px]"
         />
