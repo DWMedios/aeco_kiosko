@@ -38,6 +38,8 @@ echo "Docker y el contenedor $CONTAINER_NAME están corriendo." >> "$LOG_FILE"
 
 # Lanza Chromium en modo kiosco
 echo "Lanzando Chromium en modo kiosco..." >> "$LOG_FILE"
-chromium-browser --kiosk http://localhost:5173 >> "$LOG_FILE" 2>&1
+#chromium-browser --kiosk http://localhost:5173 >> "$LOG_FILE" 2>&1
+chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 >> "$LOG_FILE" 2>&1
+
 
 echo "Script finalizado: $(date)" >> "$LOG_FILE"
