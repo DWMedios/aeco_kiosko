@@ -6,6 +6,7 @@ echo "-----------------------------" >> "$LOG_FILE"
 echo "Script iniciado: $(date)" >> "$LOG_FILE"
 echo "-----------------------------" >> "$LOG_FILE"
 
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
 # Configuración del entorno gráfico
 export DISPLAY=:0
 
@@ -36,10 +37,23 @@ done
 
 echo "Docker y el contenedor $CONTAINER_NAME están corriendo." >> "$LOG_FILE"
 
-# Lanza Chromium en modo kiosco
-echo "Lanzando Chromium en modo kiosco..." >> "$LOG_FILE"
-#chromium-browser --kiosk http://localhost:5173 >> "$LOG_FILE" 2>&1
-chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 >> "$LOG_FILE" 2>&1
+# Verificar si ya hay un servidor X corriendo
+if pgrep -x "X" > /dev/null; then
+    echo "Un servidor X ya está corriendo en DISPLAY=:0. Usando el servidor existente." >> "$LOG_FILE"
+    # Reutilizar el servidor X existente y lanzar Chromium en modo kiosko
+    export DISPLAY=:0
+    chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 --disable-gpu --no-sandbox --disable-dev-shm-usage --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode >> "$LOG_FILE" 2>&1
+    exit 0
+fi
 
+# Limpiar archivo de bloqueo si existe
+if [ -f /tmp/.X0-lock ]; then
+    echo "Eliminando archivo de bloqueo /tmp/.X0-lock..." >> "$LOG_FILE"
+    rm -f /tmp/.X0-lock
+fi
+
+# Inicia X11 con xinit solo si no está corriendo
+echo "Iniciando X11 con xinit..." >> "$LOG_FILE"
+xinit >> "$LOG_FILE" 2>&1
 
 echo "Script finalizado: $(date)" >> "$LOG_FILE"

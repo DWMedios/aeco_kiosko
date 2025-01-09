@@ -1,0 +1,28 @@
+#instalamos xinit
+sudo apt instal --no-install-recommends xinit
+
+# configuramos xinit
+ sudo nano ~/.xinitrc
+
+# agregamos xinit al bash
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    startx
+fi
+
+# configuramos el servicio
+sudo nano /etc/systemd/system/lancher_kiosk.service
+
+# reiniciamos los servicios
+sudo systemctl enable docker-compose-app
+sudo systemctl start docker-compose-app
+
+
+# para iniciar la raspberry modo kiosko sin escritorio
+sudo systemctl disable lightdm
+sudo systemctl set-default multi-user.target
+sudo reboot
+
+# para iniciar la rapberry con scritorio
+sudo systemctl enable lightdm
+sudo systemctl set-default graphical.target
+sudo reboot
