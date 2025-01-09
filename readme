@@ -1,10 +1,16 @@
+# creamos el script de lanzamiento
+sudo nano /home/dw/start_kiosko.sh
+sudo chmod +x /home/dw/start_kiosko.sh
+
 #instalamos xinit
 sudo apt instal --no-install-recommends xinit
 
 # configuramos xinit
- sudo nano ~/.xinitrc
+sudo nano ~/.xinitrc
+sudo chmode +x ~/.xinitrc
 
 # agregamos xinit al bash
+sudo nano ~/.bashrc
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
@@ -13,9 +19,9 @@ fi
 sudo nano /etc/systemd/system/lancher_kiosk.service
 
 # reiniciamos los servicios
-sudo systemctl enable docker-compose-app
-sudo systemctl start docker-compose-app
-
+sudo systemctl daemon-reload
+sudo systemctl enable lancher_kiosk.service
+sudo systemctl start lancher_kiosk.service
 
 # para iniciar la raspberry modo kiosko sin escritorio
 sudo systemctl disable lightdm
@@ -26,3 +32,6 @@ sudo reboot
 sudo systemctl enable lightdm
 sudo systemctl set-default graphical.target
 sudo reboot
+
+# si algo no funciona revisa los logs
+cat /home/dw/launch_kiosk.log
