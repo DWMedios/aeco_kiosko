@@ -29,6 +29,7 @@ done
 echo "Docker está corriendo." >> "$LOG_FILE"
 
 # Verifica si el contenedor está corriendo
+echo "Verificando si la app esta disponible..." >> "$LOG_FILE"
 CONTAINER_NAME="aeco-frontend"
 echo "Esperando a que el contenedor $CONTAINER_NAME esté corriendo..." >> "$LOG_FILE"
 until docker ps --filter "name=$CONTAINER_NAME" --filter "status=running" | grep -q "$CONTAINER_NAME"; do
@@ -38,6 +39,7 @@ done
 echo "Docker y el contenedor $CONTAINER_NAME están corriendo." >> "$LOG_FILE"
 
 # Verificar si ya hay un servidor X corriendo
+echo "Verificando si esta corriendo el servidor X..." >> "$LOG_FILE"
 if pgrep -x "X" > /dev/null; then
     echo "Un servidor X ya está corriendo en DISPLAY=:0. Usando el servidor existente." >> "$LOG_FILE"
     # Reutilizar el servidor X existente y lanzar Chromium en modo kiosko
@@ -50,17 +52,21 @@ if pgrep -x "X" > /dev/null; then
 fi
 
 # Limpiar archivo de bloqueo si existe
+echo "Limpiando archivo de bloqueo..." >> "$LOG_FILE"
 if [ -f /tmp/.X0-lock ]; then
     echo "Eliminando archivo de bloqueo /tmp/.X0-lock..." >> "$LOG_FILE"
     rm -f /tmp/.X0-lock
 fi
 
-# Configurar rotación de pantalla
-echo "Configurando rotación de pantalla..." >> "$LOG_FILE"
-xrandr --output HDMI-1 --rotate left >> "$LOG_FILE" 2>&1
-
 # Inicia X11 con xinit solo si no está corriendo
 echo "Iniciando X11 con xinit..." >> "$LOG_FILE"
 xinit >> "$LOG_FILE" 2>&1
+
+# Esperar a que X11 inicie completamente
+sleep 5
+
+# Configurar rotación de pantalla
+echo "Configurando rotación de pantalla..." >> "$LOG_FILE"
+xrandr --output HDMI-1 --rotate left >> "$LOG_FILE" 2>&1
 
 echo "Script finalizado: $(date)" >> "$LOG_FILE"
