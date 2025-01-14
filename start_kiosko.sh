@@ -44,9 +44,6 @@ if pgrep -x "X" > /dev/null; then
     echo "Un servidor X ya está corriendo en DISPLAY=:0. Usando el servidor existente." >> "$LOG_FILE"
     # Reutilizar el servidor X existente y lanzar Chromium en modo kiosko
     export DISPLAY=:0
-    # Configurar rotación de pantalla
-    echo "Configurando rotación de pantalla..." >> "$LOG_FILE"
-    xrandr --output HDMI-1 --rotate left >> "$LOG_FILE" 2>&1
     chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 --disable-gpu --no-sandbox --disable-dev-shm-usage --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode >> "$LOG_FILE" 2>&1
     exit 0
 fi
@@ -61,12 +58,5 @@ fi
 # Inicia X11 con xinit solo si no está corriendo
 echo "Iniciando X11 con xinit..." >> "$LOG_FILE"
 xinit >> "$LOG_FILE" 2>&1
-
-# Esperar a que X11 inicie completamente
-sleep 5
-
-# Configurar rotación de pantalla
-echo "Configurando rotación de pantalla..." >> "$LOG_FILE"
-xrandr --output HDMI-1 --rotate left >> "$LOG_FILE" 2>&1
 
 echo "Script finalizado: $(date)" >> "$LOG_FILE"
