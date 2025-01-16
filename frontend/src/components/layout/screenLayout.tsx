@@ -1,11 +1,20 @@
-import { Layout } from '../../interfaces'
+import { ScreenLayoutProps } from '../../interfaces'
+import CountdownTimer from '../timer'
 import ImageBackground from './components/imageBackground'
 
-const ScreenLayout = ({ children, image }: Layout) => {
+const ScreenLayout = ({
+  children,
+  image,
+  showTimer = false,
+  timerInitialTime = 60,
+}: ScreenLayoutProps) => {
   return (
     <>
       {image && <ImageBackground url={image} />}
-      <div className="relative z-10 h-screen">{children}</div>
+      <div className="relative z-10 h-screen">
+        {children}
+        {showTimer && <CountdownTimer initialTime={timerInitialTime} />}
+      </div>
     </>
   )
 }

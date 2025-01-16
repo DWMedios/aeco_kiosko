@@ -5,6 +5,7 @@ import {
   BorderRadiusEnum,
   FontSizeEnum,
   MetaDataAccepted,
+  Packaging,
   TextColorEnum,
 } from '../../interfaces'
 
@@ -12,42 +13,25 @@ import { usePageData } from '../../hooks/usePageData'
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
-
-const mockDatabase = {
-  '123456789': {
-    name: 'Coca Cola',
-    volume: '350ml',
-    type: 'can',
-  },
-  '987654321': {
-    name: 'Pepsi',
-    volume: '500ml',
-    type: 'bottle',
-  },
-}
+import useWebSocket from '../../hooks/useWebSocket'
+import { LastPackings } from '../../utils/savePackaging'
 
 const Accepted = () => {
-  const [product, setProduct] = useState({ name: '', volume: '', image: '' })
-
-  useEffect(() => {
-    const barcode = '987654321'
-    const productData = mockDatabase[barcode]
-
-    if (productData) {
-      const image =
-        productData.type === 'can'
-          ? '/images/canAccepted.png'
-          : '/images/bottleAccepted.png'
-
-      setProduct({ ...productData, image })
-    }
-  }, [])
-
   const {
     data: metas,
     loading,
     error,
   } = usePageData<MetaDataAccepted>('Accepted')
+  const [product, setProduct] = useState<Packaging>()
+  const { sendCommand } = useWebSocket()
+
+  useEffect(() => {
+    sendCommand('YLWDY')
+  }, [])
+
+  useEffect(() => {
+    setProduct(LastPackings())
+  }, [])
 
   if (loading || error || !metas) {
     return (
@@ -71,20 +55,22 @@ const Accepted = () => {
         </div>
         <div className="flex flex-col justify-center items-center h-[600px]">
           <img
-            src={product.image}
+            src={
+              product?.packaging === 'lata'
+                ? '/images/canAccepted.png'
+                : '/images/bottleAccepted.png'
+            }
             alt="Container"
             className="m-10 mb-20 w-auto h-90"
           />
           <div className="flex flex-col bg-green-500 items-center w-96 rounded-3xl bg-opacity-70 text-white font-medium absolute p-2 tracking-wider">
             <span className="text-5xl font-bold tracking-widest">
-              {product.name}
-            </span>
-            <span className="text-5xl font-bold tracking-widest">
-              {product.volume}
+              {product?.name}
             </span>
           </div>
         </div>
         <Button
+          action={() => sendCommand('IBMUB')} //Antes teniamos el BEB lo cambie para probar
           label={metas.buttonUp.label}
           url={metas.buttonUp.url}
           bgColor={
@@ -103,6 +89,7 @@ const Accepted = () => {
           }
         />
         <Button
+          action={() => sendCommand('XYDB')}
           label={metas.buttonDown.label}
           url={metas.buttonDown.url}
           bgColor={

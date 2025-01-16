@@ -8,6 +8,7 @@ import {
 } from '../../interfaces'
 
 const Button = ({
+  action,
   label = 'iniciar',
   bgColor = BackgroundButtonEnum.white,
   borderRadius = BorderRadiusEnum.xl3,
@@ -23,7 +24,7 @@ const Button = ({
     <>
       <div className="w-full flex justify-center mb-10 z-10">
         <button
-          onClick={() => navigation(url)}
+          onClick={() => (action && action(), url && navigation(url))}
           className={`${bgColor} w-[550px] p-2 h-[150px] rounded-${borderRadius} ${borderColor} ${textColor} font-extrabold text-${fontSize} ${positionButton} bottom-1/4`}
         >
           {label}

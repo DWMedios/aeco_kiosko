@@ -7,7 +7,6 @@ const ContainerConditions = ({
   containers = [],
 }: ArrayContainersConditions) => {
   const ListConditions = (conditions) => {
-    console.log('🚀 ~ ListConditions ~ conditions:', conditions)
     return (
       <ul className="list-disc list-inside pl-4 space-y-2">
         {conditions.conditions.map((condition: string) => (

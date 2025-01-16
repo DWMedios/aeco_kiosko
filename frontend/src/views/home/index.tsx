@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { usePageData } from '../../hooks/usePageData'
 
 import { MetaDataHome } from '../../interfaces'
@@ -15,9 +16,14 @@ import LangHelp from './components/LangHelp'
 import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
+import { ClearCountPackings } from '../../utils/savePackaging'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
+
+  useEffect(() => {
+    ClearCountPackings()
+  }, [])
 
   if (loading || error || !metas) {
     return (
@@ -32,7 +38,7 @@ function Home() {
   }
 
   return (
-    <ScreenLayout image={metas.background}>
+    <ScreenLayout image={metas.background} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
         <img
@@ -66,6 +72,7 @@ function Home() {
           positionButton={PositionButtonEnum.fixed}
           borderColor={null}
         />
+
         <SocialMediaList />
         <Footer />
       </div>

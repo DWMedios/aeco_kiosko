@@ -3,8 +3,14 @@ export * from './Pages'
 type method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export type WebSocketHook = {
-  message: string
-  sendMessage: (message: string) => void
+  command: MessageWebSocket
+  sendCommand: (message: string) => void
+  socketOn: boolean
+}
+
+export type MessageWebSocket = {
+  success?: boolean
+  message?: string
 }
 
 export interface ApiParams {
@@ -88,12 +94,13 @@ export enum PositionButtonEnum {
 }
 
 export interface ButtonInterface {
+  action?: () => void | Promise<void> | null
   bgColor?: BackgroundButtonEnum | null
   borderRadius?: BorderRadiusEnum
   label: string
   borderColor?: BorderColorEnum | null
   textColor?: TextColorEnum | null
-  url: string
+  url?: string
   fontSize?: FontSizeEnum
   positionButton?: PositionButtonEnum | null
 }
@@ -168,4 +175,31 @@ export interface ConditionsCardProps {
   icon: string
   items: string[]
   title: string
+}
+export interface Packaging {
+  name: string
+  packaging: string
+}
+export interface Packagings {
+  can: number
+  bottle: number
+  packagings: Packaging[]
+}
+
+export interface Movement {
+  can_number: number
+  bottle_number: number
+  folio: string
+  synchronized: boolean
+}
+
+export interface TimerProps {
+  initialTime: number
+  className?: string
+  onEnd?: () => void
+}
+
+export interface ScreenLayoutProps extends Layout {
+  showTimer?: boolean
+  timerInitialTime?: number
 }

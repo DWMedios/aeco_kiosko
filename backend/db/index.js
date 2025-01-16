@@ -81,12 +81,12 @@ const connectDB = async () => {
 module.exports = async () => {
   if (connection.isConnected) {
     console.log('=> Using existing connection.')
-    return Models
+    return {...Models, sequelize}
   }
 
   await connectDB()
 
   connection.isConnected = true
   console.log('=> Created a new connection.')
-  return Models
+  return {...Models, sequelize}
 }

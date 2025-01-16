@@ -15,21 +15,20 @@ exports.getAll = async () => {
   })
 }
 
-exports.getByMacAddress = async macAddress => {
+exports.getBySerialNumber = async (serialNumber) => {
   const { Company } = await initializeDatabase()
   return await Company.findOne({
-    where: { macAddress },
+    where: { serialNumber },
     attributes: { exclude: ['createdAt', 'updatedAt'] },
   })
 }
 
-exports.create = async data => {
+exports.create = async (data) => {
   const { Company } = await initializeDatabase()
-  console.log('Creating company with data:', data)
   return await Company.create(data)
 }
 
-exports.update = async (id, data) => {
+exports.updateCompany = async (id, data, transaction) => {
   const { Company } = await initializeDatabase()
-  return await Company.update(data, { where: { id } })
+  return await Company.update(data, { where: { id }, transaction })
 }

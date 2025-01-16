@@ -6,32 +6,32 @@ module.exports = {
         id: 1,
         name: 'Home',
         metadata: {
-          background:'home_background.png',
-          logoLang:{
-            path:'/images/language_icon.png',
-            alt:'Language icon'
+          background: 'home_background.png',
+          logoLang: {
+            path: '/images/language_icon.png',
+            alt: 'Language icon',
           },
-          logoHelp:{
-            path:'/images/Help_icon.png',
-            alt:'Help icon'
+          logoHelp: {
+            path: '/images/Help_icon.png',
+            alt: 'Help icon',
           },
-          logoUp:{
-            path:'/images/aeco.png',
-            alt:'AECO Logo up'
+          logoUp: {
+            path: '/images/aeco.png',
+            alt: 'AECO Logo up',
           },
-          logoDown:{
-            path:'/images/reciclaygana.png',
-            alt:'Recicla y Gana Logo down'
+          logoDown: {
+            path: '/images/reciclaygana.png',
+            alt: 'Recicla y Gana Logo down',
           },
-          button:{
-            label:'INICIAR',
-            bgColor:'pink',
-            url:'/conditions',
-            textColor:'white',
-            borderRadious:'full',
-            fontSize:'xl8'
-          }
-        }
+          button: {
+            label: 'INICIAR',
+            bgColor: 'pink',
+            url: '/conditions',
+            textColor: 'white',
+            borderRadious: 'full',
+            fontSize: 'xl8',
+          },
+        },
       },
       {
         id: 2,
@@ -39,17 +39,17 @@ module.exports = {
         metadata: {
           background: 'language_background.png',
           button: {
-            background:'language_background.png',
-            button:{
-              labelEs:'ACEPTAR',
-              labelEn:'AGREE',
-              bgColor:'white',
-              url:'/home',
-              textColor:'black',
-              borderRadious:'xl3',
-              fontSize:'xl6'
-            }
-          }
+            background: 'language_background.png',
+            button: {
+              labelEs: 'ACEPTAR',
+              labelEn: 'AGREE',
+              bgColor: 'white',
+              url: '/home',
+              textColor: 'black',
+              borderRadious: 'xl3',
+              fontSize: 'xl6',
+            },
+          },
         },
       },
       {
@@ -74,7 +74,8 @@ module.exports = {
         metadata: {
           background: 'shrubbery.png',
           title: 'Recompensas Disponibles',
-          description: 'Tus envases deben estar en las siguientes condiciones para poder ser reciclados:',
+          description:
+            'Tus envases deben estar en las siguientes condiciones para poder ser reciclados:',
           button: {
             label: '¡Entendido!',
             bgColor: 'white',
@@ -87,11 +88,7 @@ module.exports = {
             {
               title: 'Envases de PET',
               icon: '/images/bottle.png',
-              items: [
-                'Sin aplastar.',
-                'Con etiqueta.',
-                'Sin residuos.',
-              ],
+              items: ['Sin aplastar.', 'Con etiqueta.', 'Sin residuos.'],
             },
             {
               title: 'Latas de Aluminio',
@@ -164,7 +161,7 @@ module.exports = {
             textColor: 'pink',
             borderRadious: 'xl3',
             fontSize: 'xl6',
-          }
+          },
         },
       },
       {
@@ -195,7 +192,7 @@ module.exports = {
             url: '/add_barcode',
             fintSize: 'xl6',
           },
-        }
+        },
       },
       {
         id: 10,
@@ -218,7 +215,7 @@ module.exports = {
             textColor: 'pink',
             borderRadious: 'xl3',
             fontSize: 'xl6',
-          }
+          },
         },
       },
       {
@@ -228,19 +225,21 @@ module.exports = {
           background: 'leafBackground.png',
           textCenter: {
             title: 'AÑADIR CÓDIGO DE BARRAS',
-            description: 'Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE',
+            description:
+              'Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE',
           },
           textDown: {
             phone: '+52 999 888 7777',
             description: '¡Gracias por tu colaboración!',
           },
-        }
-      }
+        },
+      },
     ]
-    const query = `INSERT INTO "pages" (id, name, metadata) VALUES 
-                      ${pages.map(page => {
-    return `(${page.id},'${page.name}','${JSON.stringify(page.metadata)}')`
-  }).join(',')};`
+    const query = `INSERT INTO "pages" (id, name, metadata) VALUES ${pages
+      .map((page) => {
+        return `(${page.id},'${page.name}','${JSON.stringify(page.metadata)}')`
+      })
+      .join(',')};`
 
     await queryInterface.sequelize.query(query, {
       type: Sequelize.QueryTypes.INSERT,

@@ -5,6 +5,8 @@ const companyController = require('../controllers/companyController')
 const rewardController = require('../controllers/rewardsController')
 const pageController = require('../controllers/pageController')
 const productController = require('../controllers/productController')
+const aecoController = require('../controllers/aecoController')
+const movementController = require('../controllers/movementController')
 
 router.get('/company', companyController.getCompany)
 
@@ -18,5 +20,9 @@ router.get('/products', productController.getByCode)
 
 // Get pages
 router.get('/pages', pageController.getPageByName)
+
+router.get('/aeco', aecoController.getAecoUpdate)
+
+router.post('/movements', movementController.create)
 
 module.exports = router
