@@ -2,8 +2,9 @@ services:
   db:
     container_name: aeco-db
     image: postgres:12.19
+    restart: always
     ports:
-      - "5434:5432"
+      - '5434:5432'
     env_file:
       - .env
     volumes:
@@ -13,13 +14,14 @@ services:
 
   backend:
     container_name: aeco-backend
+    restart: always
     build:
       context: ./backend
       dockerfile: Dockerfile
     devices:
-      - "/dev:/dev"
+      - '/dev:/dev'
     ports:
-      - "3333:3333"
+      - '3333:3333'
     privileged: true
     sysctls:
       - net.ipv4.ip_unprivileged_port_start=0
@@ -34,14 +36,18 @@ services:
     volumes:
       - ./backend:/app
       - /dev:/dev
+      - aeco-images:/app/public/images
 
   frontend:
     container_name: aeco-frontend
+    restart: always
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "5173:5173"
+      - '5173:5173'
+    volumes:
+      - aeco-images:/app/public/images
     depends_on:
       - backend
     networks:
@@ -50,19 +56,21 @@ services:
   portainer:
     container_name: portainer
     image: portainer/portainer-ce:latest
+    restart: always
     ports:
-      - "9000:9000"
+      - '9000:9000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
     networks:
       - net-aeco
-  
+
   adminer:
     container_name: adminer
+    restart: always
     image: adminer
     ports:
-      - "8080:8080"
+      - '8080:8080'
     depends_on:
       - db
     networks:
@@ -71,6 +79,7 @@ services:
 volumes:
   aeco-db-data:
   portainer_data:
+  aeco-images:
 
 networks:
   net-aeco:

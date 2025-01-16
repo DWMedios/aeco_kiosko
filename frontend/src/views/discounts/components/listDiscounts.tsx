@@ -5,22 +5,22 @@ import PaginationButtons from '../../../components/paginationButtons'
 
 const ListDiscounts = () => {
   const discounts = [
-    { imageSrc: 'images/QRcode.png', label: 'Super Aki', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Dunosusa', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'La Isla', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Cinemex', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Super Aki', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Dunosusa', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'La Isla', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Cinemex', url: '/voucher' },
     {
-      imageSrc: 'images/QRcode.png',
+      imgSrc: 'images/QRcode.png',
       label: 'Mariscos de Chichí',
       url: '/voucher',
     },
-    { imageSrc: 'images/QRcode.png', label: 'Soriana', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Super Willys', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Starbucks', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Sears', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'RadioShack', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Nintendo', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Apple', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Soriana', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Super Willys', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Starbucks', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Sears', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'RadioShack', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Nintendo', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Apple', url: '/voucher' },
   ]
 
   const [currentPage, setCurrentPage] = useState(0)
@@ -48,7 +48,7 @@ const ListDiscounts = () => {
         {currentDiscounts.map((discount, index) => (
           <CardReward
             key={index}
-            imageSrc={discount.imageSrc}
+            imageSrc={discount.imgSrc}
             label={discount.label}
             url={discount.url}
           />

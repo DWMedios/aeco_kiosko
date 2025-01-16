@@ -26,6 +26,7 @@ function Home() {
   }, [])
 
   if (loading || error || !metas) {
+    console.log("🚀 ~ Home ~ metas:", metas?.imgBg)
     return (
       <div>
         {loading
@@ -38,18 +39,16 @@ function Home() {
   }
 
   return (
-    <ScreenLayout image={metas.background} showTimer={false}>
+    <ScreenLayout image={metas.imgBg} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
         <img
           className="w-[500px] fixed top-44"
-          src={metas.logoUp.path}
-          alt={metas.logoUp.alt}
+          src={metas.imgUp}
         />
         <img
           className="w-11/12 fixed top-1/4"
-          src={metas.logoDown.path}
-          alt={metas.logoDown.alt}
+          src={metas.imgDown}
         />
         <LangHelp />
         <Button

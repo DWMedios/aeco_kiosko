@@ -1,20 +1,15 @@
 export interface MetaDataLanguage {
   button: PageButton & { labelEs: string; labelEn: string }
-  background: string
-}
-
-export interface LogoPage {
-  alt: string
-  path: string
+  imgBg: string
 }
 
 export interface MetaDataHome {
   button: PageButton
-  logoUp: LogoPage
-  logoDown: LogoPage
-  background: string
-  logoHelp: LogoPage
-  logoLang: LogoPage
+  imgUp: string
+  imgDown: string
+  imgBg: string
+  imgHelp: string
+  imgLang: string
 }
 
 export interface TextPage {
@@ -25,14 +20,14 @@ export interface TextPage {
 }
 export interface MetaDataHelp {
   textDown: TextPage
-  background: string
+  imgBg: string
   textCenter: TextPage
 }
 
 export interface MetaDataExample {
   button: PageButton
-  background: string
-  centerImage: string
+  imgBg: string
+  imgCenter: string
   description: string
 }
 
@@ -55,7 +50,7 @@ export interface MetaDataConditions {
   lists: ItemList[]
   title: string
   button: PageButton
-  background: string
+  imgBg: string
   description: string
 }
 
@@ -66,15 +61,15 @@ export interface MetaDatRewardCategories {
 
 export interface MetaDataInsert {
   title: string
-  background: string
-  centerImage: string
+  imgBg: string
+  imgCenter: string
   description: string
 }
 
 export interface MetaDataScanning {
   title: string
-  background: string
-  centerImage: string
+  imgBg: string
+  imgCenter: string
   description: string
 }
 
@@ -87,29 +82,29 @@ export interface RewardCategory {
 export interface MetaDataAccepted {
   title: string
   buttonUp: PageButton
-  background: string
+  imgBg: string
   buttonDown: PageButton
-  centerImage: string
+  imgCenter: string
 }
 
 export interface MetaDataRejected {
   title: string
-  background: string
+  imgBg: string
   buttonUp: PageButton
   buttonCenter: PageButton
   buttonDown: PageButton & { title: string }
-  centerImage: string
+  imgCenter: string
 }
 
 export interface MetaDataUnidentified {
   title: string
-  background: string
+  imgBg: string
   buttonUp: PageButton
   buttonDown: PageButton
 }
 
 export interface MetaDataAddBarcode {
   textDown: TextPage
-  background: string
+  imgBg: string
   textCenter: TextPage
 }

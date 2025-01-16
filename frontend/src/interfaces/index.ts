@@ -53,7 +53,8 @@ export enum BorderRadiusEnum {
 }
 
 export enum BorderColorEnum {
-  green = 'border-solid border-4 border-[#00804F]',
+  red = 'border-[#FF0000]',
+  green = 'border-[#00804F]',
 }
 
 export enum FontSizeEnum {

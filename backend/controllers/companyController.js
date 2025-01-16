@@ -37,11 +37,10 @@ exports.updateCompanyBySerialNumber = async () => {
       console.log('Empresa creada:', dataValues)
       return
     }
-    const updatedCompany = await companyRepository.update(company.id, {
+    await companyRepository.updateCompany(company.id, {
       serialNumber,
     })
-    const dataValues = updatedCompany?.dataValues
-    console.log('Empresa actualizada:', dataValues)
+    console.log('Empresa actualizada')
     return
   } catch (err) {
     console.error(err)

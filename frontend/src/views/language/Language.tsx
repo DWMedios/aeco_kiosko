@@ -42,7 +42,7 @@ function Language() {
 
   return (
     <>
-      <ScreenLayout image={metas.background}>
+      <ScreenLayout image={metas.imgBg}>
         <div className="p-4 h-screen flex flex-col items-center justify-center gap-11 select-none">
           <BackButton url="/home" />
           <h1 className="text-center text-7xl mt-20 mb-5 z-10">

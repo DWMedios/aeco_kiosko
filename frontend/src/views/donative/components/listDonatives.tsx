@@ -5,11 +5,11 @@ import PaginationButtons from '../../../components/paginationButtons'
 
 const ListDonatives = () => {
   const donatives = [
-    { imageSrc: 'images/QRcode.png', label: 'Teletón', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Cruz Roja', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Orfanato', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Asilo', url: '/voucher' },
-    { imageSrc: 'images/QRcode.png', label: 'Albergue', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Teletón', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Cruz Roja', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Orfanato', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Asilo', url: '/voucher' },
+    { imgSrc: 'images/QRcode.png', label: 'Albergue', url: '/voucher' },
   ]
 
   const [currentPage, setCurrentPage] = useState(0)
@@ -37,7 +37,7 @@ const ListDonatives = () => {
         {currentDonatives.map((donative, index) => (
           <CardReward
             key={index}
-            imageSrc={donative.imageSrc}
+            imageSrc={donative.imgSrc}
             label={donative.label}
             url={donative.url}
           />

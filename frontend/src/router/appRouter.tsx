@@ -29,12 +29,17 @@ const AppRouter = () => {
     <Routes>
       <Route path="/" element={<SplashScreen />} />
       <Route path="/LoadingOffline" element={<LoadingOffline />} />
-      <Route path="/conditions" element={<Conditions />} />
-      <Route path="/example" element={<Example />} />
-      <Route path="/loadingOfline" element={<LoadingOffline />} />
       <Route path="/home" element={<Home />} />
       <Route path="/language" element={<Language />} />
       <Route path="/help" element={<Help />} />
+      <Route path="/conditions" element={<Conditions />} />
+      <Route path="/example" element={<Example />} />
+      <Route path="/insert" element={<Insert />} />
+      <Route path="/scanning" element={<Scanning />} />
+      <Route path="/accepted" element={<Accepted />} />
+      <Route path="/rejected" element={<Rejected />} />
+      <Route path="/unidentified" element={<Unidentified />} />
+      <Route path="/add_barcode" element={<AddBarcode />} />
       <Route path="/rewards" element={<Rewards />} />
       <Route path="/discounts" element={<Discounts />} />
       <Route path="/donative" element={<Donatives />} />
@@ -45,12 +50,6 @@ const AppRouter = () => {
       <Route path="/ticket" element={<TicketView />} />
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
-      <Route path="/insert" element={<Insert />} />
-      <Route path="/scanning" element={<Scanning />} />
-      <Route path="/accepted" element={<Accepted />} />
-      <Route path="/rejected" element={<Rejected />} />
-      <Route path="/unidentified" element={<Unidentified />} />
-      <Route path="/add_barcode" element={<AddBarcode />} />
     </Routes>
   )
 }

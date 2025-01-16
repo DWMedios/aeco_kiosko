@@ -40,7 +40,7 @@ const Rejected = () => {
   }
 
   return (
-    <ScreenLayout image={metas.background}>
+    <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-12">
         <div className="flex flex-col justify-center items-center w-[500px]">
           <span className="font-extrabold text-8xl text-center tracking-wider">
@@ -48,7 +48,7 @@ const Rejected = () => {
           </span>
         </div>
         <img
-          src={metas.centerImage}
+          src={metas.imgCenter}
           alt="Rejected image"
           className="m-10 mb-20 w-auto h-96"
         />
