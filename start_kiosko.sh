@@ -11,7 +11,7 @@ export XDG_RUNTIME_DIR=/run/user/$(id -u)
 export DISPLAY=:0
 
 # Espera hasta que Docker esté corriendo
-MAX_WAIT=60  # Tiempo máximo de espera en segundos
+MAX_WAIT=60
 WAITED=0
 
 echo "Esperando a que Docker inicie..." >> "$LOG_FILE"
@@ -29,7 +29,6 @@ done
 echo "Docker está corriendo." >> "$LOG_FILE"
 
 # Verifica si el contenedor está corriendo
-echo "Verificando si la app esta disponible..." >> "$LOG_FILE"
 CONTAINER_NAME="aeco-frontend"
 echo "Esperando a que el contenedor $CONTAINER_NAME esté corriendo..." >> "$LOG_FILE"
 until docker ps --filter "name=$CONTAINER_NAME" --filter "status=running" | grep -q "$CONTAINER_NAME"; do
@@ -38,25 +37,31 @@ done
 
 echo "Docker y el contenedor $CONTAINER_NAME están corriendo." >> "$LOG_FILE"
 
-# Verificar si ya hay un servidor X corriendo
-echo "Verificando si esta corriendo el servidor X..." >> "$LOG_FILE"
-if pgrep -x "X" > /dev/null; then
-    echo "Un servidor X ya está corriendo en DISPLAY=:0. Usando el servidor existente." >> "$LOG_FILE"
-    # Reutilizar el servidor X existente y lanzar Chromium en modo kiosko
-    export DISPLAY=:0
-    chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 --disable-gpu --no-sandbox --disable-dev-shm-usage --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode >> "$LOG_FILE" 2>&1
-    exit 0
-fi
+# # Verificar si ya hay un servidor X corriendo
+# if pgrep -x "X" > /dev/null; then
+#     echo "Un servidor X ya está corriendo en DISPLAY=:0. Usando el servidor existente." >> "$LOG_FILE"
+#     # Reutilizar el servidor X existente y lanzar Chromium en modo kiosko
+#     export DISPLAY=:0
+#     sxrandr --output HDMI-1 --rotate left >> "$LOG_FILE" 2>&1
+#     chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 --disable-gpu --no-sandbox --disable-dev-shm-usage --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode >> "$LOG_FILE" 2>&1
+#     exit 0
+# fi
 
-# Limpiar archivo de bloqueo si existe
-echo "Limpiando archivo de bloqueo..." >> "$LOG_FILE"
-if [ -f /tmp/.X0-lock ]; then
-    echo "Eliminando archivo de bloqueo /tmp/.X0-lock..." >> "$LOG_FILE"
-    rm -f /tmp/.X0-lock
-fi
+# # Limpiar archivo de bloqueo si existe
+# if [ -f /tmp/.X0-lock ]; then
+#     echo "Eliminando archivo de bloqueo /tmp/.X0-lock..." >> "$LOG_FILE"
+#     rm -f /tmp/.X0-lock
+# fi
+
 
 # Inicia X11 con xinit solo si no está corriendo
 echo "Iniciando X11 con xinit..." >> "$LOG_FILE"
 xinit >> "$LOG_FILE" 2>&1
+# chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 --disable-gpu --no-sandbox --disable-dev-shm-usage --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode >> "$LOG_FILE" 2>&1
+
+# Configurar rotación de pantalla
+#echo "Configurando rotación de pantalla..." >> "$LOG_FILE"
+
+xrandr --output HDMI-1 --rotate left >> "$LOG_FILE" 2>&1
 
 echo "Script finalizado: $(date)" >> "$LOG_FILE"
