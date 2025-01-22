@@ -2,7 +2,8 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     const query = `INSERT INTO "reward_categories" (id, name, status, "order") VALUES 
-                      (1,'Donativo', true, 1)`
+                      (1,'Donativo', true, 1),
+                      (2,'Servicios', true, 2)`
 
     // const query = `INSERT INTO "reward_categories" (id, name, status, "order") VALUES
     //                   (1,'Predial', true, 1),
