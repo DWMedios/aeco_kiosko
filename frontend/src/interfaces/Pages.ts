@@ -108,3 +108,4 @@ export interface MetaDataAddBarcode {
   imgBg: string
   textCenter: TextPage
 }
+
