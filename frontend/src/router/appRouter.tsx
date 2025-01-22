@@ -23,7 +23,9 @@ import Rejected from '../views/rejected'
 import Unidentified from '../views/unidentified'
 import AddBarcode from '../views/addBarcode'
 import Discounts from '../views/discounts'
-import ExternalServices from '../views/externalServices'
+import Services from '../views/services'
+import ExternalService from '../views/externalService'
+
 
 const AppRouter = () => {
   return (
@@ -51,7 +53,9 @@ const AppRouter = () => {
       <Route path="/ticket" element={<TicketView />} />
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
-      <Route path="/Externalservices" element={<ExternalServices />} />
+      <Route path="/externalService" element={<ExternalService />} />
+      <Route path="/Services" element={<Services />} />
+      
     </Routes>
   )
 }
