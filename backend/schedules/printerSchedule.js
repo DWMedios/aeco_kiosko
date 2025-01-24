@@ -6,6 +6,7 @@ const { fetchFromApi } = require('../utils/fetchHelper')
 const { getById } = require('../repositories/companyRepository')
 const { createPaper } = require('../repositories/paperRepository')
 const { createLog } = require('../repositories/updateRepository')
+const { UPDATE_TYPES } = require('../enums/update')
 
 const { finishSetup } = require('./initialSetup')
 
@@ -14,7 +15,7 @@ let cronJob = null
 const getNewPaper = async () => {
   const { sequelize } = await connectToDatabase()
   const transaction = await sequelize.transaction()
-  const newLog = { type: 'paper' }
+  const newLog = { type: UPDATE_TYPES.PAPER }
   try {
     const aeco = await getById()
     const { serialNumber } = aeco.dataValues

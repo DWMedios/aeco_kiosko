@@ -1,4 +1,5 @@
 // const connectToDatabase = require('../db/index')
+const { UPDATE_TYPES } = require('../enums/update')
 const { updateCompany, getById } = require('../repositories/companyRepository')
 const { createLog } = require('../repositories/updateRepository')
 const { finishSetup } = require('../utils/apiAeco')
@@ -11,7 +12,7 @@ const getInitialSetup = async () => {
   // const { sequelize } = await connectToDatabase()
   // const transaction = await sequelize.transaction()
   const transaction = await sequelizeTransaction()
-  const newLog = { type: 'initial' }
+  const newLog = { type: UPDATE_TYPES.INITIAL }
   try {
     const aeco = await getById()
     const { serialNumber } = aeco.dataValues
