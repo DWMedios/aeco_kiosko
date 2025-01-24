@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       type: {
-        type: DataTypes.ENUM('initial', 'update'),
+        type: DataTypes.ENUM('initial', 'update', 'paper'),
         allowNull: false,
       },
       status: {
