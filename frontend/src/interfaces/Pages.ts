@@ -109,3 +109,31 @@ export interface MetaDataAddBarcode {
   textCenter: TextPage
 }
 
+export interface Rewards {
+  id: number;
+  name: string;
+  status: boolean;
+  order: number;
+}
+
+ export interface PropsRewards {
+  rewards: Rewards[]
+}
+
+export interface RewardCategory {
+  id: number;
+  name: string;
+  status: boolean;
+  order: number;
+}
+
+export interface Donatives {
+  id: number;
+  name: string;
+  status: boolean;
+  order: number;
+}
+
+export  interface ListDonativesProps {
+  donatives: Donatives[];
+}

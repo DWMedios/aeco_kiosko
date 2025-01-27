@@ -45,7 +45,7 @@ const AppRouter = () => {
       <Route path="/add_barcode" element={<AddBarcode />} />
       <Route path="/rewards" element={<Rewards />} />
       <Route path="/discounts" element={<Discounts />} />
-      <Route path="/donative" element={<Donatives />} />
+      <Route path="/donative/:id" element={<Donatives />} />
       <Route path="/card_points" element={<CardPoints />} />
       <Route path="/recycle_points" element={<RecyclePoints />} />
       <Route path="/predial_points" element={<PredialPoints />} />

@@ -21,8 +21,7 @@ function Service() {
                 <p className="text-4xl max-w-[300px] pt-[3.75rem]">
                     {'¡Gracias por tu colaboración!'}
                 </p>
-            </div>
-            
+            </div> 
         </ScreenLayout>
     )
 }

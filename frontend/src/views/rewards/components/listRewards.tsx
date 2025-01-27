@@ -1,26 +1,23 @@
-import CardReward from '../../../components/cardReward'
+import CardReward from '../../../components/cardReward';
+import { PropsRewards } from '../../../interfaces';
 
-const ListRewards = () => {
-  const RewardsList = [
-    { imgSrc: '/images/QRcode.png', label: 'Descuentos', url: '/discounts' },
-    { imgSrc: '/images/QRcode.png', label: 'Tarjeta', url: '/card_points' },
-    { imgSrc: '/images/QRcode.png', label: 'Donativo', url: '/donative' },
-  ]
 
+const ListRewards = ( {rewards}: PropsRewards) => {
+  console.log("🚀 ~ ListRewards ~ rewards:", rewards )
   return (
     <div className="flex flex-col items-center bg-[#D9D9D9] bg-opacity-50 text-black shadow-md rounded-3xl w-[600px] h-[950px] z-10 p-5">
       <div className="flex flex-row flex-wrap justify-center gap-10">
-        {RewardsList.map((Reward, index) => (
+        {rewards.map((reward, index) => (
           <CardReward
-            key={index}
-            imageSrc={Reward.imgSrc}
-            label={Reward.label}
-            url={Reward.url}
+            key={index} 
+            imageSrc={"/images/QRcode.png"}
+            label={reward?.name}
+            url={index == 0 ? "/discounts" : "/services"}
           />
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ListRewards
+export default ListRewards;
