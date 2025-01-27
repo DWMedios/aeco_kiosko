@@ -26,7 +26,6 @@ import Discounts from '../views/discounts'
 import Services from '../views/services'
 import ExternalService from '../views/externalService'
 
-
 const AppRouter = () => {
   return (
     <Routes>
@@ -54,8 +53,7 @@ const AppRouter = () => {
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
       <Route path="/externalService" element={<ExternalService />} />
-      <Route path="/Services" element={<Services />} />
-      
+      <Route path="/Services/:id" element={<Services />} />
     </Routes>
   )
 }

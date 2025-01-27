@@ -1,5 +1,7 @@
 const { Model } = require('sequelize')
 
+const { UPDATE_TYPES } = require('../../enums/update')
+
 module.exports = (sequelize, DataTypes) => {
   class Update extends Model {}
   Update.init(
@@ -11,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       type: {
-        type: DataTypes.ENUM('initial', 'update'),
+        type: DataTypes.ENUM(Object.values(UPDATE_TYPES)),
         allowNull: false,
       },
       status: {
