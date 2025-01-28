@@ -1,5 +1,16 @@
 {
-  "traslation": {
-    "example": "Example"
+  "translation": {
+    "example": "Example",
+    "selectLanguage": "¡Select your language!",
+    "spanish": "Spanish",
+    "english": "English",
+    "start": "Start",
+    "choseeYourProof": "Chosee your ticket",
+    "forAMoreSustaintableTomorrow": "FOR A MORE SUSTAINABLE TOMORROW",
+    "unidentifiedContainer":"UNIDENTIFIED CONTAINER",
+    "chooseyourservice": "CHOOSE YOUR SERVICE",
+    "chooseYourReward": "CHOOSE YOUR REWARD"
   }
+  
+
 }

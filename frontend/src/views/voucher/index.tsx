@@ -1,16 +1,24 @@
+import i18n from '../../i18n'
 import ScreenLayout from '../../components/layout/screenLayout'
 import TicketButton from '../../components/ticketButton'
+import useTranslate from '../../hooks/useTranslate'
+
 
 const VoucherView = () => {
+
+  const { t } = useTranslate();
+  console.log('Idioma actual:', i18n.language);
+
   return (
     <ScreenLayout
       image="leafBackground.png"
       showTimer={true}
       timerInitialTime={30}
     >
+      
       <div className="flex flex-col justify-center items-center text-center z-10 h-screen select-none gap-20">
         <h1 className="text-8xl font-bold z-10 w-[700px]">
-          ELIGE TU COMPROBANTE
+          {t('choseeYourProof')} 
         </h1>
         <div className="flex gap-8 mt-10 z-10 h-[350px]">
           <TicketButton
@@ -27,7 +35,7 @@ const VoucherView = () => {
           />
         </div>
         <p className="text-6xl font-normal w-[600px]">
-          POR UN MAÑANA MÁS SUSTENTABLE
+          {t('forAMoreSustaintableTomorrow')} 
         </p>
       </div>
     </ScreenLayout>

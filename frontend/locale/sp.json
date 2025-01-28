@@ -1,5 +1,15 @@
 {
-  "traslation": {
-    "example": "Ejemplo"
+  "translation": {
+    "example": "Ejemplo",
+    "selectLanguage": "Selecciona tu idioma",
+    "spanish": "Español",
+    "english": "Inglés",
+    "start": "Comenzar",
+    "choseeYourProof": "ELIGE TU COMPROBANTE",
+    "forAMoreSustaintableTomorrow": "POR UN MAÑANA MÁS SUSTENTABLE",
+    "unidentifiedContainer":"ENVASE NO IDENTIFICADO",
+    "chooseyourservice": "ELIGE TU SERVICIO",
+    "chooseYourReward":"CHOOSE YOUR REWARD"
+
   }
 }

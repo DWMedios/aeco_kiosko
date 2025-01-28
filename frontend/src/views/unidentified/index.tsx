@@ -14,8 +14,14 @@ import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
 import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
 import { useNavigate } from 'react-router-dom'
+import i18n from '../../i18n'
+import useTranslate from '../../hooks/useTranslate'
 
 const Unidentified = () => {
+
+  const { t } = useTranslate();
+  console.log('Idioma actual:', i18n.language);
+
   const {
     data: metas,
     loading,
@@ -65,7 +71,7 @@ const Unidentified = () => {
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center">
           <span className="font-extrabold text-8xl text-center tracking-wider">
-            {metas?.title || 'ENVASE NO IDENTIFICADO'}
+            {metas?.title || "ENVASE NO IDENTIFICADO"}
           </span>
         </div>
         <img
