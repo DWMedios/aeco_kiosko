@@ -5,8 +5,12 @@ import WebApiAeco from '../../api/webApiAeco'
 import { useEffect, useState } from 'react'
 import type { Rewards } from '../../interfaces'
 import { useParams } from 'react-router-dom'
+import useTranslate from '../../hooks/useTranslate'
 
 const Donatives = () => {
+
+  const { t } = useTranslate();
+
   const { id } = useParams<{ id: string }>()
   const [donatives, setDonative] = useState<Rewards[]>([])
 
@@ -30,8 +34,8 @@ const Donatives = () => {
     <ScreenLayout image="shrubbery.png" timerInitialTime={30}>
       <div className="flex flex-col justify-center items-center gap-11 h-screen select-none">
         <BackButton url="/rewards" />
-        <h1 className="text-8xl z-10 text-center max-w-[900px] font-bold tracking-wider mb-20">
-          ELIGE TU DONATIVO
+        <h1 className="text-8xl z-10 text-center uppercase max-w-[900px] font-bold tracking-wider mb-20">
+          {t('donative.title')}
         </h1>
         <ListDonatives rewards={donatives} />
       </div>

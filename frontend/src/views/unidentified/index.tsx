@@ -70,8 +70,8 @@ const Unidentified = () => {
     <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center">
-          <span className="font-extrabold text-8xl text-center tracking-wider">
-            {metas?.title || "ENVASE NO IDENTIFICADO"}
+          <span className="font-extrabold text-8xl uppercase text-center tracking-wider">
+            {metas?.title || t('unidentified.title')}
           </span>
         </div>
         <img

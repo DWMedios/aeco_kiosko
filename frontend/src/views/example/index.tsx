@@ -12,8 +12,14 @@ import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import BackButton from '../../components/backButton'
+import useTranslate from '../../hooks/useTranslate'
+import i18n from '../../i18n'
 
 const Example = () => {
+
+  const { t } = useTranslate();
+  console.log('idioma actual', i18n.language);
+
   const {
     data: metas,
     loading,
@@ -38,9 +44,8 @@ const Example = () => {
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <BackButton url="/home" />
         <div className="flex flex-col justify-center items-center w-[550px]">
-          <span className="text-6xl text-center">
-            {metas?.description ||
-              'Inserta tu envase con el código de barras hacia arriba'}
+          <span className="text-6xl text-center normal-case">
+            {metas?.description || t('example.description')}
           </span>
         </div>
         <img

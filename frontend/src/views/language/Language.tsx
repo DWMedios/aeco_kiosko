@@ -53,7 +53,7 @@ function Language() {
         <div className="p-4 h-screen flex flex-col items-center justify-center gap-11 select-none">
           <BackButton url="/home" />
           <h1 className="text-center text-7xl mt-20 mb-5 z-10">
-           {t('selectLanguage')} 
+           {t('language.selectLanguage')} 
           </h1>
           <form className="flex flex-col justify-center items-center space-y-4 z-10">
             <label className="flex items-center text-5xl  text-center p-6 tracking-wider">

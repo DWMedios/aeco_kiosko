@@ -1,17 +1,93 @@
 {
-  "translation": {
-    "example": "Example",
+  "accepted":{
+    "title": "Accepted container"
+  },
+
+  "addBarcode":{
+    "title":"Add barcode",
+    "description":"Send us a photo of the packaging with the label and the VISIBLE barcode to this WhatsApp"
+  },
+
+  "cardPoints":{
+    "title":"Accumulate points"
+  },
+
+ "condition":{
+    "title":"Rewards Available",
+    "description":"Your packaging must be in the following conditions:"
+  },
+
+  "donative":{
+    "title": "Choose your donation"
+  },
+
+  "example":{
+    "description":"Insert your packaging with the barcode facing up"
+  },
+
+  "externalServices":{
+    "textQR":"Scan the QR to access",
+    "textQR2":"external services"
+  },
+
+  "finalView":{
+    "title":"Are you interested in the project?"
+  },
+
+  "help":{
+    "title":"Support",
+    "description":"We are here to help you",
+    "phoneText":"Send us a whatsapp",
+    "textDown":"Thank you for your collaboration!"
+  },
+
+  "insert":{
+    "title":"Insert container"
+  },
+  
+  "language":{
     "selectLanguage": "¡Select your language!",
     "spanish": "Spanish",
-    "english": "English",
-    "start": "Start",
-    "choseeYourProof": "Chosee your ticket",
-    "forAMoreSustaintableTomorrow": "FOR A MORE SUSTAINABLE TOMORROW",
-    "unidentifiedContainer":"UNIDENTIFIED CONTAINER",
-    "chooseyourservice": "CHOOSE YOUR SERVICE",
-    "chooseYourReward": "CHOOSE YOUR REWARD",
-    "enterYourNumber": "INTRODUCE TU NÚMERO"
-  }
+    "english": "English"
+  },
+
+  "outOfService":{
+    "title":"Machine out of service"
+  },
+
+  "predial":{
+    "title": "Find your property"
+  },
+
+  "recyclePoits":{
+    "number": "Enter your number"
+  },
+
+  "rejected":{
+    "title": "Rejected container"
+  },
   
+  "Rewards":{
+    "start": "Start",
+    "chooseYourReward": "Choose your reward"
+  },
+
+  "scanning":{
+    "title":"Reading",
+    "description":"We are working for you"
+  },
+
+  "services":{
+    "title": "Choose your service"
+  },
+
+  "unidentified":{
+    "title": "Unidentified container"
+  },
+  
+  "voucher":{
+    "title": "Chosee your ticket",
+    "description": "For a more sustainable tomorrow"
+  }
 
 }

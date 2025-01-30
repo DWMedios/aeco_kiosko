@@ -13,8 +13,12 @@ import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import { useEffect } from 'react'
+import useTranslate from '../../hooks/useTranslate'
+import i18n from '../../i18n'
 
 const Rejected = () => {
+  const { t } = useTranslate();
+  console.log('Idioma actual:', i18n.language);
   const {
     data: metas,
     loading,
@@ -43,8 +47,8 @@ const Rejected = () => {
     <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-12">
         <div className="flex flex-col justify-center items-center w-[500px]">
-          <span className="font-extrabold text-8xl text-center tracking-wider">
-            {metas?.title || 'ENVASE RECHAZADO'}
+          <span className="font-extrabold text-8xl uppercase text-center tracking-wider">
+            {metas?.title || t('rejected.title')}
           </span>
         </div>
         <img

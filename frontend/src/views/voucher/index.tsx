@@ -17,8 +17,8 @@ const VoucherView = () => {
     >
       
       <div className="flex flex-col justify-center items-center text-center z-10 h-screen select-none gap-20">
-        <h1 className="text-8xl font-bold z-10 w-[700px]">
-          {t('choseeYourProof')} 
+        <h1 className="text-8xl uppercase font-bold z-10 w-[700px]">
+          {t('voucher.title')} 
         </h1>
         <div className="flex gap-8 mt-10 z-10 h-[350px]">
           <TicketButton
@@ -34,8 +34,8 @@ const VoucherView = () => {
             buttonText="Impreso"
           />
         </div>
-        <p className="text-6xl font-normal w-[600px]">
-          {t('forAMoreSustaintableTomorrow')} 
+        <p className="text-6xl font-normal uppercase w-[600px]">
+          {t('voucher.description')} 
         </p>
       </div>
     </ScreenLayout>
