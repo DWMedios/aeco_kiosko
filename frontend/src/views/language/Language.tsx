@@ -73,7 +73,7 @@ function Language() {
                 }`}
                 onClick={() => setSelectedLanguage('es')}
               >
-               {t('spanish')}
+               {t('Spanish')}
               </span>
             </label>
 
@@ -86,15 +86,14 @@ function Language() {
                 onChange={handleLanguageChange}
                 className="hidden"
               />
-              <span
-                className={`cursor-pointer py-6 px-4 rounded-full w-80 font-medium ${
+              <span className={`cursor-pointer py-6 px-4 normal-case rounded-full w-80 font-medium ${
                   selectedLanguage === 'en'
                     ? 'bg-[#90c9ac] text-black'
                     : 'bg-white'
                 }`}
                 onClick={() => setSelectedLanguage('en')}
               >
-                {t('english')}
+                {t('English')}
               </span>
             </label>
           </form>

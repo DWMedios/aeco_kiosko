@@ -6,11 +6,9 @@ import { useEffect, useState } from 'react'
 import WebApiAeco from '../../api/webApiAeco'
 import { Rewards } from '../../interfaces'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 const Services = () => {
   const { t } = useTranslate();
-  console.log('Idioma actual:', i18n.language);
   
   const { id } = useParams<{ id: string }>()
   const [services, setServices] = useState<Rewards[]>([])

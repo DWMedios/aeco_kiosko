@@ -1,4 +1,3 @@
-import i18n from '../../i18n'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
 
@@ -6,7 +5,6 @@ import useTranslate from '../../hooks/useTranslate'
 const OutOfService = () => {
 
   const { t } = useTranslate();
-  console.log('Idioma actual', i18n.language);
 
   return (
     <ScreenLayout image="shrubbery.png">

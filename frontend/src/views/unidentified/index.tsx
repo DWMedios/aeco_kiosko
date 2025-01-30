@@ -14,14 +14,12 @@ import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
 import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
 import { useNavigate } from 'react-router-dom'
-import i18n from '../../i18n'
 import useTranslate from '../../hooks/useTranslate'
 
 const Unidentified = () => {
 
   const { t } = useTranslate();
-  console.log('Idioma actual:', i18n.language);
-
+  
   const {
     data: metas,
     loading,

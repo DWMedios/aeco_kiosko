@@ -7,8 +7,8 @@ const savedLanguage = localStorage.getItem('language') || 'es';
 
 i18n.use(initReactI18next).init({
   resources: {
-    en: { ...enJSON },
-    es: { ...spJSON },
+    en: { translation: enJSON },
+    es: { translation: spJSON },
   },
   lng: savedLanguage,
   fallbackLng: 'es',

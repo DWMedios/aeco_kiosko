@@ -6,11 +6,9 @@ import WebApiAeco from '../../api/webApiAeco'
 import { useEffect, useState } from 'react'
 import { RewardCategory } from '../../interfaces'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 const Rewards = () => {
   const { t } = useTranslate();
-  console.log('Idioma actual:', i18n.language);
   const [rewards, setRewards] = useState<RewardCategory[]>([])
 
   const fetchRewards = async () => {
@@ -30,8 +28,7 @@ const Rewards = () => {
   }, [])
 
   return (
-    <ScreenLayout image="shrubbery.png" showTimer={false}>
-      {/* <ScreenLayout image="shrubbery.png" timerInitialTime={30}> */}
+      <ScreenLayout image="shrubbery.png" timerInitialTime={30}>
       <div className="flex flex-col justify-center items-center gap-11 h-screen select-none">
         <BackButton url="/example" />
         <h1 className="text-8xl z-10 text-center uppercase max-w-[900px] font-bold tracking-wider mb-20">

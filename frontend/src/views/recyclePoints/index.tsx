@@ -2,12 +2,10 @@ import BackButton from '../../components/backButton'
 import RecyclePointsList from './components/recyclePointsList'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 const RecyclePoints = () => {
   
   const { t } = useTranslate();
-  console.log('Idioma actual:', i18n.language);
 
 
   return (

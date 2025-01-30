@@ -2,11 +2,9 @@ import BackButton from '../../components/backButton'
 import PredialList from './components/predialList'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 const PredialPoints = () => {
   const { t } = useTranslate();
-  console.log('Idioma actual:', i18n.language);
 
 
   return (

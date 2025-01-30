@@ -1,18 +1,13 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-
 import { TextColorEnum } from '../../interfaces'
 
 import Button from '../../components/button'
 import QRCodeComponent from '../../components/qrCode'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 const FinalView = () => {
 
   const { t } = useTranslate();
-  console.log('Idioma actual', i18n.language);
 
   const QrCodeUrl =
     ' https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Estoy%20interesado%20en%20el%20proyecto!'

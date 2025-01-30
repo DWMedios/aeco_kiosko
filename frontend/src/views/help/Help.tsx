@@ -6,12 +6,10 @@ import BackButton from '../../components/backButton'
 import QRCodeComponent from '../../components/qrCode'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 function Help() {
 
   const { t } = useTranslate();
-  console.log('Idioma actual', i18n.language);
 
   const QrCodeUrl =
     'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'

@@ -14,11 +14,10 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import { useEffect } from 'react'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 const Rejected = () => {
   const { t } = useTranslate();
-  console.log('Idioma actual:', i18n.language);
+
   const {
     data: metas,
     loading,

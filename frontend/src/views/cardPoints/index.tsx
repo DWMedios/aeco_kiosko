@@ -3,6 +3,7 @@ import ListCardPoints from './components/listCardPoints'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
 
+
 const CardPoints = () => {
 
   const { t } = useTranslate();

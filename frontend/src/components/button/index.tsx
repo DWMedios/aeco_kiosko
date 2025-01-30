@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 
 const Button = ({
   action,
-  label = 'iniciar',
+  label = 'Iniciar',
   bgColor = BackgroundButtonEnum.white,
   borderRadius = BorderRadiusEnum.xl3,
   textColor = TextColorEnum.black,

@@ -16,8 +16,11 @@ const ScreenLayout = ({
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem('language') || currentLanguage;
-    changeLanguage(storedLanguage);
-  }, [currentLanguage, changeLanguage]);
+    if (storedLanguage !== currentLanguage) {
+      changeLanguage(storedLanguage);
+      console.log("Recursos recargados para:", i18n.language);
+    }
+  }, [i18n.language]);
 
   return (
     <I18nextProvider i18n={i18n}>

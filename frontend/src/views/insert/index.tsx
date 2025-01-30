@@ -7,12 +7,10 @@ import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
 import { useNavigate } from 'react-router-dom'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 const Insert = () => {
 
-  const t = useTranslate()
-  console.log('Idioma actual', i18n.language);
+  const { t } = useTranslate()
 
   const navigation = useNavigate()
   const { data: metas, loading, error } = usePageData<MetaDataInsert>('Insert')
@@ -59,7 +57,7 @@ const Insert = () => {
           className="m-10 mb-20 w-auto h-[500px]"
         />
         <span className="text-5xl text-center w-96">
-          {metas?.description || 'El reciclaje comienza aquí'}
+          {metas?.description || t('insert.description')}
         </span>
       </div>
     </ScreenLayout>

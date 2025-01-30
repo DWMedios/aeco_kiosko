@@ -1,4 +1,3 @@
-import i18n from '../../i18n'
 import ScreenLayout from '../../components/layout/screenLayout'
 import TicketButton from '../../components/ticketButton'
 import useTranslate from '../../hooks/useTranslate'
@@ -7,8 +6,7 @@ import useTranslate from '../../hooks/useTranslate'
 const VoucherView = () => {
 
   const { t } = useTranslate();
-  console.log('Idioma actual:', i18n.language);
-
+  
   return (
     <ScreenLayout
       image="leafBackground.png"

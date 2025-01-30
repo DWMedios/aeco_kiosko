@@ -2,11 +2,9 @@ import BackButton from "../../components/backButton";
 import QrCodeComponent from "../../components/qrCode";
 import ScreenLayout from "../../components/layout/screenLayout";
 import useTranslate from "../../hooks/useTranslate";
-import i18n from "../../i18n";
 
 function Service() {
     const { t } = useTranslate();
-    console.log('Idioma actual', i18n.language)
 
     const qrCodeUrl = 'https://www.youtube.com/'
 

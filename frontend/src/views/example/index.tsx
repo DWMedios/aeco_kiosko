@@ -13,12 +13,10 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import BackButton from '../../components/backButton'
 import useTranslate from '../../hooks/useTranslate'
-import i18n from '../../i18n'
 
 const Example = () => {
 
   const { t } = useTranslate();
-  console.log('idioma actual', i18n.language);
 
   const {
     data: metas,

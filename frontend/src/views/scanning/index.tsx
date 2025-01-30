@@ -7,13 +7,11 @@ import useWebSocket from '../../hooks/useWebSocket'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BarcodeScanner from '../../components/barCodeScanner'
-import i18n from '../../i18n'
 import useTranslate from '../../hooks/useTranslate'
 
 const Scanning = () => {
 
   const { t } = useTranslate();
-  console.log('Idioma actual:', i18n.language);
 
   const {
     data: metas,
