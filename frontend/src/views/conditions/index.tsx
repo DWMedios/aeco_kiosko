@@ -14,8 +14,12 @@ import Button from '../../components/button'
 import ConditionsCard from './components/ConditionsCard'
 import ScreenLayout from '../../components/layout/screenLayout'
 import RewardsConditions from './components/rewards'
+import useTranslate from '../../hooks/useTranslate'
 
 const Conditions = () => {
+
+  const { t } = useTranslate();
+
   const {
     data: metas,
     loading,
@@ -39,17 +43,16 @@ const Conditions = () => {
       <div className="relative flex flex-col justify-center items-center h-screen select-none">
         <BackButton url="/home" />
         <div className="flex flex-col justify-center items-center text-center">
-          <span className="text-8xl">
-            {metas?.title ?? 'Recomponsas Disponibles'}
+          <span className="text-8xl normal-case">
+            {metas?.title ?? t('condition.title')}
           </span>
         </div>
         <div className="w-full mt-20 mb-20">
           <RewardsConditions />
         </div>
         <div className="my-10 text-center mb-20">
-          <span className="text-5xl ">
-            {metas?.description ||
-              'Tus envases deben estar en las siguientes condiciones:'}
+          <span className="text-5xl normal-case">
+            {metas?.description || t('condition.description')}
           </span>
         </div>
         <div className="flex flex-row gap-4 justify-center w-full text-2xl mb-20">

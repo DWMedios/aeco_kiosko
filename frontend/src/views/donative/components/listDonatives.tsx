@@ -1,26 +1,18 @@
 import { useState } from 'react'
-
 import CardReward from '../../../components/cardReward'
 import PaginationButtons from '../../../components/paginationButtons'
+import { RewardsProps } from '../../../interfaces'
 
-const ListDonatives = () => {
-  const donatives = [
-    { imgSrc: 'images/QRcode.png', label: 'Teletón', url: '/voucher' },
-    { imgSrc: 'images/QRcode.png', label: 'Cruz Roja', url: '/voucher' },
-    { imgSrc: 'images/QRcode.png', label: 'Orfanato', url: '/voucher' },
-    { imgSrc: 'images/QRcode.png', label: 'Asilo', url: '/voucher' },
-    { imgSrc: 'images/QRcode.png', label: 'Albergue', url: '/voucher' },
-  ]
-
+const ListDonatives = ({ rewards }: RewardsProps) => {
   const [currentPage, setCurrentPage] = useState(0)
   const itemsPerPage = 5
 
   const startIndex = currentPage * itemsPerPage
   const endIndex = startIndex + itemsPerPage
-  const currentDonatives = donatives.slice(startIndex, endIndex)
+  const currentDonatives = rewards.slice(startIndex, endIndex)
 
   const handleNextPage = () => {
-    if (endIndex < donatives.length) {
+    if (endIndex < rewards.length) {
       setCurrentPage(currentPage + 1)
     }
   }
@@ -37,9 +29,9 @@ const ListDonatives = () => {
         {currentDonatives.map((donative, index) => (
           <CardReward
             key={index}
-            imageSrc={donative.imgSrc}
-            label={donative.label}
-            url={donative.url}
+            imageSrc={'/images/QRcode.png'}
+            label={donative.name}
+            url={donative.id == 1 ? '/donative/1' : '/services'}
           />
         ))}
       </div>
@@ -47,7 +39,7 @@ const ListDonatives = () => {
         onPrevious={handlePreviousPage}
         onNext={handleNextPage}
         isPreviousDisabled={currentPage === 0}
-        isNextDisabled={endIndex >= donatives.length}
+        isNextDisabled={endIndex >= rewards.length}
         previousImageSrc="images/previous.png"
         nextImageSrc="images/next.png"
       />
