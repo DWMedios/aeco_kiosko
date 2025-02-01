@@ -22,7 +22,7 @@ const Donatives = () => {
       }
       setDonative(response)
     } catch (error) {
-      console.log('Error when obtaining reward categories:', error)
+      throw new Error('Error getting reward categories: ' + Error);
     }
   }
 

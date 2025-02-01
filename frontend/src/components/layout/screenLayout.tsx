@@ -4,7 +4,7 @@ import { ScreenLayoutProps } from '../../interfaces'
 import CountdownTimer from '../timer'
 import ImageBackground from './components/imageBackground'
 import i18n from '../../i18n'
-import useTranslate  from '../../hooks/useTranslate'
+import useTranslate from '../../hooks/useTranslate'
 
 const ScreenLayout = ({
   children,
@@ -18,7 +18,6 @@ const ScreenLayout = ({
     const storedLanguage = localStorage.getItem('language') || currentLanguage;
     if (storedLanguage !== currentLanguage) {
       changeLanguage(storedLanguage);
-      console.log("Recursos recargados para:", i18n.language);
     }
   }, [i18n.language]);
 

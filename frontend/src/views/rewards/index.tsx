@@ -19,7 +19,7 @@ const Rewards = () => {
       }
       setRewards(response)
     } catch (error) {
-      console.log('Error al obtener las categorias de recompensas:', error)
+      throw new Error('Error when obtaining reward categories')
     }
   }
 

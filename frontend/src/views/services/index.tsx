@@ -21,12 +21,11 @@ const Services = () => {
       }
       setServices(response)
     } catch (error) {
-      console.log('Error when obtaining reward categories:', error)
+      throw new Error('Error getting subcategories')
     }
   }
 
   useEffect(() => {
-    console.log('🚀 ~ useEffect ~ id:', id)
     if (id) getServices(id)
   }, [id])
 

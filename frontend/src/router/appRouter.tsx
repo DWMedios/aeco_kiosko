@@ -52,7 +52,7 @@ const AppRouter = () => {
       <Route path="/ticket" element={<TicketView />} />
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
-      <Route path="/externalService" element={<ExternalService />} />
+      <Route path="/external_service" element={<ExternalService />} />
       <Route path="/Services/:id" element={<Services />} />
     </Routes>
   )

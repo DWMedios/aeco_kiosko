@@ -57,7 +57,7 @@ const Insert = () => {
           className="m-10 mb-20 w-auto h-[500px]"
         />
         <span className="text-5xl text-center w-96">
-          {metas?.description || t('insert.description')}
+          {metas?.description || 'El reciclaje comienza aquí'}
         </span>
       </div>
     </ScreenLayout>
