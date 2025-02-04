@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { usePageData } from '../../hooks/usePageData'
-import { MetaDataHome } from '../../interfaces'
+import type { MetaDataHome } from '../../interfaces'
 import {
   BackgroundButtonEnum,
   BorderRadiusEnum,

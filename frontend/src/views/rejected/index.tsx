@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { usePageData } from '../../hooks/usePageData'
 
 import {
@@ -12,7 +13,6 @@ import {
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
-import { useEffect } from 'react'
 import useTranslate from '../../hooks/useTranslate'
 
 const Rejected = () => {

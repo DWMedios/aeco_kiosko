@@ -53,7 +53,7 @@ const AppRouter = () => {
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
       <Route path="/external_service" element={<ExternalService />} />
-      <Route path="/Services/:id" element={<Services />} />
+      <Route path="/services/:id" element={<Services />} />
     </Routes>
   )
 }

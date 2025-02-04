@@ -1,10 +1,10 @@
+import { useEffect, useState } from 'react'
 import BackButton from '../../components/backButton'
 import ListRewards from './components/listRewards'
 import Modal from './components/modal'
 import ScreenLayout from '../../components/layout/screenLayout'
 import WebApiAeco from '../../api/webApiAeco'
-import { useEffect, useState } from 'react'
-import { RewardCategory } from '../../interfaces'
+import type { RewardCategory } from '../../interfaces'
 import useTranslate from '../../hooks/useTranslate'
 
 const Rewards = () => {

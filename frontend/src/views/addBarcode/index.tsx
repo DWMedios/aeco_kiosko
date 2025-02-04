@@ -1,4 +1,4 @@
-import { MetaDataAddBarcode } from '../../interfaces'
+import type { MetaDataAddBarcode } from '../../interfaces'
 import { usePageData } from '../../hooks/usePageData'
 import BackButton from '../../components/backButton'
 import QRCodeComponent from '../../components/qrCode'

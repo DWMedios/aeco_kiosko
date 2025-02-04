@@ -1,11 +1,9 @@
-import { usePageData } from '../../hooks/usePageData'
-
-import { MetaDataInsert } from '../../interfaces'
-
-import ScreenLayout from '../../components/layout/screenLayout'
 import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
 import { useNavigate } from 'react-router-dom'
+import { usePageData } from '../../hooks/usePageData'
+import { MetaDataInsert } from '../../interfaces'
+import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
 
 const Insert = () => {
