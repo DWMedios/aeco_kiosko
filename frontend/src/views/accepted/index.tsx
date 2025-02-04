@@ -15,8 +15,12 @@ import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import { LastPackings } from '../../utils/savePackaging'
+import useTranslate from '../../hooks/useTranslate'
 
 const Accepted = () => {
+
+  const { t } = useTranslate();
+
   const {
     data: metas,
     loading,
@@ -49,8 +53,8 @@ const Accepted = () => {
     <ScreenLayout image={metas.imgBg}>
       <div className="flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center">
-          <span className="font-extrabold text-8xl text-center w-[800px] z-10 tracking-wider">
-            {metas?.title || 'ENVASE ACEPTADO'}
+          <span className="font-extrabold text-8xl uppercase text-center w-[800px] z-10 tracking-wider">
+            {metas?.title || t('accepted.title')}
           </span>
         </div>
         <div className="flex flex-col justify-center items-center h-[600px]">

@@ -1,3 +1,6 @@
+import { useEffect } from 'react'
+import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
+import { useNavigate } from 'react-router-dom'
 import { usePageData } from '../../hooks/usePageData'
 
 import {
@@ -10,12 +13,13 @@ import {
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
-import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
-import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
-import { useNavigate } from 'react-router-dom'
+import useTranslate from '../../hooks/useTranslate'
 
 const Unidentified = () => {
+
+  const { t } = useTranslate();
+  
   const {
     data: metas,
     loading,
@@ -64,8 +68,8 @@ const Unidentified = () => {
     <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center">
-          <span className="font-extrabold text-8xl text-center tracking-wider">
-            {metas?.title || 'ENVASE NO IDENTIFICADO'}
+          <span className="font-extrabold text-8xl uppercase text-center tracking-wider">
+            {metas?.title || t('unidentified.title')}
           </span>
         </div>
         <img

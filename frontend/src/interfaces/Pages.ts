@@ -108,3 +108,27 @@ export interface MetaDataAddBarcode {
   imgBg: string
   textCenter: TextPage
 }
+
+export interface RewardCategory {
+  id: number
+  name: string
+  status: boolean
+  order: number
+}
+
+export interface Rewards {
+  id: number
+  name: string
+  status: boolean
+  order: number
+  reward_category_id: number
+  metadata: object
+}
+
+export interface RewardCategoriesProps {
+  categories: RewardCategory[]
+}
+
+export interface RewardsProps {
+  rewards: Rewards[]
+}

@@ -1,13 +1,15 @@
-import { usePageData } from '../../hooks/usePageData'
-
-import { MetaDataInsert } from '../../interfaces'
-
-import ScreenLayout from '../../components/layout/screenLayout'
 import { useEffect } from 'react'
 import useWebSocket from '../../hooks/useWebSocket'
 import { useNavigate } from 'react-router-dom'
+import { usePageData } from '../../hooks/usePageData'
+import { MetaDataInsert } from '../../interfaces'
+import ScreenLayout from '../../components/layout/screenLayout'
+import useTranslate from '../../hooks/useTranslate'
 
 const Insert = () => {
+
+  const { t } = useTranslate()
+
   const navigation = useNavigate()
   const { data: metas, loading, error } = usePageData<MetaDataInsert>('Insert')
   const { command } = useWebSocket()
@@ -43,8 +45,8 @@ const Insert = () => {
     <ScreenLayout image={metas.imgBg} timerInitialTime={10}>
       <div className="relative flex flex-col justify-center items-center h-screen gap-20">
         <div className="flex flex-col text-center h-60">
-          <span className="font-extrabold text-8xl text-center tracking-wider	w-[500px]">
-            {metas?.title || 'INSERTAR ENVASE'}
+          <span className="font-extrabold text-8xl text-center uppercase tracking-wider	w-[500px]">
+            {metas?.title || t('insert.title') }
           </span>
         </div>
         <img

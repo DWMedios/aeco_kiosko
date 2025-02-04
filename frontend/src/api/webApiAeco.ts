@@ -17,6 +17,15 @@ class WebApiAeco {
   static saveMovement(data: Movement) {
     return WebApi.ApisType({ url: '/movements', method: 'POST', body: data })
   }
-}
+
+  static getRewardCaterories() {
+    return WebApi.ApisType({ url: '/reward-categories', method: 'GET' })
+  }
+  
+  static getRewardSubCaterory(id: number) {
+    return WebApi.ApisType({ url: `/rewards?reward_category=${id}`, method: 'GET' })
+  }
+
+} 
 
 export default WebApiAeco
