@@ -16,7 +16,7 @@ exports.create = async (data) => {
 exports.findOne = async (id) => {
   const { Movement } = await initializeDatabase()
   return await Movement.findOne({
-    where: { id },
+    where: { id, printed_ticket: 0 },
     attributes: { exclude: ['createdAt', 'updatedAt'] },
   })
 }
