@@ -5,13 +5,12 @@ import QRCodeComponent from '../../../components/qrCode'
 import { GetPackagings } from '../../../utils/savePackaging'
 
 const Ticket = () => {
-  const [products, setProducts] = useState<Packagings | null>( null )
+  const [products, setProducts] = useState<Packagings | null>(null)
   const QrCodeUrl =
     'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
 
-    
   useEffect(() => {
-    setProducts( GetPackagings() )
+    setProducts(GetPackagings())
   }, [])
 
   return (
@@ -27,9 +26,7 @@ const Ticket = () => {
           <li>Coca Cola 355 ml ---- 1</li>
           <li>Coca Cola 3l ---- 1</li>
           {products?.packagings.map((p, i) => (
-            <li
-              key={i}
-            >
+            <li key={i}>
               <span>{`${p.name} - ${p.packaging}`}</span>
             </li>
           ))}

@@ -1,13 +1,11 @@
-import ScreenLayout from '../../components/layout/screenLayout';
-import TicketButton from '../../components/ticketButton';
-import useTranslate from '../../hooks/useTranslate';
-import { getSessionStorage } from '../../utils/manageStorage';
-
+import ScreenLayout from '../../components/layout/screenLayout'
+import TicketButton from '../../components/ticketButton'
+import useTranslate from '../../hooks/useTranslate'
+import { getSessionStorage } from '../../utils/manageStorage'
 
 const VoucherView = () => {
-  const { t } = useTranslate();
-  const paper = getSessionStorage('paperStatus') === "true";
-
+  const { t } = useTranslate()
+  const paper = getSessionStorage('paperStatus') === 'true'
 
   return (
     <ScreenLayout
@@ -40,8 +38,7 @@ const VoucherView = () => {
         </p>
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default VoucherView;
-
+export default VoucherView

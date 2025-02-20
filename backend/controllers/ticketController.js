@@ -24,7 +24,7 @@ exports.create = async (req, res) => {
 
 exports.print = async (req, res) => {
   try {
-    const { movement_id } = req.query
+    const { movement_id } = req.body
     const movement = await movementRepository.findOne(movement_id)
     if (!movement) {
       return res.status(HTTP_CODES.NOT_FOUND).send({
