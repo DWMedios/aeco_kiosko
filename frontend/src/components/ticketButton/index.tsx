@@ -14,9 +14,9 @@ const TicketButton = ({
   const navigate = useNavigate()
 
   return (
-    <button 
-      onClick={() => !disabled && navigate(url)} 
-      className={`${buttonClass} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`} 
+    <button
+      onClick={() => !disabled && navigate(url)}
+      className={`${buttonClass} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       disabled={disabled}
     >
       <img src={imageSrc} alt={altText} className={imgClass} />
