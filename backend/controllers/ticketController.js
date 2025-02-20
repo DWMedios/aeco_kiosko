@@ -1,6 +1,7 @@
 const ticketRepository = require('../repositories/ticketRepository')
-const paperRepository = require('../repositories/paperRepository')
+const movementRepository = require('../repositories/movementRepository')
 const HTTP_CODES = require('../utils/http-status-codes')
+const { ticketPrinter } = require('../utils/printHelper')
 
 exports.create = async (req, res) => {
   try {
@@ -8,7 +9,7 @@ exports.create = async (req, res) => {
     if (!data) {
       return res
         .status(HTTP_CODES.BAD_REQUEST)
-        .send({ message: 'No se puede el ticket' })
+        .send({ message: 'No se puede crear el ticket' })
     }
     const paper = await ticketRepository.create(data)
 
@@ -23,14 +24,16 @@ exports.create = async (req, res) => {
 
 exports.print = async (req, res) => {
   try {
-    const paper = await ticketRepository.findOne()
-    if (!paper) {
+    const { movement_id } = req.query
+    const movement = await movementRepository.findOne(movement_id)
+    if (!movement) {
       return res.status(HTTP_CODES.NOT_FOUND).send({
         message: 'No se puede imprimir el ticket, papel no disponible',
       })
     }
-    await paperRepository.update(paper.id, { printed: true })
-    return res.json(paper)
+    await ticketPrinter(movement)
+    await ticketRepository.update(movement, { printed: true })
+    return res.json({ message: 'Ticket impreso' })
   } catch (err) {
     console.error(err)
     return res
