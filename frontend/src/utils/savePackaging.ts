@@ -1,5 +1,6 @@
 import WebApiAeco from '../api/webApiAeco'
 import { Movement, Packaging } from '../interfaces'
+import { getSessionStorage, setSessionStorage } from './manageStorage'
 
 export const SavePackaging = (packaging: Packaging) => {
   const packagings = GetPackagings() || { packagings: [], can: 0, bottle: 0 }
@@ -11,7 +12,7 @@ export const SavePackaging = (packaging: Packaging) => {
         ? packagings.bottle + 1
         : packagings.bottle,
   }
-  sessionStorage.setItem('containers', JSON.stringify(updatedProducts))
+  setSessionStorage('containers', JSON.stringify(updatedProducts))
 }
 
 export const GetPackagings = (): {
@@ -19,7 +20,7 @@ export const GetPackagings = (): {
   can: number
   bottle: number
 } | null => {
-  const data = sessionStorage.getItem('containers')
+  const data = getSessionStorage('containers')
   return data ? JSON.parse(data) : null
 }
 

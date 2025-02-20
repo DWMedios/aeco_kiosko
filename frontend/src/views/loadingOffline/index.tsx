@@ -4,6 +4,7 @@ import type { Icon } from '../../interfaces'
 import { sendCommands } from '../../utils/commands'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
+import savePaperStatus from '../../hooks/usePaperStatus'
 
 const LoadingOffline = ({ icon = 'loading' }: Icon) => {
   const navigation = useNavigate()
@@ -14,10 +15,13 @@ const LoadingOffline = ({ icon = 'loading' }: Icon) => {
   }, [socketOn])
 
   useEffect(() => {
+    savePaperStatus()
     setTimeout(() => {
       navigation('/home')
     }, 3000)
   })
+  
+
 
   return (
     <ScreenLayout image="bg-offline-loading.png" showTimer={false}>

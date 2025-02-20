@@ -9,11 +9,16 @@ const TicketButton = ({
   imgClass = 'w-[150px] h-[150px] border-4 border-[#027333] border-solid p-3 rounded-lg',
   textClass = 'text-4xl font-medium',
   url,
+  disabled = false,
 }: TicketButtonInterface) => {
-  const navigation = useNavigate()
+  const navigate = useNavigate()
 
   return (
-    <button onClick={() => navigation(url)} className={buttonClass}>
+    <button 
+      onClick={() => !disabled && navigate(url)} 
+      className={`${buttonClass} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`} 
+      disabled={disabled}
+    >
       <img src={imageSrc} alt={altText} className={imgClass} />
       <span className={textClass}>{buttonText}</span>
     </button>

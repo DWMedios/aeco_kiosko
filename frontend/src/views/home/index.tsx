@@ -16,12 +16,19 @@ import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
 import { ClearCountPackings } from '../../utils/savePackaging'
+import savePaperStatus from '../../hooks/usePaperStatus'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
 
+
+  const statusPaper = async () => {
+    await savePaperStatus()
+  }
+
   useEffect(() => {
     ClearCountPackings()
+    statusPaper()
   }, [])
 
   if (loading || error || !metas) {

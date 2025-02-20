@@ -159,6 +159,7 @@ export interface TicketButtonInterface {
   imgClass?: string
   textClass?: string
   url: string
+  disabled?: boolean
 }
 
 export interface QRCodeInterface {
@@ -204,3 +205,9 @@ export interface ScreenLayoutProps extends Layout {
   showTimer?: boolean
   timerInitialTime?: number
 }
+
+export interface PaperStatusResponse {
+  status: boolean;
+  message: string; 
+}
+

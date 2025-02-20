@@ -28,6 +28,6 @@ router.get('/paper', paperController.getActive)
 
 router.put('/paper', paperController.update)
 
-router.post('/print-ticket', ticketController.print)
+router.post('/printer-ticket', ticketController.print)
 
 module.exports = router
