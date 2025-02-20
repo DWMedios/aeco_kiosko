@@ -26,10 +26,12 @@ module.exports = (sequelize, DataTypes) => {
       synchronized: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
       printed_ticket: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
     },
     {
