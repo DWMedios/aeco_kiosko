@@ -1,14 +1,14 @@
-import { imageTicket, subTitleTicket, titleTicket } from './constants'
-
 const path = require('path')
 
 const escpos = require('escpos')
 escpos.USB = require('escpos-usb')
 
+const { imageTicket, subTitleTicket, titleTicket } = require('./constants')
+
 const device = new escpos.USB()
 const printer = new escpos.Printer(device)
 
-export const ticketPrinter = async (movement, image = null) => {
+exports.ticketPrinter = async (movement, image = null) => {
   const tux = path.join(__dirname, image ? image : imageTicket)
 
   escpos.Image.load(tux, function (image) {
