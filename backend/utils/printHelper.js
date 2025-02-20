@@ -3,47 +3,53 @@ const path = require('path')
 const escpos = require('escpos')
 escpos.USB = require('escpos-usb')
 
-const { imageTicket, subTitleTicket, titleTicket } = require('./constants')
+const { imageTicket, descriptionTicket, titleTicket, footer } = require('./constants')
 
 const device = new escpos.USB()
 const printer = new escpos.Printer(device)
 
 exports.ticketPrinter = async (movement, image = null) => {
-  const tux = path.join(__dirname, image ? image : imageTicket)
+  const tux = path.join(__dirname, '..', 'public', 'images', image ? image : imageTicket)
 
   escpos.Image.load(tux, function (image) {
+    image.toRaster()
     device.open(function () {
       printer
         .align('ct')
-        .image(image, 's8')
+        .image(image, 'd24')
         .then(() => {
           printer
             .font('a')
-            .align('ct')
-            .style('bu')
-            .size(1, 1)
             .encode('utf8')
-            .text(justifyTextLine(titleTicket, ''))
-            .align('lt')
-            .text(wrapTextBlock(subTitleTicket))
+            .style('b')
+            .align('ct')
+            .size(1, .5)
+            .text(wrapTextBlock(titleTicket))
             .text('\n')
-            .text(justifyTextLine('Latas', movement.can_number))
-            .text(justifyTextLine('Botellas', movement.bottle_number))
-            .cut()
-            .close()
+            .align('lt')
+            .style('normal')
+            .text(wrapTextBlock(descriptionTicket))
+            .text('\n')
+            .style('b')
+            .text(justifyTextLine('Latas', String(movement.can_number)))
+            .text(justifyTextLine('Botellas', String(movement.bottle_number)))
+            .text('\n')
+            .style('normal')
+            .align('ct')
+            .text(wrapTextBlock(footer))
             .cut()
             .close()
         })
     })
   })
+  return true
 }
 
 const justifyTextLine = (textOne = '', textTwo = '') => {
-  textOne = String(textOne).slice(0, 24 - textTwo.length)
-  const spaces = ' '.repeat(Math.max(0, 24 - textOne.length - textTwo.length))
+  const spaces = ' '.repeat(Math.max(0, 24 - (textOne.length + textTwo.length)))
+
   return textOne + spaces + textTwo
 }
-
 function wrapTextBlock(text) {
   const words = text.split(' ')
   let line = ''

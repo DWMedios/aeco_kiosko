@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { usePageData } from '../../hooks/usePageData'
 import type { MetaDataHome } from '../../interfaces'
-import type {
+import {
   BackgroundButtonEnum,
   BorderRadiusEnum,
   FontSizeEnum,
@@ -32,7 +32,6 @@ function Home() {
   }, [])
 
   if (loading || error || !metas) {
-    console.log("🚀 ~ Home ~ metas:", metas?.imgBg)
     return (
       <div>
         {loading
@@ -74,7 +73,7 @@ function Home() {
           fontSize={
             FontSizeEnum[metas.button.fontSize as keyof typeof FontSizeEnum]
           }
-          positionButton={PositionButtonEnum.fixed}
+          positionButton={PositionButtonEnum.fixed} 
           borderColor={null}
         />
 

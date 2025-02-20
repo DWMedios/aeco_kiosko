@@ -31,8 +31,8 @@ exports.print = async (req, res) => {
         message: 'No se puede imprimir el ticket, papel no disponible',
       })
     }
-    await ticketPrinter(movement)
-    await ticketRepository.update(movement, { printed: true })
+    await ticketPrinter(movement.dataValues)
+    await ticketRepository.update(movement_id, { printed: 1 })
     return res.json({ message: 'Ticket impreso' })
   } catch (err) {
     console.error(err)

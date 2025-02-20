@@ -18,10 +18,10 @@ const TicketButton = ({
       const movementId = 1 //getSessionStorage('movementId')
       if (movementId) {
         await WebApiAeco.printerTicket(Number(movementId))
-        navigate('/finalView')
+        // navigate('/finalView')
       }
     } catch (error) {
-      navigate('/ticket')
+      // navigate('/ticket')
     }
   }
 
