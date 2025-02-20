@@ -8,11 +8,7 @@ const VoucherView = () => {
   const paper = getSessionStorage('paperStatus') === 'true'
 
   return (
-    <ScreenLayout
-      image="leafBackground.png"
-      showTimer={false}
-      // timerInitialTime={30}
-    >
+    <ScreenLayout image="leafBackground.png" timerInitialTime={30}>
       <div className="flex flex-col justify-center items-center text-center z-10 h-screen select-none gap-20">
         <h1 className="text-8xl uppercase font-bold z-10 w-[700px]">
           {t('voucher.title')}
