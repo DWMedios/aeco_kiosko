@@ -20,3 +20,8 @@ exports.findOne = async (id) => {
     attributes: { exclude: ['createdAt', 'updatedAt'] },
   })
 }
+
+exports.update = async (id, data) => {
+  const { Movement } = await initializeDatabase()
+  return await Movement.update(data, { where: { id } })
+}
