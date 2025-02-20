@@ -32,7 +32,7 @@ exports.print = async (req, res) => {
       })
     }
     await ticketPrinter(movement.dataValues)
-    await ticketRepository.update(movement_id, { printed: 1 })
+    await ticketRepository.update(movement_id, { printed_ticket: 1 })
     return res.json({ message: 'Ticket impreso' })
   } catch (err) {
     console.error(err)
