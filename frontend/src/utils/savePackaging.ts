@@ -37,7 +37,7 @@ export const SavePreoccess = async (movement: Movement) => {
   try {
     const response = await WebApiAeco.saveMovement(movement)
     console.log('🚀 ~ SavePreoccess ~ response:', response)
-    setSessionStorage('movementId', response?.data.id)
+    setSessionStorage('movementId', response.id)
     return true
   } catch (error) {
     return false

@@ -9,8 +9,7 @@ import useTranslate from '../../hooks/useTranslate'
 import { sendCommands } from '../../utils/commands'
 
 const Scanning = () => {
-
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const {
     data: metas,
@@ -22,7 +21,7 @@ const Scanning = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      sendCommand(sendCommands.REJECTED);
+      sendCommand(sendCommands.REJECTED)
       navigation('/unidentified')
     }, 10000)
 
@@ -42,7 +41,10 @@ const Scanning = () => {
   }
 
   return (
-    <ScreenLayout image={metas.imgBg || '/leafBackground.png'} timerInitialTime={10}>
+    <ScreenLayout
+      image={metas.imgBg || '/leafBackground.png'}
+      timerInitialTime={10}
+    >
       <BarcodeScanner />
       <div className="relative flex flex-col justify-center items-center h-screen gap-20">
         <div className="flex flex-col text-center h-60">
