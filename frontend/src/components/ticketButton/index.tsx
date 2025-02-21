@@ -15,13 +15,13 @@ const TicketButton = ({
 
   const printerTicket = async () => {
     try {
-      const movementId = 1 //getSessionStorage('movementId')
+      const movementId = getSessionStorage('movementId')
       if (movementId) {
         await WebApiAeco.printerTicket(Number(movementId))
-        // navigate('/finalView')
+        navigate('/finalView')
       }
     } catch (error) {
-      // navigate('/ticket')
+      navigate('/ticket')
     }
   }
 

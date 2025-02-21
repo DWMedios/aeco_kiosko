@@ -21,7 +21,6 @@ import savePaperStatus from '../../hooks/usePaperStatus'
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
 
-
   const statusPaper = async () => {
     await savePaperStatus()
   }
@@ -47,14 +46,8 @@ function Home() {
     <ScreenLayout image={metas.imgBg} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
-        <img
-          className="w-[500px] fixed top-44"
-          src={metas.imgUp}
-        />
-        <img
-          className="w-11/12 fixed top-1/4"
-          src={metas.imgDown}
-        />
+        <img className="w-[500px] fixed top-44" src={metas.imgUp} />
+        <img className="w-11/12 fixed top-1/4" src={metas.imgDown} />
         <LangHelp />
         <Button
           label={metas.button.label}
@@ -73,7 +66,7 @@ function Home() {
           fontSize={
             FontSizeEnum[metas.button.fontSize as keyof typeof FontSizeEnum]
           }
-          positionButton={PositionButtonEnum.fixed} 
+          positionButton={PositionButtonEnum.fixed}
           borderColor={null}
         />
 
