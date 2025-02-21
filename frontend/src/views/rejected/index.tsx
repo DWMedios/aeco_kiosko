@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { usePageData } from '../../hooks/usePageData'
-import type {
+import {
   BackgroundButtonEnum,
   BorderColorEnum,
   BorderRadiusEnum,
@@ -15,7 +15,7 @@ import useWebSocket from '../../hooks/useWebSocket'
 import useTranslate from '../../hooks/useTranslate'
 
 const Rejected = () => {
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const {
     data: metas,

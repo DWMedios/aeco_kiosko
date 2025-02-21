@@ -1,6 +1,6 @@
 import { usePageData } from '../../hooks/usePageData'
 
-import type {
+import {
   BackgroundButtonEnum,
   BorderColorEnum,
   BorderRadiusEnum,
@@ -16,8 +16,7 @@ import useWebSocket from '../../hooks/useWebSocket'
 import useTranslate from '../../hooks/useTranslate'
 
 const Example = () => {
-
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const {
     data: metas,
@@ -39,7 +38,7 @@ const Example = () => {
   }
 
   return (
-    <ScreenLayout image={metas.imgBg} >
+    <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <BackButton url="/home" />
         <div className="flex flex-col justify-center items-center w-[550px]">

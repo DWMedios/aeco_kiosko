@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
 import { usePageData } from '../../hooks/usePageData'
-import type {
+import {
   BackgroundButtonEnum,
   BorderRadiusEnum,
   FontSizeEnum,
@@ -16,9 +16,8 @@ import useWebSocket from '../../hooks/useWebSocket'
 import useTranslate from '../../hooks/useTranslate'
 
 const Unidentified = () => {
+  const { t } = useTranslate()
 
-  const { t } = useTranslate();
-  
   const {
     data: metas,
     loading,

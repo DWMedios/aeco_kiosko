@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type {
+import {
   BackgroundButtonEnum,
   BorderRadiusEnum,
   FontSizeEnum,
@@ -16,10 +16,8 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import useTranslate from '../../hooks/useTranslate'
 
-
 const Accepted = () => {
-
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const {
     data: metas,
@@ -30,7 +28,7 @@ const Accepted = () => {
   const { sendCommand } = useWebSocket()
 
   useEffect(() => {
-    sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL);
+    sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL)
   }, [])
 
   useEffect(() => {
