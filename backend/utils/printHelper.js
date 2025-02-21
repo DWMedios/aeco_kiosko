@@ -3,13 +3,26 @@ const path = require('path')
 const escpos = require('escpos')
 escpos.USB = require('escpos-usb')
 
-const { imageTicket, descriptionTicket, titleTicket, footer } = require('./constants')
+const {
+  imageTicket,
+  descriptionTicket,
+  titleTicket,
+  footer,
+} = require('./constants')
 
 const device = new escpos.USB()
 const printer = new escpos.Printer(device)
 
 exports.ticketPrinter = async (movement, image = null) => {
-  const tux = path.join(__dirname, '..', 'public', 'images', image ? image : imageTicket)
+  // let lineCount = 5
+
+  const tux = path.join(
+    __dirname,
+    '..',
+    'public',
+    'images',
+    image ? image : imageTicket
+  )
 
   escpos.Image.load(tux, function (image) {
     image.toRaster()
@@ -23,7 +36,7 @@ exports.ticketPrinter = async (movement, image = null) => {
             .encode('utf8')
             .style('b')
             .align('ct')
-            .size(1, .5)
+            .size(1, 0.5)
             .text(wrapTextBlock(titleTicket))
             .text('\n')
             .align('lt')
