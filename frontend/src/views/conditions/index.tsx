@@ -1,6 +1,6 @@
 import { usePageData } from '../../hooks/usePageData'
 
-import type {
+import {
   BackgroundButtonEnum,
   BorderColorEnum,
   BorderRadiusEnum,
@@ -17,8 +17,7 @@ import RewardsConditions from './components/rewards'
 import useTranslate from '../../hooks/useTranslate'
 
 const Conditions = () => {
-
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const {
     data: metas,
