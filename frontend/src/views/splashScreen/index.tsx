@@ -6,7 +6,6 @@ const SplashScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('Termino el tiempo')
       navigation('/loadingOffline')
     }, 3000)
   }, [])

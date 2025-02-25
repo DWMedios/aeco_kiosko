@@ -4,6 +4,8 @@ import WebApiAeco from '../../api/webApiAeco'
 import { getSessionStorage } from '../../utils/manageStorage'
 
 const TicketButton = ({
+  action,
+  url,
   imageSrc,
   altText,
   buttonText,
@@ -11,24 +13,12 @@ const TicketButton = ({
   imgClass = 'w-[150px] h-[150px] border-4 border-[#027333] border-solid p-3 rounded-lg',
   textClass = 'text-4xl font-medium',
 }: TicketButtonInterface) => {
-  const navigate = useNavigate()
-
-  const printerTicket = async () => {
-    try {
-      const movementId = getSessionStorage('movementId')
-      if (movementId) {
-        await WebApiAeco.printerTicket(Number(movementId))
-        navigate('/finalView')
-      }
-    } catch (error) {
-      navigate('/ticket')
-    }
-  }
+    const navigation = useNavigate()
 
   return (
     <button
-      onClick={printerTicket}
-      className={`${buttonClass} opacity-50 cursor-not-allowed`}
+      onClick={() => (action && action(), url && navigation(url))}
+      className={`${buttonClass}`}
     >
       <img src={imageSrc} alt={altText} className={imgClass} />
       <span className={textClass}>{buttonText}</span>

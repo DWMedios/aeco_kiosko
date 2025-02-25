@@ -21,7 +21,7 @@ const useWebSocket = (): WebSocketHook => {
         console.log('WebSocket conectado');
         setSocketOn(true);
       };
-    
+      
     if(ws)
       ws.onmessage = (event) => {
         const data: MessageWebSocket = JSON.parse(event.data);

@@ -22,9 +22,9 @@ const Ticket = () => {
         </span>
         <QRCodeComponent size={500} value={QrCodeUrl} />
         <ul className="text-2xl">
-          <li>Coca Cola 600 ml ---- 1</li>
-          <li>Coca Cola 355 ml ---- 1</li>
-          <li>Coca Cola 3l ---- 1</li>
+          {/* <li>Coca Cola 600 ml ---- 1</li> */}
+          {/* <li>Coca Cola 355 ml ---- 1</li> */}
+          {/* <li>Coca Cola 3l ---- 1</li> */}
           {products?.packagings.map((p, i) => (
             <li key={i}>
               <span>{`${p.name} - ${p.packaging}`}</span>
@@ -32,9 +32,9 @@ const Ticket = () => {
           ))}
         </ul>
         <ul className="text-2xl">
-          <li>Donativo ---- 1</li>
-          <li>Descuento ---- 1</li>
-          <li>Predial ---- 1</li>
+          {/* <li>Donativo ---- 1</li> */}
+          {/* <li>Descuento ---- 1</li> */}
+          {/* <li>Predial ---- 1</li> */}
         </ul>
         <span className="p-2 w-[500px] leading-10 text-3xl tracking-wider">
           Para dudas y aclaraciones por operaciones en las maquinas

@@ -15,7 +15,7 @@ const SendMessage = () => {
   }
   
   useEffect(() => {
-    if (command) SetMesages([...mesages, `Mensaje recibido: ${command}`])
+    if (command) SetMesages([...mesages, `Mensaje recibido: ${JSON.stringify(command)}`])
   }, [command])
 
   const commands = [

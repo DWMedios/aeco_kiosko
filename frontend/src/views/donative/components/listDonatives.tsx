@@ -31,7 +31,7 @@ const ListDonatives = ({ rewards }: RewardsProps) => {
             key={index}
             imageSrc={'/images/QRcode.png'}
             label={donative.name}
-            url={donative.id == 1 ? '/donative/1' : '/services'}
+            url={'/voucher'}
           />
         ))}
       </div>

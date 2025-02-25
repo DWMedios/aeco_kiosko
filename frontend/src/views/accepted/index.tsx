@@ -8,13 +8,14 @@ import {
   TextColorEnum,
 } from '../../interfaces'
 import { usePageData } from '../../hooks/usePageData'
-import { LastPackings } from '../../utils/savePackaging'
+import { GetPackagings, LastPackings, SavePreoccess } from '../../utils/savePackaging'
 import { sendCommands } from '../../utils/commands'
 
 import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import useTranslate from '../../hooks/useTranslate'
+import { useNavigate } from 'react-router-dom'
 
 const Accepted = () => {
   const { t } = useTranslate()
@@ -26,6 +27,7 @@ const Accepted = () => {
   } = usePageData<MetaDataAccepted>('Accepted')
   const [product, setProduct] = useState<Packaging>()
   const { sendCommand } = useWebSocket()
+  const navigation = useNavigate()
 
   useEffect(() => {
     sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL)
@@ -46,6 +48,26 @@ const Accepted = () => {
       </div>
     )
   }
+
+    const NextSteep = async () => {
+      const packings = GetPackagings()
+      if (packings) {
+        const saveMovement = await SavePreoccess({
+          can_number: packings.can,
+          bottle_number: packings.bottle,
+          folio: '1',
+          synchronized: false,
+        })
+        if (saveMovement) {
+          sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+          navigation(metas!.buttonDown.url)
+        }
+      } else {
+        sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+        navigation('/home')
+      }
+    }
+
   return (
     <ScreenLayout image={metas.imgBg}>
       <div className="flex flex-col justify-center items-center h-screen select-none gap-16">
@@ -90,7 +112,7 @@ const Accepted = () => {
           }
         />
         <Button
-          action={() => sendCommand(sendCommands.FINISH_LOCK_THE_LID)}
+          action={() => NextSteep()}
           label={metas.buttonDown.label}
           url={metas.buttonDown.url}
           bgColor={
