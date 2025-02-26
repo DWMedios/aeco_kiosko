@@ -8,7 +8,6 @@ const TicketView = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('Termino el tiempo')
       navigation('/final_view')
     }, 10000)
   })

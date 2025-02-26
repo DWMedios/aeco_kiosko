@@ -25,6 +25,7 @@ import AddBarcode from '../views/addBarcode'
 import Discounts from '../views/discounts'
 import Services from '../views/services'
 import ExternalService from '../views/externalService'
+import SendMessage from '../sendMessage'
 
 const AppRouter = () => {
   return (
@@ -54,6 +55,7 @@ const AppRouter = () => {
       <Route path="final_view" element={<FinalView />} />
       <Route path="/external_service" element={<ExternalService />} />
       <Route path="/services/:id" element={<Services />} />
+      <Route path="/sendMessage" element={<SendMessage />} />
     </Routes>
   )
 }

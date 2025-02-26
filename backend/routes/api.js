@@ -8,6 +8,7 @@ const productController = require('../controllers/productController')
 const aecoController = require('../controllers/aecoController')
 const movementController = require('../controllers/movementController')
 const paperController = require('../controllers/paperController')
+const ticketController = require('../controllers/ticketController')
 
 router.get('/company', companyController.getCompany)
 
@@ -26,5 +27,7 @@ router.post('/movements', movementController.create)
 router.get('/paper', paperController.getActive)
 
 router.put('/paper', paperController.update)
+
+router.post('/printer-ticket', ticketController.print)
 
 module.exports = router

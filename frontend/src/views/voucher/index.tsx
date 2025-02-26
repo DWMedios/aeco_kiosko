@@ -1,20 +1,32 @@
-import ScreenLayout from '../../components/layout/screenLayout';
-import TicketButton from '../../components/ticketButton';
-import useTranslate from '../../hooks/useTranslate';
-import { getSessionStorage } from '../../utils/manageStorage';
-
+import { useNavigate } from 'react-router-dom'
+import WebApiAeco from '../../api/webApiAeco'
+import ScreenLayout from '../../components/layout/screenLayout'
+import TicketButton from '../../components/ticketButton'
+import useTranslate from '../../hooks/useTranslate'
+import { getSessionStorage } from '../../utils/manageStorage'
 
 const VoucherView = () => {
-  const { t } = useTranslate();
-  const paper = getSessionStorage('paperStatus') === "true";
+  const { t } = useTranslate()
+  const paper = getSessionStorage('paperStatus') === 'true'
+  const navigate = useNavigate()
 
+
+    const printerTicket = async () => {
+    try {
+      const movementId = getSessionStorage('movementId')
+      console.log("🚀 ~ printerTicket ~ movementId:", movementId)
+      if (movementId) {
+        await WebApiAeco.printerTicket(Number(movementId))
+        navigate('/final_view')
+      }
+    } catch (error) {
+      console.log("🚀 ~ printerTicket ~ error:", error)
+      navigate('/ticket')
+    }
+  }
 
   return (
-    <ScreenLayout
-      image="leafBackground.png"
-      showTimer={true}
-      timerInitialTime={30}
-    >
+    <ScreenLayout image="leafBackground.png" timerInitialTime={30}>
       <div className="flex flex-col justify-center items-center text-center z-10 h-screen select-none gap-20">
         <h1 className="text-8xl uppercase font-bold z-10 w-[700px]">
           {t('voucher.title')}
@@ -28,7 +40,7 @@ const VoucherView = () => {
           />
           {paper && (
             <TicketButton
-              url="/final_view"
+              action={()=> printerTicket()}
               imageSrc="images/printer.png"
               altText="Impreso"
               buttonText="Impreso"
@@ -40,8 +52,7 @@ const VoucherView = () => {
         </p>
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default VoucherView;
-
+export default VoucherView

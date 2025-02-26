@@ -20,8 +20,6 @@ const LoadingOffline = ({ icon = 'loading' }: Icon) => {
       navigation('/home')
     }, 3000)
   })
-  
-
 
   return (
     <ScreenLayout image="bg-offline-loading.png" showTimer={false}>

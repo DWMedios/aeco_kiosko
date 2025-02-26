@@ -35,7 +35,8 @@ export const LastPackings = (): Packaging => {
 
 export const SavePreoccess = async (movement: Movement) => {
   try {
-    await WebApiAeco.saveMovement(movement)
+    const response = await WebApiAeco.saveMovement(movement)
+    setSessionStorage('movementId', response.id)
     return true
   } catch (error) {
     return false

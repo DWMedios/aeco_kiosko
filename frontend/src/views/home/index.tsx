@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { usePageData } from '../../hooks/usePageData'
-import type { MetaDataHome } from '../../interfaces'
-import type {
+import { MetaDataHome } from '../../interfaces'
+import {
   BackgroundButtonEnum,
   BorderRadiusEnum,
   FontSizeEnum,
@@ -21,7 +21,6 @@ import savePaperStatus from '../../hooks/usePaperStatus'
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
 
-
   const statusPaper = async () => {
     await savePaperStatus()
   }
@@ -32,7 +31,6 @@ function Home() {
   }, [])
 
   if (loading || error || !metas) {
-    console.log("🚀 ~ Home ~ metas:", metas?.imgBg)
     return (
       <div>
         {loading
@@ -48,14 +46,8 @@ function Home() {
     <ScreenLayout image={metas.imgBg} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
-        <img
-          className="w-[500px] fixed top-44"
-          src={metas.imgUp}
-        />
-        <img
-          className="w-11/12 fixed top-1/4"
-          src={metas.imgDown}
-        />
+        <img className="w-[500px] fixed top-44" src={metas.imgUp} />
+        <img className="w-11/12 fixed top-1/4" src={metas.imgDown} />
         <LangHelp />
         <Button
           label={metas.button.label}

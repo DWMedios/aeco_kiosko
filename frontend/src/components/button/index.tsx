@@ -22,8 +22,6 @@ const Button = ({
 }: ButtonInterface) => {
   const navigation = useNavigate()
 
-  useEffect(()=>{console.log(borderColor)},[borderColor])
-
   return (
     <>
       <div className="w-full flex justify-center mb-10 z-10">

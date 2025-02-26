@@ -2,7 +2,6 @@ import type { RewardCategoriesProps } from '../../../interfaces'
 import CardReward from '../../../components/cardReward'
 
 const ListRewards = ({ categories }: RewardCategoriesProps) => {
-  console.log('🚀 ~ ListRewards ~ rewards:', categories)
   return (
     <div className="flex flex-col items-center bg-[#D9D9D9] bg-opacity-50 text-black shadow-md rounded-3xl w-[600px] h-[950px] z-10 p-5">
       <div className="flex flex-row flex-wrap justify-center gap-10">

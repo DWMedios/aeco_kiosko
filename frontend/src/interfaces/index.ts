@@ -152,13 +152,14 @@ export interface PaginationButtonsInterface {
 }
 
 export interface TicketButtonInterface {
+  action?: ()=> void
   imageSrc: string
   altText: string
   buttonText: string
   buttonClass?: string
   imgClass?: string
   textClass?: string
-  url: string
+  url?: string
   disabled?: boolean
 }
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { usePageData } from '../../hooks/usePageData'
-import type {
+import {
   BackgroundButtonEnum,
   BorderColorEnum,
   BorderRadiusEnum,
@@ -13,16 +13,18 @@ import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import useTranslate from '../../hooks/useTranslate'
+import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
+import { useNavigate } from 'react-router-dom'
 
 const Rejected = () => {
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const {
     data: metas,
     loading,
     error,
   } = usePageData<MetaDataRejected>('Rejected')
-
+  const navigation = useNavigate()
   const { sendCommand } = useWebSocket()
 
   useEffect(() => {
@@ -40,6 +42,25 @@ const Rejected = () => {
       </div>
     )
   }
+
+    const NextSteep = async () => {
+      const packings = GetPackagings()
+      if (packings) {
+        const saveMovement = await SavePreoccess({
+          can_number: packings.can,
+          bottle_number: packings.bottle,
+          folio: '1',
+          synchronized: false,
+        })
+        if (saveMovement) {
+          sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+          navigation(metas!.buttonDown.url)
+        }
+      } else {
+        sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+        navigation('/home')
+      }
+    }
 
   return (
     <ScreenLayout image={metas.imgBg}>
@@ -97,8 +118,8 @@ const Rejected = () => {
         />
 
         <Button
-          label={metas.buttonDown.title}
-          url={metas.buttonDown.url}
+        action={() => NextSteep()}
+          label={metas.buttonDown.label}
           textColor={TextColorEnum.black}
           borderRadius={
             BorderRadiusEnum[

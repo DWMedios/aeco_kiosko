@@ -21,15 +21,25 @@ class WebApiAeco {
   static getRewardCaterories() {
     return WebApi.ApisType({ url: '/reward-categories', method: 'GET' })
   }
-  
+
   static getRewardSubCaterory(id: number) {
-    return WebApi.ApisType({ url: `/rewards?reward_category=${id}`, method: 'GET' })
+    return WebApi.ApisType({
+      url: `/rewards?reward_category=${id}`,
+      method: 'GET',
+    })
   }
 
   static getPaper() {
     return WebApi.ApisType({ url: '/paper', method: 'GET' })
   }
 
-} 
+  static printerTicket(id: number) {
+    return WebApi.ApisType({
+      url: '/printer-ticket',
+      method: 'POST',
+      body: { movement_id: id },
+    })
+  }
+}
 
 export default WebApiAeco

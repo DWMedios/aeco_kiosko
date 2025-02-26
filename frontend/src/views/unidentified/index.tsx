@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
 import { usePageData } from '../../hooks/usePageData'
-import type {
+import {
   BackgroundButtonEnum,
   BorderRadiusEnum,
   FontSizeEnum,
@@ -16,9 +16,8 @@ import useWebSocket from '../../hooks/useWebSocket'
 import useTranslate from '../../hooks/useTranslate'
 
 const Unidentified = () => {
+  const { t } = useTranslate()
 
-  const { t } = useTranslate();
-  
   const {
     data: metas,
     loading,
@@ -46,7 +45,6 @@ const Unidentified = () => {
       }
     } else {
       sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-      sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL)
       navigation('/home')
     }
   }
@@ -100,7 +98,6 @@ const Unidentified = () => {
         <Button
           action={() => NextSteep()}
           label={metas.buttonDown.label}
-          url={metas.buttonDown.url}
           bgColor={
             BackgroundButtonEnum[
               metas.buttonDown.bgColor as keyof typeof BackgroundButtonEnum
