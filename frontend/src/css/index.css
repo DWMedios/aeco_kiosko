@@ -6,6 +6,8 @@
 html, body {
   touch-action: none;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Personalizar el scroll  del modal*/

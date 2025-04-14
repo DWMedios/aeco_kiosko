@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
-import { usePageData } from '../../../hooks/usePageData';
-import { MetaDataHome } from '../../../interfaces';
-
-
+import { Link } from 'react-router-dom'
+import { usePageData } from '../../../hooks/usePageData'
+import { MetaDataHome } from '../../../interfaces'
 
 const LangHelp = () => {
-  const { data: metas} = usePageData<MetaDataHome>('Home');
+  const { data: metas } = usePageData<MetaDataHome>('Home')
 
-  if (!metas) return <div>No metadata available</div>;
+  if (!metas) return <div>No metadata available</div>
 
   return (
     <div className="w-full">
@@ -15,20 +13,18 @@ const LangHelp = () => {
         <Link to="/language">
           <img
             className="w-20"
-            src={metas.logoLang.path}
-            alt={metas.logoLang.alt}
+            src={metas.imgLang}
           />
         </Link>
         <Link to="/help">
           <img
             className="w-20"
-            src={metas.logoHelp.path}
-            alt={metas.logoHelp.alt}
+            src={metas.imgHelp}
           />
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LangHelp;
+export default LangHelp

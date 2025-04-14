@@ -12,6 +12,15 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
+      type: {
+        type: Sequelize.ENUM,
+        values: ['Initial', 'Update'],
+        defaultValue: 'Initial',
+      },
+      message: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

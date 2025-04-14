@@ -1,44 +1,55 @@
-// src/hooks/useWebSocket.ts
-import { useCallback, useEffect, useState } from "react";
-import { WebSocketHook } from "../interfaces";
+import { useCallback, useEffect, useState } from 'react'
+import { MessageWebSocket, WebSocketHook } from '../interfaces'
 
-const useWebSocket = (url: string): WebSocketHook => {
-  const [socket, setSocket] = useState<WebSocket | null>(null);
-  const [message, setMessage] = useState<string>("");
+let socket: WebSocket | null = null;
 
+const useWebSocket = (): WebSocketHook => {
+  const wsUrl = import.meta.env.VITE_API_WS
+  // const [socket, setSocket] = useState<WebSocket | null>(null)
+  const [command, setCommand] = useState<MessageWebSocket>({})
+  const [socketOn, setSocketOn] =useState<boolean>(false)
+  
   useEffect(() => {
-    const ws = new WebSocket(url);
+    if (!socket && !socketOn) {
+      socket = new WebSocket(wsUrl);
+    }
 
-    ws.onopen = () => {
-      console.log("WebSocket conectado");
-    };
+    const ws = socket;
 
-    ws.onmessage = (event) => {
-      setMessage(event.data);
-      console.log("Mensaje recibido del servidor:", event.data);
-    };
+    if(ws && !socketOn)
+      ws.onopen = () => {
+        console.log('WebSocket conectado');
+        setSocketOn(true);
+      };
+      
+    if(ws)
+      ws.onmessage = (event) => {
+        const data: MessageWebSocket = JSON.parse(event.data);
+        setCommand(data);
+      }
+    
+    // ws.onclose = () => {
+    //   console.log('WebSocket desconectado')
+    //   setSocketOn(false)
+    // }
 
-    ws.onclose = () => {
-      console.log("WebSocket desconectado");
-    };
+    // setSocket(ws)
 
-    setSocket(ws);
+    // return () => {
+    //   ws.close()
+    // }
+  }, [command])
 
-    return () => {
-      ws.close();
-    };
-  }, [url]);
-
-  const sendMessage = useCallback(
+  const sendCommand = useCallback(
     (message: string) => {
       if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(message);
+        socket.send(JSON.stringify({ command: message }))
       }
     },
-    [socket]
-  );
+    [],
+  )
 
-  return { message, sendMessage };
-};
+  return { command, sendCommand, socketOn}
+}
 
-export default useWebSocket;
+export default useWebSocket

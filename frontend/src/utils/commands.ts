@@ -1,0 +1,19 @@
+export const sendCommands = {
+    ACCEPTED: 'BUS',
+    REJECTED: 'J',
+    GREEN_LED: 'L',
+    RED_LED: 'T',
+    BLUE_LED: 'U',
+    REJECTED_BOTTLE:'US',
+    INITIAL_SETUP_LOCK_ALL: 'YLWDY',
+    FINISH_LOCK_THE_LID: 'XYDBs',
+    SEND_ON_ENTER_MORE: 'IBMUB',
+    CLAIM_DONATION_RETURN: 'YLIYLEYL',
+    END_THE_READING_PROCESS: 'CYLILEYLD',
+    FINISH_NO_READ_BOTTLE: 'XYYLIYLEYLDV',
+    INITIATE_BOTTLE_INSERT: 'BEB'
+}
+
+export const receivedCommands = {
+    OPEN_COVER: 'I'
+}

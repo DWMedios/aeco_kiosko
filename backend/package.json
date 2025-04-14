@@ -1,6 +1,6 @@
 {
   "name": "backend-aeco",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Backend AECO APP",
   "private": true,
   "keywords": [],
@@ -11,6 +11,8 @@
   },
   "scripts": {
     "start": "node server.js",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
     "db:migrate": "dotenv sequelize-cli db:migrate --config .sequelizerc",
     "db:seed": "dotenv sequelize-cli db:seed:all --config .sequelizerc",
     "db:create": "sequelize-cli db:create --config .sequelizerc",
@@ -21,18 +23,24 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@serialport/list": "^12.0.0",
-    "@serialport/parser-readline": "^12.0.0",
+    "@serialport/list": "12.0.0",
+    "@serialport/parser-readline": "12.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "escpos": "^3.0.0-alpha.6",
+    "escpos-usb": "^3.0.0-alpha.4",
     "express": "^4.19.2",
+    "node-cron": "^3.0.3",
+    "node-fetch": "^3.3.2",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.3",
-    "serialport": "^12.0.0",
+    "serialport": "12.0.0",
+    "usb": "^1.9.2",
     "ws": "^8.18.0"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.8",
     "@eslint/js": "^9.8.0",
     "dotenv-cli": "^7.4.2",
     "eslint": "^9.8.0",

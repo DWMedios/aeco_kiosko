@@ -1,14 +1,36 @@
-import ScreenLayout from "../../components/layout/screenLayout";
-import TicketButton from '../../components/ticketButton';
-
+import { useNavigate } from 'react-router-dom'
+import WebApiAeco from '../../api/webApiAeco'
+import ScreenLayout from '../../components/layout/screenLayout'
+import TicketButton from '../../components/ticketButton'
+import useTranslate from '../../hooks/useTranslate'
+import { getSessionStorage } from '../../utils/manageStorage'
 
 const VoucherView = () => {
+  const { t } = useTranslate()
+  const paper = getSessionStorage('paperStatus') === 'true'
+  const navigate = useNavigate()
 
+
+    const printerTicket = async () => {
+    try {
+      const movementId = getSessionStorage('movementId')
+      console.log("🚀 ~ printerTicket ~ movementId:", movementId)
+      if (movementId) {
+        await WebApiAeco.printerTicket(Number(movementId))
+        navigate('/final_view')
+      }
+    } catch (error) {
+      console.log("🚀 ~ printerTicket ~ error:", error)
+      navigate('/ticket')
+    }
+  }
 
   return (
-    <ScreenLayout image="leafBackground.png">
-      <div className="flex flex-col justify-center items-center text-center gap-11 z-10 h-screen select-none gap-20">
-        <h1 className='text-8xl font-bold z-10 w-[700px]'>ELIGE TU COMPROBANTE</h1>
+    <ScreenLayout image="leafBackground.png" timerInitialTime={30}>
+      <div className="flex flex-col justify-center items-center text-center z-10 h-screen select-none gap-20">
+        <h1 className="text-8xl uppercase font-bold z-10 w-[700px]">
+          {t('voucher.title')}
+        </h1>
         <div className="flex gap-8 mt-10 z-10 h-[350px]">
           <TicketButton
             url="/ticket"
@@ -16,17 +38,21 @@ const VoucherView = () => {
             altText="Digital"
             buttonText="Digital"
           />
-          <TicketButton
-            url="/ticket"
-            imageSrc="images/printer.png"
-            altText="Impreso"
-            buttonText="Impreso"
-          />
+          {paper && (
+            <TicketButton
+              action={()=> printerTicket()}
+              imageSrc="images/printer.png"
+              altText="Impreso"
+              buttonText="Impreso"
+            />
+          )}
         </div>
-        <p className='text-6xl font-normal w-[600px]'>POR UN MAÑANA MÁS SUSTENTABLE</p>
+        <p className="text-6xl font-normal uppercase w-[600px]">
+          {t('voucher.description')}
+        </p>
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default VoucherView;
+export default VoucherView

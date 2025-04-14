@@ -1,39 +1,121 @@
-import ScreenLayout from "../../components/layout/screenLayout";
-import Button from "../../components/button";
-import { BackgroundButtonEnum, FontSizeEnum, TextColorEnum } from '../../interfaces';
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
+import { usePageData } from '../../hooks/usePageData'
+import {
+  BackgroundButtonEnum,
+  BorderRadiusEnum,
+  FontSizeEnum,
+  MetaDataUnidentified,
+  TextColorEnum,
+} from '../../interfaces'
+import { sendCommands } from '../../utils/commands'
+import Button from '../../components/button'
+import ScreenLayout from '../../components/layout/screenLayout'
+import useWebSocket from '../../hooks/useWebSocket'
+import useTranslate from '../../hooks/useTranslate'
 
 const Unidentified = () => {
+  const { t } = useTranslate()
+
+  const {
+    data: metas,
+    loading,
+    error,
+  } = usePageData<MetaDataUnidentified>('Unidentified')
+  const navigation = useNavigate()
+  const { sendCommand } = useWebSocket()
+
+  useEffect(() => {
+    sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL)
+  }, [])
+
+  const NextSteep = async () => {
+    const packings = GetPackagings()
+    if (packings) {
+      const saveMovement = await SavePreoccess({
+        can_number: packings.can,
+        bottle_number: packings.bottle,
+        folio: '1',
+        synchronized: false,
+      })
+      if (saveMovement) {
+        sendCommand(sendCommands.FINISH_LOCK_THE_LID)
+        navigation(metas!.buttonDown.url)
+      }
+    } else {
+      sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+      navigation('/home')
+    }
+  }
+
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
+
   return (
-    <ScreenLayout image="leafBackground.png">
+    <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none gap-16">
         <div className="flex flex-col justify-center items-center">
-          <span className="font-extrabold text-8xl text-center tracking-wider">
-            ENVASE NO IDENTIFICADO
+          <span className="font-extrabold text-8xl uppercase text-center tracking-wider">
+            {metas?.title || t('unidentified.title')}
           </span>
         </div>
         <img
           src="/images/unidentified.png"
-          alt=""
+          alt="Unidentified image"
           className="m-10 mb-20 w-auto h-96"
         />
 
-        <Button 
-        label='¡INTENTAR DE NUEVO!' 
-        url="/insert" 
-        bgColor={BackgroundButtonEnum.green}
-        borderColor={null}
-        textColor={TextColorEnum.white}
-        fontSize={FontSizeEnum.xl6}/>
+        <Button
+          action={() => sendCommand(sendCommands.INITIATE_BOTTLE_INSERT)}
+          label={metas.buttonUp.label}
+          url={metas.buttonUp.url}
+          bgColor={
+            BackgroundButtonEnum[
+              metas.buttonUp.bgColor as keyof typeof BackgroundButtonEnum
+            ]
+          }
+          textColor={TextColorEnum.white}
+          borderRadius={
+            BorderRadiusEnum[
+              metas.buttonUp.borderRadious as keyof typeof BorderRadiusEnum
+            ]
+          }
+          fontSize={
+            FontSizeEnum[metas.buttonUp.fontSize as keyof typeof FontSizeEnum]
+          }
+        />
 
-        <Button 
-        label='FINALIZAR' 
-        url="/rewards" 
-        borderColor="border-4 border-[#FE5A8F]"
-        textColor={TextColorEnum.pink}
-        fontSize={FontSizeEnum.xl6}/>
+        <Button
+          action={() => NextSteep()}
+          label={metas.buttonDown.label}
+          bgColor={
+            BackgroundButtonEnum[
+              metas.buttonDown.bgColor as keyof typeof BackgroundButtonEnum
+            ]
+          }
+          textColor={TextColorEnum.white}
+          borderRadius={
+            BorderRadiusEnum[
+              metas.buttonDown.borderRadious as keyof typeof BorderRadiusEnum
+            ]
+          }
+          fontSize={
+            FontSizeEnum[metas.buttonDown.fontSize as keyof typeof FontSizeEnum]
+          }
+        />
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Unidentified;
+export default Unidentified

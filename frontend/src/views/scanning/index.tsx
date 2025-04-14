@@ -1,25 +1,68 @@
-import ScreenLayout from "../../components/layout/screenLayout";
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { usePageData } from '../../hooks/usePageData'
+import type { MetaDataScanning } from '../../interfaces'
+import ScreenLayout from '../../components/layout/screenLayout'
+import BarcodeScanner from '../../components/barCodeScanner'
+import useWebSocket from '../../hooks/useWebSocket'
+import useTranslate from '../../hooks/useTranslate'
+import { sendCommands } from '../../utils/commands'
 
 const Scanning = () => {
+  const { t } = useTranslate()
+
+  const {
+    data: metas,
+    loading,
+    error,
+  } = usePageData<MetaDataScanning>('Scanning')
+  const navigation = useNavigate()
+  const { sendCommand } = useWebSocket()
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      sendCommand(sendCommands.REJECTED)
+      navigation('/unidentified')
+    }, 10000)
+
+    return () => clearTimeout(timeout)
+  }, [navigation, sendCommand])
+
+  if (loading || error || !metas) {
+    return (
+      <div>
+        {loading
+          ? 'Loading...'
+          : error
+            ? `Error: ${error}`
+            : 'No metadata available'}
+      </div>
+    )
+  }
+
   return (
-    <ScreenLayout image="leafBackground.png">
-      <div className="relative flex flex-col justify-center items-center h-screen select-none">
+    <ScreenLayout
+      image={metas.imgBg || '/leafBackground.png'}
+      timerInitialTime={10}
+    >
+      <BarcodeScanner />
+      <div className="relative flex flex-col justify-center items-center h-screen gap-20">
         <div className="flex flex-col text-center h-60">
-          <span className="font-extrabold text-7xl text-center tracking-wide	">
-            LEYENDO
+          <span className="font-extrabold text-8xl uppercase text-center tracking-wider	w-[500px]">
+            {metas?.title || t('scanning.title')}
           </span>
         </div>
         <img
-          src="/images/containers.png"
-          alt=""
-          className="m-10 mb-20 w-90 h-72"
+          src={metas?.imgCenter || '/images/containers.png'}
+          alt="Scanning image"
+          className="m-5 mb-20 w-auto h-[500px]"
         />
-        <span className="text-4xl text-center w-[400px]">
-          ESTAMOS TRABAJANDO PARA TI
+        <span className="text-5xl normal-case text-center w-[500px]">
+          {metas?.description || t('scanning.description')}
         </span>
       </div>
     </ScreenLayout>
-  );
-};
+  )
+}
 
-export default Scanning;
+export default Scanning

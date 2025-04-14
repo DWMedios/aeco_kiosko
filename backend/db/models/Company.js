@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(150),
         allowNull: true,
       },
-      macAddress: {
+      serialNumber: {
         type: DataTypes.STRING(17),
         allowNull: false,
         unique: true,

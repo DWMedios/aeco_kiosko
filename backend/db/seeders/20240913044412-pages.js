@@ -6,57 +6,45 @@ module.exports = {
         id: 1,
         name: 'Home',
         metadata: {
-          background:'home_background.png',
-          logoLang:{
-            path:'/images/language_icon.png',
-            alt:'Language icon'
+          imgBg: 'home_background.png',
+          imgLang:  '/images/language_icon.png',
+          imgHelp: '/images/Help_icon.png',
+          imgUp: '/images/aeco.png',
+          imgDown: '/images/reciclaygana.png',
+          button: {
+            label: 'INICIAR',
+            bgColor: 'pink',
+            url: '/conditions',
+            textColor: 'white',
+            borderRadious: 'full',
+            fontSize: 'xl8',
           },
-          logoHelp:{
-            path:'/images/Help_icon.png',
-            alt:'Help icon'
-          },
-          logoUp:{
-            path:'/images/aeco.png',
-            alt:'AECO Logo up'
-          },
-          logoDown:{
-            path:'/images/reciclaygana.png',
-            alt:'Recicla y Gana Logo down'
-          },
-          button:{
-            label:'INICIAR',
-            bgColor:'pink',
-            url:'/conditions',
-            textColor:'white',
-            borderRadious:'full',
-            fontSize:'xl8'
-          }
-        }
+        },
       },
       {
         id: 2,
         name: 'Language',
         metadata: {
-          background: 'language_background.png',
+          imgBg: 'leafBackground.png',
           button: {
-            background:'language_background.png',
-            button:{
-              labelEs:'ACEPTAR',
-              labelEn:'AGREE',
-              bgColor:'white',
-              url:'/home',
-              textColor:'black',
-              borderRadious:'xl3',
-              fontSize:'xl6'
-            }
-          }
+            imgBg: 'language_imageBg.png',
+            button: {
+              labelEs: 'ACEPTAR',
+              labelEn: 'AGREE',
+              bgColor: 'white',
+              url: '/home',
+              textColor: 'black',
+              borderRadious: 'xl3',
+              fontSize: 'xl6',
+            },
+          },
         },
       },
       {
         id: 3,
         name: 'Help',
         metadata: {
-          background: 'help_background.png',
+          imgBg: 'leafBackground.png',
           textCenter: {
             title: 'Soporte',
             description: 'Cualquier duda o aclaración estamos para escucharte.',
@@ -72,9 +60,10 @@ module.exports = {
         id: 4,
         name: 'Conditions',
         metadata: {
-          background: 'shrubbery.png',
+          imgBg: 'shrubbery.png',
           title: 'Recompensas Disponibles',
-          description: 'Tus envases deben estar en las siguientes condiciones para poder ser reciclados:',
+          description:
+            'Tus envases deben estar en las siguientes condiciones para poder ser reciclados:',
           button: {
             label: '¡Entendido!',
             bgColor: 'white',
@@ -82,16 +71,13 @@ module.exports = {
             textColor: 'black',
             borderRadious: 'xl3',
             fontSize: 'xl6',
+            borderColor: 'green',
           },
           lists: [
             {
               title: 'Envases de PET',
               icon: '/images/bottle.png',
-              items: [
-                'Sin aplastar.',
-                'Con etiqueta.',
-                'Sin residuos.',
-              ],
+              items: ['Sin aplastar.', 'Con etiqueta.', 'Sin residuos.'],
             },
             {
               title: 'Latas de Aluminio',
@@ -109,9 +95,9 @@ module.exports = {
         id: 5,
         name: 'Example',
         metadata: {
-          background: 'leafBackground.png',
+          imgBg: 'leafBackground.png',
           description: 'Inserta tu envase con el código de barras hacia arriba',
-          centerImage: '/images/example.png',
+          imgCenter: '/images/example.png',
           button: {
             label: '¡Estoy listo!',
             bgColor: 'white',
@@ -126,29 +112,29 @@ module.exports = {
         id: 6,
         name: 'Insert',
         metadata: {
-          background: 'leafBackground.png',
+          imgBg: 'leafBackground.png',
           title: 'INSERTAR ENVASE',
           description: 'EL RECICLAJE COMIENZA AQUÍ',
-          centerImage: '/images/containers.png',
+          imgCenter: '/images/containers.png',
         },
       },
       {
         id: 7,
         name: 'Scanning',
         metadata: {
-          background: 'leafBackground.png',
+          imgBg: 'leafBackground.png',
           title: 'LEYENDO',
           description: 'ESTAMOS TRABAJANDO PARA TI',
-          centerImage: '/images/containers.png',
+          imgCenter: '/images/containers.png',
         },
       },
       {
         id: 8,
         name: 'Accepted',
         metadata: {
-          background: 'backgroundAccepted.png',
+          imgBg: 'leafBackground.png',
           title: 'ENVASE ACEPTADO',
-          centerImage: '/images/bottleAccepted.png',
+          imgCenter: '/images/bottleAccepted.png',
           buttonUp: {
             label: 'INGRESAR OTRO ENVASE',
             bgColor: 'green',
@@ -164,21 +150,29 @@ module.exports = {
             textColor: 'pink',
             borderRadious: 'xl3',
             fontSize: 'xl6',
-          }
+          },
         },
       },
       {
         id: 9,
         name: 'Rejected',
         metadata: {
-          background: 'leafBackground.png',
+          imgBg: 'leafBackground.png',
           title: 'ENVASE RECHAZADO',
-          centerImage: '/images/rejected.png',
+          imgCenter: '/images/rejected.png',
           buttonUp: {
             label: 'INTENTAR CON OTRO ENVASE',
             bgColor: 'green',
             url: '/insert',
             textColor: 'white',
+            borderRadious: 'xl3',
+            fontSize: 'xl6',
+          },
+          buttonCenter: {
+            label: 'AÑADIR CÓDIGO',
+            bgColor: 'pink',
+            url: '/add_barcode',
+            textColor: 'pink',
             borderRadious: 'xl3',
             fontSize: 'xl6',
           },
@@ -195,13 +189,13 @@ module.exports = {
             url: '/add_barcode',
             fintSize: 'xl6',
           },
-        }
+        },
       },
       {
         id: 10,
         name: 'Unidentified',
         metadata: {
-          background: 'leafBackground.png',
+          imgBg: 'leafBackground.png',
           title: 'ENVASE NO IDENTIFICADO',
           buttonUp: {
             label: '¡INTENTAR DE NUEVO!',
@@ -218,29 +212,31 @@ module.exports = {
             textColor: 'pink',
             borderRadious: 'xl3',
             fontSize: 'xl6',
-          }
+          },
         },
       },
       {
         id: 11,
         name: 'AddBarcode',
         metadata: {
-          background: 'leafBackground.png',
+          imgBg: 'leafBackground.png',
           textCenter: {
             title: 'AÑADIR CÓDIGO DE BARRAS',
-            description: 'Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE',
+            description:
+              'Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE',
           },
           textDown: {
             phone: '+52 999 888 7777',
             description: '¡Gracias por tu colaboración!',
           },
-        }
-      }
+        },
+      },
     ]
-    const query = `INSERT INTO "pages" (id, name, metadata) VALUES 
-                      ${pages.map(page => {
-    return `(${page.id},'${page.name}','${JSON.stringify(page.metadata)}')`
-  }).join(',')};`
+    const query = `INSERT INTO "pages" (id, name, metadata) VALUES ${pages
+      .map((page) => {
+        return `(${page.id},'${page.name}','${JSON.stringify(page.metadata)}')`
+      })
+      .join(',')};`
 
     await queryInterface.sequelize.query(query, {
       type: Sequelize.QueryTypes.INSERT,
