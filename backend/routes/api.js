@@ -12,7 +12,7 @@ const ticketController = require('../controllers/ticketController')
 
 router.get('/company', companyController.getCompany)
 
-router.get('/rewards/categories', rewardController.getRewardsByType)
+router.get('/rewards/categories', rewardController.getRewardCategories)
 
 router.get('/rewards', rewardController.getRewardsByType)
 

@@ -26,7 +26,7 @@ exports.getRewardsByType = async (req, res) => {
 
 exports.getRewardCategories = async (req, res) => {
   try {
-    const rewards = await rewardRepository.getAllByType(type)
+    const rewards = await rewardRepository.getAllByType()
     if (!rewards) {
       return res
         .status(HTTP_CODES.NOT_FOUND)
