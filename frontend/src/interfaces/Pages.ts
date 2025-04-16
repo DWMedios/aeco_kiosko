@@ -74,7 +74,7 @@ export interface MetaDataScanning {
 }
 
 export interface RewardCategory {
-  id: number
+  id?: number
   name: string
   order: number
   status: boolean

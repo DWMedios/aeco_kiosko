@@ -4,28 +4,37 @@ import ListRewards from './components/listRewards'
 import Modal from './components/modal'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
+import { useEffect, useState } from 'react'
+import WebApiAeco from '../../api/webApiAeco'
 
 const RewardCategories = () => {
   const { t } = useTranslate()
+  const [rewards, setRewards] = useState<RewardCategory[]>([])
 
-  const rewards: RewardCategory[] = [
-    {
-      id: 1,
-      name: 'Donativos',
-      order: 1,
-      status: true,
-      image: '/images/QRcode.png',
-      url: '/rewards/donative',
-    },
-    {
-      id: 2,
-      name: 'Servicios',
-      order: 2,
-      status: true,
-      image: '/images/QRcode.png',
-      url: '/rewards/service',
-    },
-  ]
+  const getRewardsByType = async () => {
+    try {
+      const response = await WebApiAeco.getRewardCategories()
+      if (!response) {
+        throw new Error('Not found')
+      }
+      const rewardCategories = response.map((reward: Record<string, any>, i: number)=>{   
+        return  {
+                  name: t(`rewards.${reward.type}`),
+                  order: i + 1,
+                  status: true,
+                  image: '/images/QRcode.png',
+                  url: `/rewards/${reward.type}`,
+                }
+      })
+      setRewards(rewardCategories)
+    } catch (error) {
+      throw new Error('Error getting subcategories')
+    }
+  }
+
+  useEffect(() => {
+    getRewardsByType()
+  }, [])
 
   return (
     <ScreenLayout image="shrubbery.png" timerInitialTime={30}>

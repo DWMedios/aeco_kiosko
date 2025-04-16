@@ -18,6 +18,13 @@ class WebApiAeco {
     return WebApi.ApisType({ url: '/tickets', method: 'POST', body: ticket })
   }
 
+  static getRewardCategories() {
+    return WebApi.ApisType({
+      url: `/rewards/categories`,
+      method: 'GET',
+    })
+  }
+
   static getRewardsByType(type: string) {
     return WebApi.ApisType({
       url: `/rewards?type=${type}`,
