@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { CardRewardinterface } from '../../interfaces'
 
-const CardReward = ({ label = '', url, imageSrc }: CardRewardinterface) => {
+const CardReward = ({ label, url, imageSrc }: CardRewardinterface) => {
   const navigation = useNavigate()
 
   return (

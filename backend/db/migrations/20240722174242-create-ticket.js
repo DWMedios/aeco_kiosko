@@ -8,25 +8,37 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING(50),
+      folio: {
+        type: Sequelize.STRING(20),
         allowNull: true,
       },
-      value: {
-        type: Sequelize.FLOAT,
+      method: {
+        type: Sequelize.STRING(20),
         allowNull: false,
       },
-      quantity: {
+      summary: {
+        type: Sequelize.JSONB,
+        allowNull: true,
+      },
+      totalCans: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        defaultValue: 0,
       },
-      icon_path: {
-        type: Sequelize.STRING(180),
-        allowNull: true,
+      totalBottles: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
       },
-      local_icon_path: {
-        type: Sequelize.STRING(180),
-        allowNull: true,
+      printed: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      synchronized: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       created_at: {
         allowNull: false,

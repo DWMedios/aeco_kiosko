@@ -1,7 +1,6 @@
 const ticketRepository = require('../repositories/ticketRepository')
-const movementRepository = require('../repositories/movementRepository')
 const HTTP_CODES = require('../utils/http-status-codes')
-const { ticketPrinter } = require('../utils/printHelper')
+// const { ticketPrinter } = require('../utils/printHelper')
 
 exports.create = async (req, res) => {
   try {
@@ -24,15 +23,15 @@ exports.create = async (req, res) => {
 
 exports.print = async (req, res) => {
   try {
-    const { movement_id } = req.body
-    const movement = await movementRepository.findOne(movement_id)
-    if (!movement) {
-      return res.status(HTTP_CODES.NOT_FOUND).send({
-        message: 'No se puede imprimir el ticket, papel no disponible',
-      })
-    }
-    await ticketPrinter(movement.dataValues)
-    await movementRepository.update(movement_id, { printed_ticket: 1 })
+    // const { movement_id } = req.body
+    // const movement = await movementRepository.findOne(movement_id)
+    // if (!movement) {
+    //   return res.status(HTTP_CODES.NOT_FOUND).send({
+    //     message: 'No se puede imprimir el ticket, papel no disponible',
+    //   })
+    // }
+    // await ticketPrinter(movement.dataValues)
+    // await movementRepository.update(movement_id, { printed_ticket: 1 })
     return res.json({ message: 'Ticket impreso' })
   } catch (err) {
     console.error(err)

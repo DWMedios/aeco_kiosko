@@ -1,76 +1,76 @@
 {
-  "accepted":{
+  "accepted": {
     "title": "Envase aceptado"
   },
-  "addBarcode":{
-    "title":"Añadir código de barras",
-    "description":"Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE"
+  "addBarcode": {
+    "title": "Añadir código de barras",
+    "description": "Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE"
   },
-  "cardPoints":{
-    "title":"Acumula puntos"
+  "cardPoints": {
+    "title": "Acumula puntos"
   },
-  "condition":{
-    "title":"Recompensas disponibles",
-    "description":"Tus envases deben estar en las siguientes condiciones:"
+  "condition": {
+    "title": "Recompensas disponibles",
+    "description": "Tus envases deben estar en las siguientes condiciones:"
   },
-  "discounts":{
+  "discounts": {
     "title": ""
   },
-  "donative":{
-    "title":"Elige tu donativo"
+  "donative": {
+    "title": "Elige tu donativo"
   },
-  "example":{
-    "description":"Inserta tu envase con el código de barras hacia arriba"
+  "example": {
+    "description": "Inserta tu envase con el código de barras hacia arriba"
   },
-  "externalServices":{
-    "textQR":"Escanea el QR para acceder a",
-    "textQR2":"los servicios externos"
+  "externalServices": {
+    "textQR": "Escanea el QR para acceder a",
+    "textQR2": "los servicios externos"
   },
-  "finalView":{
-    "title":"¿Te interesa el proyecto?"
+  "finalView": {
+    "title": "¿Te interesa el proyecto?"
   },
-  "help":{
-    "title":"Soporte",
-    "description":"Estamos para ayudarte",
-    "phoneText":"Envianos un WhatsApp",
-    "textDown":"¡Gracias por tu colaboración!"
+  "help": {
+    "title": "Soporte",
+    "description": "Estamos para ayudarte",
+    "phoneText": "Envianos un WhatsApp",
+    "textDown": "¡Gracias por tu colaboración!"
   },
-  "insert":{
-    "title":"Insertar envase",
-    "description":"El reciclaje comienza aquí"
+  "insert": {
+    "title": "Insertar envase",
+    "description": "El reciclaje comienza aquí"
   },
-  "language":{
+  "language": {
     "selectLanguage": "Selecciona tu idioma",
     "spanish": "Español",
     "english": "Inglés"
   },
-  "outOfService":{
-    "title":"Máquina fuera de servicio"
+  "outOfService": {
+    "title": "Máquina fuera de servicio"
   },
-  "predial":{
+  "predial": {
     "title": "Busca tu predial"
   },
-  "recyclePoits":{
+  "recyclePoits": {
     "title": "Introduce tu número"
   },
-  "rejected":{
+  "rejected": {
     "title": "Envase rechazado"
   },
-  "Rewards":{
+  "rewards": {
     "start": "Comenzar",
     "description": "Elige tu recompeza"
   },
-  "scanning":{
+  "scanning": {
     "title": "Leyendo",
-    "description":"Estamos trabajando para ti"
+    "description": "Estamos trabajando para ti"
   },
-  "services":{
+  "services": {
     "title": "Elige tu servicio"
   },
-  "unidentified":{
-    "title":"Envase no identificado"
+  "unidentified": {
+    "title": "Envase no identificado"
   },
-  "voucher":{
+  "voucher": {
     "title": "Elige tu comprobante",
     "description": "Por un mañana más sustentable"
   }

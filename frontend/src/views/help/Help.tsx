@@ -6,8 +6,7 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
 
 function Help() {
-
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const QrCodeUrl =
     'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'

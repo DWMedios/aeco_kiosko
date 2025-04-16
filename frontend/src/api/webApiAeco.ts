@@ -1,4 +1,4 @@
-import { Movement } from '../interfaces'
+import { Ticket } from '../interfaces'
 import WebApi from './webApi'
 
 class WebApiAeco {
@@ -14,17 +14,13 @@ class WebApiAeco {
     return WebApi.ApisType({ url: `/products?code=${code}`, method: 'GET' })
   }
 
-  static saveMovement(data: Movement) {
-    return WebApi.ApisType({ url: '/movements', method: 'POST', body: data })
+  static saveTicket(ticket: Ticket) {
+    return WebApi.ApisType({ url: '/tickets', method: 'POST', body: ticket })
   }
 
-  static getRewardCaterories() {
-    return WebApi.ApisType({ url: '/reward-categories', method: 'GET' })
-  }
-
-  static getRewardSubCaterory(id: number) {
+  static getRewardsByType(type: string) {
     return WebApi.ApisType({
-      url: `/rewards?reward_category=${id}`,
+      url: `/rewards?type=${type}`,
       method: 'GET',
     })
   }

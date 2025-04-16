@@ -1,26 +1,27 @@
 import WebApiAeco from '../api/webApiAeco'
-import { Movement, Packaging } from '../interfaces'
+import { Method, Packaging, Packagings, Ticket } from '../interfaces'
 import { getSessionStorage, setSessionStorage } from './manageStorage'
 
 export const SavePackaging = (packaging: Packaging) => {
-  const packagings = GetPackagings() || { packagings: [], can: 0, bottle: 0 }
-  const updatedProducts = {
-    packagings: [...packagings.packagings, packaging],
-    can: packaging.packaging === 'Lata' ? packagings.can + 1 : packagings.can,
-    bottle:
-      packaging.packaging === 'Botella'
-        ? packagings.bottle + 1
-        : packagings.bottle,
+  const ticket = GetTicket() || defaultPackaging
+  const existing = ticket.packagings.find((p) => p.id === packaging.id)
+
+  if (existing) {
+    existing.quantity = (existing.quantity || 1) + 1
+  } else {
+    ticket.packagings.push({ ...packaging, quantity: 1 })
   }
-  setSessionStorage('containers', JSON.stringify(updatedProducts))
+  const updatedProducts = {
+    packagings: [...ticket.packagings],
+    totalCans: ticket.totalCans + (packaging.packagingType === 'can' ? 1 : 0),
+    totalBottles:
+      ticket.totalBottles + (packaging.packagingType === 'bottle' ? 1 : 0),
+  }
+  setSessionStorage('ticket', JSON.stringify(updatedProducts))
 }
 
-export const GetPackagings = (): {
-  packagings: Packaging[]
-  can: number
-  bottle: number
-} | null => {
-  const data = getSessionStorage('containers')
+export const GetTicket = (): Packagings | null => {
+  const data = getSessionStorage('ticket')
   return data ? JSON.parse(data) : null
 }
 
@@ -29,16 +30,40 @@ export const ClearCountPackings = (): void => {
 }
 
 export const LastPackings = (): Packaging => {
-  const packagings = GetPackagings() || { packagings: [], can: 0, bottle: 0 }
-  return packagings.packagings.at(-1) || { name: '', packaging: '' }
+  const packagings = GetTicket() || defaultPackaging
+  return packagings.packagings.at(-1) || { id: 0, name: '', packagingType: '' }
 }
 
-export const SavePreoccess = async (movement: Movement) => {
+export const SaveProccess = async (method: Method) => {
   try {
-    const response = await WebApiAeco.saveMovement(movement)
-    setSessionStorage('movementId', response.id)
+    const ticket = ticketTransform(method)
+    const response = await WebApiAeco.saveTicket(ticket)
+    setSessionStorage('ticket', JSON.stringify(response))
     return true
   } catch (error) {
     return false
   }
+}
+
+const ticketTransform = (method: Method): Ticket => {
+  const ticket = GetTicket() || defaultPackaging
+  return {
+    method: method.name,
+    summary: {
+      reward: method,
+      items: ticket.packagings.map((pack) => ({
+        quantity: pack.quantity || 1,
+        packagingType: pack.packagingType,
+        productId: pack.id,
+      })),
+    },
+    totalCans: ticket.totalCans,
+    totalBottles: ticket.totalBottles,
+  }
+}
+
+const defaultPackaging = {
+  packagings: [],
+  totalCans: 0,
+  totalBottles: 0,
 }

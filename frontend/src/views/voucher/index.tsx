@@ -10,17 +10,15 @@ const VoucherView = () => {
   const paper = getSessionStorage('paperStatus') === 'true'
   const navigate = useNavigate()
 
-
-    const printerTicket = async () => {
+  const printerTicket = async () => {
     try {
-      const movementId = getSessionStorage('movementId')
-      console.log("🚀 ~ printerTicket ~ movementId:", movementId)
-      if (movementId) {
-        await WebApiAeco.printerTicket(Number(movementId))
+      const ticketId = getSessionStorage('ticketId')
+      if (ticketId) {
+        await WebApiAeco.printerTicket(Number(ticketId))
         navigate('/final_view')
       }
     } catch (error) {
-      console.log("🚀 ~ printerTicket ~ error:", error)
+      console.log('~ printerTicket ~ error:', error)
       navigate('/ticket')
     }
   }
@@ -40,7 +38,7 @@ const VoucherView = () => {
           />
           {paper && (
             <TicketButton
-              action={()=> printerTicket()}
+              action={() => printerTicket()}
               imageSrc="images/printer.png"
               altText="Impreso"
               buttonText="Impreso"

@@ -8,11 +8,11 @@ import savePaperStatus from '../../hooks/usePaperStatus'
 
 const LoadingOffline = ({ icon = 'loading' }: Icon) => {
   const navigation = useNavigate()
-  const { sendCommand, socketOn } = useWebSocket()
+  // const { sendCommand, socketOn } = useWebSocket()
 
-  useEffect(() => {
-    if (socketOn) sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL)
-  }, [socketOn])
+  // useEffect(() => {
+  //   if (socketOn) sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL)
+  // }, [socketOn])
 
   useEffect(() => {
     savePaperStatus()

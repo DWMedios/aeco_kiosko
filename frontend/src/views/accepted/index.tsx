@@ -8,7 +8,11 @@ import {
   TextColorEnum,
 } from '../../interfaces'
 import { usePageData } from '../../hooks/usePageData'
-import { GetPackagings, LastPackings, SavePreoccess } from '../../utils/savePackaging'
+import {
+  GetTicket,
+  LastPackings,
+  SaveProccess,
+} from '../../utils/savePackaging'
 import { sendCommands } from '../../utils/commands'
 
 import Button from '../../components/button'
@@ -49,24 +53,19 @@ const Accepted = () => {
     )
   }
 
-    const NextSteep = async () => {
-      const packings = GetPackagings()
-      if (packings) {
-        const saveMovement = await SavePreoccess({
-          can_number: packings.can,
-          bottle_number: packings.bottle,
-          folio: '1',
-          synchronized: false,
-        })
-        if (saveMovement) {
-          sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-          navigation(metas!.buttonDown.url)
-        }
-      } else {
+  const NextSteep = async () => {
+    const packings = GetTicket()
+    if (packings) {
+      const saveTicket = await SaveProccess()
+      if (saveTicket) {
         sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-        navigation('/home')
+        navigation(metas!.buttonDown.url)
       }
+    } else {
+      sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+      navigation('/home')
     }
+  }
 
   return (
     <ScreenLayout image={metas.imgBg}>
@@ -79,7 +78,7 @@ const Accepted = () => {
         <div className="flex flex-col justify-center items-center h-[600px]">
           <img
             src={
-              product?.packaging === 'lata'
+              product?.packagingType === 'lata'
                 ? '/images/canAccepted.png'
                 : '/images/bottleAccepted.png'
             }

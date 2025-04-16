@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { FontSizeEnum, Packagings, TextColorEnum } from '../../../interfaces'
 import Button from '../../../components/button'
 import QRCodeComponent from '../../../components/qrCode'
-import { GetPackagings } from '../../../utils/savePackaging'
+import { GetTicket } from '../../../utils/savePackaging'
 
 const Ticket = () => {
   const [products, setProducts] = useState<Packagings | null>(null)
@@ -10,7 +10,7 @@ const Ticket = () => {
     'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
 
   useEffect(() => {
-    setProducts(GetPackagings())
+    setProducts(GetTicket())
   }, [])
 
   return (
@@ -22,20 +22,13 @@ const Ticket = () => {
         </span>
         <QRCodeComponent size={500} value={QrCodeUrl} />
         <ul className="text-2xl">
-          {/* <li>Coca Cola 600 ml ---- 1</li> */}
-          {/* <li>Coca Cola 355 ml ---- 1</li> */}
-          {/* <li>Coca Cola 3l ---- 1</li> */}
           {products?.packagings.map((p, i) => (
             <li key={i}>
-              <span>{`${p.name} - ${p.packaging}`}</span>
+              <span>{`${p.name} - ${p.quantity}`}</span>
             </li>
           ))}
         </ul>
-        <ul className="text-2xl">
-          {/* <li>Donativo ---- 1</li> */}
-          {/* <li>Descuento ---- 1</li> */}
-          {/* <li>Predial ---- 1</li> */}
-        </ul>
+
         <span className="p-2 w-[500px] leading-10 text-3xl tracking-wider">
           Para dudas y aclaraciones por operaciones en las maquinas
           recicladoras, cominiquese de Lunes a Viernes de 8:00 a 18:00 hrs al

@@ -4,6 +4,7 @@ import WebApiAeco from '../../api/webApiAeco'
 import useWebSocket from '../../hooks/useWebSocket'
 import { SavePackaging } from '../../utils/savePackaging'
 import { sendCommands } from '../../utils/commands'
+import { Product } from '../../interfaces'
 
 const BarcodeScanner = () => {
   const navigation = useNavigate()
@@ -17,7 +18,8 @@ const BarcodeScanner = () => {
       clearTimeout(timerRef.current)
     }
     timerRef.current = setTimeout(() => {
-      if (barcode.trim.length == 0) setBarcode(event.target.value)
+      if (barcode.trim.length == 0)
+        setBarcode((event.target as HTMLInputElement).value)
     }, 100)
   }
 
@@ -27,15 +29,16 @@ const BarcodeScanner = () => {
 
   const findProduct = async () => {
     try {
-      const response = await WebApiAeco.findProduct(barcode)
+      const response = (await WebApiAeco.findProduct(barcode)) as Product
       SavePackaging({
+        id: response.id,
         name: response.name,
-        packaging: response.capacity.packaging,
+        packagingType: response.capacity.packaging,
       })
       sendCommand(sendCommands.ACCEPTED)
       navigation('/accepted')
     } catch (error) {
-      console.log("🚀 ~ findProduct ~ error:", error)
+      console.log('~ findProduct ~ error:', error)
       sendCommand(sendCommands.REJECTED)
       navigation('/rejected')
     } finally {

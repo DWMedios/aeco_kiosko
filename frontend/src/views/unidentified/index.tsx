@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
+import { GetPackagings, SaveProccess } from '../../utils/savePackaging'
 import { usePageData } from '../../hooks/usePageData'
 import {
   BackgroundButtonEnum,
@@ -33,7 +33,7 @@ const Unidentified = () => {
   const NextSteep = async () => {
     const packings = GetPackagings()
     if (packings) {
-      const saveMovement = await SavePreoccess({
+      const saveMovement = await SaveProccess({
         can_number: packings.can,
         bottle_number: packings.bottle,
         folio: '1',

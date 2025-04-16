@@ -39,7 +39,7 @@ const getNewPaper = async () => {
 exports.startCronJobPaper = () => {
   if (cronJob === null) {
     cronJob = cron.schedule('* * * * *', async () => {
-      console.log('🚀 ~ Find paper --- JOB ---')
+      console.log('~ Find paper --- JOB ---')
       const isActive = await getNewPaper()
       if (isActive) {
         stopCronJob()

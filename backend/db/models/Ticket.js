@@ -10,23 +10,34 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
-      name: {
-        type: DataTypes.STRING(50),
+      folio: {
+        type: DataTypes.STRING(20),
         allowNull: true,
       },
-      value: {
-        type: DataTypes.FLOAT,
+      method: {
+        type: DataTypes.STRING(20),
         allowNull: false,
       },
-      quantity: {
+      summary: {
+        type: DataTypes.JSONB,
+        allowNull: true,
+      },
+      totalCans: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
       },
-      icon: {
-        type: DataTypes.STRING(180),
-        allowNull: true,
+      totalBottles: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
       },
       printed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      synchronized: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,

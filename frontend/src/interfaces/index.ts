@@ -152,7 +152,7 @@ export interface PaginationButtonsInterface {
 }
 
 export interface TicketButtonInterface {
-  action?: ()=> void
+  action?: () => void
   imageSrc: string
   altText: string
   buttonText: string
@@ -179,21 +179,39 @@ export interface ConditionsCardProps {
   items: string[]
   title: string
 }
-export interface Packaging {
+
+export interface Product {
+  id: number
   name: string
+  capacity: Capacity
+}
+
+export interface Capacity {
   packaging: string
 }
+
+export interface Packaging {
+  id: number
+  name: string
+  packagingType: string
+  quantity?: number
+}
+
 export interface Packagings {
-  can: number
-  bottle: number
+  totalCans: number
+  totalBottles: number
   packagings: Packaging[]
 }
 
-export interface Movement {
-  can_number: number
-  bottle_number: number
-  folio: string
-  synchronized: boolean
+export interface Ticket {
+  id?: number
+  folio?: string
+  method: string
+  summary: Record<string, any>
+  totalCans: number
+  totalBottles: number
+  printed?: boolean
+  synchronized?: boolean
 }
 
 export interface TimerProps {
@@ -208,7 +226,11 @@ export interface ScreenLayoutProps extends Layout {
 }
 
 export interface PaperStatusResponse {
-  status: boolean;
-  message: string; 
+  status: boolean
+  message: string
 }
 
+export interface Method {
+  type: string
+  name: string
+}
