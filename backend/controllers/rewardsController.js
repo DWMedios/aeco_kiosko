@@ -23,3 +23,20 @@ exports.getRewardsByType = async (req, res) => {
       .send({ message: 'Error al obtener las categorías de recompensas' })
   }
 }
+
+exports.getRewardCategories = async (req, res) => {
+  try {
+    const rewards = await rewardRepository.getAllByType(type)
+    if (!rewards) {
+      return res
+        .status(HTTP_CODES.NOT_FOUND)
+        .send({ message: 'No se encontraron categorías de recompensas' })
+    }
+    return res.json(rewards)
+  } catch (err) {
+    console.error(err)
+    return res
+      .status(HTTP_CODES.INTERNAL_SERVER_ERROR)
+      .send({ message: 'Error al obtener las categorías de recompensas' })
+  }
+}
