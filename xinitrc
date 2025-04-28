@@ -6,5 +6,8 @@ xset s noblank  # Prevenir pantalla en negro
 # Configurar la rotación de la pantalla
 xrandr --output $(xrandr | grep " connected" | awk '{print $1}') --rotate left
 
+# Configurar el dispositivo táctil para rotación a la izquierda
+xinput set-prop "Multi touch   Multi touch overlay device" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
+
 # Esperar a que Docker y el contenedor estén listos
 chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 --window-size=1080,1920 --force-device-scale-factor=0.7 --disable-gpu --no-sandbox --disable-dev-shm-usage --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode
