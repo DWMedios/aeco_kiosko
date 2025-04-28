@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { GetPackagings } from '../../../utils/savePackaging'
+import { GetTicket } from '../../../utils/savePackaging'
 import type { Packagings } from '../../../interfaces'
 
 const ProductListModal = () => {
   const [products, setProducts] = useState<Packagings | null>(null)
 
   useEffect(() => {
-    setProducts(GetPackagings())
+    setProducts(GetTicket())
   }, [])
 
   return (
@@ -15,18 +15,18 @@ const ProductListModal = () => {
         <ul className="space-y-2 text-center">
           {products?.packagings.map((p, i) => (
             <li key={i} className="p-1 text-3xl tracking-wider leading-10">
-              <span className="font-semibold">{`${p.name} - ${p.packaging}`}</span>
+              <span className="font-semibold">{`${p.name} - ${p.quantity}`}</span>
             </li>
           ))}
         </ul>
       </div>
       <div className="flex flex-row flex-wrap justify-between px-20 w-full items-center  mt-10 text-center">
         <div className="font-bold">
-          <h1 className="text-8xl">{products?.bottle}</h1>
+          <h1 className="text-8xl">{products?.totalBottles}</h1>
           <p className="text-4xl">Botellas</p>
         </div>
         <div className="font-bold">
-          <h1 className="text-8xl">{products?.can}</h1>
+          <h1 className="text-8xl">{products?.totalCans}</h1>
           <p className="text-4xl">Latas</p>
         </div>
       </div>

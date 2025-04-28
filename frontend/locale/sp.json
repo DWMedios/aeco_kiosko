@@ -13,8 +13,8 @@
     "title": "Recompensas disponibles",
     "description": "Tus envases deben estar en las siguientes condiciones:"
   },
-  "discounts": {
-    "title": ""
+  "discount": {
+    "title": "Elige tu descuento"
   },
   "donative": {
     "title": "Elige tu donativo"
@@ -58,13 +58,16 @@
   },
   "rewards": {
     "start": "Comenzar",
-    "description": "Elige tu recompeza"
+    "description": "Elige tu recompeza",
+    "service": "Servicio",
+    "donative": "Donativo",
+    "discount": "Descuento"
   },
   "scanning": {
     "title": "Leyendo",
     "description": "Estamos trabajando para ti"
   },
-  "services": {
+  "service": {
     "title": "Elige tu servicio"
   },
   "unidentified": {

@@ -41,6 +41,7 @@ const AppRouter = () => {
       <Route path="/rejected" element={<Rejected />} />
       <Route path="/unidentified" element={<Unidentified />} />
       <Route path="/add_barcode" element={<AddBarcode />} />
+      <Route path="/reward_categories" element={<RewardCategories />} />
       <Route path="/rewards/:type" element={<Rewards />} />
       <Route path="/card_points" element={<CardPoints />} />
       <Route path="/recycle_points" element={<RecyclePoints />} />
@@ -50,7 +51,6 @@ const AppRouter = () => {
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
       <Route path="/external_service" element={<ExternalService />} />
-      <Route path="/reward_categories" element={<RewardCategories />} />s
       <Route path="/sendMessage" element={<SendMessage />} />
     </Routes>
   )

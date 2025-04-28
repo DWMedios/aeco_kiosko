@@ -13,6 +13,9 @@
     "title": "Rewards Available",
     "description": "Your packaging must be in the following conditions:"
   },
+   "discount": {
+    "title": "Choose your discount"
+  },
   "donative": {
     "title": "Choose your donation"
   },
@@ -55,13 +58,16 @@
   },
   "rewards": {
     "start": "Start",
-    "chooseYourReward": "Choose your reward"
+    "chooseYourReward": "Choose your reward",
+    "service": "Service",
+    "donative": "Donative",
+    "discount": "Discount"
   },
   "scanning": {
     "title": "Reading",
     "description": "We are working for you"
   },
-  "services": {
+  "service": {
     "title": "Choose your service"
   },
   "unidentified": {
