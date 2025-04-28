@@ -13,9 +13,9 @@ export const SavePackaging = (packaging: Packaging) => {
   }
   const updatedProducts = {
     packagings: [...ticket.packagings],
-    totalCans: ticket.totalCans + (packaging.packagingType === 'can' ? 1 : 0),
-    totalBottles:
-      ticket.totalBottles + (packaging.packagingType === 'bottle' ? 1 : 0),
+    total_cans: ticket.total_cans + (packaging.packagingType === 'can' ? 1 : 0),
+    totla_bottles:
+      ticket.totla_bottles + (packaging.packagingType === 'bottle' ? 1 : 0),
   }
   setSessionStorage('ticket', JSON.stringify(updatedProducts))
 }
@@ -37,8 +37,9 @@ export const LastPackings = (): Packaging => {
 export const SaveProccess = async (method: Method) => {
   try {
     const ticket = ticketTransform(method)
+    console.log("🚀 ~ SaveProccess ~ ticket:", ticket)
     const response = await WebApiAeco.saveTicket(ticket)
-    setSessionStorage('ticket', JSON.stringify(response))
+    // setSessionStorage('ticket', JSON.stringify(response))
     return true
   } catch (error) {
     return false
@@ -57,13 +58,13 @@ const ticketTransform = (method: Method): Ticket => {
         productId: pack.id,
       })),
     },
-    totalCans: ticket.totalCans,
-    totalBottles: ticket.totalBottles,
+    total_cans: ticket.total_cans,
+    totla_bottles: ticket.totla_bottles,
   }
 }
 
 const defaultPackaging = {
   packagings: [],
-  totalCans: 0,
-  totalBottles: 0,
+  total_cans: 0,
+  totla_bottles: 0,
 }

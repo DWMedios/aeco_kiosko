@@ -20,12 +20,12 @@ module.exports = {
         type: Sequelize.JSONB,
         allowNull: true,
       },
-      totalCans: {
+      total_cans: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0,
       },
-      totalBottles: {
+      total_bottles: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0,

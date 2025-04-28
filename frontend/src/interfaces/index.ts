@@ -117,6 +117,7 @@ export interface CardRewardinterface {
   url: string
   imageSrc?: string
   label: string
+  action?: () => void
 }
 
 export interface SocialMedia {
@@ -198,8 +199,8 @@ export interface Packaging {
 }
 
 export interface Packagings {
-  totalCans: number
-  totalBottles: number
+  total_cans: number
+  totla_bottles: number
   packagings: Packaging[]
 }
 
@@ -208,8 +209,8 @@ export interface Ticket {
   folio?: string
   method: string
   summary: Record<string, any>
-  totalCans: number
-  totalBottles: number
+  total_cans: number
+  totla_bottles: number
   printed?: boolean
   synchronized?: boolean
 }

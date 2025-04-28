@@ -22,12 +22,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.JSONB,
         allowNull: true,
       },
-      totalCans: {
+      total_cans: {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0,
       },
-      totalBottles: {
+      total_bottles: {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0,

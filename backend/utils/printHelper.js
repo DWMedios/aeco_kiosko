@@ -1,85 +1,95 @@
-// const path = require('path')
+const path = require('path')
 
-// const escpos = require('escpos')
-// escpos.USB = require('escpos-usb')
+const escpos = require('escpos')
+escpos.USB = require('escpos-usb')
 
-// const {
-//   imageTicket,
-//   descriptionTicket,
-//   titleTicket,
-//   footer,
-// } = require('./constants')
+const {
+  imageTicket,
+  descriptionTicket,
+  titleTicket,
+  footer,
+} = require('./constants')
 
-// const device = new escpos.USB()
-// const printer = new escpos.Printer(device)
 
-// exports.ticketPrinter = async (movement, image = null) => {
-//   // let lineCount = 5
+function getUsbDevice() {
+  const devices = escpos.USB.findPrinter()
+  if (devices.length === 0) {
+    throw new Error('No se encontró ninguna impresora conectada')
+  }
+  return new escpos.USB()
+}
 
-//   const tux = path.join(
-//     __dirname,
-//     '..',
-//     'public',
-//     'images',
-//     image ? image : imageTicket
-//   )
+const device = getUsbDevice()
+const printer = new escpos.Printer(device)
 
-//   escpos.Image.load(tux, function (image) {
-//     image.toRaster()
-//     device.open(function () {
-//       printer
-//         .align('ct')
-//         .image(image, 'd24')
-//         .then(() => {
-//           printer
-//             .font('a')
-//             .encode('utf8')
-//             .style('b')
-//             .align('ct')
-//             .size(1, 0.5)
-//             .text(wrapTextBlock(titleTicket))
-//             .text('\n')
-//             .align('lt')
-//             .style('normal')
-//             .text(wrapTextBlock(descriptionTicket))
-//             .text('\n')
-//             .style('b')
-//             .text(justifyTextLine('Latas', String(movement.can_number)))
-//             .text(justifyTextLine('Botellas', String(movement.bottle_number)))
-//             .text('\n')
-//             .style('normal')
-//             .align('ct')
-//             .text(wrapTextBlock(footer))
-//             .cut()
-//             .close()
-//         })
-//     })
-//   })
-//   return true
-// }
 
-// const justifyTextLine = (textOne = '', textTwo = '') => {
-//   const spaces = ' '.repeat(Math.max(0, 24 - (textOne.length + textTwo.length)))
+exports.ticketPrinter = async (movement, image = null) => {
+  // let lineCount = 5
 
-//   return textOne + spaces + textTwo
-// }
-// function wrapTextBlock(text) {
-//   const words = text.split(' ')
-//   let line = ''
-//   let result = ''
+  const tux = path.join(
+    __dirname,
+    '..',
+    'public',
+    'images',
+    image ? image : imageTicket
+  )
 
-//   for (const word of words) {
-//     if ((line + word).length > 24) {
-//       result += line.trimEnd() + '\n'
-//       line = word + ' '
-//     } else {
-//       line += word + ' '
-//     }
-//   }
+  escpos.Image.load(tux, function (image) {
+    image.toRaster()
+    device.open(function () {
+      printer
+        .align('ct')
+        .image(image, 'd24')
+        .then(() => {
+          printer
+            .font('a')
+            .encode('utf8')
+            .style('b')
+            .align('ct')
+            .size(1, 0.5)
+            .text(wrapTextBlock(titleTicket))
+            .text('\n')
+            .align('lt')
+            .style('normal')
+            .text(wrapTextBlock(descriptionTicket))
+            .text('\n')
+            .style('b')
+            .text(justifyTextLine('Latas', String(movement.can_number)))
+            .text(justifyTextLine('Botellas', String(movement.bottle_number)))
+            .text('\n')
+            .style('normal')
+            .align('ct')
+            .text(wrapTextBlock(footer))
+            .cut()
+            .close()
+        })
+    })
+  })
+  return true
+}
 
-//   if (line) {
-//     result += line.trimEnd()
-//   }
+const justifyTextLine = (textOne = '', textTwo = '') => {
+  const spaces = ' '.repeat(Math.max(0, 24 - (textOne.length + textTwo.length)))
 
-//   return result
-// }
+  return textOne + spaces + textTwo
+}
+function wrapTextBlock(text) {
+  const words = text.split(' ')
+  let line = ''
+  let result = ''
+
+  for (const word of words) {
+    if ((line + word).length > 24) {
+      result += line.trimEnd() + '\n'
+      line = word + ' '
+    } else {
+      line += word + ' '
+    }
+  }
+
+  if (line) {
+    result += line.trimEnd()
+  }
+
+  return result
+}

@@ -22,11 +22,11 @@ const ProductListModal = () => {
       </div>
       <div className="flex flex-row flex-wrap justify-between px-20 w-full items-center  mt-10 text-center">
         <div className="font-bold">
-          <h1 className="text-8xl">{products?.totalBottles}</h1>
+          <h1 className="text-8xl">{products?.totla_bottles}</h1>
           <p className="text-4xl">Botellas</p>
         </div>
         <div className="font-bold">
-          <h1 className="text-8xl">{products?.totalCans}</h1>
+          <h1 className="text-8xl">{products?.total_cans}</h1>
           <p className="text-4xl">Latas</p>
         </div>
       </div>

@@ -56,11 +56,8 @@ const Accepted = () => {
   const NextSteep = async () => {
     const packings = GetTicket()
     if (packings) {
-      const saveTicket = await SaveProccess()
-      if (saveTicket) {
         sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
         navigation(metas!.buttonDown.url)
-      }
     } else {
       sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
       navigation('/home')
@@ -113,7 +110,7 @@ const Accepted = () => {
         <Button
           action={() => NextSteep()}
           label={metas.buttonDown.label}
-          url={metas.buttonDown.url}
+          url= {'/reward_categories'} //si es dinamico se remplaza el valor por este del comentario -> {metas.buttonDown.url}
           bgColor={
             BackgroundButtonEnum[
               metas.buttonDown.bgColor as keyof typeof BackgroundButtonEnum

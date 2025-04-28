@@ -123,6 +123,7 @@ export interface RewardCategory {
 export interface Reward {
   id: number
   name: string
+  type: string
   status: boolean
   order: number
   metadata: object

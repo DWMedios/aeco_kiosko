@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import type { Reward } from '../../interfaces'
 import BackButton from '../../components/backButton'
 import CardReward from '../../components/cardReward'
 import ScreenLayout from '../../components/layout/screenLayout'
 import WebApiAeco from '../../api/webApiAeco'
 import useTranslate from '../../hooks/useTranslate'
+import { SaveProccess } from '../../utils/savePackaging'
 
 const Rewards = () => {
+  const navigation = useNavigate()
   const { t } = useTranslate()
   const { type } = useParams<{ type: string }>()
   const [rewards, setRewards] = useState<Reward[]>([])
@@ -28,6 +30,15 @@ const Rewards = () => {
     if (type) getRewardsByType(type)
   }, [type])
 
+  const handleAction = async  (reward: Reward) => {
+   const saved = await SaveProccess({ type: reward.type, name: reward.name })
+   if (saved) {
+      navigation('/voucher')
+    } else {
+      navigation('/home')
+    }
+  }
+
   return (
     <ScreenLayout image="shrubbery.png" timerInitialTime={30}>
       <div className="flex flex-col justify-center items-center gap-11 h-screen select-none">
@@ -43,6 +54,7 @@ const Rewards = () => {
                 imageSrc={'/images/QRcode.png'}
                 label={reward.name}
                 url={''}
+                action={() => handleAction(reward)}
               />
             ))}
           </div>
