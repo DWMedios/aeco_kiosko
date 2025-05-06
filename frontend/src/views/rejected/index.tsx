@@ -49,7 +49,7 @@ const Rejected = () => {
       // const saveMovement = await SaveProccess()
       // if (saveMovement) {
       sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-      navigation(metas!.buttonDown.url)
+      navigation('/reward_categories')
       // }
     } else {
       sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)

@@ -16,7 +16,7 @@
   "discount": {
     "title": "Elige tu descuento"
   },
-  "donative": {
+  "donation": {
     "title": "Elige tu donativo"
   },
   "example": {
@@ -60,7 +60,7 @@
     "start": "Comenzar",
     "description": "Elige tu recompeza",
     "service": "Servicio",
-    "donative": "Donativo",
+    "donation": "Donativo",
     "discount": "Descuento"
   },
   "scanning": {

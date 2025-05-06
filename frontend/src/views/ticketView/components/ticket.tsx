@@ -35,7 +35,7 @@ const Ticket = () => {
 
         <span className="p-2 w-[500px] leading-10 text-3xl tracking-wider">
           Para dudas y aclaraciones por operaciones en las maquinas
-          recicladoras, cominiquese de Lunes a Viernes de 8:00 a 18:00 hrs al
+          recicladoras, comuniquese de Lunes a Viernes de 8:00 a 18:00 hrs al
           999 888 7777.
         </span>
         <span className="text-[#F10404] text-3xl font-bold">
