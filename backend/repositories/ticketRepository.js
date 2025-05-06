@@ -16,6 +16,14 @@ exports.findOne = async () => {
   })
 }
 
+exports.findAll = async () => {
+  const { Ticket } = await initializeDatabase()
+  return await Ticket.findAll({
+    where: { synchronized: false },
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
+  })
+}
+
 exports.create = async (data, transaction) => {
   const { Ticket } = await initializeDatabase()
   return await Ticket.create(data, { transaction })

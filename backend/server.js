@@ -6,8 +6,10 @@ const cors = require('cors')
 const setupWebSocket = require('./ws')
 const apiRoutes = require('./routes/api')
 const companyController = require('./controllers/companyController')
+const { startCronJobUpload } = require('./schedules/uploadDataSchedule')
 // const { getUpdates } = require('./schedules/updateSchedule')
 // const { getInitialSetup } = require('./schedules/initialSetup')
+// const { startCronJobPaper } = require('./schedules/printerSchedule')
 require('dotenv').config()
 
 const app = express()
@@ -23,29 +25,35 @@ app.use(
   })
 )
 app.use('/api', apiRoutes)
-;(async () => {
-  try {
-    companyController.updateCompanyBySerialNumber()
-    console.log('Company controller.')
+  ; (async () => {
+    try {
+      companyController.updateCompanyBySerialNumber()
+      console.log('Company controller.')
 
-    // getInitialSetup()
-    // console.log('Obtener configuracion inicial.')
+      // getInitialSetup()
+      // console.log('Obtener configuracion inicial.')
 
-    await setupWebSocket(server)
-    console.log('WebSocket configurado correctamente.')
+      // await setupWebSocket(server)
+      // console.log('WebSocket configurado correctamente.')
 
-    // getUpdates()
-    // console.log('Schedule configurado correctamente.')
+      // getUpdates()
+      // console.log('Schedule configurado correctamente.')
 
-    // downLoadImage()
-    // console.log('Init download Image')
-  } catch (err) {
-    console.error('Error al configurar WebSocket:', err.message)
-  }
+      // downLoadImage()
+      // console.log('Init download Image')
 
-  // Inicia el servidor
-  const PORT = process.env.PORT || 3000
-  server.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`)
-  })
-})()
+      startCronJobUpload()
+      console.log('Cron job de subida iniciado.')
+
+      // startCronJobPaper()
+      // console.log('Cron job iniciado.')
+    } catch (err) {
+      console.error('Error al configurar WebSocket:', err.message)
+    }
+
+    // Inicia el servidor
+    const PORT = process.env.PORT || 3000
+    server.listen(PORT, () => {
+      console.log(`Servidor escuchando en el puerto ${PORT}`)
+    })
+  })()

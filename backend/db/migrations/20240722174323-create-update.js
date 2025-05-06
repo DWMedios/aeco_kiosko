@@ -14,7 +14,7 @@ module.exports = {
       },
       type: {
         type: Sequelize.ENUM,
-        values: ['Initial', 'Update'],
+        values: ['Initial', 'Update', 'Upload', 'Paper'],
         defaultValue: 'Initial',
       },
       message: {

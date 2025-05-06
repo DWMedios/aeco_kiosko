@@ -35,3 +35,11 @@ sudo reboot
 
 # si algo no funciona revisa los logs
 cat /home/dw/launch_kiosk.log
+
+# instalar dependencias manualmente
+npm install --legacy-peer-deps  
+
+{"items": [{"quantity": 2, "productId": 58, "packagingType": "bottle"}, {"quantity": 1, "productId": 121, "packagingType": "bottle"}], "reward": {"name": "VayVen", "type": "service"}}
+
+
+42	can	17	476	476ml	2025-05-06 03:31:18.633209+00	NULL
