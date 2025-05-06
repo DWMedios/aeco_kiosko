@@ -33,7 +33,7 @@ app.use('/api', apiRoutes)
       // getInitialSetup()
       // console.log('Obtener configuracion inicial.')
 
-      await setupWebSocket(server)
+      // await setupWebSocket(server)
       console.log('WebSocket configurado correctamente.')
 
       // getUpdates()

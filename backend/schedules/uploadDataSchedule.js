@@ -9,14 +9,15 @@ const { UPDATE_TYPES } = require('../enums/update')
 
 const { fetchFromApi } = require('../utils/fetchHelper')
 const { getLastCapacity, createCapacities, getLastProduct, createProducts } = require('../repositories/productRepository')
+const { updateRewards } = require('../repositories/rewardRepository')
 
 let cronJob = null
 
 const uploadData = async () => {
     const newLog = { type: UPDATE_TYPES.UPLOAD }
     try {
-        const aeco = await getById()
-        const { serialNumber } = aeco.dataValues
+        // const aeco = await getById()
+        // const { serialNumber } = aeco.dataValues
         const tickets = await findAll()
         await uploadDailyStats(tickets)
         await uploadTickets(tickets)
@@ -24,8 +25,9 @@ const uploadData = async () => {
         await uploadPackagingStats(tickets)
         await getCapacitiesAfterLast()
         await getProductsAfterLast()
+        await getRewardsServer()
         await createLog({ ...newLog, message: 'Upload susccefully' })
-        return true
+        // return true
     } catch (error) {
         await createLog({ ...newLog, status: false, message: error.message })
         console.error('Error:', error)
@@ -33,9 +35,10 @@ const uploadData = async () => {
     }
 }
 
-exports.startCronJobUpload = () => {
+exports.startCronJobUpload = async () => {
+    uploadData()
     if (cronJob === null) {
-        cronJob = cron.schedule('*/10 * * * * *', async () => {
+        cronJob = cron.schedule('0 12 * * *', async () => {
             console.log('~ Upload --- JOB ---')
             const isActive = await uploadData()
             if (isActive) {
@@ -204,5 +207,20 @@ const getProductsAfterLast = async () => {
         await createLog({ ...newLog, message: 'Update products after last' })
     } catch (error) {
         await createLog({ ...newLog, status: false, message: 'Update products after last: ' + error.message })
+    }
+}
+
+const getRewardsServer = async () => {
+    const newLog = { type: UPDATE_TYPES.UPDATE }
+    try {
+        const data = await fetchFromApi(
+            `/api/v1/aecos/rewards`,
+            'GET'
+        )
+
+        if (data.rewards.length > 0) await updateRewards(data.rewards)
+        await createLog({ ...newLog, message: 'Update rewards' })
+    } catch (error) {
+        await createLog({ ...newLog, status: false, message: 'Update rewards: ' + error.message })
     }
 }

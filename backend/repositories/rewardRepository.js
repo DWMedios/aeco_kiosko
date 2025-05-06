@@ -16,3 +16,15 @@ exports.getAllCategories = async () => {
     attributes: ['type']
   })
 }
+
+exports.updateRewards = async (rewards) => {
+  const { Reward } = await connectToDatabase()
+  const formattedRewards = rewards.map(({ note, imageId, mediaAssets, ...rest }) => ({
+    ...rest,
+  }))
+
+  return await Reward.bulkCreate(formattedRewards, {
+    updateOnDuplicate: ['name', 'description', 'status', 'type', 'order', 'metadata', 'establishment']
+  })
+}
+
