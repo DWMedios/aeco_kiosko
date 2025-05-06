@@ -82,11 +82,9 @@ const Accepted = () => {
             alt="Container"
             className="m-10 mb-20 w-auto h-90"
           />
-          <div className="flex flex-col bg-green-500 items-center w-96 rounded-3xl bg-opacity-70 text-white font-medium absolute p-2 tracking-wider">
-            <span className="text-5xl font-bold tracking-widest">
-              {product?.name}
-            </span>
-          </div>
+         <div className="flex flex-col bg-green-500 items-center w-96 rounded-3xl bg-opacity-70 text-white font-medium absolute p-2 tracking-wider text-5xl font-bold text-center">
+            {product?.name}
+         </div>
         </div>
         <Button
           action={() => sendCommand(sendCommands.INITIATE_BOTTLE_INSERT)}
