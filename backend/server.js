@@ -33,8 +33,8 @@ app.use('/api', apiRoutes)
       // getInitialSetup()
       // console.log('Obtener configuracion inicial.')
 
-      // await setupWebSocket(server)
-      // console.log('WebSocket configurado correctamente.')
+      await setupWebSocket(server)
+      console.log('WebSocket configurado correctamente.')
 
       // getUpdates()
       // console.log('Schedule configurado correctamente.')
@@ -43,7 +43,7 @@ app.use('/api', apiRoutes)
       // console.log('Init download Image')
 
       startCronJobUpload()
-      console.log('Cron job de subida iniciado.')
+      console.log('Cron job de sincronizacion iniciado.')
 
       // startCronJobPaper()
       // console.log('Cron job iniciado.')
