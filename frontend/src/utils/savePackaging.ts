@@ -2,8 +2,9 @@ import WebApiAeco from '../api/webApiAeco'
 import { Method, Packaging, Packagings, Ticket } from '../interfaces'
 import { getSessionStorage, setSessionStorage } from './manageStorage'
 
-export const SavePackaging = (packaging: Packaging) => {
-  const ticket = GetTicket() || defaultPackaging
+export const SavePackaging = async (packaging: Packaging) => {
+  try {
+    const ticket = GetTicket() || defaultPackaging
   const existing = ticket.packagings.find((p) => p.id === packaging.id)
 
   if (existing) {
@@ -14,10 +15,15 @@ export const SavePackaging = (packaging: Packaging) => {
   const updatedProducts = {
     packagings: [...ticket.packagings],
     total_cans: ticket.total_cans + (packaging.packagingType === 'can' ? 1 : 0),
-    totla_bottles:
-      ticket.totla_bottles + (packaging.packagingType === 'bottle' ? 1 : 0),
+    total_bottles:
+      ticket.total_bottles + (packaging.packagingType === 'bottle' ? 1 : 0),
   }
   setSessionStorage('ticket', JSON.stringify(updatedProducts))
+  return true
+  } catch (error) {
+    return false
+  }
+  
 }
 
 export const GetTicket = (): Packagings | null => {
@@ -29,7 +35,7 @@ export const ClearCountPackings = (): void => {
   sessionStorage.clear()
 }
 
-export const LastPackings = (): Packaging => {
+export const LastPackaging = (): Packaging => {
   const packagings = GetTicket() || defaultPackaging
   return packagings.packagings.at(-1) || { id: 0, name: '', packagingType: '' }
 }
@@ -37,8 +43,7 @@ export const LastPackings = (): Packaging => {
 export const SaveProccess = async (method: Method) => {
   try {
     const ticket = ticketTransform(method)
-    console.log("🚀 ~ SaveProccess ~ ticket:", ticket)
-    const response = await WebApiAeco.saveTicket(ticket)
+    await WebApiAeco.saveTicket(ticket)
     // setSessionStorage('ticket', JSON.stringify(response))
     return true
   } catch (error) {
@@ -59,12 +64,12 @@ const ticketTransform = (method: Method): Ticket => {
       })),
     },
     total_cans: ticket.total_cans,
-    totla_bottles: ticket.totla_bottles,
+    total_bottles: ticket.total_bottles,
   }
 }
 
 const defaultPackaging = {
   packagings: [],
   total_cans: 0,
-  totla_bottles: 0,
+  total_bottles: 0,
 }

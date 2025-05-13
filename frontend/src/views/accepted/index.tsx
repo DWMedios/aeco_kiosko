@@ -10,7 +10,7 @@ import {
 import { usePageData } from '../../hooks/usePageData'
 import {
   GetTicket,
-  LastPackings,
+  LastPackaging,
   SaveProccess,
 } from '../../utils/savePackaging'
 import { sendCommands } from '../../utils/commands'
@@ -38,7 +38,7 @@ const Accepted = () => {
   }, [])
 
   useEffect(() => {
-    setProduct(LastPackings())
+    setProduct(LastPackaging())
   }, [])
 
   if (loading || error || !metas) {

@@ -3,6 +3,7 @@ import { FontSizeEnum, Packagings, TextColorEnum } from '../../../interfaces'
 import Button from '../../../components/button'
 import QRCodeComponent from '../../../components/qrCode'
 import { GetTicket } from '../../../utils/savePackaging'
+import { getFormattedDate } from '../../../utils/dates'
 
 const Ticket = () => {
   const [products, setProducts] = useState<Packagings | null>(null)
@@ -19,7 +20,7 @@ const Ticket = () => {
 
   return (
     <div className="border-t-[10px]  border-dashed border-black w-[800px] h-[1450px] z-10">
-      <div className="border-b-[10px] border-l-[10px] border-r-[10px] border-solid border-black shadow-2xl rounded-lg flex flex-col justify-center items-center text-center w-[800px] h-[1450px] gap-11">
+      <div className="mb-4 border-b-[10px] border-l-[10px] border-r-[10px] border-solid border-black shadow-2xl rounded-lg flex flex-col justify-center items-center text-center w-[800px] h-[1450px] gap-11">
         <span className="text-6xl tracking-wider font-bold">Folio</span>
         <span className="font-semibold text-4xl tracking-wider">
           aeco20240626A21
@@ -39,7 +40,7 @@ const Ticket = () => {
           999 888 7777.
         </span>
         <span className="text-[#F10404] text-3xl font-bold">
-          Fecha: 10 / Septiembre / 2024{' '}
+          {getFormattedDate()}
         </span>
       </div>
       <Button

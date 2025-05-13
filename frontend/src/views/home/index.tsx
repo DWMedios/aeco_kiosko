@@ -27,7 +27,7 @@ function Home() {
 
   useEffect(() => {
     ClearCountPackings()
-    statusPaper()
+    // statusPaper()
   }, [])
 
   if (loading || error || !metas) {

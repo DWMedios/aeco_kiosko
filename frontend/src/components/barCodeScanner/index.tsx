@@ -30,7 +30,7 @@ const BarcodeScanner = () => {
   const findProduct = async () => {
     try {
       const response = (await WebApiAeco.findProduct(barcode)) as Product
-      SavePackaging({
+      await SavePackaging({
         id: response.id,
         name: response.name,
         packagingType: response.capacity.packaging,

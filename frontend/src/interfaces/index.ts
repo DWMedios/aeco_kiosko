@@ -200,7 +200,7 @@ export interface Packaging {
 
 export interface Packagings {
   total_cans: number
-  totla_bottles: number
+  total_bottles: number
   packagings: Packaging[]
 }
 
@@ -210,7 +210,7 @@ export interface Ticket {
   method: string
   summary: Record<string, any>
   total_cans: number
-  totla_bottles: number
+  total_bottles: number
   printed?: boolean
   synchronized?: boolean
 }
