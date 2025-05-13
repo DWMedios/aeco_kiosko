@@ -1,13 +1,10 @@
-import { useState, useEffect } from 'react'
-import { GetTicket } from '../../../utils/savePackaging'
 import type { Packagings } from '../../../interfaces'
 
-const ProductListModal = () => {
-  const [products, setProducts] = useState<Packagings | null>(null)
+interface Props{
+  products: Packagings | null
+}
 
-  useEffect(() => {
-    setProducts(GetTicket())
-  }, [])
+const ProductListModal = ({products}:Props) => {
 
   return (
     <div className="flex flex-col justify-center items-center">

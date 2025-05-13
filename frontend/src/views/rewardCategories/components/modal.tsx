@@ -1,17 +1,35 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import CurrentDateModal from './currentDateModal'
 import ProductListModal from './ProductListModal'
+import { GetTicket } from '../../../utils/savePackaging'
+import { Packagings } from '../../../interfaces'
 
 const Modal = () => {
   const [showModal, setShowModal] = useState(false)
+  const [products, setProducts] = useState<Packagings | null>(null)
+
+  useEffect(() => {
+    if (showModal) 
+      setProducts(GetTicket())
+    else setProducts(null)
+  }, [showModal])
+
+  useEffect(()=>{
+    console.log("🚀 ~ ProductListModal ~ products:", products)
+  }, [products])
+
   return (
     <>
       <button
         className="bg-[#FE5A8F] text-white
       font-bold px-4 py-3 bg-opacity-90 w-[445px] text-3xl rounded-t-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 fixed top-1/2 right-[-200px] transform -translate-y-1/2 -rotate-90 tracking-widest"
         type="button"
-        onClick={() => setShowModal(true)}
+        onClick={() => {
+          setShowModal(true)
+          setProducts(null)
+         }
+        }
       >
         ENVASES INSERTADOS
       </button>
@@ -23,7 +41,9 @@ const Modal = () => {
                 <div className="flex justify-between">
                   <button
                     className="bg-transparent border-0 pl-5 z-10"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => setShowModal(false)
+
+                    }
                   >
                     <span className="text-6xl font-medium">x</span>
                   </button>
@@ -36,7 +56,7 @@ const Modal = () => {
                     ENVASES INSERTADOS
                   </h1>
                 </div>
-                <ProductListModal />
+                <ProductListModal products={products}/>
               </div>
             </div>
           </div>
