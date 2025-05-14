@@ -9,7 +9,7 @@ const FinalView = () => {
   const { t } = useTranslate();
 
   const QrCodeUrl =
-    ' https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Estoy%20interesado%20en%20el%20proyecto!'
+    ' https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Estoy%20interesado%20en%20el%20proyecto!'
 
   return (
     <ScreenLayout image="lastView.png" timerInitialTime={20}>
@@ -21,7 +21,7 @@ const FinalView = () => {
           <QRCodeComponent value={QrCodeUrl} />
         </div>
         <span className="w-[600px] h-[150px] rounded-xl flex justify-center items-center font-bold text-6xl text-[#027333] z-10">
-          ayuntaeco.com{' '}
+          ayuntaeco.com
         </span>
         <Button
           label="Descargar Ticket Digital"

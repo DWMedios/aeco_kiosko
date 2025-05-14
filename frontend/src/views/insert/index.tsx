@@ -23,6 +23,8 @@ const Insert = () => {
 
   useEffect(() => {
     const { success, message } = command
+    console.log("🚀 ~ useEffect ~ success:", success)
+    console.log("🚀 ~ useEffect ~ message:", message)
     if (success && message === receivedCommands.OPEN_COVER) {
       navigation('/scanning')
     }

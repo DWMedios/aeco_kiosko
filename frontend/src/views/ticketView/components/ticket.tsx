@@ -8,7 +8,7 @@ import { getFormattedDate } from '../../../utils/dates'
 const Ticket = () => {
   const [products, setProducts] = useState<Packagings | null>(null)
   const QrCodeUrl =
-    'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
+    'https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
 
   useEffect(() => {
     setProducts(GetTicket())

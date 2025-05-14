@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { TimerProps } from '../../interfaces'
 import useWebSocket from '../../hooks/useWebSocket'
 import { sendCommands } from '../../utils/commands'
+import { ClearCountPackings } from '../../utils/savePackaging'
 
 const Timer = ({
   initialTime,
@@ -18,6 +19,8 @@ const Timer = ({
     if (timeLeft <= 0) {
       if (onEnd) onEnd()
       sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL)
+      sessionStorage.clear()
+      console.log("🚀 ~ useEffect ~ ClearCountPackings():")
       navigate('/home')
       return
     }

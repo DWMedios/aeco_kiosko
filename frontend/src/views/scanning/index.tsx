@@ -23,7 +23,7 @@ const Scanning = () => {
     const timeout = setTimeout(() => {
       sendCommand(sendCommands.REJECTED)
       navigation('/unidentified')
-    }, 10000)
+    }, 9900)
 
     return () => clearTimeout(timeout)
   }, [navigation, sendCommand])

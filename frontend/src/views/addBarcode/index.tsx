@@ -28,7 +28,7 @@ const AddBarcode = () => {
   }
 
   const QrCodeUrl =
-    'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Quiero%20registrar%20un%20Código%20de%20Barras!'
+    'https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Quiero%20registrar%20un%20Código%20de%20Barras!'
 
   return (
     <ScreenLayout image={metas.imgBg}>

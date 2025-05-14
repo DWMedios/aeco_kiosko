@@ -16,6 +16,7 @@ export const fetchRequest = async <T>({
         ...headers,
       },
       body: body ? JSON.stringify(body) : null,
+      cache:'no-store'
     }
 
     const response = await fetch(`${api}${url}`, options)

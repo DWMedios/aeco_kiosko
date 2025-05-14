@@ -15,7 +15,6 @@ import LangHelp from './components/LangHelp'
 import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
-import { ClearCountPackings } from '../../utils/savePackaging'
 import savePaperStatus from '../../hooks/usePaperStatus'
 
 function Home() {
@@ -26,7 +25,7 @@ function Home() {
   }
 
   useEffect(() => {
-    ClearCountPackings()
+    sessionStorage.clear()
     // statusPaper()
   }, [])
 

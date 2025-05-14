@@ -31,10 +31,6 @@ export const GetTicket = (): Packagings | null => {
   return data ? JSON.parse(data) : null
 }
 
-export const ClearCountPackings = (): void => {
-  sessionStorage.clear()
-}
-
 export const LastPackaging = (): Packaging => {
   const packagings = GetTicket() || defaultPackaging
   return packagings.packagings.at(-1) || { id: 0, name: '', packagingType: '' }

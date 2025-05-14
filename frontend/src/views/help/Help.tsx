@@ -9,7 +9,7 @@ function Help() {
   const { t } = useTranslate()
 
   const QrCodeUrl =
-    'https://wa.me/9861190181?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
+    'https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
 
   const { data: metas, loading, error } = usePageData<MetaDataHelp>('Help')
 
