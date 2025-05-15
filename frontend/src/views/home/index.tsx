@@ -16,6 +16,7 @@ import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
 import savePaperStatus from '../../hooks/usePaperStatus'
+import { setLocalStorage } from '../../utils/manageStorage'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
@@ -26,6 +27,7 @@ function Home() {
 
   useEffect(() => {
     localStorage.clear()
+    setLocalStorage('ticket', '')
     // statusPaper()
   }, [])
 
