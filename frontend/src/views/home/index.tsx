@@ -25,7 +25,7 @@ function Home() {
   }
 
   useEffect(() => {
-    sessionStorage.clear()
+    localStorage.clear()
     // statusPaper()
   }, [])
 

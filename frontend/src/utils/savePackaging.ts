@@ -1,6 +1,6 @@
 import WebApiAeco from '../api/webApiAeco'
 import { Method, Packaging, Packagings, Ticket } from '../interfaces'
-import { getSessionStorage, setSessionStorage } from './manageStorage'
+import { getLocalStorage, setLocalStorage } from './manageStorage'
 
 export const SavePackaging = async (packaging: Packaging) => {
   try {
@@ -19,7 +19,7 @@ export const SavePackaging = async (packaging: Packaging) => {
       total_bottles:
         ticket.total_bottles + (packaging.packagingType === 'bottle' ? 1 : 0),
     }
-    setSessionStorage('ticket', JSON.stringify(updatedProducts))
+    setLocalStorage('ticket', JSON.stringify(updatedProducts))
     return true
   } catch (error) {
     return false
@@ -27,7 +27,7 @@ export const SavePackaging = async (packaging: Packaging) => {
 }
 
 export const GetTicket = (): Packagings | null => {
-  const data = getSessionStorage('ticket')
+  const data = getLocalStorage('ticket')
   return data ? JSON.parse(data) : null
 }
 
@@ -40,7 +40,7 @@ export const SaveProccess = async (method: Method) => {
   try {
     const ticket = ticketTransform(method)
     await WebApiAeco.saveTicket(ticket)
-    // setSessionStorage('ticket', JSON.stringify(response))
+    // setLocalStorage('ticket', JSON.stringify(response))
     return true
   } catch (error) {
     return false
