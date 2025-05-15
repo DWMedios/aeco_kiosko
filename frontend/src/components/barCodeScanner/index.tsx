@@ -18,7 +18,7 @@ const BarcodeScanner = () => {
       clearTimeout(timerRef.current)
     }
     timerRef.current = setTimeout(() => {
-      if (barcode.trim.length == 0)
+      if (barcode.trim().length == 0)
         setBarcode((event.target as HTMLInputElement).value)
     }, 100)
   }
