@@ -4,7 +4,12 @@ import { getLocalStorage, setLocalStorage } from './manageStorage'
 
 export const SavePackaging = async (packaging: Packaging) => {
   try {
-    const ticket = GetTicket() || defaultPackaging
+    let ticket = GetTicket()
+    console.log('🚀 ~ Get ~ ticket:', ticket)
+    if (!ticket) {
+      ticket = defaultPackaging
+    }
+    console.log('🚀 ~ After get ~ ticket:', ticket)
     const existing = ticket.packagings.find((p) => p.id === packaging.id)
 
     if (existing) {
@@ -19,7 +24,11 @@ export const SavePackaging = async (packaging: Packaging) => {
       total_bottles:
         ticket.total_bottles + (packaging.packagingType === 'bottle' ? 1 : 0),
     }
+    localStorage.removeItem('ticket')
+    console.log('🚀 ~ Previous SavePackaging ~ localStorage:', ticket)
     setLocalStorage('ticket', JSON.stringify(updatedProducts))
+    ticket = GetTicket()
+    console.log('🚀 ~ After SavePackaging ~ localStorage:', ticket)
     return true
   } catch (error) {
     return false
