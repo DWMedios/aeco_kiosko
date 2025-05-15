@@ -1,6 +1,5 @@
 import WebApiAeco from '../api/webApiAeco'
 import { Method, Packaging, Packagings, Ticket } from '../interfaces'
-import { getLocalStorage, setLocalStorage } from './manageStorage'
 
 export const SavePackaging = async (packaging: Packaging) => {
   try {
@@ -30,7 +29,7 @@ export const SavePackaging = async (packaging: Packaging) => {
     }
     localStorage.removeItem('ticket')
     console.log('🚀 ~ Previous SavePackaging ~ localStorage:', ticket)
-    setLocalStorage('ticket', JSON.stringify(updatedProducts))
+    localStorage.setItem('ticket', JSON.stringify(updatedProducts))
     ticket = GetTicket()
     console.log('🚀 ~ After SavePackaging ~ localStorage:', ticket)
     return true
@@ -40,7 +39,7 @@ export const SavePackaging = async (packaging: Packaging) => {
 }
 
 export const GetTicket = (): Packagings | null => {
-  const data = getLocalStorage('ticket')
+  const data = localStorage.getItem('ticket')
   console.log('🚀 ~ data GetTicket:', data)
   return data && data !== '' ? JSON.parse(data) : null
 }
