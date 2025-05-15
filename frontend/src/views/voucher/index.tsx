@@ -3,16 +3,16 @@ import WebApiAeco from '../../api/webApiAeco'
 import ScreenLayout from '../../components/layout/screenLayout'
 import TicketButton from '../../components/ticketButton'
 import useTranslate from '../../hooks/useTranslate'
-import { getSessionStorage } from '../../utils/manageStorage'
+import { getLocalStorage } from '../../utils/manageStorage'
 
 const VoucherView = () => {
   const { t } = useTranslate()
-  const paper = getSessionStorage('paperStatus') === 'true'
+  const paper = getLocalStorage('paperStatus') === 'true'
   const navigate = useNavigate()
 
   const printerTicket = async () => {
     try {
-      const ticketId = getSessionStorage('ticketId')
+      const ticketId = getLocalStorage('ticketId')
       if (ticketId) {
         await WebApiAeco.printerTicket(Number(ticketId))
         navigate('/final_view')

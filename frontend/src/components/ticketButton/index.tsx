@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import { TicketButtonInterface } from '../../interfaces'
-import WebApiAeco from '../../api/webApiAeco'
-import { getSessionStorage } from '../../utils/manageStorage'
 
 const TicketButton = ({
   action,
@@ -13,7 +11,7 @@ const TicketButton = ({
   imgClass = 'w-[150px] h-[150px] border-4 border-[#027333] border-solid p-3 rounded-lg',
   textClass = 'text-4xl font-medium',
 }: TicketButtonInterface) => {
-    const navigation = useNavigate()
+  const navigation = useNavigate()
 
   return (
     <button
