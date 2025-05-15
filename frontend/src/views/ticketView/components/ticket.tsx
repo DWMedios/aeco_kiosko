@@ -14,10 +14,6 @@ const Ticket = () => {
     setProducts(GetTicket())
   }, [])
 
-  useEffect(() => {
-    console.log('Products:', products)
-  }, [products])
-
   return (
     <div className="border-t-[10px]  border-dashed border-black w-[800px] h-[1450px] z-10">
       <div className="mb-4 border-b-[10px] border-l-[10px] border-r-[10px] border-solid border-black shadow-2xl rounded-lg flex flex-col justify-center items-center text-center w-[800px] h-[1450px] gap-11">

@@ -15,16 +15,15 @@ import LangHelp from './components/LangHelp'
 import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
-import savePaperStatus from '../../hooks/usePaperStatus'
 import { setLocalStorage } from '../../utils/manageStorage'
 import { GetTicket } from '../../utils/savePackaging'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
 
-  const statusPaper = async () => {
-    await savePaperStatus()
-  }
+  // const statusPaper = async () => {
+  //   await savePaperStatus()
+  // }
 
   useEffect(() => {
     localStorage.clear()

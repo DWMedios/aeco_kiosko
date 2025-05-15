@@ -38,7 +38,6 @@ const BarcodeScanner = () => {
       sendCommand(sendCommands.ACCEPTED)
       navigation('/accepted')
     } catch (error) {
-      console.log('~ findProduct ~ error:', error)
       sendCommand(sendCommands.REJECTED)
       navigation('/rejected')
     } finally {

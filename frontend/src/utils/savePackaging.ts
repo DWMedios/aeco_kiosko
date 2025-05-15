@@ -4,7 +4,6 @@ import { Method, Packaging, Packagings, Ticket } from '../interfaces'
 export const SavePackaging = async (packaging: Packaging) => {
   try {
     let ticket = GetTicket()
-    console.log('🚀 ~ Get ~ ticket:', ticket)
     if (!ticket) {
       ticket = {
         packagings: [],
@@ -12,7 +11,6 @@ export const SavePackaging = async (packaging: Packaging) => {
         total_bottles: 0,
       }
     }
-    console.log('🚀 ~ After get ~ ticket:', ticket)
     const existing = ticket.packagings.find((p) => p.id === packaging.id)
 
     if (existing) {
@@ -28,10 +26,8 @@ export const SavePackaging = async (packaging: Packaging) => {
         ticket.total_bottles + (packaging.packagingType === 'bottle' ? 1 : 0),
     }
     localStorage.removeItem('ticket')
-    console.log('🚀 ~ Previous SavePackaging ~ localStorage:', ticket)
     localStorage.setItem('ticket', JSON.stringify(updatedProducts))
     ticket = GetTicket()
-    console.log('🚀 ~ After SavePackaging ~ localStorage:', ticket)
     return true
   } catch (error) {
     return false
@@ -40,7 +36,6 @@ export const SavePackaging = async (packaging: Packaging) => {
 
 export const GetTicket = (): Packagings | null => {
   const data = localStorage.getItem('ticket')
-  console.log('🚀 ~ data GetTicket:', data)
   return data && data !== '' ? JSON.parse(data) : null
 }
 
@@ -57,7 +52,6 @@ export const SaveProccess = async (method: Method) => {
   try {
     const ticket = ticketTransform(method)
     await WebApiAeco.saveTicket(ticket)
-    // setLocalStorage('ticket', JSON.stringify(response))
     return true
   } catch (error) {
     return false

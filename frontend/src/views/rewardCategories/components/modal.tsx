@@ -14,10 +14,6 @@ const Modal = () => {
     else setProducts(null)
   }, [showModal])
 
-  useEffect(() => {
-    console.log('🚀 ~ ProductListModal ~ products:', products)
-  }, [products])
-
   return (
     <>
       <button
