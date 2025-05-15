@@ -28,6 +28,7 @@ export const SavePackaging = async (packaging: Packaging) => {
 
 export const GetTicket = (): Packagings | null => {
   const data = getLocalStorage('ticket')
+  console.log('🚀 ~ data GetTicket:', data)
   return data && data !== '' ? JSON.parse(data) : null
 }
 
