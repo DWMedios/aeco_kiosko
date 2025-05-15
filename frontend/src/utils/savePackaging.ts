@@ -7,7 +7,11 @@ export const SavePackaging = async (packaging: Packaging) => {
     let ticket = GetTicket()
     console.log('🚀 ~ Get ~ ticket:', ticket)
     if (!ticket) {
-      ticket = defaultPackaging
+      ticket = {
+        packagings: [],
+        total_cans: 0,
+        total_bottles: 0,
+      }
     }
     console.log('🚀 ~ After get ~ ticket:', ticket)
     const existing = ticket.packagings.find((p) => p.id === packaging.id)
@@ -42,7 +46,11 @@ export const GetTicket = (): Packagings | null => {
 }
 
 export const LastPackaging = (): Packaging => {
-  const packagings = GetTicket() || defaultPackaging
+  const packagings = GetTicket() || {
+    packagings: [],
+    total_cans: 0,
+    total_bottles: 0,
+  }
   return packagings.packagings.at(-1) || { id: 0, name: '', packagingType: '' }
 }
 
@@ -58,7 +66,11 @@ export const SaveProccess = async (method: Method) => {
 }
 
 const ticketTransform = (method: Method): Ticket => {
-  const ticket = GetTicket() || defaultPackaging
+  const ticket = GetTicket() || {
+    packagings: [],
+    total_cans: 0,
+    total_bottles: 0,
+  }
   return {
     method: method.name,
     summary: {
@@ -72,10 +84,4 @@ const ticketTransform = (method: Method): Ticket => {
     total_cans: ticket.total_cans,
     total_bottles: ticket.total_bottles,
   }
-}
-
-const defaultPackaging = {
-  packagings: [],
-  total_cans: 0,
-  total_bottles: 0,
 }
