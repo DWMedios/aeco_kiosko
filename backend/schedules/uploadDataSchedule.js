@@ -91,6 +91,7 @@ const uploadDailyStats = async (tickets) => {
             })
         }
         const stats = await findAllDailyStats()
+        console.log("🚀 ~ uploadDailyStats ~ stats:", stats)
 
         if ((stats.length > 0)) {
             for (const stat of stats) {
@@ -175,6 +176,7 @@ const uploadProductStats = async (tickets) => {
         }
 
         const stats = findAllProductStat()
+        console.log("🚀 ~ uploadProductStats ~ stats:", stats)
         if (stats.length > 0) {
             await fetchFromApi('/api/v1/aecos/upload-product-stats', 'POST', {
                 stats: stats.map((item) => ({
@@ -220,7 +222,8 @@ const uploadPackagingStats = async (tickets) => {
             })
         }
 
-        const stats = await findAllPackagingStat
+        const stats = await findAllPackagingStat()
+        console.log("🚀 ~ uploadPackagingStats ~ stats:", stats)
         if (stats.length > 0) {
             await fetchFromApi('/api/v1/aecos/upload-packaging-stats', 'POST', {
                 stats: stats.map((item) => ({
