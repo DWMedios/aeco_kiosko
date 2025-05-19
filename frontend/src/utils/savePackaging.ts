@@ -65,7 +65,7 @@ const ticketTransform = (method: Method): Ticket => {
     total_bottles: 0,
   }
   return {
-    method: method.name,
+    method: method.type,
     summary: {
       reward: method,
       items: ticket.packagings.map((pack) => ({

@@ -1,3 +1,5 @@
+const { Op } = require('sequelize')
+
 const connectToDatabase = require('../db/index')
 
 let dbInstance
@@ -16,10 +18,17 @@ exports.findOne = async () => {
   })
 }
 
-exports.findAll = async (date) => {
+exports.findAll = async () => {
   const { Ticket } = await initializeDatabase()
+  const toDay = new Date()
+  const startOfDay = new Date(toDay.setHours(0, 0, 0, 0))
+  const endOfDay = new Date(toDay.setHours(23, 59, 59, 999))
   return await Ticket.findAll({
-    where: { synchronized: false, createdAt: date },
+    where: {
+      synchronized: false, createdAt: {
+        [Op.between]: [startOfDay, endOfDay],
+      }
+    },
     attributes: { exclude: ['createdAt', 'updatedAt'] },
   })
 }

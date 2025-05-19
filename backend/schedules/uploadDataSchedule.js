@@ -1,7 +1,7 @@
 const cron = require('node-cron')
 
 const { createLog } = require('../repositories/updateRepository')
-const { findAll } = require('../repositories/ticketRepository')
+const { findAll, update } = require('../repositories/ticketRepository')
 const { UPDATE_TYPES } = require('../enums/update')
 
 const { fetchFromApi } = require('../utils/fetchHelper')
@@ -24,7 +24,6 @@ const {
 } = require('../repositories/statsRepository')
 const { updateRewards } = require('../repositories/rewardRepository')
 
-const toDay = new Date().toISOString().split('T')[0]
 let cronJob = null
 
 exports.startCronJobUpload = async () => {
@@ -56,12 +55,9 @@ const uploadData = async () => {
     try {
         // const aeco = await getById()
         // const { serialNumber } = aeco.dataValues
-        const tickets = await findAll(toDay)
-
-        const daily_stats = await findAllDailyStats
-        console.log("🚀 ~ uploadData ~ daily_stats:", daily_stats)
-        await uploadDailyStats(tickets)
+        const tickets = await findAll()
         await uploadTickets(tickets)
+        await uploadDailyStats(tickets)
         await uploadProductStats(tickets)
         await uploadPackagingStats(tickets)
         await getCapacitiesAfterLast()
@@ -75,6 +71,64 @@ const uploadData = async () => {
         return false
     }
 }
+
+const uploadTickets = async (tickets) => {
+    const newLogBase = { type: UPDATE_TYPES.UPLOAD }
+    const BATCH_SIZE = 10
+
+    // Función para dividir el array en lotes
+    const createBatches = (arr, size) => {
+        const batches = []
+        for (let i = 0; i < arr.length; i += size) {
+            batches.push(arr.slice(i, i + size))
+        }
+        return batches
+    }
+
+    const batches = createBatches(tickets, BATCH_SIZE)
+
+    for (let i = 0; i < batches.length; i++) {
+        const batch = batches[i]
+        const newLog = {
+            ...newLogBase,
+            message: `Upload tickets batch #${i + 1}`,
+        }
+
+        const payload = {
+            tickets: batch.map((ticket) => ({
+                folio: `AECO001-${ticket.folio}`,
+                method: ticket.method,
+                summary: {
+                    reward: {
+                        type: ticket.summary.reward.type,
+                        name: ticket.summary.reward.name,
+                    },
+                },
+                totalCans: ticket.total_cans,
+                totalBottles: ticket.total_bottles,
+                items: ticket.summary.items,
+            })),
+        }
+
+        try {
+            await fetchFromApi('/api/v1/aecos/upload-tickets', 'POST', payload)
+            await createLog({ ...newLog, status: true })
+
+            // Actualizar los tickets del batch como sincronizados
+            for (const ticket of batch) {
+                await update(ticket.id, { synchronized: true })
+            }
+        } catch (error) {
+            await createLog({
+                ...newLog,
+                status: 0,
+                message: `${newLog.message}: ${error.message}`,
+            })
+        }
+    }
+}
+
+
 
 const uploadDailyStats = async (tickets) => {
     const newLog = { type: UPDATE_TYPES.UPLOAD }
@@ -94,7 +148,6 @@ const uploadDailyStats = async (tickets) => {
             })
         }
         const stats = await findAllDailyStats()
-        console.log("🚀 ~ uploadDailyStats ~ stats:", stats)
 
         if ((stats.length > 0)) {
             for (const stat of stats) {
@@ -113,35 +166,6 @@ const uploadDailyStats = async (tickets) => {
             ...newLog,
             status: 0,
             message: 'Upload daily stats: ' + error.message,
-        })
-    }
-}
-
-const uploadTickets = async (tickets) => {
-    const newLog = { type: UPDATE_TYPES.UPLOAD }
-    try {
-        const transformed = {
-            tickets: tickets.map((ticket) => ({
-                folio: `AECO001-${ticket.folio}`,
-                method: ticket.method,
-                summary: {
-                    reward: {
-                        type: ticket.summary.reward.type,
-                        name: ticket.summary.reward.name,
-                    },
-                },
-                totalCans: ticket.total_cans,
-                totalBottles: ticket.total_bottles,
-                items: ticket.summary.items,
-            })),
-        }
-        await fetchFromApi(`/api/v1/aecos/upload-tickets`, 'POST', transformed)
-        await createLog({ ...newLog, message: 'Upload tickets' })
-    } catch (error) {
-        await createLog({
-            ...newLog,
-            status: false,
-            message: 'Upload tickets: ' + error.message,
         })
     }
 }
@@ -169,7 +193,6 @@ const uploadProductStats = async (tickets) => {
                 ([productId, data]) => ({
                     product_id: parseInt(productId),
                     total_count: data.totalCount,
-                    createdAt: toDay,
                 })
             )
 
@@ -178,8 +201,7 @@ const uploadProductStats = async (tickets) => {
             }
         }
 
-        const stats = findAllProductStat()
-        console.log("🚀 ~ uploadProductStats ~ stats:", stats)
+        const stats = await findAllProductStat()
         if (stats.length > 0) {
             await fetchFromApi('/api/v1/aecos/upload-product-stats', 'POST', {
                 stats: stats.map((item) => ({
@@ -205,7 +227,6 @@ const uploadProductStats = async (tickets) => {
 const uploadPackagingStats = async (tickets) => {
     const newLog = { type: UPDATE_TYPES.UPLOAD }
     try {
-
         if (tickets.length > 0) {
             let totalBottles = 0
             let totalCans = 0
@@ -214,26 +235,24 @@ const uploadPackagingStats = async (tickets) => {
                 totalCans += ticket.total_cans || 0
             })
             await savePackagingStats({
-                packagingType: 'bottle',
-                totalCount: totalBottles,
-                createdAt: toDay,
+                packaging_type: 'bottle',
+                total_count: totalBottles,
             })
             await savePackagingStats({
-                packagingType: 'can',
-                totalCount: totalCans,
-                createdAt: toDay,
+                packaging_type: 'can',
+                total_count: totalCans,
             })
         }
 
         const stats = await findAllPackagingStat()
-        console.log("🚀 ~ uploadPackagingStats ~ stats:", stats)
         if (stats.length > 0) {
+            const uploads = stats.map((item) => ({
+                packagingType: item.packaging_type,
+                totalCount: item.total_count,
+                createdAt: item.createdAt,
+            }))
             await fetchFromApi('/api/v1/aecos/upload-packaging-stats', 'POST', {
-                stats: stats.map((item) => ({
-                    packagingType: item.packaging_type,
-                    totalCount: item.total_count,
-                    createdAt: item.createdAt,
-                })),
+                stats: uploads,
             })
             for (const stat of stats) {
                 await updatePackagingStat(stat.id)

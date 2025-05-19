@@ -11,6 +11,9 @@ const rewardModel = require('./models/Reward')
 const ticketModel = require('./models/Ticket')
 const updateModel = require('./models/Update')
 const pageModel = require('./models/Page')
+const dailyStat = require('./models/DailyStat')
+const packagingStat = require('./models/PackagingStat')
+const productStat = require('./models/ProductStat')
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -35,6 +38,9 @@ const Reward = rewardModel(sequelize, Sequelize)
 const Ticket = ticketModel(sequelize, Sequelize)
 const Update = updateModel(sequelize, Sequelize)
 const Page = pageModel(sequelize, Sequelize)
+const DailyStat = dailyStat(sequelize, Sequelize)
+const PackagingStat = packagingStat(sequelize, Sequelize)
+const ProductStat = productStat(sequelize, Sequelize)
 
 const Models = {
   Capacity,
@@ -47,12 +53,17 @@ const Models = {
   Ticket,
   Update,
   Page,
+  DailyStat,
+  PackagingStat,
+  ProductStat
 }
 
 const connection = {}
 
 Capacity.hasMany(Product, { as: 'products', foreignKey: 'capacity_id' })
 Product.belongsTo(Capacity, { as: 'capacity', foreignKey: 'capacity_id' })
+Product.hasMany(ProductStat, { as: 'productStat', foreignKey: 'product_id' })
+ProductStat.belongsTo(Product, { as: 'product', foreignKey: 'product_id' })
 
 const connectDB = async () => {
   try {

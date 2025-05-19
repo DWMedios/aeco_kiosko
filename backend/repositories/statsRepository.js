@@ -13,12 +13,13 @@ exports.saveDailyStats = async (data) => {
     return await DailyStat.create(data)
 }
 
-exports.savePackagingStats = async () => {
+exports.savePackagingStats = async (data) => {
+    console.log("🚀 ~ exports.savePackagingStats= ~ data:", data)
     const { PackagingStat } = await initializeDatabase()
     return await PackagingStat.create(data)
 }
 
-exports.saveProductStats = async () => {
+exports.saveProductStats = async (data) => {
     const { ProductStat } = await initializeDatabase()
     return await ProductStat.create(data)
 }
