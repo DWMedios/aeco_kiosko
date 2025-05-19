@@ -147,7 +147,7 @@ const uploadProductStats = async (tickets) => {
     try {
         const productStats = {}
 
-        if ((tickets, length > 0)) {
+        if ((tickets.length > 0)) {
             tickets.forEach((ticket) => {
                 const createdAt = ticket.createdAt
                 ticket.summary.items.forEach((item) => {
