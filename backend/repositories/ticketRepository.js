@@ -16,10 +16,10 @@ exports.findOne = async () => {
   })
 }
 
-exports.findAll = async () => {
+exports.findAll = async (date) => {
   const { Ticket } = await initializeDatabase()
   return await Ticket.findAll({
-    where: { synchronized: false },
+    where: { synchronized: false, createdAt: date },
     attributes: { exclude: ['createdAt', 'updatedAt'] },
   })
 }
