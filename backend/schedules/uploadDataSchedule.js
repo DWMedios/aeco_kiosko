@@ -57,6 +57,9 @@ const uploadData = async () => {
         // const aeco = await getById()
         // const { serialNumber } = aeco.dataValues
         const tickets = await findAll(toDay)
+
+        const daily_stats = await findAllDailyStats
+        console.log("🚀 ~ uploadData ~ daily_stats:", daily_stats)
         await uploadDailyStats(tickets)
         await uploadTickets(tickets)
         await uploadProductStats(tickets)
