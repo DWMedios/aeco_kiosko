@@ -67,7 +67,7 @@ const uploadData = async () => {
         await createLog({ ...newLog, message: 'Upload susccefully' })
         // return true
     } catch (error) {
-        await createLog({ ...newLog, status: false, message: error.message })
+        await createLog({ ...newLog, status: 0, message: error.message })
         console.error('Error:', error)
         return false
     }
@@ -92,7 +92,7 @@ const uploadDailyStats = async (tickets) => {
         }
         const stats = await findAllDailyStats()
 
-        if ((stats, length > 0)) {
+        if ((stats.length > 0)) {
             for (const stat of stats) {
                 await fetchFromApi('/api/v1/aecos/upload-daily-stats', 'POST', {
                     totalTickets: stat.total_tickets,
@@ -107,7 +107,7 @@ const uploadDailyStats = async (tickets) => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: false,
+            status: 0,
             message: 'Upload daily stats: ' + error.message,
         })
     }
@@ -191,7 +191,7 @@ const uploadProductStats = async (tickets) => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: false,
+            status: 0,
             message: 'Upload product stats: ' + error.message,
         })
     }
@@ -201,7 +201,7 @@ const uploadPackagingStats = async (tickets) => {
     const newLog = { type: UPDATE_TYPES.UPLOAD }
     try {
 
-        if (tickets, length > 0) {
+        if (tickets.length > 0) {
             let totalBottles = 0
             let totalCans = 0
             tickets.forEach((ticket) => {
@@ -237,7 +237,7 @@ const uploadPackagingStats = async (tickets) => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: false,
+            status: 0,
             message: 'Upload packaging stats: ' + error.message,
         })
     }
@@ -256,7 +256,7 @@ const getCapacitiesAfterLast = async () => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: false,
+            status: 0,
             message: 'Update capacities after last: ' + error.message,
         })
     }
@@ -275,7 +275,7 @@ const getProductsAfterLast = async () => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: false,
+            status: 0,
             message: 'Update products after last: ' + error.message,
         })
     }
@@ -291,7 +291,7 @@ const getRewardsServer = async () => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: false,
+            status: 0,
             message: 'Update rewards: ' + error.message,
         })
     }
