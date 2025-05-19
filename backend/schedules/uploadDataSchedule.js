@@ -64,7 +64,7 @@ const uploadData = async () => {
         await getCapacitiesAfterLast()
         await getProductsAfterLast()
         await getRewardsServer()
-        await createLog({ ...newLog, message: 'Upload susccefully' })
+        await createLog({ ...newLog, message: 'synchronized susccefully' })
         // return true
     } catch (error) {
         await createLog({ ...newLog, status: 0, message: error.message })
