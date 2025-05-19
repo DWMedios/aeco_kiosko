@@ -46,3 +46,18 @@ exports.findAllProductStat = async () => {
         attributes: { exclude: ['updatedAt'] },
     })
 }
+
+exports.updateDailyStats = async (id) => {
+    const { DailyStat } = await initializeDatabase()
+    return await DailyStat.update({ synchronized: true }, { where: { id } })
+}
+
+exports.updatePackagingStat = async (id) => {
+    const { PackagingStat } = await initializeDatabase()
+    return await PackagingStat.update({ synchronized: true }, { where: { id } })
+}
+
+exports.updateProductStat = async (id) => {
+    const { ProductStat } = await initializeDatabase()
+    return await ProductStat.update({ synchronized: true }, { where: { id } })
+}
