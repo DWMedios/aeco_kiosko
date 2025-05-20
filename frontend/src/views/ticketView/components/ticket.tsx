@@ -4,14 +4,18 @@ import Button from '../../../components/button'
 import QRCodeComponent from '../../../components/qrCode'
 import { GetTicket } from '../../../utils/savePackaging'
 import { getFormattedDate } from '../../../utils/dates'
+import { compressToEncodedURIComponent } from 'lz-string'
+
 
 const Ticket = () => {
   const [products, setProducts] = useState<Packagings | null>(null)
-  const QrCodeUrl =
-    'https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
-
+  const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null)
   useEffect(() => {
-    setProducts(GetTicket())
+    const ticket = GetTicket()
+    setProducts(ticket)
+    const jsonString = JSON.stringify({date:getFormattedDate(), ...ticket})
+    const compressed = compressToEncodedURIComponent(jsonString)
+    setQrCodeUrl(`http://192.168.3.221:5173/ticket?data=${compressed}`)
   }, [])
 
   return (
@@ -21,7 +25,7 @@ const Ticket = () => {
         <span className="font-semibold text-4xl tracking-wider">
           aeco20240626A21
         </span>
-        <QRCodeComponent size={500} value={QrCodeUrl} />
+        {qrCodeUrl&&<QRCodeComponent size={500} value={qrCodeUrl} />}
         <ul className="text-2xl">
           {products?.packagings.map((p, i) => (
             <li key={i}>
