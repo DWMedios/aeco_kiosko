@@ -29,7 +29,7 @@ let cronJob = null
 exports.startCronJobUpload = async () => {
     uploadData()
     if (cronJob === null) {
-        cronJob = cron.schedule('0 12 * * *', async () => {
+        cronJob = cron.schedule('*/10 * * * *', async () => {
             console.log('~ Upload --- JOB ---')
             const isActive = await uploadData()
             if (isActive) {
