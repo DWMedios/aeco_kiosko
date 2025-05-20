@@ -1,19 +1,18 @@
 require('dotenv').config()
 
-const fetchFromApi = async (endpoint, method = 'GET', body = null, externalUrl = false) => {
+const fetchFromApi = async (endpoint, method = 'GET', body = null, xApiKey = null) => {
   try {
     const fetch = (await import('node-fetch')).default
 
-    const response = await fetch(`${externalUrl ? '' : process.env.API_URL}${endpoint}`, {
+    const response = await fetch(`${process.env.API_URL}${endpoint}`, {
       method,
       headers: {
-        'x-api-key': process.env.X_API_KEY || 'API-KEY-DEMO',
+        'x-api-key': xApiKey,
         'Content-Type': 'application/json',
       },
       body: body ? JSON.stringify(body) : null,
     })
 
-    if (externalUrl) return response
 
     return await response.json()
   } catch (error) {

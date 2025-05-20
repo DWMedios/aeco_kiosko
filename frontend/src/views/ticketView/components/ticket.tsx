@@ -6,14 +6,13 @@ import { GetTicket } from '../../../utils/savePackaging'
 import { getFormattedDate } from '../../../utils/dates'
 import { compressToEncodedURIComponent } from 'lz-string'
 
-
 const Ticket = () => {
   const [products, setProducts] = useState<Packagings | null>(null)
   const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null)
   useEffect(() => {
     const ticket = GetTicket()
     setProducts(ticket)
-    const jsonString = JSON.stringify({date:getFormattedDate(), ...ticket})
+    const jsonString = JSON.stringify({ date: getFormattedDate(), ...ticket })
     const compressed = compressToEncodedURIComponent(jsonString)
     setQrCodeUrl(`https://ayuntaeco.com/ticket?data=${compressed}`)
   }, [])
@@ -25,7 +24,7 @@ const Ticket = () => {
         <span className="font-semibold text-4xl tracking-wider">
           aeco20240626A21
         </span>
-        {qrCodeUrl&&<QRCodeComponent size={500} value={qrCodeUrl} />}
+        {qrCodeUrl && <QRCodeComponent size={500} value={qrCodeUrl} />}
         <ul className="text-2xl">
           {products?.packagings.map((p, i) => (
             <li key={i}>

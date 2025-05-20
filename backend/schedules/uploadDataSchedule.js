@@ -2,6 +2,7 @@ const cron = require('node-cron')
 
 const { createLog } = require('../repositories/updateRepository')
 const { findAll, update } = require('../repositories/ticketRepository')
+const { getById } = require('../repositories/companyRepository')
 const { UPDATE_TYPES } = require('../enums/update')
 
 const { fetchFromApi } = require('../utils/fetchHelper')
@@ -23,8 +24,10 @@ const {
     updateProductStat,
 } = require('../repositories/statsRepository')
 const { updateRewards } = require('../repositories/rewardRepository')
+const { encryptStr } = require('../utils/crypto')
 
 let cronJob = null
+let xApiKey = null
 
 exports.startCronJobUpload = async () => {
     uploadData()
@@ -53,8 +56,10 @@ const stopCronJob = () => {
 const uploadData = async () => {
     const newLog = { type: UPDATE_TYPES.UPLOAD }
     try {
-        // const aeco = await getById()
-        // const { serialNumber } = aeco.dataValues
+        const aeco = await getById()
+        const { serialNumber } = aeco.dataValues
+        xApiKey = encryptStr(serialNumber)
+        console.log("🚀 ~ uploadData ~ xApiKey:", xApiKey)
         const tickets = await findAll()
         await uploadTickets(tickets)
         await uploadDailyStats(tickets)
@@ -111,7 +116,7 @@ const uploadTickets = async (tickets) => {
         }
 
         try {
-            await fetchFromApi('/api/v1/aecos/upload-tickets', 'POST', payload)
+            await fetchFromApi('/api/v1/aecos/upload-tickets', 'POST', payload, xApiKey)
             await createLog({ ...newLog, status: true })
 
             // Actualizar los tickets del batch como sincronizados
@@ -156,7 +161,7 @@ const uploadDailyStats = async (tickets) => {
                     totalBottles: stat.total_bottles,
                     totalCans: stat.total_cans,
                     createdAt: stat.createdAt,
-                })
+                }, xApiKey)
                 await updateDailyStats(stat.id)
             }
             await createLog({ ...newLog, message: 'Upload daily stats' })
@@ -209,7 +214,7 @@ const uploadProductStats = async (tickets) => {
                     totalCount: item.total_count,
                     createdAt: item.createdAt,
                 })),
-            })
+            }, xApiKey)
             for (const stat of stats) {
                 await updateProductStat(stat.id)
             }
@@ -253,7 +258,7 @@ const uploadPackagingStats = async (tickets) => {
             }))
             await fetchFromApi('/api/v1/aecos/upload-packaging-stats', 'POST', {
                 stats: uploads,
-            })
+            }, xApiKey)
             for (const stat of stats) {
                 await updatePackagingStat(stat.id)
             }
@@ -274,7 +279,7 @@ const getCapacitiesAfterLast = async () => {
         const capacity = await getLastCapacity()
         const data = await fetchFromApi(
             `/api/v1/products/capacities/after-last?lastId=${capacity.dataValues.id}`,
-            'GET'
+            'GET', null, xApiKey
         )
         if (data.length > 0) await createCapacities(data)
         await createLog({ ...newLog, message: 'Update capacities after last' })
@@ -293,7 +298,7 @@ const getProductsAfterLast = async () => {
         const product = await getLastProduct()
         const data = await fetchFromApi(
             `/api/v1/products/after-last?lastId=${product.dataValues.id}`,
-            'GET'
+            'GET', null, xApiKey
         )
         if (data.length > 0) await createProducts(data)
         await createLog({ ...newLog, message: 'Update products after last' })
@@ -309,7 +314,7 @@ const getProductsAfterLast = async () => {
 const getRewardsServer = async () => {
     const newLog = { type: UPDATE_TYPES.UPDATE }
     try {
-        const data = await fetchFromApi(`/api/v1/aecos/rewards`, 'GET')
+        const data = await fetchFromApi('/api/v1/aecos/rewards', 'GET', null, xApiKey)
 
         if (data.rewards.length > 0) await updateRewards(data.rewards)
         await createLog({ ...newLog, message: 'Update rewards' })
