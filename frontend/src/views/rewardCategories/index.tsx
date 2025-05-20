@@ -13,10 +13,8 @@ const RewardCategories = () => {
 
   const getRewardsByType = async () => {
     try {
-      const response = await WebApiAeco.getRewardCategories()
-      if (!response) {
-        throw new Error('Not found')
-      }
+      const response:any = await WebApiAeco.getRewardCategories()
+
       const rewardCategories = response.map(
         (reward: Record<string, any>, i: number) => {
           return {
@@ -24,10 +22,10 @@ const RewardCategories = () => {
             order: i + 1,
             status: true,
             image: '/images/QRcode.png',
-          url: `/rewards/${reward.type}`,
+            url: `/rewards/${reward.type}`,
+          }
         }
-        }
-      ) 
+      )
       setRewards(rewardCategories)
     } catch (error) {
       throw new Error('Error getting subcategories')
