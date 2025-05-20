@@ -15,7 +15,7 @@ const Ticket = () => {
     setProducts(ticket)
     const jsonString = JSON.stringify({date:getFormattedDate(), ...ticket})
     const compressed = compressToEncodedURIComponent(jsonString)
-    setQrCodeUrl(`http://192.168.3.221:5173/ticket?data=${compressed}`)
+    setQrCodeUrl(`https://ayuntaeco.com/ticket?data=${compressed}`)
   }, [])
 
   return (
