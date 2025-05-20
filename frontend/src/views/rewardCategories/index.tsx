@@ -26,6 +26,7 @@ const RewardCategories = () => {
             image: '/images/QRcode.png',
           url: `/rewards/${reward.type}`,
         }
+        }
       ) 
       setRewards(rewardCategories)
     } catch (error) {
