@@ -1,5 +1,5 @@
 require('dotenv').config()
-import * as CryptoJS from 'crypto-js'
+const CryptoJS = require('crypto-js')
 
 const key = process.env.CRYPTO_KEY
 
@@ -8,7 +8,7 @@ const key = process.env.CRYPTO_KEY
  * @param text The string to encrypt
  * @returns The encrypted string
  */
-export const encryptStr = (text) => {
+const encryptStr = (text) => {
   return CryptoJS.AES.encrypt(text, key).toString()
 }
 
@@ -17,6 +17,8 @@ export const encryptStr = (text) => {
  * @param text The string to decrypt
  * @returns The decrypted string
  */
-export const decryptStr = (text) => {
+const decryptStr = (text) => {
   return CryptoJS.AES.decrypt(text, key).toString(CryptoJS.enc.Utf8)
 }
+
+module.exports = { encryptStr, decryptStr }

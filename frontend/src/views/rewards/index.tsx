@@ -30,9 +30,9 @@ const Rewards = () => {
     if (type) getRewardsByType(type)
   }, [type])
 
-  const handleAction = async  (reward: Reward) => {
-   const saved = await SaveProccess({ type: reward.type, name: reward.name })
-   if (saved) {
+  const handleAction = async (reward: Reward) => {
+    const saved = await SaveProccess({ type: reward.type, name: reward.name })
+    if (saved) {
       navigation('/voucher')
     } else {
       navigation('/home')

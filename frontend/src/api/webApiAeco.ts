@@ -20,7 +20,7 @@ class WebApiAeco {
 
   static getRewardCategories() {
     return WebApi.ApisType({
-      url: `/rewards/categories`,
+      url: '/rewards/categories',
       method: 'GET',
     })
   }

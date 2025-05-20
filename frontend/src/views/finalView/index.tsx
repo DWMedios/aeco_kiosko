@@ -5,8 +5,7 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
 
 const FinalView = () => {
-
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const QrCodeUrl =
     ' https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Estoy%20interesado%20en%20el%20proyecto!'

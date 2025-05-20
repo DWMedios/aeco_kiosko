@@ -8,7 +8,9 @@ const CardReward = ({ label, url, imageSrc, action }: CardRewardinterface) => {
     <>
       <div className="flex flex-col justify-center items-center text-black w-[250px] h-[250px] cursor-pointer text-2xl">
         <button
-          onClick={() => (url !== '' ? navigation(url) : action?action():null)}
+          onClick={() =>
+            url !== '' ? navigation(url) : action ? action() : null
+          }
           className={'w-[180px] h-[180px] z-10'}
         >
           {imageSrc && (

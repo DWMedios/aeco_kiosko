@@ -56,8 +56,8 @@ const Accepted = () => {
   const NextSteep = async () => {
     const packings = GetTicket()
     if (packings) {
-        sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-        navigation('/reward_categories')
+      sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+      navigation('/reward_categories')
     } else {
       sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
       navigation('/home')
@@ -82,9 +82,9 @@ const Accepted = () => {
             alt="Container"
             className="m-10 mb-20 w-auto h-90"
           />
-         <div className="flex flex-col bg-green-500 items-center w-96 rounded-3xl bg-opacity-70 text-white font-medium absolute p-2 tracking-wider text-5xl font-bold text-center">
+          <div className="flex flex-col bg-green-500 items-center w-96 rounded-3xl bg-opacity-70 text-white font-medium absolute p-2 tracking-wider text-5xl font-bold text-center">
             {product?.name}
-         </div>
+          </div>
         </div>
         <Button
           action={() => sendCommand(sendCommands.INITIATE_BOTTLE_INSERT)}
@@ -108,7 +108,7 @@ const Accepted = () => {
         <Button
           action={() => NextSteep()}
           label={metas.buttonDown.label}
-          url= {'/reward_categories'} //si es dinamico se remplaza el valor por este del comentario -> {metas.buttonDown.url}
+          url={'/reward_categories'} //si es dinamico se remplaza el valor por este del comentario -> {metas.buttonDown.url}
           bgColor={
             BackgroundButtonEnum[
               metas.buttonDown.bgColor as keyof typeof BackgroundButtonEnum

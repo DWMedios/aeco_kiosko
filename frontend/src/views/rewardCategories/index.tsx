@@ -17,15 +17,16 @@ const RewardCategories = () => {
       if (!response) {
         throw new Error('Not found')
       }
-      const rewardCategories = response.map((reward: Record<string, any>, i: number)=>{   
-        return  {
-                  name: t(`rewards.${reward.type}`),
-                  order: i + 1,
-                  status: true,
-                  image: '/images/QRcode.png',
-                  url: `/rewards/${reward.type}`,
-                }
-      })
+      const rewardCategories = response.map(
+        (reward: Record<string, any>, i: number) => {
+          return {
+            name: t(`rewards.${reward.type}`),
+            order: i + 1,
+            status: true,
+            image: '/images/QRcode.png',
+          url: `/rewards/${reward.type}`,
+        }
+      ) 
       setRewards(rewardCategories)
     } catch (error) {
       throw new Error('Error getting subcategories')

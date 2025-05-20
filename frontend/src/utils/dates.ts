@@ -8,15 +8,25 @@ export const getCurrentDate = (): string => {
 }
 
 export const getFormattedDate = () => {
-  const date = new Date();
+  const date = new Date()
 
-  const day = date.getDate().toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0')
   const monthNames = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-  ];
-  const month = monthNames[date.getMonth()];
-  const year = date.getFullYear();
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+  ]
+  const month = monthNames[date.getMonth()]
+  const year = date.getFullYear()
 
-  return `Fecha: ${day} / ${month} / ${year}`;
-};
+  return `Fecha: ${day} / ${month} / ${year}`
+}

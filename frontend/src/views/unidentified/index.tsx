@@ -33,7 +33,10 @@ const Unidentified = () => {
   const NextSteep = async () => {
     const packings = GetTicket()
     if (packings) {
-      const saveMovement = await SaveProccess({type:'donative', name:'Donativo'})
+      const saveMovement = await SaveProccess({
+        type: 'donative',
+        name: 'Donativo',
+      })
       if (saveMovement) {
         sendCommand(sendCommands.FINISH_LOCK_THE_LID)
         navigation('/reward_categories')

@@ -4,8 +4,7 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
 
 const PredialPoints = () => {
-  const { t } = useTranslate();
-
+  const { t } = useTranslate()
 
   return (
     <ScreenLayout image="shrubbery.png">

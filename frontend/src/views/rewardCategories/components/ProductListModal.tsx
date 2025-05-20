@@ -1,11 +1,10 @@
 import type { Packagings } from '../../../interfaces'
 
-interface Props{
+interface Props {
   products: Packagings | null
 }
 
-const ProductListModal = ({products}:Props) => {
-
+const ProductListModal = ({ products }: Props) => {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="h-[250px] w-[500px] overflow-y-scroll custom-scrollbar">

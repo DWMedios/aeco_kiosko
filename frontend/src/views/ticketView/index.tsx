@@ -16,7 +16,7 @@ const TicketView = () => {
     <ScreenLayout
       image="TicketBackgound.png"
       showTimer={true}
-      timerInitialTime={10}
+      timerInitialTime={30}
     >
       <div className="flex flex-col justify-center items-center gap-11 z-10 h-screen select-none">
         <Ticket />

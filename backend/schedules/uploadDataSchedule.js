@@ -1,7 +1,7 @@
 const cron = require('node-cron')
 
 const { createLog } = require('../repositories/updateRepository')
-const { findAll, update } = require('../repositories/ticketRepository')
+const { findAll, update, findAllToDay } = require('../repositories/ticketRepository')
 const { getById } = require('../repositories/companyRepository')
 const { UPDATE_TYPES } = require('../enums/update')
 
@@ -59,9 +59,8 @@ const uploadData = async () => {
         const aeco = await getById()
         const { serialNumber } = aeco.dataValues
         xApiKey = encryptStr(serialNumber)
-        console.log("🚀 ~ uploadData ~ xApiKey:", xApiKey)
-        const tickets = await findAll()
-        await uploadTickets(tickets)
+        const tickets = await findAllToDay()
+        await uploadTickets()
         await uploadDailyStats(tickets)
         await uploadProductStats(tickets)
         await uploadPackagingStats(tickets)
@@ -77,7 +76,8 @@ const uploadData = async () => {
     }
 }
 
-const uploadTickets = async (tickets) => {
+const uploadTickets = async () => {
+    const tickets = await findAll()
     const newLogBase = { type: UPDATE_TYPES.UPLOAD }
     const BATCH_SIZE = 10
 
@@ -112,6 +112,7 @@ const uploadTickets = async (tickets) => {
                 totalCans: ticket.total_cans,
                 totalBottles: ticket.total_bottles,
                 items: ticket.summary.items,
+                createdAt: ticket.createdAt,
             })),
         }
 
@@ -132,8 +133,6 @@ const uploadTickets = async (tickets) => {
         }
     }
 }
-
-
 
 const uploadDailyStats = async (tickets) => {
     const newLog = { type: UPDATE_TYPES.UPLOAD }

@@ -6,8 +6,7 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
 
 const AddBarcode = () => {
-
-  const { t } = useTranslate();
+  const { t } = useTranslate()
 
   const {
     data: metas,
