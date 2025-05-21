@@ -13,7 +13,7 @@ const RewardCategories = () => {
 
   const getRewardsByType = async () => {
     try {
-      const response:any = await WebApiAeco.getRewardCategories()
+      const response: any = await WebApiAeco.getRewardCategories()
 
       const rewardCategories = response.map(
         (reward: Record<string, any>, i: number) => {
@@ -21,10 +21,10 @@ const RewardCategories = () => {
             name: t(`rewards.${reward.type}`),
             order: i + 1,
             status: true,
-            image: '/images/QRcode.png',
+            image: '/images/rewardCategory.svg',
             url: `/rewards/${reward.type}`,
           }
-        }
+        },
       )
       setRewards(rewardCategories)
     } catch (error) {
