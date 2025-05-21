@@ -21,7 +21,7 @@ const RewardCategories = () => {
             name: t(`rewards.${reward.type}`),
             order: i + 1,
             status: true,
-            image: '/images/rewardCategory.svg',
+            image: '/images/reward.png',
             url: `/rewards/${reward.type}`,
           }
         },

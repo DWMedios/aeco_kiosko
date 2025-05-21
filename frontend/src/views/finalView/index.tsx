@@ -8,7 +8,7 @@ const FinalView = () => {
   const { t } = useTranslate()
 
   const QrCodeUrl =
-    ' https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Estoy%20interesado%20en%20el%20proyecto!'
+    ' https://wa.me/9993317117?text=Hola%20Ayuntaeco%20|%20¡Estoy%20interesado%20en%20el%20proyecto!'
 
   return (
     <ScreenLayout image="lastView.png" timerInitialTime={20}>

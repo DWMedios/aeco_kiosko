@@ -16,7 +16,7 @@ const CardReward = ({ label, url, imageSrc, action }: CardRewardinterface) => {
           {imageSrc && (
             <img
               src={imageSrc}
-              alt="back-button"
+              alt=""
               className="w-full h-full object-contain"
             />
           )}
