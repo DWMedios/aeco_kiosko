@@ -51,7 +51,7 @@ const Rewards = () => {
             {rewards.map((reward, index) => (
               <CardReward
                 key={index}
-                imageSrc={'/images/reward.png'}
+                imageSrc={'/images/rewardimage.png'}
                 label={reward.name}
                 url={''}
                 action={() => handleAction(reward)}
