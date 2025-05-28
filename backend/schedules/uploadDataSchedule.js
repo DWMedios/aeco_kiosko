@@ -57,20 +57,22 @@ const uploadData = async () => {
     const newLog = { type: UPDATE_TYPES.UPLOAD }
     try {
         const aeco = await getById()
-        const { serialNumber } = aeco.dataValues
-        xApiKey = encryptStr(serialNumber)
-        const tickets = await findAllToDay()
-        await uploadTickets()
-        await uploadDailyStats(tickets)
-        await uploadProductStats(tickets)
-        await uploadPackagingStats(tickets)
-        await getCapacitiesAfterLast()
-        await getProductsAfterLast()
-        await getRewardsServer()
-        await createLog({ ...newLog, message: 'synchronized susccefully' })
+        if (aeco) {
+            const { serialNumber } = aeco.dataValues
+            xApiKey = encryptStr(serialNumber)
+            const tickets = await findAllToDay()
+            await uploadTickets()
+            await uploadDailyStats(tickets)
+            await uploadProductStats(tickets)
+            await uploadPackagingStats(tickets)
+            await getCapacitiesAfterLast()
+            await getProductsAfterLast()
+            await getRewardsServer()
+            await createLog({ ...newLog, message: 'synchronized susccefully' })
+        }
         // return true
     } catch (error) {
-        await createLog({ ...newLog, status: 0, message: error.message })
+        await createLog({ ...newLog, status: false, message: 'Error en sincornizacion de maquina: ' + error.message })
         console.error('Error:', error)
         return false
     }
@@ -101,7 +103,7 @@ const uploadTickets = async () => {
 
         const payload = {
             tickets: batch.map((ticket) => ({
-                folio: `AECO001-${ticket.folio}`,
+                folio: ticket.folio,
                 method: ticket.method,
                 summary: {
                     reward: {
@@ -117,7 +119,7 @@ const uploadTickets = async () => {
         }
 
         try {
-            await fetchFromApi('/api/v1/aecos/upload-tickets', 'POST', payload, xApiKey)
+            await fetchFromApi('/aecos/upload-tickets', 'POST', payload, xApiKey)
             await createLog({ ...newLog, status: true })
 
             // Actualizar los tickets del batch como sincronizados
@@ -127,8 +129,8 @@ const uploadTickets = async () => {
         } catch (error) {
             await createLog({
                 ...newLog,
-                status: 0,
-                message: `${newLog.message}: ${error.message}`,
+                status: false,
+                message: `Error Upload tickets: ${error.message}`,
             })
         }
     }
@@ -155,7 +157,7 @@ const uploadDailyStats = async (tickets) => {
 
         if ((stats.length > 0)) {
             for (const stat of stats) {
-                await fetchFromApi('/api/v1/aecos/upload-daily-stats', 'POST', {
+                await fetchFromApi('/aecos/upload-daily-stats', 'POST', {
                     totalTickets: stat.total_tickets,
                     totalBottles: stat.total_bottles,
                     totalCans: stat.total_cans,
@@ -168,8 +170,8 @@ const uploadDailyStats = async (tickets) => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: 0,
-            message: 'Upload daily stats: ' + error.message,
+            status: false,
+            message: 'Error Upload daily stats: ' + error.message,
         })
     }
 }
@@ -207,7 +209,7 @@ const uploadProductStats = async (tickets) => {
 
         const stats = await findAllProductStat()
         if (stats.length > 0) {
-            await fetchFromApi('/api/v1/aecos/upload-product-stats', 'POST', {
+            await fetchFromApi('/aecos/upload-product-stats', 'POST', {
                 stats: stats.map((item) => ({
                     productId: parseInt(item.product_id),
                     totalCount: item.total_count,
@@ -222,7 +224,7 @@ const uploadProductStats = async (tickets) => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: 0,
+            status: false,
             message: 'Upload product stats: ' + error.message,
         })
     }
@@ -255,7 +257,7 @@ const uploadPackagingStats = async (tickets) => {
                 totalCount: item.total_count,
                 createdAt: item.createdAt,
             }))
-            await fetchFromApi('/api/v1/aecos/upload-packaging-stats', 'POST', {
+            await fetchFromApi('/aecos/upload-packaging-stats', 'POST', {
                 stats: uploads,
             }, xApiKey)
             for (const stat of stats) {
@@ -266,8 +268,8 @@ const uploadPackagingStats = async (tickets) => {
     } catch (error) {
         await createLog({
             ...newLog,
-            status: 0,
-            message: 'Upload packaging stats: ' + error.message,
+            status: false,
+            message: 'Error Upload packaging stats: ' + error.message,
         })
     }
 }
@@ -277,16 +279,17 @@ const getCapacitiesAfterLast = async () => {
     try {
         const capacity = await getLastCapacity()
         const data = await fetchFromApi(
-            `/api/v1/products/capacities/after-last?lastId=${capacity.dataValues.id}`,
+            `/products/capacities/after-last?lastId=${capacity.dataValues.id}`,
             'GET', null, xApiKey
         )
+        if (data.error) throw data
         if (data.length > 0) await createCapacities(data)
         await createLog({ ...newLog, message: 'Update capacities after last' })
     } catch (error) {
         await createLog({
             ...newLog,
-            status: 0,
-            message: 'Update capacities after last: ' + error.message,
+            status: false,
+            message: 'Error Update capacities: ' + error.message,
         })
     }
 }
@@ -296,16 +299,18 @@ const getProductsAfterLast = async () => {
     try {
         const product = await getLastProduct()
         const data = await fetchFromApi(
-            `/api/v1/products/after-last?lastId=${product.dataValues.id}`,
+            `/products/after-last?lastId=${product.dataValues.id}`,
             'GET', null, xApiKey
         )
+        if (data.error) throw data
+
         if (data.length > 0) await createProducts(data)
         await createLog({ ...newLog, message: 'Update products after last' })
     } catch (error) {
         await createLog({
             ...newLog,
-            status: 0,
-            message: 'Update products after last: ' + error.message,
+            status: false,
+            message: 'Error Update products: ' + error.message,
         })
     }
 }
@@ -313,15 +318,15 @@ const getProductsAfterLast = async () => {
 const getRewardsServer = async () => {
     const newLog = { type: UPDATE_TYPES.UPDATE }
     try {
-        const data = await fetchFromApi('/api/v1/aecos/rewards', 'GET', null, xApiKey)
-
+        const data = await fetchFromApi('/aecos/rewards', 'GET', null, xApiKey)
+        if (data.error) throw data
         if (data.rewards.length > 0) await updateRewards(data.rewards)
         await createLog({ ...newLog, message: 'Update rewards' })
     } catch (error) {
         await createLog({
             ...newLog,
-            status: 0,
-            message: 'Update rewards: ' + error.message,
+            status: false,
+            message: 'Error Update rewards: ' + error.message,
         })
     }
 }

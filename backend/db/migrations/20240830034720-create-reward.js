@@ -53,6 +53,6 @@ module.exports = {
     })
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('Rewards')
+    await queryInterface.dropTable('rewards')
   },
 }
