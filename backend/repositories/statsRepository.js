@@ -14,7 +14,6 @@ exports.saveDailyStats = async (data) => {
 }
 
 exports.savePackagingStats = async (data) => {
-    console.log("🚀 ~ exports.savePackagingStats= ~ data:", data)
     const { PackagingStat } = await initializeDatabase()
     return await PackagingStat.create(data)
 }
