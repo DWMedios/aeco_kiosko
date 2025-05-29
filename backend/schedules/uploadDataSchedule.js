@@ -80,6 +80,10 @@ const uploadData = async () => {
 
 const uploadTickets = async () => {
     const tickets = await findAll()
+    if (tickets.length === 0) {
+        await createLog({ type: UPDATE_TYPES.UPLOAD, message: 'No tickets to upload' })
+        return
+    }
     const newLogBase = { type: UPDATE_TYPES.UPLOAD }
     const BATCH_SIZE = 10
 
