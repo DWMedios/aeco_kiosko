@@ -298,12 +298,33 @@ const getCapacitiesAfterLast = async () => {
     }
 }
 
+// Este se comentó porque se aplicara un update or insert para los productos
+// const getProductsAfterLast = async () => {
+//     const newLog = { type: UPDATE_TYPES.UPDATE }
+//     try {
+//         const product = await getLastProduct()
+//         const data = await fetchFromApi(
+//             `/products/after-last?lastId=${product.dataValues.id}`,
+//             'GET', null, xApiKey
+//         )
+//         if (data.error) throw data
+
+//         if (data.length > 0) await createProducts(data)
+//         await createLog({ ...newLog, message: 'Update products after last' })
+//     } catch (error) {
+//         await createLog({
+//             ...newLog,
+//             status: false,
+//             message: 'Error Update products: ' + error.message,
+//         })
+//     }
+// }
+
 const getProductsAfterLast = async () => {
     const newLog = { type: UPDATE_TYPES.UPDATE }
     try {
-        const product = await getLastProduct()
         const data = await fetchFromApi(
-            `/products/after-last?lastId=${product.dataValues.id}`,
+            `/products/after-last?lastId=0`,
             'GET', null, xApiKey
         )
         if (data.error) throw data

@@ -45,6 +45,6 @@ exports.createProducts = async (products) => {
   }))
 
   return await Product.bulkCreate(formattedProducts, {
-    ignoreDuplicates: true
+    updateOnDuplicate: ['code', 'family', 'name', 'capacity_id']
   })
 }
