@@ -7,10 +7,11 @@ import { sendCommands } from '../../utils/commands'
 import { Product } from '../../interfaces'
 
 interface Props {
-  setProduct?: (product: any) => void
+  setCodigo: (codigo: any) => void
+  setProduct: (product: any) => void
 }
 
-const BarcodeScanner = ({ setProduct }: Props) => {
+const BarcodeScanner = ({ setProduct, setCodigo }: Props) => {
   const navigation = useNavigate()
   const [barcode, setBarcode] = useState('')
   const timerRef = useRef<NodeJS.Timeout | null>(null)
@@ -28,7 +29,10 @@ const BarcodeScanner = ({ setProduct }: Props) => {
   }
 
   useEffect(() => {
-    if (barcode && barcode.trim().length > 0) findProduct()
+    if (barcode && barcode.trim().length > 0) {
+      setCodigo(barcode)
+      findProduct()
+    }
   }, [barcode])
 
   const findProduct = async () => {

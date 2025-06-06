@@ -11,6 +11,7 @@ import { sendCommands } from '../../utils/commands'
 const Scanning = () => {
   const { t } = useTranslate()
   const [product, setProduct] = useState<any>(null)
+  const [codigo, setCodigo] = useState<any>(null)
 
   const {
     data: metas,
@@ -46,12 +47,15 @@ const Scanning = () => {
       image={metas.imgBg || '/leafBackground.png'}
       showTimer={false}
     >
-      <BarcodeScanner setProduct={setProduct} />
+      <BarcodeScanner setProduct={setProduct} setCodigo={setCodigo} />
       <div className="relative flex flex-col justify-center items-center h-screen gap-20">
         <div className="flex flex-col text-center h-60">
           <span className="font-extrabold text-8xl uppercase text-center tracking-wider	w-[500px]">
             {metas?.title || t('scanning.title')}
           </span>
+          <span className="text-2xl font-extrabold">CODIGO: </span>
+          {codigo ? JSON.stringify(codigo) : 'Codigo no leido'}
+          <span className="text-2xl font-extrabold">Producto: </span>
           {product ? JSON.stringify(product) : 'Producto no leido'}
         </div>
         <img
