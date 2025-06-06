@@ -6,7 +6,11 @@ import { SavePackaging } from '../../utils/savePackaging'
 import { sendCommands } from '../../utils/commands'
 import { Product } from '../../interfaces'
 
-const BarcodeScanner = () => {
+interface Props {
+  setProduct?: (product: any) => void
+}
+
+const BarcodeScanner = ({ setProduct }: Props) => {
   const navigation = useNavigate()
   const [barcode, setBarcode] = useState('')
   const timerRef = useRef<NodeJS.Timeout | null>(null)
@@ -30,16 +34,25 @@ const BarcodeScanner = () => {
   const findProduct = async () => {
     try {
       const response = (await WebApiAeco.findProduct(barcode)) as Product
+      setProduct(response)
       await SavePackaging({
         id: response.id,
         name: response.name,
         packagingType: response.capacity.packaging,
       })
       sendCommand(sendCommands.ACCEPTED)
-      navigation('/accepted')
+      const timeout = setTimeout(() => {
+        navigation('/accepted')
+      }, 6000)
+
+      return () => clearTimeout(timeout)
     } catch (error) {
       sendCommand(sendCommands.REJECTED)
-      navigation('/rejected')
+      const timeout = setTimeout(() => {
+        navigation('/rejected')
+      }, 6000)
+
+      return () => clearTimeout(timeout)
     } finally {
       setBarcode('')
       if (inputRef.current) inputRef.current.value = ''
