@@ -53,10 +53,6 @@ const Scanning = () => {
           <span className="font-extrabold text-8xl uppercase text-center tracking-wider	w-[500px]">
             {metas?.title || t('scanning.title')}
           </span>
-          <span className="text-2xl font-extrabold">CODIGO: </span>
-          {codigo ? JSON.stringify(codigo) : 'Codigo no leido'}
-          <span className="text-2xl font-extrabold">Producto: </span>
-          {product ? JSON.stringify(product) : 'Producto no leido'}
         </div>
         <img
           src={metas?.imgCenter || '/images/containers.png'}

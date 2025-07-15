@@ -25,7 +25,7 @@ const BarcodeScanner = ({ setProduct, setCodigo }: Props) => {
     timerRef.current = setTimeout(() => {
       if (barcode.trim().length == 0)
         setBarcode((event.target as HTMLInputElement).value)
-    }, 100)
+    }, 1000)
   }
 
   useEffect(() => {
