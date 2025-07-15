@@ -235,3 +235,9 @@ export interface Method {
   type: string
   name: string
 }
+
+export interface MediaItem {
+  id: string
+  type: 'image' | 'video'
+  src: string
+}

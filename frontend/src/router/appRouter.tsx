@@ -24,6 +24,7 @@ import AddBarcode from '../views/addBarcode'
 import ExternalService from '../views/externalService'
 import SendMessage from '../sendMessage'
 import RewardCategories from '../views/rewardCategories'
+import MediaPlayer from '../views/mediaPlayer'
 
 const AppRouter = () => {
   return (
@@ -52,6 +53,7 @@ const AppRouter = () => {
       <Route path="final_view" element={<FinalView />} />
       <Route path="/external_service" element={<ExternalService />} />
       <Route path="/sendMessage" element={<SendMessage />} />
+      <Route path="/media-player" element={<MediaPlayer />} />
     </Routes>
   )
 }
