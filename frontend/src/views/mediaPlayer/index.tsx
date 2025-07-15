@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { MediaItem } from '../../interfaces'
 
-export default function MediaPlayer() {
-  // 1) Configuraciones
-  const intervalMs = 20000 // 20s entre cambios
+const MediaPlayer = () => {
+  const intervalMs = 20000
   const [media, setMedia] = useState<MediaItem[]>([])
   const [index, setIndex] = useState(0)
   const timerRef = useRef<NodeJS.Timeout>()
 
-  // 2) Ejemplo (IDs únicos)
   const mediasExample: MediaItem[] = [
     { id: '1', type: 'video', src: 'advertisings/ayuntaeco.mp4' },
     { id: '1', type: 'video', src: 'advertisings/art.mp4' },
@@ -20,14 +18,10 @@ export default function MediaPlayer() {
     { id: '4', type: 'image', src: 'advertisings/technologia.jpg' },
   ]
 
-  // 3) Cargar medios una sola vez
   useEffect(() => {
     setMedia(mediasExample)
-    // Si más adelante llamas a tu API,
-    // reemplaza esta línea por getMedias()
   }, [])
 
-  // 4) Rotación automática
   useEffect(() => {
     if (!media.length) return
     timerRef.current = setInterval(
@@ -40,11 +34,10 @@ export default function MediaPlayer() {
   if (!media.length) return <p>Cargando…</p>
   const current = media[index]
 
-  // 5) Render
   return (
     <div
       style={{
-        position: 'fixed', // ocupa la ventana completa
+        position: 'fixed',
         inset: 0,
         width: '100vw',
         height: '100vh',
@@ -60,9 +53,9 @@ export default function MediaPlayer() {
           src={current.src}
           alt={current.id}
           style={{
-            maxWidth: '100%',
+            width: '100%',
             maxHeight: '100%',
-            objectFit: 'contain', // muestra todo el medio y lo centra
+            objectFit: 'fill',
           }}
         />
       ) : (
@@ -70,13 +63,13 @@ export default function MediaPlayer() {
           key={current.id}
           src={current.src}
           autoPlay
-          muted
+          muted={false}
           playsInline
           controls={false}
           style={{
-            maxWidth: '100%',
+            width: '100vw',
             maxHeight: '100%',
-            objectFit: 'contain',
+            objectFit: 'fill',
           }}
         />
       )}
@@ -84,5 +77,4 @@ export default function MediaPlayer() {
   )
 }
 
-/* Opcional: elimina márgenes del body dentro de tu entry point (index.css/ts) */
-/* body { margin: 0 } */
+export default MediaPlayer
