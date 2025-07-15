@@ -70,7 +70,7 @@ const ticketTransform = (method: Method): Ticket => {
       reward: method,
       items: ticket.packagings.map((pack) => ({
         quantity: pack.quantity || 1,
-        packagingType: pack.packagingType,
+        packagingType: pack.packagingType === 'Lata' ? 'can' : 'bottle',
         productId: pack.id,
       })),
     },

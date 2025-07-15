@@ -26,7 +26,7 @@ const MediaPlayer = () => {
     if (!media.length) return
     timerRef.current = setInterval(
       () => setIndex((prev) => (prev + 1) % media.length),
-      intervalMs
+      intervalMs,
     )
     return () => clearInterval(timerRef.current!)
   }, [media, intervalMs])
