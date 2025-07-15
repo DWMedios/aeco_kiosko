@@ -9,12 +9,10 @@ const MediaPlayer = () => {
 
   const mediasExample: MediaItem[] = [
     { id: '1', type: 'video', src: 'advertisings/ayuntaeco.mp4' },
-    { id: '1', type: 'video', src: 'advertisings/art.mp4' },
+    { id: '1', type: 'video', src: 'advertisings/anahuac01.jpg' },
     { id: '2', type: 'image', src: 'advertisings/family.jpg' },
-    { id: '3', type: 'image', src: 'advertisings/pc_gamer.jpg' },
     { id: '4', type: 'video', src: 'advertisings/quimic.mp4' },
     { id: '4', type: 'video', src: 'advertisings/robot.mp4' },
-    { id: '4', type: 'image', src: 'advertisings/rv.jpg' },
     { id: '4', type: 'image', src: 'advertisings/technologia.jpg' },
   ]
 

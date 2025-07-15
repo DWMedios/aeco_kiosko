@@ -9,7 +9,7 @@ function Help() {
   const { t } = useTranslate()
 
   const QrCodeUrl =
-    'https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
+    'https://wa.me/+529993317117?text=Hola%20Ayuntaeco%20|%20¡Necesito%20ayuda!'
 
   const { data: metas, loading, error } = usePageData<MetaDataHelp>('Help')
 
@@ -45,7 +45,7 @@ function Help() {
           alt="QR Code"
         />
         <p className="text-5xl font-bold max-w-[450px] mb-5 mt-8">
-          {metas?.textDown?.phone || '+52 999 888 7777'}
+          {metas?.textDown?.phone || '+52 999 331 7117'}
         </p>
         <p className="text-4xl normal-case max-w-[400px]">
           {metas?.textDown?.description || t('help.textDown')}

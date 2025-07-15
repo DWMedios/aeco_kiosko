@@ -27,7 +27,7 @@ const AddBarcode = () => {
   }
 
   const QrCodeUrl =
-    'https://wa.me/9999999999?text=Hola%20Ayuntaeco%20|%20¡Quiero%20registrar%20un%20Código%20de%20Barras!'
+    'https://wa.me/+529993317117?text=Hola%20Ayuntaeco%20|%20¡Quiero%20registrar%20un%20Código%20de%20Barras!'
 
   return (
     <ScreenLayout image={metas.imgBg}>
@@ -50,7 +50,7 @@ const AddBarcode = () => {
           className="w-20 h-auto"
         />
         <span className="text-6xl font-bold text-center">
-          {metas?.textDown?.phone || '+52 999 888 7777'}
+          {metas?.textDown?.phone || '+52 999 331 7117'}
         </span>
         <span className="text-4xl text-center normal-case w-96">
           {metas?.textDown?.description || t('help.textDown')}

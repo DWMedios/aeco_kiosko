@@ -21,9 +21,9 @@ export const SavePackaging = async (packaging: Packaging) => {
     const updatedProducts = {
       packagings: [...ticket.packagings],
       total_cans:
-        ticket.total_cans + (packaging.packagingType === 'can' ? 1 : 0),
+        ticket.total_cans + (packaging.packagingType === 'Lata' ? 1 : 0),
       total_bottles:
-        ticket.total_bottles + (packaging.packagingType === 'bottle' ? 1 : 0),
+        ticket.total_bottles + (packaging.packagingType === 'Botella' ? 1 : 0),
     }
     localStorage.removeItem('ticket')
     localStorage.setItem('ticket', JSON.stringify(updatedProducts))

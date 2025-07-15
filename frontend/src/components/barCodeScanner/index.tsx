@@ -20,13 +20,14 @@ const BarcodeScanner = ({ setProduct, setCodigo }: Props) => {
   const { sendCommand } = useWebSocket()
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (awaiting) return
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
     timerRef.current = setTimeout(() => {
-      if (barcode.trim().length == 0)
+      if (barcode.trim().length == 0) {
+        if (awaiting) return
         setBarcode((event.target as HTMLInputElement).value)
+      }
     }, 1000)
   }
 
@@ -64,7 +65,6 @@ const BarcodeScanner = ({ setProduct, setCodigo }: Props) => {
     } finally {
       setBarcode('')
       if (inputRef.current) inputRef.current.value = ''
-      setAwaiting(false)
     }
   }
 
