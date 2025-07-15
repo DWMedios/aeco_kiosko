@@ -50,7 +50,8 @@ const AddBarcode = () => {
           className="w-20 h-auto"
         />
         <span className="text-6xl font-bold text-center">
-          {metas?.textDown?.phone || '+52 999 331 7117'}
+          {/* {metas?.textDown?.phone || '+52 999 331 7117'} */}
+          {'+52 999 331 7117'}
         </span>
         <span className="text-4xl text-center normal-case w-96">
           {metas?.textDown?.description || t('help.textDown')}

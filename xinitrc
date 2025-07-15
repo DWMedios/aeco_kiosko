@@ -13,3 +13,6 @@ xinput set-prop "Multi touch   Multi touch overlay device" "Coordinate Transform
 
 # Ejecutar Chromium en modo kiosko
 chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 --window-size=1080,1920 --force-device-scale-factor=0.7 --disable-gpu --no-sandbox --disable-dev-shm-usage --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode
+
+#Borrar volumen de imagenes para refresh
+docker volume rm aeco-app_aeco-images 

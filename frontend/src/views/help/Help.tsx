@@ -45,7 +45,8 @@ function Help() {
           alt="QR Code"
         />
         <p className="text-5xl font-bold max-w-[450px] mb-5 mt-8">
-          {metas?.textDown?.phone || '+52 999 331 7117'}
+          {/* {metas?.textDown?.phone || '+52 999 331 7117'} */}
+          {'+52 999 331 7117'}
         </p>
         <p className="text-4xl normal-case max-w-[400px]">
           {metas?.textDown?.description || t('help.textDown')}
