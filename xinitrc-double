@@ -1,0 +1,34 @@
+#!/bin/bash
+xset -dpms
+xset s off
+xset s noblank
+
+# Rotar todas las pantallas conectadas 90° a la derecha
+for output in $(xrandr | awk '/ connected/{print $1}'); do
+  xrandr --output "$output" --rotate right
+done
+
+# Ajustar dispositivo táctil (opcional)
+xinput set-prop "Multi touch   Multi touch overlay device" \
+      "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1 || true
+
+HEIGHT=1920
+WIDTH=1080
+
+# ── Ventana para el monitor 1 (izquierdo) ──────────────────────────────
+chromium-browser --noerrdialogs --disable-infobars \
+  --kiosk http://localhost:5173 \
+  --window-size=${WIDTH},${HEIGHT} \
+  --window-position=0,0 \
+  --force-device-scale-factor=0.7 \
+  --disable-gpu --no-sandbox --disable-dev-shm-usage \
+  --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode &
+
+# ── Ventana para el monitor 2 (derecho) ───────────────────────────────
+chromium-browser --noerrdialogs --disable-infobars \
+  --kiosk http://localhost:5173/media-player \
+  --window-size=${WIDTH},${HEIGHT} \
+  --window-position=${WIDTH},0 \   # 1080,0  →  pantalla derecha
+  --force-device-scale-factor=0.7 \
+  --disable-gpu --no-sandbox --disable-dev-shm-usage \
+  --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode &
