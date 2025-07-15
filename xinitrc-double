@@ -32,3 +32,47 @@ chromium-browser --noerrdialogs --disable-infobars \
   --force-device-scale-factor=0.7 \
   --disable-gpu --no-sandbox --disable-dev-shm-usage \
   --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode &
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+#!/usr/bin/env bash
+set -e
+
+xset -dpms; xset s off; xset s noblank
+
+# Rotar salidas 90° right
+xrandr --output HDMI-1 --rotate right --pos 0x0
+xrandr --output HDMI-2 --rotate right --right-of HDMI-1
+sleep 0.5
+
+WIDTH=1080; HEIGHT=1920
+COMMON="--noerrdialogs --disable-infobars --kiosk \
+        --disable-extensions --disable-background-networking \
+        --no-first-run --no-default-browser-check \
+        --disable-gpu --no-sandbox --disable-dev-shm-usage \
+        --ozone-platform=x11"
+
+# Ventana izquierda
+chromium-browser $COMMON \
+  --user-data-dir=/home/pi/.config/chrome-p1 \
+  --window-size=${WIDTH},${HEIGHT} --window-position=0,0 \
+  http://localhost:5173 &
+PID1=$!
+
+sleep 1   # da tiempo a que el primer Chromium bloquee su propio perfil
+
+# Ventana derecha
+chromium-browser $COMMON \
+  --user-data-dir=/home/pi/.config/chrome-p2 \
+  --window-size=${WIDTH},${HEIGHT} --window-position=${WIDTH},0 \
+  http://localhost:5173/media-player &
+PID2=$!
+
+wait $PID1 $PID2
