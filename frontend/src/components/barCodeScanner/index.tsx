@@ -14,14 +14,17 @@ interface Props {
 const BarcodeScanner = ({ setProduct, setCodigo }: Props) => {
   const navigation = useNavigate()
   const [barcode, setBarcode] = useState('')
+  const [awaiting, setAwaiting] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const { sendCommand } = useWebSocket()
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (awaiting) return
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
+    console.log("🚀 ~ Lectura", (event.target as HTMLInputElement).value)
     timerRef.current = setTimeout(() => {
       if (barcode.trim().length == 0)
         setBarcode((event.target as HTMLInputElement).value)
@@ -37,6 +40,9 @@ const BarcodeScanner = ({ setProduct, setCodigo }: Props) => {
 
   const findProduct = async () => {
     try {
+      if(awaiting) return
+      console.log("🚀 ~ Before send:", barcode)
+      setAwaiting(true)
       const response = (await WebApiAeco.findProduct(barcode)) as Product
       setProduct(response)
       await SavePackaging({
@@ -60,6 +66,7 @@ const BarcodeScanner = ({ setProduct, setCodigo }: Props) => {
     } finally {
       setBarcode('')
       if (inputRef.current) inputRef.current.value = ''
+      setAwaiting(false)
     }
   }
 
