@@ -1,78 +1,40 @@
-#!/bin/bash
-xset -dpms
-xset s off
-xset s noblank
-
-# Rotar todas las pantallas conectadas 90° a la derecha
-for output in $(xrandr | awk '/ connected/{print $1}'); do
-  xrandr --output "$output" --rotate right
-done
-
-# Ajustar dispositivo táctil (opcional)
-xinput set-prop "Multi touch   Multi touch overlay device" \
-      "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1 || true
-
-HEIGHT=1920
-WIDTH=1080
-
-# ── Ventana para el monitor 1 (izquierdo) ──────────────────────────────
-chromium-browser --noerrdialogs --disable-infobars \
-  --kiosk http://localhost:5173 \
-  --window-size=${WIDTH},${HEIGHT} \
-  --window-position=0,0 \
-  --force-device-scale-factor=0.7 \
-  --disable-gpu --no-sandbox --disable-dev-shm-usage \
-  --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode &
-
-# ── Ventana para el monitor 2 (derecho) ───────────────────────────────
-chromium-browser --noerrdialogs --disable-infobars \
-  --kiosk http://localhost:5173/media-player \
-  --window-size=${WIDTH},${HEIGHT} \
-  --window-position=${WIDTH},0 \   # 1080,0  →  pantalla derecha
-  --force-device-scale-factor=0.7 \
-  --disable-gpu --no-sandbox --disable-dev-shm-usage \
-  --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode &
-
-
-
-
-
-
-
-
--------------------------------------------------------------------
-
 #!/usr/bin/env bash
 set -e
 
 xset -dpms; xset s off; xset s noblank
-
-# Rotar salidas 90° right
 xrandr --output HDMI-1 --rotate right --pos 0x0
 xrandr --output HDMI-2 --rotate right --right-of HDMI-1
 sleep 0.5
 
-WIDTH=1080; HEIGHT=1920
+WIDTH=1080
+HEIGHT=1920
 COMMON="--noerrdialogs --disable-infobars --kiosk \
         --disable-extensions --disable-background-networking \
         --no-first-run --no-default-browser-check \
         --disable-gpu --no-sandbox --disable-dev-shm-usage \
         --ozone-platform=x11"
 
-# Ventana izquierda
+# Perfis sin conflicto, siempre válidos para quien ejecute
+DIR1="$HOME/.config/kiosk-chrome1"
+DIR2="$HOME/.config/kiosk-chrome2"
+
+################ Ventana 1 (derecha) ################
 chromium-browser $COMMON \
-  --user-data-dir=/home/pi/.config/chrome-p1 \
-  --window-size=${WIDTH},${HEIGHT} --window-position=0,0 \
+  --user-data-dir="$DIR1" \
+  --window-size=${WIDTH},${HEIGHT} \
+  --window-position=1080,0 \
   http://localhost:5173 &
 PID1=$!
 
-sleep 1   # da tiempo a que el primer Chromium bloquee su propio perfil
+sleep 2   # pequeño colchón
 
-# Ventana derecha
+################ Ventana 2 (izquierda) ################
 chromium-browser $COMMON \
-  --user-data-dir=/home/pi/.config/chrome-p2 \
-  --window-size=${WIDTH},${HEIGHT} --window-position=${WIDTH},0 \
+  --user-data-dir="$DIR2" \
+  --window-size=${WIDTH},${HEIGHT} \
+  --window-position=0,0 \
   http://localhost:5173/media-player &
 PID2=$!
 
 wait $PID1 $PID2
+
