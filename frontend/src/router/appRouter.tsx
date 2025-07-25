@@ -25,6 +25,7 @@ import ExternalService from '../views/externalService'
 import SendMessage from '../sendMessage'
 import RewardCategories from '../views/rewardCategories'
 import MediaPlayer from '../views/mediaPlayer'
+import Offline from '../views/offline'
 
 const AppRouter = () => {
   return (
@@ -51,6 +52,7 @@ const AppRouter = () => {
       <Route path="/ticket" element={<TicketView />} />
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
+      <Route path="/offline" element={<Offline />} />
       <Route path="/external_service" element={<ExternalService />} />
       <Route path="/sendMessage" element={<SendMessage />} />
       <Route path="/media-player" element={<MediaPlayer />} />

@@ -33,6 +33,8 @@ router.get('/publicity', publicityController.getActive)
 
 router.get('/advertising', publicityController.getActive)
 
+router.get('/validate-machine', companyController.validateMachine)
+
 // router.post('/printer-ticket', ticketController.print)
 
 module.exports = router

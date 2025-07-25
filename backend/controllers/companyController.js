@@ -47,3 +47,71 @@ exports.updateCompanyBySerialNumber = async () => {
     return
   }
 }
+
+exports.validateMachine = async (req, res) => {
+  try {
+    const fetch = (await import('node-fetch')).default
+
+    // Verifica conexión a Internet
+    const internetResponse = await fetch('https://www.google.com', {
+      method: 'HEAD',
+    })
+
+    if (!internetResponse.ok) {
+      return res.status(200).json({
+        success: false,
+        message: 'INTERNET',
+      })
+    }
+
+    try {
+      const apiResponse = await fetch('https://ayuntaeco.com/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: 'user',
+          password: 'pass',
+        }),
+      })
+
+      const serverDownCodes = [502, 503, 504, 522]
+
+      if (serverDownCodes.includes(apiResponse.status)) {
+        return res.status(200).json({
+          success: false,
+          message: 'API-DOWN',
+          status: apiResponse.status,
+        })
+      }
+
+      if (!apiResponse.ok) {
+        // API respondió pero con error (404, 500, etc.)
+        return res.status(200).json({
+          success: false,
+          message: 'API-UP',
+          statusCode: apiResponse.status,
+        })
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: 'API-OK',
+      })
+    } catch (apiError) {
+      // Error de red (host caído, sin conexión, etc.)
+      return res.status(200).json({
+        success: false,
+        message: 'API-DOWN',
+        error: apiError.message || 'Error desconocido',
+      })
+    }
+  } catch (networkError) {
+    return res.status(200).json({
+      success: false,
+      message: 'INTERNET',
+      error: networkError.message || 'Error desconocido',
+    })
+  }
+}

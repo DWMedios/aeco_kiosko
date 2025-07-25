@@ -44,6 +44,13 @@ class WebApiAeco {
     })
   }
 
+  static getMachine() {
+    return WebApi.ApisType({
+      url: '/validate-machine',
+      method: 'GET',
+    })
+  }
+
   static getAdvertising() {
     return WebApi.ApisType({
       url: '/advertising',
