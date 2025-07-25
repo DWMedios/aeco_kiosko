@@ -48,7 +48,7 @@ function Home() {
         if (response.message === 'API-DOWN') return navigation('/offline')
       }
     } catch (networkError) {
-      console.error('Sin conexión a internet:', networkError)
+      console.error(networkError)
     }
   }
 

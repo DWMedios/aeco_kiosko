@@ -29,7 +29,7 @@ const Offline = ({ icon = 'FueraServicio' }: Icon) => {
         if (response.message === 'API-UP') return navigation('/home')
       }
     } catch (networkError) {
-      console.error('Sin conexión a internet:', networkError)
+      console.error( networkError)
     }
   }
 
