@@ -1,7 +1,7 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class Publicity extends Model {}
+  class Publicity extends Model { }
   Publicity.init(
     {
       id: {
@@ -18,8 +18,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(250),
         allowNull: false,
       },
-      local_path: {
-        type: DataTypes.STRING(250),
+      end_date: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        defaultValue: null,
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      mime_type: {
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
     },

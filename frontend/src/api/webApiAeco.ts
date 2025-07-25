@@ -43,6 +43,13 @@ class WebApiAeco {
       body: { movement_id: id },
     })
   }
+
+  static getAdvertising() {
+    return WebApi.ApisType({
+      url: '/advertising',
+      method: 'GET',
+    })
+  }
 }
 
 export default WebApiAeco

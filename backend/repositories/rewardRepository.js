@@ -17,14 +17,21 @@ exports.getAllCategories = async () => {
   })
 }
 
+exports.getOne = async (id) => {
+  const { Reward } = await connectToDatabase()
+  return await Reward.findOne({
+    where: { id },
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
+    order: [['order', 'ASC']]
+  })
+}
+
 exports.updateRewards = async (rewards) => {
   const { Reward } = await connectToDatabase()
-  const formattedRewards = rewards.map(({ note, imageId, mediaAssets, ...rest }) => ({
-    ...rest,
-  }))
 
-  return await Reward.bulkCreate(formattedRewards, {
-    updateOnDuplicate: ['name', 'description', 'status', 'type', 'order', 'metadata', 'establishment']
+
+  return await Reward.bulkCreate(rewards, {
+    updateOnDuplicate: ['name', 'description', 'status', 'type', 'image', 'order', 'metadata', 'establishment']
   })
 }
 

@@ -51,7 +51,7 @@ const Rewards = () => {
             {rewards.map((reward, index) => (
               <CardReward
                 key={index}
-                imageSrc={'/images/anahuac.jpg'}
+                imageSrc={reward.image && reward.image !== '' ? `/${reward.image.substring(reward.image.indexOf('synchronized'))}` : '/images/rewardCategory.png'}
                 label={reward.name}
                 url={''}
                 action={() => handleAction(reward)}

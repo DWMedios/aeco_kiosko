@@ -1,24 +1,59 @@
 import { useEffect, useRef, useState } from 'react'
 import { MediaItem } from '../../interfaces'
+import WebApiAeco from '../../api/webApiAeco'
 
 const MediaPlayer = () => {
   const intervalMs = 20000
   const [media, setMedia] = useState<MediaItem[]>([])
   const [index, setIndex] = useState(0)
   const timerRef = useRef<NodeJS.Timeout>()
+  const [firstLoad, setFirstLoad] = useState(false)
+  const [hasRunToday, setHasRunToday] = useState(false)
 
   const mediasExample: MediaItem[] = [
-    { id: '1', type: 'video', src: 'advertisings/ayuntaeco.mp4' },
-    { id: '1', type: 'video', src: 'advertisings/anahuac01.jpg' },
-    { id: '2', type: 'image', src: 'advertisings/family.jpg' },
-    { id: '4', type: 'video', src: 'advertisings/quimic.mp4' },
-    { id: '4', type: 'video', src: 'advertisings/robot.mp4' },
-    { id: '4', type: 'image', src: 'advertisings/technologia.jpg' },
+    { id: '1', type: 'video', src: 'staticAdvertisings/ayuntaeco.mp4' },
   ]
 
   useEffect(() => {
-    setMedia(mediasExample)
+    if (!firstLoad) { 
+        getAdvertising() 
+        setFirstLoad(true)
+    }
+    const interval = setInterval(() => {
+      const now = new Date()
+      const hours = now.getHours()
+      const minutes = now.getMinutes()
+
+      
+      if (hours === 1 && minutes === 0 && !hasRunToday) {
+        getAdvertising()
+      }
+
+      if (hours === 0 && minutes === 1) {
+        setHasRunToday(false)
+      }
+    }, 3600000) // cada hora
+
+    return () => clearInterval(interval)
   }, [])
+
+  const getAdvertising = async () => {
+    try {
+      const response = await WebApiAeco.getAdvertising()
+      if (response.length>0)
+        setMedia(response.map((item: any) => {
+            return ({
+                id: item.id,
+                type: item.mime_type.toLowerCase().split('/')[0] === 'video' ? 'video' : 'image',
+                src: item.path.substring(item.path.indexOf('synchronized')), // Remove leading slash
+            });
+        }))
+      else setMedia(mediasExample)
+    } catch (error) {
+      console.error('Error fetching advertising:', error)
+      setMedia(mediasExample) // Fallback to example data
+    }
+  }
 
   useEffect(() => {
     if (!media.length) return
