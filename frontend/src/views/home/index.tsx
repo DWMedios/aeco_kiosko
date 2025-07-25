@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { usePageData } from '../../hooks/usePageData'
 import { MetaDataHome } from '../../interfaces'
 import {
@@ -17,20 +17,47 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
 import { setLocalStorage } from '../../utils/manageStorage'
 import { GetTicket } from '../../utils/savePackaging'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
-
-  // const statusPaper = async () => {
-  //   await savePaperStatus()
-  // }
-
+  const navigation = useNavigate()
+  const intervalMs = 360000 // 1 hour
+  const timerRef = useRef<NodeJS.Timeout>()
   useEffect(() => {
     localStorage.clear()
     setLocalStorage('ticket', '')
     GetTicket()
-    // statusPaper()
+    validateMachine()
+    timerRef.current = setInterval(() => {
+      validateMachine()
+    }, intervalMs)
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
   }, [])
+
+  const validateMachine = async () => {
+    try {
+      const internetResponse = await fetch('https://www.google.com', {
+        method: 'HEAD',
+      })
+
+      if (internetResponse.ok) {
+        try {
+          const apiResponse = await fetch('https://mi-api.com/endpoint')
+          if (!apiResponse.ok)
+        } catch (apiError) {
+          navigation('/offline')
+        }
+      }
+    } catch (networkError) {
+      console.error(networkError)
+    }
+  }
 
   if (loading || error || !metas) {
     return (

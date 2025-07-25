@@ -1,15 +1,19 @@
 const cron = require('node-cron')
 
 const { createLog } = require('../repositories/updateRepository')
-const { findAll, update, findAllToDay } = require('../repositories/ticketRepository')
-const { getById } = require('../repositories/companyRepository')
+const {
+    findAll,
+    update,
+    findAllToDay,
+} = require('../repositories/ticketRepository')
+const { getById, updateCompany } = require('../repositories/companyRepository')
 const { UPDATE_TYPES } = require('../enums/update')
 
 const { fetchFromApi } = require('../utils/fetchHelper')
 const {
     getLastCapacity,
     createCapacities,
-    getLastProduct,
+    //   getLastProduct,
     createProducts,
 } = require('../repositories/productRepository')
 const {
@@ -43,7 +47,6 @@ exports.startCronJobUpload = async () => {
     }
 }
 
-
 const stopCronJob = () => {
     if (cronJob) {
         cronJob.stop()
@@ -52,7 +55,6 @@ const stopCronJob = () => {
     }
 }
 
-
 const uploadData = async () => {
     const newLog = { type: UPDATE_TYPES.UPLOAD }
     try {
@@ -60,6 +62,17 @@ const uploadData = async () => {
         if (aeco) {
             const { serialNumber } = aeco.dataValues
             xApiKey = encryptStr(serialNumber)
+            const aecoStatus = await fetchFromApi(
+                '/aecos/access-control',
+                'GET',
+                null,
+                xApiKey
+            )
+            if (aecoStatus && aecoStatus.success) {
+                await updateCompany(aeco.id, { metadata: { active: true } })
+            } else {
+                return false
+            }
             const tickets = await findAllToDay()
             await uploadTickets()
             await uploadDailyStats(tickets)
@@ -72,7 +85,11 @@ const uploadData = async () => {
         }
         // return true
     } catch (error) {
-        await createLog({ ...newLog, status: false, message: 'Error en sincornizacion de maquina: ' + error.message })
+        await createLog({
+            ...newLog,
+            status: false,
+            message: 'Error en sincornizacion de maquina: ' + error.message,
+        })
         console.error('Error:', error)
         return false
     }
@@ -81,7 +98,10 @@ const uploadData = async () => {
 const uploadTickets = async () => {
     const tickets = await findAll()
     if (tickets.length === 0) {
-        await createLog({ type: UPDATE_TYPES.UPLOAD, message: 'No tickets to upload' })
+        await createLog({
+            type: UPDATE_TYPES.UPLOAD,
+            message: 'No tickets to upload',
+        })
         return
     }
     const newLogBase = { type: UPDATE_TYPES.UPLOAD }
@@ -159,14 +179,19 @@ const uploadDailyStats = async (tickets) => {
         }
         const stats = await findAllDailyStats()
 
-        if ((stats.length > 0)) {
+        if (stats.length > 0) {
             for (const stat of stats) {
-                await fetchFromApi('/aecos/upload-daily-stats', 'POST', {
-                    totalTickets: stat.total_tickets,
-                    totalBottles: stat.total_bottles,
-                    totalCans: stat.total_cans,
-                    createdAt: stat.createdAt,
-                }, xApiKey)
+                await fetchFromApi(
+                    '/aecos/upload-daily-stats',
+                    'POST',
+                    {
+                        totalTickets: stat.total_tickets,
+                        totalBottles: stat.total_bottles,
+                        totalCans: stat.total_cans,
+                        createdAt: stat.createdAt,
+                    },
+                    xApiKey
+                )
                 await updateDailyStats(stat.id)
             }
             await createLog({ ...newLog, message: 'Upload daily stats' })
@@ -185,7 +210,7 @@ const uploadProductStats = async (tickets) => {
     try {
         const productStats = {}
 
-        if ((tickets.length > 0)) {
+        if (tickets.length > 0) {
             tickets.forEach((ticket) => {
                 const createdAt = ticket.createdAt
                 ticket.summary.items.forEach((item) => {
@@ -213,13 +238,18 @@ const uploadProductStats = async (tickets) => {
 
         const stats = await findAllProductStat()
         if (stats.length > 0) {
-            await fetchFromApi('/aecos/upload-product-stats', 'POST', {
-                stats: stats.map((item) => ({
-                    productId: parseInt(item.product_id),
-                    totalCount: item.total_count,
-                    createdAt: item.createdAt,
-                })),
-            }, xApiKey)
+            await fetchFromApi(
+                '/aecos/upload-product-stats',
+                'POST',
+                {
+                    stats: stats.map((item) => ({
+                        productId: parseInt(item.product_id),
+                        totalCount: item.total_count,
+                        createdAt: item.createdAt,
+                    })),
+                },
+                xApiKey
+            )
             for (const stat of stats) {
                 await updateProductStat(stat.id)
             }
@@ -261,9 +291,14 @@ const uploadPackagingStats = async (tickets) => {
                 totalCount: item.total_count,
                 createdAt: item.createdAt,
             }))
-            await fetchFromApi('/aecos/upload-packaging-stats', 'POST', {
-                stats: uploads,
-            }, xApiKey)
+            await fetchFromApi(
+                '/aecos/upload-packaging-stats',
+                'POST',
+                {
+                    stats: uploads,
+                },
+                xApiKey
+            )
             for (const stat of stats) {
                 await updatePackagingStat(stat.id)
             }
@@ -284,7 +319,9 @@ const getCapacitiesAfterLast = async () => {
         const capacity = await getLastCapacity()
         const data = await fetchFromApi(
             `/products/capacities/after-last?lastId=${capacity.dataValues.id}`,
-            'GET', null, xApiKey
+            'GET',
+            null,
+            xApiKey
         )
         if (data.error) throw data
         if (data.length > 0) await createCapacities(data)
@@ -325,7 +362,9 @@ const getProductsAfterLast = async () => {
     try {
         const data = await fetchFromApi(
             `/products/after-last?lastId=0`,
-            'GET', null, xApiKey
+            'GET',
+            null,
+            xApiKey
         )
         if (data.error) throw data
 

@@ -42,7 +42,7 @@ app.use('/api', apiRoutes)
       // downLoadImage()
       // console.log('Init download Image')
 
-      startCronJobUpload()
+      await startCronJobUpload()
       console.log('Cron job de sincronizacion iniciado.')
 
       // startCronJobPaper()
