@@ -32,7 +32,7 @@ const MediaPlayer = () => {
       if (hours === 0 && minutes === 1) {
         setHasRunToday(false)
       }
-    }, 3600000) // cada hora
+    }, 60000) // cada minuto
 
     return () => clearInterval(interval)
   }, [])
