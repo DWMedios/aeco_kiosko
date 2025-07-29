@@ -22,7 +22,11 @@ const Offline = ({ icon = 'FueraServicio' }: Icon) => {
     }
   }, [])
 
+<<<<<<< HEAD
+  const validateMachine = async () => {
+=======
    const validateMachine = async () => {
+>>>>>>> b506e98a08674f52aca142056d57ebdb7f68cdc7
     try {
       const response = await WebApiAeco.getMachine()
       if (!response.success) {

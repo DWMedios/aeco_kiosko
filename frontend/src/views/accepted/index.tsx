@@ -8,11 +8,7 @@ import {
   TextColorEnum,
 } from '../../interfaces'
 import { usePageData } from '../../hooks/usePageData'
-import {
-  GetTicket,
-  LastPackaging,
-  SaveProccess,
-} from '../../utils/savePackaging'
+import { GetTicket, LastPackaging } from '../../utils/savePackaging'
 import { sendCommands } from '../../utils/commands'
 
 import Button from '../../components/button'

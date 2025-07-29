@@ -24,7 +24,10 @@ const Scanning = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       sendCommand(sendCommands.REJECTED)
-      navigation('/unidentified')
+      const timeout = setTimeout(() => {
+        navigation('/unidentified')
+      }, 6000)
+      return () => clearTimeout(timeout)
     }, 10000)
 
     return () => clearTimeout(timeout)
