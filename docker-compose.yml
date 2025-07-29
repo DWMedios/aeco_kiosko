@@ -47,7 +47,7 @@ services:
     ports:
       - '5173:5173'
     volumes:
-      - aeco-images:/app/public/images
+      - aeco-images:/app/public/synchronized
     depends_on:
       - backend
     networks:

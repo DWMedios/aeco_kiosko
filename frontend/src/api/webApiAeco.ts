@@ -43,6 +43,20 @@ class WebApiAeco {
       body: { movement_id: id },
     })
   }
+
+  static getMachine() {
+    return WebApi.ApisType({
+      url: '/validate-machine',
+      method: 'GET',
+    })
+  }
+
+  static getAdvertising() {
+    return WebApi.ApisType({
+      url: '/advertising',
+      method: 'GET',
+    })
+  }
 }
 
 export default WebApiAeco

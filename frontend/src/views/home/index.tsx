@@ -18,11 +18,12 @@ import SocialMediaList from './components/SocialMediaList'
 import { setLocalStorage } from '../../utils/manageStorage'
 import { GetTicket } from '../../utils/savePackaging'
 import { useNavigate } from 'react-router-dom'
+import WebApiAeco from '../../api/webApiAeco'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
   const navigation = useNavigate()
-  const intervalMs = 360000 // 1 hour
+  const intervalMs = 5000 // 1 hour
   const timerRef = useRef<NodeJS.Timeout>()
   useEffect(() => {
     localStorage.clear()
@@ -42,17 +43,9 @@ function Home() {
 
   const validateMachine = async () => {
     try {
-      const internetResponse = await fetch('https://www.google.com', {
-        method: 'HEAD',
-      })
-
-      if (internetResponse.ok) {
-        try {
-          const apiResponse = await fetch('https://mi-api.com/endpoint')
-          if (!apiResponse.ok)
-        } catch (apiError) {
-          navigation('/offline')
-        }
+      const response = await WebApiAeco.getMachine()
+      if (!response.success) {
+        if (response.message === 'API-DOWN') return navigation('/offline')
       }
     } catch (networkError) {
       console.error(networkError)
@@ -72,7 +65,8 @@ function Home() {
   }
 
   return (
-    <ScreenLayout image={metas.imgBg} showTimer={false}>
+    // <ScreenLayout image={metas.imgBg} showTimer={false}>
+    <ScreenLayout image={'fondohome.jpeg'} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
         <img className="w-[500px] fixed top-44" src={metas.imgUp} />

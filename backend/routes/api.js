@@ -9,6 +9,7 @@ const aecoController = require('../controllers/aecoController')
 // const movementController = require('../controllers/movementController')
 const paperController = require('../controllers/paperController')
 const ticketController = require('../controllers/ticketController')
+const publicityController = require('../controllers/publicityController')
 
 router.get('/company', companyController.getCompany)
 
@@ -27,6 +28,12 @@ router.post('/tickets', ticketController.create)
 router.get('/paper', paperController.getActive)
 
 router.put('/paper', paperController.update)
+
+router.get('/publicity', publicityController.getActive)
+
+router.get('/advertising', publicityController.getActive)
+
+router.get('/validate-machine', companyController.validateMachine)
 
 // router.post('/printer-ticket', ticketController.print)
 

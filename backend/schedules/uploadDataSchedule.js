@@ -6,14 +6,13 @@ const {
     update,
     findAllToDay,
 } = require('../repositories/ticketRepository')
-const { getById, updateCompany } = require('../repositories/companyRepository')
+const { getById } = require('../repositories/companyRepository')
 const { UPDATE_TYPES } = require('../enums/update')
 
 const { fetchFromApi } = require('../utils/fetchHelper')
 const {
     getLastCapacity,
     createCapacities,
-    //   getLastProduct,
     createProducts,
 } = require('../repositories/productRepository')
 const {
@@ -27,8 +26,14 @@ const {
     updatePackagingStat,
     updateProductStat,
 } = require('../repositories/statsRepository')
-const { updateRewards } = require('../repositories/rewardRepository')
+const { updateRewards, getOne } = require('../repositories/rewardRepository')
 const { encryptStr } = require('../utils/crypto')
+const {
+    updatePublicity,
+    getAll,
+    removePublicity, suspendPublicity
+} = require('../repositories/publicityRepository')
+const { processMediaAsset, deleteMedia } = require('../utils/mediAssetHelper')
 
 let cronJob = null
 let xApiKey = null
@@ -36,7 +41,7 @@ let xApiKey = null
 exports.startCronJobUpload = async () => {
     uploadData()
     if (cronJob === null) {
-        cronJob = cron.schedule('*/10 * * * *', async () => {
+        cronJob = cron.schedule('* * * * *', async () => {
             console.log('~ Upload --- JOB ---')
             const isActive = await uploadData()
             if (isActive) {
@@ -61,18 +66,9 @@ const uploadData = async () => {
         const aeco = await getById()
         if (aeco) {
             const { serialNumber } = aeco.dataValues
+            console.log('🚀 ~ uploadData ~ serialNumber:', serialNumber)
             xApiKey = encryptStr(serialNumber)
-            const aecoStatus = await fetchFromApi(
-                '/aecos/access-control',
-                'GET',
-                null,
-                xApiKey
-            )
-            if (aecoStatus && aecoStatus.success) {
-                await updateCompany(aeco.id, { metadata: { active: true } })
-            } else {
-                return false
-            }
+            console.log('🚀 ~ uploadData ~ xApiKey:', xApiKey)
             const tickets = await findAllToDay()
             await uploadTickets()
             await uploadDailyStats(tickets)
@@ -81,6 +77,8 @@ const uploadData = async () => {
             await getCapacitiesAfterLast()
             await getProductsAfterLast()
             await getRewardsServer()
+            await getPublicity()
+            await removeAdvertising()
             await createLog({ ...newLog, message: 'synchronized susccefully' })
         }
         // return true
@@ -335,28 +333,6 @@ const getCapacitiesAfterLast = async () => {
     }
 }
 
-// Este se comentó porque se aplicara un update or insert para los productos
-// const getProductsAfterLast = async () => {
-//     const newLog = { type: UPDATE_TYPES.UPDATE }
-//     try {
-//         const product = await getLastProduct()
-//         const data = await fetchFromApi(
-//             `/products/after-last?lastId=${product.dataValues.id}`,
-//             'GET', null, xApiKey
-//         )
-//         if (data.error) throw data
-
-//         if (data.length > 0) await createProducts(data)
-//         await createLog({ ...newLog, message: 'Update products after last' })
-//     } catch (error) {
-//         await createLog({
-//             ...newLog,
-//             status: false,
-//             message: 'Error Update products: ' + error.message,
-//         })
-//     }
-// }
-
 const getProductsAfterLast = async () => {
     const newLog = { type: UPDATE_TYPES.UPDATE }
     try {
@@ -384,13 +360,121 @@ const getRewardsServer = async () => {
     try {
         const data = await fetchFromApi('/aecos/rewards', 'GET', null, xApiKey)
         if (data.error) throw data
-        if (data.rewards.length > 0) await updateRewards(data.rewards)
+        const removeImage = []
+        // if (data.rewards.length > 0) await updateRewards(data.rewards)
+        if (data.rewards.length > 0) {
+            const rewardsProcessed = await Promise.all(
+                data.rewards.map(async ({ note, imageId, mediaAsset, ...rest }) => {
+                    try {
+                        const findreward = await getOne(rest.id)
+                        const path = await processMediaAsset(mediaAsset, xApiKey)
+                        if (findreward && findreward.image && findreward.image !== path) {
+                            removeImage.push({ newImage: path, ...findreward.dataValues })
+                        }
+                        if (!path || path === undefined || path === '' || path === null)
+                            return null
+                        return {
+                            image: path,
+                            ...rest,
+                        }
+                    } catch {
+                        return null
+                    }
+                })
+            )
+
+            const validrewards = rewardsProcessed.filter(Boolean)
+
+            if (validrewards.length > 0) {
+                await updateRewards(validrewards)
+
+                if (removeImage.length > 0) {
+                    for (const image of removeImage) {
+                        await deleteMedia(image.image)
+                    }
+                }
+            }
+        }
         await createLog({ ...newLog, message: 'Update rewards' })
     } catch (error) {
         await createLog({
             ...newLog,
             status: false,
             message: 'Error Update rewards: ' + error.message,
+        })
+    }
+}
+
+const getPublicity = async () => {
+    const newLog = { type: UPDATE_TYPES.UPDATE }
+    try {
+
+        const data = await fetchFromApi('/aecos/advertisings', 'GET', null, xApiKey)
+        if (data.error) throw data
+
+        if (data.campaigns.length > 0) {
+            data.campaigns = data.campaigns.filter(campaign => campaign.mediaAsset && campaign.mediaAsset.fileKey)
+            const advertisings = await Promise.all(
+                data.campaigns.map(async (campaign) => {
+                    try {
+                        const path = await processMediaAsset(campaign.mediaAsset, xApiKey)
+                        if (!path || path === undefined || path === '' || path === null)
+                            return null
+                        return {
+                            id: campaign.id,
+                            name: campaign.contractName,
+                            path,
+                            active: true,
+                            end_date: campaign.endDate,
+                            mime_type: campaign.mediaAsset.mimeType,
+                            metadata: campaign.metadata,
+                        }
+                    } catch {
+                        // Si falla, retornamos null y luego lo filtramos
+                        return null
+                    }
+                })
+            )
+
+            const validAdvertisings = advertisings.filter(Boolean)
+
+            if (validAdvertisings.length > 0) {
+                await updatePublicity(validAdvertisings)
+            }
+        }
+        const suspendPublicityresp = await suspendPublicity()
+        await createLog({ ...newLog, message: 'Update advertisings' })
+    } catch (error) {
+        await createLog({
+            ...newLog,
+            status: false,
+            message: 'Error Update advertisings: ' + error.message,
+        })
+    }
+}
+
+const removeAdvertising = async () => {
+    const newLog = { type: UPDATE_TYPES.UPDATE }
+    try {
+        const advertising = await getAll(false, false)
+        if (advertising.length > 0) {
+            advertising.forEach(async (item) => {
+                try {
+                    const deleted = await deleteMedia(item.path)
+                    if (deleted) {
+                        await removePublicity(item.id)
+                    }
+                } catch (error) {
+                    console.error('Error al eliminar archivo:', error)
+                }
+            })
+        }
+        await createLog({ ...newLog, message: 'Remove advertising' })
+    } catch (error) {
+        await createLog({
+            ...newLog,
+            status: false,
+            message: 'Error Remove advertising: ' + error.message,
         })
     }
 }
