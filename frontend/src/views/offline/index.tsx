@@ -22,14 +22,18 @@ const Offline = ({ icon = 'FueraServicio' }: Icon) => {
     }
   }, [])
 
+<<<<<<< HEAD
   const validateMachine = async () => {
+=======
+   const validateMachine = async () => {
+>>>>>>> b506e98a08674f52aca142056d57ebdb7f68cdc7
     try {
       const response = await WebApiAeco.getMachine()
       if (!response.success) {
         if (response.message === 'API-UP') return navigation('/home')
       }
     } catch (networkError) {
-      console.error(networkError)
+      console.error( networkError)
     }
   }
 
@@ -37,7 +41,7 @@ const Offline = ({ icon = 'FueraServicio' }: Icon) => {
     <ScreenLayout image="bg-offline-loading.png" showTimer={false}>
       <div className="relative flex flex-col h-screen">
         <div className="relative flex-grow flex justify-center items-center">
-          <span className="text-3xl font-bold">
+          <span className='text-3xl font-bold'>
             <h1>FUERA DE SERVICIO</h1>
           </span>
         </div>
