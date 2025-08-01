@@ -6,7 +6,7 @@ import WebApiAeco from '../../api/webApiAeco'
 
 const Offline = ({ icon = 'FueraServicio' }: Icon) => {
   const navigation = useNavigate()
-  const intervalMs = 60000 // 1 minute
+  const intervalMs = 60001 // 1 minute
   const timerRef = useRef<NodeJS.Timeout>()
 
   useEffect(() => {
