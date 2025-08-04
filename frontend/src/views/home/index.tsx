@@ -64,7 +64,7 @@ function Home() {
 
   return (
     // <ScreenLayout image={metas.imgBg} showTimer={false}>
-    <ScreenLayout image={'anahuac_reciclaje-01.png'} showTimer={false}>
+    <ScreenLayout image={'fondohomeanahuac.jpeg'} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         {/* <Navbar /> */}
         {/* <img className="w-[500px] fixed top-44" src={metas.imgUp} /> */}
