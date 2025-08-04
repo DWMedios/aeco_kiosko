@@ -12,8 +12,8 @@ const Medias = ({ socialMedias }: MediasProps) => {
     <>
       {socialMedias.map((social, index) => (
         <div key={index} className="flex items-center space-x-2">
-          <span className="text-4xl text-white">{social.icon}</span>
-          <span className="text-4xl font-semibold tracking-widest text-white">
+          <span className="text-xl text-white">{social.icon}</span>
+          <span className="text-xl font-semibold tracking-widest text-white">
             {social.name}
           </span>
         </div>
