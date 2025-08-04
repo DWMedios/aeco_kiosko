@@ -11,10 +11,11 @@ module.exports = {
       status: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
       type: {
         type: Sequelize.ENUM,
-        values: ['Initial', 'Update'],
+        values: ['Initial', 'Update', 'Upload', 'Paper'],
         defaultValue: 'Initial',
       },
       message: {

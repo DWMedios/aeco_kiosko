@@ -74,9 +74,12 @@ export interface MetaDataScanning {
 }
 
 export interface RewardCategory {
-  id: number
+  id?: number
   name: string
   order: number
+  status: boolean
+  url: string
+  image: string
 }
 
 export interface MetaDataAccepted {
@@ -114,21 +117,14 @@ export interface RewardCategory {
   name: string
   status: boolean
   order: number
+  image: string
 }
 
-export interface Rewards {
+export interface Reward {
   id: number
   name: string
+  type: string
   status: boolean
   order: number
-  reward_category_id: number
   metadata: object
-}
-
-export interface RewardCategoriesProps {
-  categories: RewardCategory[]
-}
-
-export interface RewardsProps {
-  rewards: Rewards[]
 }

@@ -1,0 +1,44 @@
+  GNU nano 7.2                                                    /home/dw/.xinitrc                                                             
+#!/usr/bin/env bash
+set -e
+
+xset -dpms; xset s off; xset s noblank
+xrandr --output HDMI-1 --rotate right --pos 0x0
+xrandr --output HDMI-2 --rotate right --right-of HDMI-1
+sleep 0.5
+
+WIDTH=1080
+HEIGHT=1920
+COMMON="--noerrdialogs --disable-infobars --kiosk \
+        --disable-extensions --disable-background-networking \
+        --no-first-run --no-default-browser-check \
+        --disable-gpu --no-sandbox --disable-dev-shm-usage \
+        --ozone-platform=x11 \
+        --autoplay-policy=no-user-gesture-required"
+
+# Perfis sin conflicto, siempre válidos para quien ejecute
+DIR1="$HOME/.config/kiosk-chrome1"
+DIR2="$HOME/.config/kiosk-chrome2"
+
+# Ajustar dispositivo táctil (si aplica)
+xinput set-prop "Multi touch   Multi touch overlay device" "Coordinate Transformation Matrix" 0 0.5 0  -1 0 1  0 0 1
+
+################ Ventana 1 (derecha) ################
+chromium-browser $COMMON \
+  --user-data-dir="$DIR1" \
+  --window-size=${WIDTH},${HEIGHT} \
+  --window-position=1080,0 \
+  http://localhost:5173/media-player &
+PID1=$!
+
+sleep 2   # pequeño colchón
+
+################ Ventana 2 (izquierda) ################
+chromium-browser $COMMON \
+  --user-data-dir="$DIR2" \
+  --window-size=${WIDTH},${HEIGHT} \
+  --window-position=0,0 \
+  http://localhost:5173 &
+PID2=$!
+
+wait $PID1 $PID2

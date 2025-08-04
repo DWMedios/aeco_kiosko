@@ -7,7 +7,7 @@ module.exports = {
         name: 'Home',
         metadata: {
           imgBg: 'home_background.png',
-          imgLang:  '/images/language_icon.png',
+          imgLang: '/images/language_icon.png',
           imgHelp: '/images/Help_icon.png',
           imgUp: '/images/aeco.png',
           imgDown: '/images/reciclaygana.png',
@@ -51,7 +51,7 @@ module.exports = {
             phoneText: 'Envíanos WhatsApp',
           },
           textDown: {
-            phone: '+52 999 888 7777',
+            phone: '+52 999 331 7117',
             description: '¡Gracias por tu colaboración!',
           },
         },
@@ -226,7 +226,7 @@ module.exports = {
               'Envianos a este whatsapp una foto del envase con la etiqueta y el código de barras VISIBLE',
           },
           textDown: {
-            phone: '+52 999 888 7777',
+            phone: '+52 999 331 7117',
             description: '¡Gracias por tu colaboración!',
           },
         },

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { usePageData } from '../../hooks/usePageData'
 import type { MetaDataScanning } from '../../interfaces'
@@ -10,6 +10,8 @@ import { sendCommands } from '../../utils/commands'
 
 const Scanning = () => {
   const { t } = useTranslate()
+  const [product, setProduct] = useState<any>(null)
+  const [codigo, setCodigo] = useState<any>(null)
 
   const {
     data: metas,
@@ -22,7 +24,10 @@ const Scanning = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       sendCommand(sendCommands.REJECTED)
-      navigation('/unidentified')
+      const timeout = setTimeout(() => {
+        navigation('/unidentified')
+      }, 6000)
+      return () => clearTimeout(timeout)
     }, 10000)
 
     return () => clearTimeout(timeout)
@@ -43,9 +48,9 @@ const Scanning = () => {
   return (
     <ScreenLayout
       image={metas.imgBg || '/leafBackground.png'}
-      timerInitialTime={10}
+      showTimer={false}
     >
-      <BarcodeScanner />
+      <BarcodeScanner setProduct={setProduct} setCodigo={setCodigo} />
       <div className="relative flex flex-col justify-center items-center h-screen gap-20">
         <div className="flex flex-col text-center h-60">
           <span className="font-extrabold text-8xl uppercase text-center tracking-wider	w-[500px]">

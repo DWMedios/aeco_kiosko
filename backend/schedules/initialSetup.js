@@ -35,7 +35,7 @@ const downLoadImage = async () => {
   try {
     await processPageImage(path, 'demo.png')
   } catch (error) {
-    console.log('🚀 ~ downloadImage ~ error:', error)
+    console.log('~ downloadImage ~ error:', error)
   }
 }
 

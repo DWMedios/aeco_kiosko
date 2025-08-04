@@ -11,16 +11,10 @@ const LangHelp = () => {
     <div className="w-full">
       <div className="w-24 h-52 ml-3 p-3 flex flex-col justify-between items-center bg-green-100 bg-opacity-70 rounded-full">
         <Link to="/language">
-          <img
-            className="w-20"
-            src={metas.imgLang}
-          />
+          <img className="w-20" src={metas.imgLang} />
         </Link>
         <Link to="/help">
-          <img
-            className="w-20"
-            src={metas.imgHelp}
-          />
+          <img className="w-20" src={metas.imgHelp} />
         </Link>
       </div>
     </div>

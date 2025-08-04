@@ -1,10 +1,18 @@
 #!/bin/bash
-xset -dpms      # Deshabilitar el apagado de pantalla
-xset s off      # Deshabilitar el protector de pantalla
-xset s noblank  # Prevenir pantalla en negro
+xset -dpms
+xset s off
+xset s noblank
 
-# Configurar la rotación de la pantalla
-xrandr --output $(xrandr | grep " connected" | awk '{print $1}') --rotate left
+# Rotar todas las pantallas conectadas a la derecha
+for output in $(xrandr | grep " connected" | awk '{print $1}'); do
+  xrandr --output "$output" --rotate right
+done
 
-# Esperar a que Docker y el contenedor estén listos
+# Ajustar dispositivo táctil (si aplica)
+xinput set-prop "Multi touch   Multi touch overlay device" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
+
+# Ejecutar Chromium en modo kiosko
 chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:5173 --window-size=1080,1920 --force-device-scale-factor=0.7 --disable-gpu --no-sandbox --disable-dev-shm-usage --ozone-platform=x11 --disable-accelerated-video --disable-accelerated-video-decode
+
+#Borrar volumen de imagenes para refresh
+docker volume rm aeco-app_aeco-images 

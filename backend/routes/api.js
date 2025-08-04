@@ -6,15 +6,16 @@ const rewardController = require('../controllers/rewardsController')
 const pageController = require('../controllers/pageController')
 const productController = require('../controllers/productController')
 const aecoController = require('../controllers/aecoController')
-const movementController = require('../controllers/movementController')
+// const movementController = require('../controllers/movementController')
 const paperController = require('../controllers/paperController')
 const ticketController = require('../controllers/ticketController')
+const publicityController = require('../controllers/publicityController')
 
 router.get('/company', companyController.getCompany)
 
-router.get('/reward-categories', rewardController.getCategories)
+router.get('/rewards/categories', rewardController.getRewardCategories)
 
-router.get('/rewards', rewardController.getRewardsByCategory)
+router.get('/rewards', rewardController.getRewardsByType)
 
 router.get('/products', productController.getByCode)
 
@@ -22,12 +23,18 @@ router.get('/pages', pageController.getPageByName)
 
 router.get('/aeco', aecoController.getAecoUpdate)
 
-router.post('/movements', movementController.create)
+router.post('/tickets', ticketController.create)
 
 router.get('/paper', paperController.getActive)
 
 router.put('/paper', paperController.update)
 
-router.post('/printer-ticket', ticketController.print)
+router.get('/publicity', publicityController.getActive)
+
+router.get('/advertising', publicityController.getActive)
+
+router.get('/validate-machine', companyController.validateMachine)
+
+// router.post('/printer-ticket', ticketController.print)
 
 module.exports = router

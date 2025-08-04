@@ -3,11 +3,11 @@ sudo nano /home/dw/start_kiosko.sh
 sudo chmod +x /home/dw/start_kiosko.sh
 
 #instalamos xinit
-sudo apt instal --no-install-recommends xinit
+sudo apt install --no-install-recommends xinit
 
 # configuramos xinit
 sudo nano ~/.xinitrc
-sudo chmode +x ~/.xinitrc
+sudo chmod +x ~/.xinitrc
 
 # agregamos xinit al bash
 sudo nano ~/.bashrc
@@ -35,3 +35,8 @@ sudo reboot
 
 # si algo no funciona revisa los logs
 cat /home/dw/launch_kiosk.log
+
+# instalar dependencias manualmente
+npm install --legacy-peer-deps  
+
+{"items": [{"quantity": 2, "productId": 58, "packagingType": "bottle"}, {"quantity": 1, "productId": 121, "packagingType": "bottle"}], "reward": {"name": "VayVen", "type": "service"}}

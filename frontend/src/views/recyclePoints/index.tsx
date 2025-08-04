@@ -4,9 +4,7 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import useTranslate from '../../hooks/useTranslate'
 
 const RecyclePoints = () => {
-  
-  const { t } = useTranslate();
-
+  const { t } = useTranslate()
 
   return (
     <ScreenLayout image="RewardsBackground.svg">

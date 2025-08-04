@@ -4,10 +4,17 @@ import WebApiAeco from '../../api/webApiAeco'
 import useWebSocket from '../../hooks/useWebSocket'
 import { SavePackaging } from '../../utils/savePackaging'
 import { sendCommands } from '../../utils/commands'
+import { Product } from '../../interfaces'
 
-const BarcodeScanner = () => {
+interface Props {
+  setCodigo: (codigo: any) => void
+  setProduct: (product: any) => void
+}
+
+const BarcodeScanner = ({ setProduct, setCodigo }: Props) => {
   const navigation = useNavigate()
   const [barcode, setBarcode] = useState('')
+  const [awaiting, setAwaiting] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const { sendCommand } = useWebSocket()
@@ -17,27 +24,44 @@ const BarcodeScanner = () => {
       clearTimeout(timerRef.current)
     }
     timerRef.current = setTimeout(() => {
-      if (barcode.trim.length == 0) setBarcode(event.target.value)
-    }, 100)
+      if (barcode.trim().length == 0) {
+        if (awaiting) return
+        setBarcode((event.target as HTMLInputElement).value)
+      }
+    }, 1000)
   }
 
   useEffect(() => {
-    if (barcode && barcode.trim().length > 0) findProduct()
+    if (barcode && barcode.trim().length > 0) {
+      setCodigo(barcode)
+      findProduct()
+    }
   }, [barcode])
 
   const findProduct = async () => {
     try {
-      const response = await WebApiAeco.findProduct(barcode)
-      SavePackaging({
+      if(awaiting) return
+      setAwaiting(true)
+      const response = (await WebApiAeco.findProduct(barcode)) as Product
+      setProduct(response)
+      await SavePackaging({
+        id: response.id,
         name: response.name,
-        packaging: response.capacity.packaging,
+        packagingType: response.capacity.packaging,
       })
       sendCommand(sendCommands.ACCEPTED)
-      navigation('/accepted')
+      const timeout = setTimeout(() => {
+        navigation('/accepted')
+      }, 6000)
+
+      return () => clearTimeout(timeout)
     } catch (error) {
-      console.log("🚀 ~ findProduct ~ error:", error)
       sendCommand(sendCommands.REJECTED)
-      navigation('/rejected')
+      const timeout = setTimeout(() => {
+        navigation('/rejected')
+      }, 6000)
+
+      return () => clearTimeout(timeout)
     } finally {
       setBarcode('')
       if (inputRef.current) inputRef.current.value = ''

@@ -1,7 +1,7 @@
-export const setSessionStorage = (label:string, data:string) => {
-    sessionStorage.setItem(label, data)
+export const setLocalStorage = (label: string, data: string) => {
+  localStorage.setItem(label, data)
 }
 
-export const getSessionStorage = (label:string) =>{
-   return sessionStorage.getItem(label)
-} 
+export const getLocalStorage = (label: string) => {
+  return localStorage.getItem(label)
+}

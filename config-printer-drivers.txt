@@ -1,0 +1,24 @@
+
+1. Debes descargar los divres
+  masung.group/download.html
+
+2. Descomprimir el zip de los drivers descargados
+  unzip nombre_del_archivo.zip
+
+     --- Si no tienes unzip instalalo
+       sudo apt install unzip
+
+3. Se copian los archivos de los drivers de la arquitectura de tu maquina
+  sudo cp /ruta/a/la/carpeta/aarch64/*.so /usr/lib/
+
+    --- Si no conoces la arquitectura aqui puedes obtenerlo
+      uname -m  
+
+5. Actualizamos los drivers del sistema
+  sudo ldconfig
+
+6. Creas un archivo de prueba
+  nano sample.txt
+
+  ---Escribes el contenido
+   Este es un texto de ejemplo

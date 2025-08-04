@@ -1,14 +1,7 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class Reward extends Model {
-    static associate(models) {
-      Reward.belongsTo(models.RewardCategory, {
-        foreignKey: 'reward_category_id',
-        as: 'category',
-      })
-    }
-  }
+  class Reward extends Model {}
   Reward.init(
     {
       id: {
@@ -18,18 +11,31 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       name: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(100),
         allowNull: false,
+      },
+      establishment: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+      },
+      description: {
+        type: DataTypes.STRING(100),
+        alowNull: true,
+      },
+      image: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
       status: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: true,
       },
-      order: {
-        type: DataTypes.INTEGER,
+      type: {
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
-      reward_category_id: {
+      order: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

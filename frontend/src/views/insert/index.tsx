@@ -45,7 +45,7 @@ const Insert = () => {
       <div className="relative flex flex-col justify-center items-center h-screen gap-20">
         <div className="flex flex-col text-center h-60">
           <span className="font-extrabold text-8xl text-center uppercase tracking-wider	w-[500px]">
-            {metas?.title || t('insert.title') }
+            {metas?.title || t('insert.title')}
           </span>
         </div>
         <img

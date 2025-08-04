@@ -3,24 +3,22 @@ import WebApiAeco from '../../api/webApiAeco'
 import ScreenLayout from '../../components/layout/screenLayout'
 import TicketButton from '../../components/ticketButton'
 import useTranslate from '../../hooks/useTranslate'
-import { getSessionStorage } from '../../utils/manageStorage'
+import { getLocalStorage } from '../../utils/manageStorage'
 
 const VoucherView = () => {
   const { t } = useTranslate()
-  const paper = getSessionStorage('paperStatus') === 'true'
+  const paper = getLocalStorage('paperStatus') === 'true'
   const navigate = useNavigate()
 
-
-    const printerTicket = async () => {
+  const printerTicket = async () => {
     try {
-      const movementId = getSessionStorage('movementId')
-      console.log("🚀 ~ printerTicket ~ movementId:", movementId)
-      if (movementId) {
-        await WebApiAeco.printerTicket(Number(movementId))
+      const ticketId = getLocalStorage('ticketId')
+      if (ticketId) {
+        await WebApiAeco.printerTicket(Number(ticketId))
         navigate('/final_view')
       }
     } catch (error) {
-      console.log("🚀 ~ printerTicket ~ error:", error)
+      console.log('~ printerTicket ~ error:', error)
       navigate('/ticket')
     }
   }
@@ -40,7 +38,7 @@ const VoucherView = () => {
           />
           {paper && (
             <TicketButton
-              action={()=> printerTicket()}
+              action={() => printerTicket()}
               imageSrc="images/printer.png"
               altText="Impreso"
               buttonText="Impreso"

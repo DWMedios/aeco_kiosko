@@ -12,21 +12,34 @@ module.exports = {
         type: Sequelize.STRING(120),
         allowNull: false,
       },
+      establishment: {
+        type: Sequelize.STRING(100),
+        allowNull: true,
+      },
+      description: {
+        type: Sequelize.STRING(100),
+        alowNull: true,
+      },
+      image: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
       status: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      type: {
+        type: Sequelize.STRING(50),
         allowNull: false,
       },
       order: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      reward_category_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'reward_categories',
-          key: 'id',
-        },
+      metadata: {
+        type: Sequelize.JSONB,
+        allowNull: true,
       },
       created_at: {
         allowNull: false,
@@ -40,6 +53,6 @@ module.exports = {
     })
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('Rewards')
+    await queryInterface.dropTable('rewards')
   },
 }

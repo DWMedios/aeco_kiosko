@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { usePageData } from '../../hooks/usePageData'
 import { MetaDataHome } from '../../interfaces'
 import {
@@ -15,20 +15,42 @@ import LangHelp from './components/LangHelp'
 import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
-import { ClearCountPackings } from '../../utils/savePackaging'
-import savePaperStatus from '../../hooks/usePaperStatus'
+import { setLocalStorage } from '../../utils/manageStorage'
+import { GetTicket } from '../../utils/savePackaging'
+import { useNavigate } from 'react-router-dom'
+import WebApiAeco from '../../api/webApiAeco'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
-
-  const statusPaper = async () => {
-    await savePaperStatus()
-  }
-
+  const navigation = useNavigate()
+  const intervalMs = 5000 // 1 hour
+  const timerRef = useRef<NodeJS.Timeout>()
   useEffect(() => {
-    ClearCountPackings()
-    statusPaper()
+    localStorage.clear()
+    setLocalStorage('ticket', '')
+    GetTicket()
+    validateMachine()
+    timerRef.current = setInterval(() => {
+      validateMachine()
+    }, intervalMs)
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
   }, [])
+
+  const validateMachine = async () => {
+    try {
+      const response = await WebApiAeco.getMachine()
+      if (!response.success) {
+        if (response.message === 'API-DOWN') return navigation('/offline')
+      }
+    } catch (networkError) {
+      console.error(networkError)
+    }
+  }
 
   if (loading || error || !metas) {
     return (
@@ -43,7 +65,8 @@ function Home() {
   }
 
   return (
-    <ScreenLayout image={metas.imgBg} showTimer={false}>
+    // <ScreenLayout image={metas.imgBg} showTimer={false}>
+    <ScreenLayout image={'fondohome.jpeg'} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
         <Navbar />
         <img className="w-[500px] fixed top-44" src={metas.imgUp} />

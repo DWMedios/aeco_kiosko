@@ -1,5 +1,6 @@
 exports.UPDATE_TYPES = {
-  INITIAL: 'initial',
-  UPDATE: 'update',
-  PAPER: 'paper',
+  INITIAL: 'Initial',
+  UPDATE: 'Update',
+  PAPER: 'Paper',
+  UPLOAD: 'Upload',
 }

@@ -13,7 +13,7 @@ import Button from '../../components/button'
 import ScreenLayout from '../../components/layout/screenLayout'
 import useWebSocket from '../../hooks/useWebSocket'
 import useTranslate from '../../hooks/useTranslate'
-import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
+import { GetTicket } from '../../utils/savePackaging'
 import { useNavigate } from 'react-router-dom'
 
 const Rejected = () => {
@@ -43,24 +43,19 @@ const Rejected = () => {
     )
   }
 
-    const NextSteep = async () => {
-      const packings = GetPackagings()
-      if (packings) {
-        const saveMovement = await SavePreoccess({
-          can_number: packings.can,
-          bottle_number: packings.bottle,
-          folio: '1',
-          synchronized: false,
-        })
-        if (saveMovement) {
-          sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-          navigation(metas!.buttonDown.url)
-        }
-      } else {
-        sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-        navigation('/home')
-      }
+  const NextSteep = async () => {
+    const packings = GetTicket()
+    if (packings) {
+      // const saveMovement = await SaveProccess()
+      // if (saveMovement) {
+      sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+      navigation('/reward_categories')
+      // }
+    } else {
+      sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+      navigation('/home')
     }
+  }
 
   return (
     <ScreenLayout image={metas.imgBg}>
@@ -118,7 +113,7 @@ const Rejected = () => {
         />
 
         <Button
-        action={() => NextSteep()}
+          action={() => NextSteep()}
           label={metas.buttonDown.label}
           textColor={TextColorEnum.black}
           borderRadius={

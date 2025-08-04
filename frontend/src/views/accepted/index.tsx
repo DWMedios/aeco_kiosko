@@ -8,7 +8,7 @@ import {
   TextColorEnum,
 } from '../../interfaces'
 import { usePageData } from '../../hooks/usePageData'
-import { GetPackagings, LastPackings, SavePreoccess } from '../../utils/savePackaging'
+import { GetTicket, LastPackaging } from '../../utils/savePackaging'
 import { sendCommands } from '../../utils/commands'
 
 import Button from '../../components/button'
@@ -34,7 +34,7 @@ const Accepted = () => {
   }, [])
 
   useEffect(() => {
-    setProduct(LastPackings())
+    setProduct(LastPackaging())
   }, [])
 
   if (loading || error || !metas) {
@@ -49,24 +49,16 @@ const Accepted = () => {
     )
   }
 
-    const NextSteep = async () => {
-      const packings = GetPackagings()
-      if (packings) {
-        const saveMovement = await SavePreoccess({
-          can_number: packings.can,
-          bottle_number: packings.bottle,
-          folio: '1',
-          synchronized: false,
-        })
-        if (saveMovement) {
-          sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-          navigation(metas!.buttonDown.url)
-        }
-      } else {
-        sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
-        navigation('/home')
-      }
+  const NextSteep = async () => {
+    const packings = GetTicket()
+    if (packings) {
+      sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+      navigation('/reward_categories')
+    } else {
+      sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
+      navigation('/home')
     }
+  }
 
   return (
     <ScreenLayout image={metas.imgBg}>
@@ -79,17 +71,15 @@ const Accepted = () => {
         <div className="flex flex-col justify-center items-center h-[600px]">
           <img
             src={
-              product?.packaging === 'lata'
+              product?.packagingType === 'lata'
                 ? '/images/canAccepted.png'
                 : '/images/bottleAccepted.png'
             }
             alt="Container"
             className="m-10 mb-20 w-auto h-90"
           />
-          <div className="flex flex-col bg-green-500 items-center w-96 rounded-3xl bg-opacity-70 text-white font-medium absolute p-2 tracking-wider">
-            <span className="text-5xl font-bold tracking-widest">
-              {product?.name}
-            </span>
+          <div className="flex flex-col bg-green-500 items-center w-96 rounded-3xl bg-opacity-70 text-white font-medium absolute p-2 tracking-wider text-5xl font-bold text-center">
+            {product?.name}
           </div>
         </div>
         <Button
@@ -114,7 +104,7 @@ const Accepted = () => {
         <Button
           action={() => NextSteep()}
           label={metas.buttonDown.label}
-          url={metas.buttonDown.url}
+          url={'/reward_categories'} //si es dinamico se remplaza el valor por este del comentario -> {metas.buttonDown.url}
           bgColor={
             BackgroundButtonEnum[
               metas.buttonDown.bgColor as keyof typeof BackgroundButtonEnum

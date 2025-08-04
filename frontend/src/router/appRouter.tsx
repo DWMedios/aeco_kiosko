@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom'
 
 import CardPoints from '../views/cardPoints'
 import Conditions from '../views/conditions'
-import Donatives from '../views/donative'
 import Example from '../views/example'
 import FinalView from '../views/finalView'
 import Help from '../views/help/Help'
@@ -22,10 +21,11 @@ import Accepted from '../views/accepted'
 import Rejected from '../views/rejected'
 import Unidentified from '../views/unidentified'
 import AddBarcode from '../views/addBarcode'
-import Discounts from '../views/discounts'
-import Services from '../views/services'
 import ExternalService from '../views/externalService'
 import SendMessage from '../sendMessage'
+import RewardCategories from '../views/rewardCategories'
+import MediaPlayer from '../views/mediaPlayer'
+import Offline from '../views/offline'
 
 const AppRouter = () => {
   return (
@@ -43,9 +43,8 @@ const AppRouter = () => {
       <Route path="/rejected" element={<Rejected />} />
       <Route path="/unidentified" element={<Unidentified />} />
       <Route path="/add_barcode" element={<AddBarcode />} />
-      <Route path="/rewards" element={<Rewards />} />
-      <Route path="/discounts" element={<Discounts />} />
-      <Route path="/donative/:id" element={<Donatives />} />
+      <Route path="/reward_categories" element={<RewardCategories />} />
+      <Route path="/rewards/:type" element={<Rewards />} />
       <Route path="/card_points" element={<CardPoints />} />
       <Route path="/recycle_points" element={<RecyclePoints />} />
       <Route path="/predial_points" element={<PredialPoints />} />
@@ -53,9 +52,10 @@ const AppRouter = () => {
       <Route path="/ticket" element={<TicketView />} />
       <Route path="/voucher" element={<VoucherView />} />
       <Route path="final_view" element={<FinalView />} />
+      <Route path="/offline" element={<Offline />} />
       <Route path="/external_service" element={<ExternalService />} />
-      <Route path="/services/:id" element={<Services />} />
       <Route path="/sendMessage" element={<SendMessage />} />
+      <Route path="/media-player" element={<MediaPlayer />} />
     </Routes>
   )
 }

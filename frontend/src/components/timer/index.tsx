@@ -4,11 +4,7 @@ import { TimerProps } from '../../interfaces'
 import useWebSocket from '../../hooks/useWebSocket'
 import { sendCommands } from '../../utils/commands'
 
-const Timer = ({
-  initialTime,
-  className,
-  onEnd,
-}: TimerProps) => {
+const Timer = ({ initialTime, className, onEnd }: TimerProps) => {
   const { sendCommand } = useWebSocket()
   const [timeLeft, setTimeLeft] = useState(initialTime)
 
@@ -18,6 +14,7 @@ const Timer = ({
     if (timeLeft <= 0) {
       if (onEnd) onEnd()
       sendCommand(sendCommands.INITIAL_SETUP_LOCK_ALL)
+      localStorage.clear()
       navigate('/home')
       return
     }

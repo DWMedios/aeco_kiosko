@@ -10,8 +10,18 @@ const {
   footer,
 } = require('./constants')
 
-const device = new escpos.USB()
+
+function getUsbDevice() {
+  const devices = escpos.USB.findPrinter()
+  if (devices.length === 0) {
+    throw new Error('No se encontró ninguna impresora conectada')
+  }
+  return new escpos.USB()
+}
+
+const device = getUsbDevice()
 const printer = new escpos.Printer(device)
+
 
 exports.ticketPrinter = async (movement, image = null) => {
   // let lineCount = 5

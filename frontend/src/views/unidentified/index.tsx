@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GetPackagings, SavePreoccess } from '../../utils/savePackaging'
+import { GetTicket, SaveProccess } from '../../utils/savePackaging'
 import { usePageData } from '../../hooks/usePageData'
 import {
   BackgroundButtonEnum,
@@ -31,17 +31,15 @@ const Unidentified = () => {
   }, [])
 
   const NextSteep = async () => {
-    const packings = GetPackagings()
+    const packings = GetTicket()
     if (packings) {
-      const saveMovement = await SavePreoccess({
-        can_number: packings.can,
-        bottle_number: packings.bottle,
-        folio: '1',
-        synchronized: false,
+      const saveMovement = await SaveProccess({
+        type: 'donative',
+        name: 'Donativo',
       })
       if (saveMovement) {
         sendCommand(sendCommands.FINISH_LOCK_THE_LID)
-        navigation(metas!.buttonDown.url)
+        navigation('/reward_categories')
       }
     } else {
       sendCommand(sendCommands.FINISH_NO_READ_BOTTLE)
