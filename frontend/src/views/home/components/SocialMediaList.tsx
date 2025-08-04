@@ -1,10 +1,10 @@
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa6'
+import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa6'
 import type { MediasProps, SocialMedia } from '../../../interfaces'
 
 const socialMediaList: SocialMedia[] = [
-  { name: 'Facebook', icon: <FaFacebook /> },
-  { name: 'Twitter', icon: <FaTwitter /> },
-  { name: 'Instagram', icon: <FaInstagram /> },
+  { name: 'universidad anáhuac mayab', icon: <FaFacebook /> },
+  { name: '@anahuacmayab', icon: <FaInstagram /> },
+  { name: '@unianahuacmayab', icon: <FaTiktok /> },
 ]
 
 const Medias = ({ socialMedias }: MediasProps) => {
@@ -12,8 +12,8 @@ const Medias = ({ socialMedias }: MediasProps) => {
     <>
       {socialMedias.map((social, index) => (
         <div key={index} className="flex items-center space-x-2">
-          <span className="text-4xl">{social.icon}</span>
-          <span className="text-4xl font-semibold tracking-widest">
+          <span className="text-4xl text-white">{social.icon}</span>
+          <span className="text-4xl font-semibold tracking-widest text-white">
             {social.name}
           </span>
         </div>
@@ -24,7 +24,7 @@ const Medias = ({ socialMedias }: MediasProps) => {
 
 const SocialList: React.FC = () => {
   return (
-    <div className="flex fixed bottom-24 justify-between items-center px-4 py-3 bg-green-100 bg-opacity-70 text-black shadow-md w-11/12 h-16 rounded-3xl">
+    <div className="flex fixed bottom-24 justify-between items-center px-4 py-3 text-white shadow-md w-11/12 h-16 rounded-3xl">
       <Medias socialMedias={socialMediaList} />
     </div>
   )

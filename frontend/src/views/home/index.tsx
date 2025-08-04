@@ -11,8 +11,6 @@ import {
 
 import Button from '../../components/button'
 import Footer from './components/Footer'
-import LangHelp from './components/LangHelp'
-import Navbar from './components/Navbar'
 import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
 import { setLocalStorage } from '../../utils/manageStorage'
@@ -66,18 +64,16 @@ function Home() {
 
   return (
     // <ScreenLayout image={metas.imgBg} showTimer={false}>
-    <ScreenLayout image={'fondohome.jpeg'} showTimer={false}>
+    <ScreenLayout image={'anahuac_reciclaje-01.png'} showTimer={false}>
       <div className="relative z-10 flex flex-auto items-center flex-col w-full pt-8 justify-center bg-transparent h-screen">
-        <Navbar />
-        <img className="w-[500px] fixed top-44" src={metas.imgUp} />
-        <img className="w-11/12 fixed top-1/4" src={metas.imgDown} />
-        <LangHelp />
+        {/* <Navbar /> */}
+        {/* <img className="w-[500px] fixed top-44" src={metas.imgUp} /> */}
+        {/* <img className="w-11/12 fixed top-1/4" src={metas.imgDown} /> */}
+        {/* <LangHelp /> */}
         <Button
           label={metas.button.label}
           bgColor={
-            BackgroundButtonEnum[
-              metas.button.bgColor as keyof typeof BackgroundButtonEnum
-            ]
+            BackgroundButtonEnum['orange' as keyof typeof BackgroundButtonEnum]
           }
           textColor={TextColorEnum.white}
           url={metas.button.url}

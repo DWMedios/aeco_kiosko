@@ -47,7 +47,7 @@ const Example = () => {
           </span>
         </div>
         <img
-          src={metas.imgCenter}
+          src={'/images/aecoanahuac_example.png'}
           alt="Example image"
           className="m-20 w-80 h-[600px]"
         />

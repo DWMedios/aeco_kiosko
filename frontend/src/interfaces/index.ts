@@ -55,6 +55,7 @@ export enum BorderRadiusEnum {
 export enum BorderColorEnum {
   red = 'border-[#FF0000]',
   green = 'border-[#00804F]',
+  orange = 'border-[#FF5901]',
 }
 
 export enum FontSizeEnum {
@@ -84,6 +85,7 @@ export enum BackgroundButtonEnum {
   white = 'bg-white',
   pink = 'bg-[#FE5A8F]',
   green = 'bg-[#6FAF46]',
+  orange = 'bg-[#FF5901]',
 }
 
 export enum PositionButtonEnum {
