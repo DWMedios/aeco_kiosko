@@ -43,7 +43,8 @@ const Rewards = () => {
     <ScreenLayout image="shrubbery.png" timerInitialTime={30}>
       <div className="flex flex-col justify-center items-center gap-11 h-screen select-none">
         <h1 className="text-8xl z-10 text-center uppercase max-w-[900px] font-bold tracking-wider mb-20">
-          {t(`${type}.title`)}
+          ANÁHUAC MAYAB
+          {/* {t(`${type}.title`)} */}
         </h1>
         <div className="flex flex-col items-center bg-[#D9D9D9] bg-opacity-50 text-black shadow-md rounded-3xl w-[600px] h-[950px] z-10 p-5">
           <BackButton url="/reward_categories" />
@@ -51,7 +52,11 @@ const Rewards = () => {
             {rewards.map((reward, index) => (
               <CardReward
                 key={index}
-                imageSrc={reward.image && reward.image !== '' ? `/${reward.image.substring(reward.image.indexOf('synchronized'))}` : '/images/rewardCategory.png'}
+                imageSrc={
+                  reward.image && reward.image !== ''
+                    ? `/${reward.image.substring(reward.image.indexOf('synchronized'))}`
+                    : '/images/rewardCategory.png'
+                }
                 label={reward.name}
                 url={''}
                 action={() => handleAction(reward)}

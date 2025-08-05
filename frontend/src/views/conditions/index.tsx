@@ -41,14 +41,14 @@ const Conditions = () => {
     <ScreenLayout image={metas.imgBg}>
       <div className="relative flex flex-col justify-center items-center h-screen select-none">
         <BackButton url="/home" />
-        <div className="flex flex-col justify-center items-center text-center">
+        {/* <div className="flex flex-col justify-center items-center text-center">
           <span className="text-8xl normal-case">
             {metas?.title ?? t('condition.title')}
           </span>
-        </div>
-        <div className="w-full mt-20 mb-20">
+        </div> */}
+        {/* <div className="w-full mt-20 mb-20">
           <RewardsConditions />
-        </div>
+        </div> */}
         <div className="my-10 text-center mb-20">
           <span className="text-5xl normal-case">
             {metas?.description || t('condition.description')}
