@@ -40,7 +40,7 @@ const RewardCategories = () => {
     <ScreenLayout image="shrubbery.png" timerInitialTime={30}>
       <div className="flex flex-col justify-center items-center gap-11 h-screen select-none">
         <BackButton url="/reward_categories" />
-        <h1 className="text-8xl z-10 text-center uppercase max-w-[900px] font-bold tracking-wider mb-20">
+        <h1 className="text-6xl z-10 text-center uppercase max-w-[900px] font-bold tracking-wider mb-20">
           ¡Gracias por tu colaboración!
           {/* {t('rewards.description')} */}
         </h1>
