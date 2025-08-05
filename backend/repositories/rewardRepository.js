@@ -28,7 +28,7 @@ exports.getOne = async (id) => {
 
 exports.updateRewards = async (rewards) => {
   const { Reward } = await connectToDatabase()
-
+  await Reward.destroy({ where: {}, truncate: true })
 
   return await Reward.bulkCreate(rewards, {
     updateOnDuplicate: ['name', 'description', 'status', 'type', 'image', 'order', 'metadata', 'establishment']
