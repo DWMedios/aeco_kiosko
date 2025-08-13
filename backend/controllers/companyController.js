@@ -1,6 +1,9 @@
 const companyRepository = require('../repositories/companyRepository')
 const HTTP_CODES = require('../utils/http-status-codes')
 const { getSerialNumber } = require('../utils/raspiInfo')
+const { getById } = require('../repositories/companyRepository')
+const { encryptStr } = require('../utils/crypto')
+
 
 exports.getCompany = async (req, res) => {
   try {
@@ -65,15 +68,15 @@ exports.validateMachine = async (req, res) => {
     }
 
     try {
-      const apiResponse = await fetch('https://ayuntaeco.com/api/v1/auth/login', {
-        method: 'POST',
+      const aeco = await getById()
+      const { serialNumber } = aeco.dataValues
+      const xApiKey = encryptStr(serialNumber)
+      const apiResponse = await fetch('https://ayuntaeco.com/api/v1/aecos/access-control', {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'x-api-key': xApiKey,
         },
-        body: JSON.stringify({
-          username: 'user',
-          password: 'pass',
-        }),
       })
 
       const serverDownCodes = [502, 503, 504, 522]
@@ -86,18 +89,18 @@ exports.validateMachine = async (req, res) => {
         })
       }
 
-      if (!apiResponse.ok) {
-        // API respondió pero con error (404, 500, etc.)
-        return res.status(200).json({
-          success: false,
-          message: 'API-UP',
-          statusCode: apiResponse.status,
-        })
-      }
+      // if (!apiResponse.ok) {
+      //   // API respondió pero con error (404, 500, etc.)
+      //   return res.status(200).json({
+      //     success: false,
+      //     message: 'API-UP',
+      //     statusCode: apiResponse.status,
+      //   })
+      // }
 
       return res.status(200).json({
         success: true,
-        message: 'API-OK',
+        message: 'API-UP',
       })
     } catch (apiError) {
       // Error de red (host caído, sin conexión, etc.)
