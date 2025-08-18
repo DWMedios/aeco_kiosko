@@ -25,7 +25,7 @@ const Offline = ({ icon = 'FueraServicio' }: Icon) => {
   const validateMachine = async () => {
     try {
       const response = await WebApiAeco.getMachine()
-      if (!response.success) {
+      if (response.success) {
         if (response.message === 'API-UP') return navigation('/home')
       }
     } catch (networkError) {
