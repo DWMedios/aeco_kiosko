@@ -41,7 +41,7 @@ let xApiKey = null
 exports.startCronJobUpload = async () => {
     uploadData()
     if (cronJob === null) {
-        cronJob = cron.schedule('* * * * *', async () => {
+        cronJob = cron.schedule('* 18 * * *', async () => {
             console.log('~ Upload --- JOB ---')
             const isActive = await uploadData()
             if (isActive) {
