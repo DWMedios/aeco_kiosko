@@ -15,40 +15,41 @@ import ScreenLayout from '../../components/layout/screenLayout'
 import SocialMediaList from './components/SocialMediaList'
 import { setLocalStorage } from '../../utils/manageStorage'
 import { GetTicket } from '../../utils/savePackaging'
-import { useNavigate } from 'react-router-dom'
-import WebApiAeco from '../../api/webApiAeco'
+// import { useNavigate } from 'react-router-dom'
+// import WebApiAeco from '../../api/webApiAeco'
 
 function Home() {
   const { data: metas, loading, error } = usePageData<MetaDataHome>('Home')
-  const navigation = useNavigate()
-  const intervalMs = 5000 // 1 hour
-  const timerRef = useRef<NodeJS.Timeout>()
+  // const navigation = useNavigate()
+  // const intervalMs = 5000 // 1 hour
+  // const timerRef = useRef<NodeJS.Timeout>()
+
   useEffect(() => {
     localStorage.clear()
     setLocalStorage('ticket', '')
     GetTicket()
-    validateMachine()
-    timerRef.current = setInterval(() => {
-      validateMachine()
-    }, intervalMs)
+    // validateMachine()
+    // timerRef.current = setInterval(() => {
+    //   validateMachine()
+    // }, intervalMs)
 
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current)
-      }
-    }
+    // return () => {
+    //   if (timerRef.current) {
+    //     clearInterval(timerRef.current)
+    //   }
+    // }
   }, [])
 
-  const validateMachine = async () => {
-    try {
-      const response = await WebApiAeco.getMachine()
-      if (!response.success) {
-        if (response.message === 'API-DOWN') return navigation('/offline')
-      }
-    } catch (networkError) {
-      console.error(networkError)
-    }
-  }
+  // const validateMachine = async () => {
+  //   try {
+  //     const response = await WebApiAeco.getMachine()
+  //     if (!response.success) {
+  //       if (response.message === 'API-DOWN') return navigation('/offline')
+  //     }
+  //   } catch (networkError) {
+  //     console.error(networkError)
+  //   }
+  // }
 
   if (loading || error || !metas) {
     return (
