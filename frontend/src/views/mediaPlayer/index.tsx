@@ -11,20 +11,19 @@ const MediaPlayer = () => {
   const [hasRunToday, setHasRunToday] = useState(false)
 
   const mediasExample: MediaItem[] = [
-    { id: '1', type: 'video', src: 'staticAdvertisings/ayuntaeco.mp4' },
+    { id: '1', type: 'image', src: 'staticAdvertisings/anahuac.png' },
   ]
 
   useEffect(() => {
-    if (!firstLoad) { 
-        getAdvertising() 
-        setFirstLoad(true)
+    if (!firstLoad) {
+      getAdvertising()
+      setFirstLoad(true)
     }
     const interval = setInterval(() => {
       const now = new Date()
       const hours = now.getHours()
       const minutes = now.getMinutes()
 
-      
       if (hours === 1 && minutes === 0 && !hasRunToday) {
         getAdvertising()
       }
@@ -40,14 +39,19 @@ const MediaPlayer = () => {
   const getAdvertising = async () => {
     try {
       const response = await WebApiAeco.getAdvertising()
-      if (response.length>0)
-        setMedia(response.map((item: any) => {
-            return ({
-                id: item.id,
-                type: item.mime_type.toLowerCase().split('/')[0] === 'video' ? 'video' : 'image',
-                src: item.path.substring(item.path.indexOf('synchronized')), // Remove leading slash
-            });
-        }))
+      if (response.length > 0)
+        setMedia(
+          response.map((item: any) => {
+            return {
+              id: item.id,
+              type:
+                item.mime_type.toLowerCase().split('/')[0] === 'video'
+                  ? 'video'
+                  : 'image',
+              src: item.path.substring(item.path.indexOf('synchronized')), // Remove leading slash
+            }
+          }),
+        )
       else setMedia(mediasExample)
     } catch (error) {
       console.error('Error fetching advertising:', error)
