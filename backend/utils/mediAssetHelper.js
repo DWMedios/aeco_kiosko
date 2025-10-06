@@ -8,9 +8,9 @@ const { fetchFromApi } = require('../utils/fetchHelper')
 
 
 exports.processMediaAsset = async (mediaAsset, apiKey) => {
-  console.log("🚀 ~ apiKey:", apiKey)
   try {
     const downloadUrl = await getDownloadUrl(mediaAsset.fileKey, apiKey)
+    console.log("🚀 ~ downloadUrl:", downloadUrl)
     const localPath = await downloadMedia(downloadUrl, mediaAsset.fileKey)
     return localPath
   } catch (error) {
@@ -24,7 +24,6 @@ exports.processMediaAsset = async (mediaAsset, apiKey) => {
 }
 
 const getDownloadUrl = async (key, apiKey) => {
-  console.log("🚀 ~ getDownloadUrl ~ apiKey:", apiKey)
   try {
     const data = await fetchFromApi(`/media-assets/aecos/download-url/${key}`, 'GET', null, apiKey)
     if (data.error) throw data
@@ -38,6 +37,7 @@ const getDownloadUrl = async (key, apiKey) => {
 const downloadMedia = async (mediaUrl, name) => {
   try {
     const response = await fetch(mediaUrl)
+    console.log("🚀 ~ downloadMedia ~ response:", response)
 
     if (!response.ok) {
       throw new Error(`Failed to download media: ${response.statusText}`)

@@ -29,7 +29,7 @@ exports.updatePublicity = async (publicities) => {
 
 exports.suspendPublicity = async () => {
     const { Publicity } = await connectToDatabase()
-    return await Publicity.update({ active: false }, { where: { end_date: { [Op.lt]: new Date() } } })
+    return await Publicity.destroy({ where: { end_date: { [Op.lt]: new Date() } } })
 }
 
 exports.removePublicity = async (id) => {
