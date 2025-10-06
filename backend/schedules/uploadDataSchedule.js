@@ -78,7 +78,7 @@ const uploadData = async () => {
             await getProductsAfterLast()
             await getRewardsServer()
             await getPublicity()
-            // await removeAdvertising()
+            await removeAdvertising()
             await createLog({ ...newLog, message: 'synchronized susccefully' })
         }
         // return true
@@ -445,7 +445,7 @@ const getPublicity = async () => {
                 await updatePublicity(validAdvertisings)
             }
         }
-        await suspendPublicity()
+        // await suspendPublicity()
         await createLog({ ...newLog, message: 'Update advertisings' })
     } catch (error) {
         await createLog({
@@ -456,28 +456,35 @@ const getPublicity = async () => {
     }
 }
 
-// const removeAdvertising = async () => {
-//     const newLog = { type: UPDATE_TYPES.UPDATE }
-//     try {
-//         const advertising = await getAll(false, false)
-//         if (advertising.length > 0) {
-//             advertising.forEach(async (item) => {
-//                 try {
-//                     const deleted = await deleteMedia(item.path)
-//                     if (deleted) {
-//                         await removePublicity(item.id)
-//                     }
-//                 } catch (error) {
-//                     console.error('Error al eliminar archivo:', error)
-//                 }
-//             })
-//         }
-//         await createLog({ ...newLog, message: 'Remove advertising' })
-//     } catch (error) {
-//         await createLog({
-//             ...newLog,
-//             status: false,
-//             message: 'Error Remove advertising: ' + error.message,
-//         })
-//     }
-// }
+const removeAdvertising = async () => {
+    const newLog = { type: UPDATE_TYPES.UPDATE }
+    try {
+        // Obtener solo publicidades expiradas (end_date < fecha actual)
+        const advertising = await getAll(false, true, false) // active: false, fechas: true
+        if (advertising.length > 0) {
+            advertising.forEach(async (item) => {
+                try {
+                    // Validación adicional de fecha por seguridad
+                    const now = new Date()
+                    const endDate = new Date(item.end_date)
+
+                    if (endDate < now) {
+                        const deleted = await deleteMedia(item.path)
+                        if (deleted) {
+                            await removePublicity(item.id)
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error al eliminar archivo:', error)
+                }
+            })
+        }
+        await createLog({ ...newLog, message: 'Remove advertising' })
+    } catch (error) {
+        await createLog({
+            ...newLog,
+            status: false,
+            message: 'Error Remove advertising: ' + error.message,
+        })
+    }
+}
