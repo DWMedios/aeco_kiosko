@@ -417,9 +417,6 @@ const getPublicity = async () => {
             const advertisings = await Promise.all(
                 data.campaigns.map(async (campaign) => {
                     try {
-                        console.log("🚀 ~ getPublicity ~-------- xApiKey:", xApiKey)
-                        console.log("🚀 ~ getPublicity ~-------- mediaAsset:", campaign.mediaAsset.fileKey)
-
                         const path = await processMediaAsset(campaign.mediaAsset, xApiKey)
                         if (!path || path === undefined || path === '' || path === null)
                             return null
@@ -445,7 +442,7 @@ const getPublicity = async () => {
                 await updatePublicity(validAdvertisings)
             }
         }
-        // await suspendPublicity()
+        const suspendPublicityresp = await suspendPublicity()
         await createLog({ ...newLog, message: 'Update advertisings' })
     } catch (error) {
         await createLog({
@@ -459,20 +456,13 @@ const getPublicity = async () => {
 const removeAdvertising = async () => {
     const newLog = { type: UPDATE_TYPES.UPDATE }
     try {
-        // Obtener solo publicidades expiradas (end_date < fecha actual)
-        const advertising = await getAll(false, true, false) // active: false, fechas: true
+        const advertising = await getAll(false, false)
         if (advertising.length > 0) {
             advertising.forEach(async (item) => {
                 try {
-                    // Validación adicional de fecha por seguridad
-                    const now = new Date()
-                    const endDate = new Date(item.end_date)
-
-                    if (endDate < now) {
-                        const deleted = await deleteMedia(item.path)
-                        if (deleted) {
-                            await removePublicity(item.id)
-                        }
+                    const deleted = await deleteMedia(item.path)
+                    if (deleted) {
+                        await removePublicity(item.id)
                     }
                 } catch (error) {
                     console.error('Error al eliminar archivo:', error)

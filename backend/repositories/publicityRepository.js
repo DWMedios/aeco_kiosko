@@ -2,18 +2,15 @@ const { Op } = require('sequelize')
 
 const connectToDatabase = require('../db/index')
 
-exports.getAll = async (status = true, fechas = true, all = false) => {
+exports.getAll = async (status = true, fechas = true) => {
     const { Publicity } = await connectToDatabase()
-    const where = {}
-    if (all) {
-        const where = {
-            active: status,
-        }
+    const where = {
+        active: status,
+    }
 
-        if (fechas) {
-            where.end_date = {
-                [Op.gte]: new Date(),
-            }
+    if (fechas) {
+        where.end_date = {
+            [Op.gte]: new Date(),
         }
     }
 
@@ -39,7 +36,8 @@ exports.removePublicity = async (id) => {
     const { Publicity } = await connectToDatabase()
     return await Publicity.destroy({
         where: {
-            id: id
+            id: id,
+            active: false,
         }
     })
 }
